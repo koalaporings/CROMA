@@ -51,13 +51,13 @@ const Login = ({children}) => {
                     className="login-icon"/>
                     <span className='login-text-1' style={{
                     color: 'white',
-                    fontSize: '3vmin',
+                    fontSize: '3vh',
                     display: 'inline'}}> 
                     LOG IN</span>
                     
                     <span className='login-text-2' style={{
                     color: 'white',
-                    fontSize: '1.75vmin',
+                    fontSize: '1.75vh',
                     display: 'inline'}}> 
                     Submit formal requests and track them online</span>
                 </div>
@@ -87,7 +87,7 @@ const Login = ({children}) => {
                     <span className='login-text-2'
                     style={{
                         color: 'black',
-                        fontSize: '1.75vmin',
+                        fontSize: '1.75vh',
                         display: 'inline'}}> If you encounter any problems with logging in through your UP Mail, send a message to loremipsum.com</span>
                 </div>
 
