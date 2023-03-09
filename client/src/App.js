@@ -1,6 +1,6 @@
 import './App.css';
 import React, {  useEffect, useState } from 'react';
-
+import Footer from './Components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Login.jsx';
 import AdminLanding from './Pages/Admin Portal/Admin Landing.jsx';
@@ -51,6 +51,7 @@ function App() {
             />
           </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }
