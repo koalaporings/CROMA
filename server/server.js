@@ -17,15 +17,16 @@ db.connect((err) => {
     console.log('Connected to database.');
   });
 
-
-db.query('SELECT * FROM users', (err, results) => {
+app.get("/api/database", (req, res) => {
+  db.query('SELECT * FROM users', (err, results) => {
     if (err) {
       console.error('Error querying database:', err);
       return;
     }
     console.log('Query results:', results);
+    res.json(results)
   });
-  
+})
 
 app.get("/api", (req, res) => {
     res.json({"users": ["userOne, userTwo, userThree, userFour"]})
