@@ -1,5 +1,6 @@
 import './App.css';
 import React, {  useEffect, useState } from 'react';
+import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Login.jsx';
@@ -27,6 +28,7 @@ function App() {
   return (
     
     <div className="App">
+        <Header/>
         <BrowserRouter>
           <Routes>
             <Route 
