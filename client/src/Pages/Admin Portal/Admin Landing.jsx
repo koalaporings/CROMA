@@ -8,6 +8,7 @@ const AdminLanding = ({children}) => {
     return(
         <div>
             <p>Placeholder text</p>
+            
         </div>
     )
 }
