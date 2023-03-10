@@ -9,3 +9,8 @@
     font-size: 100%;
     vertical-align: baseline;
 }
+
+.clerk-container {
+    height: 100vh;
+    background-color: white;
+}

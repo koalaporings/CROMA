@@ -28,7 +28,6 @@ function App() {
   return (
     
     <div className="App">
-        <Header/>
         <BrowserRouter>
           <Routes>
             <Route 
@@ -53,7 +52,6 @@ function App() {
             />
           </Routes>
       </BrowserRouter>
-      <Footer/>
     </div>
   );
 }

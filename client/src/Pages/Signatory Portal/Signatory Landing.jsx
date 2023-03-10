@@ -1,5 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import Footer from '../../Components/Footer/Footer';
+import Header from '../../Components/Header/Header';
 
 import './Signatory Landing.css';
 
@@ -7,7 +9,13 @@ const SignatoryLanding = ({children}) => {
 
     return(
         <div>
-            <p>Placeholder text</p>
+            <Header/>
+
+            <div className='signatory-container'>
+                
+            </div>
+
+            <Footer/>
         </div>
     )
 }
