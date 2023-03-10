@@ -8,22 +8,13 @@ import AdminLanding from './Pages/Admin Portal/Admin Landing.jsx';
 import StudentLanding from './Pages/Student Portal/Student Landing.jsx';
 import SignatoryLanding from './Pages/Signatory Portal/Signatory Landing.jsx';
 import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
+import { UseQueryResultsHook } from './api';
 
 function App() {
 
-  const [backendData, setBackendData] = useState([{}])
-
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
-
-  console.log(backendData)
+  // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
+  console.log(UseQueryResultsHook())
+  // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
 
   return (
     
