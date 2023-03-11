@@ -5,6 +5,7 @@
     position: absolute;
     height: 15%;
     width: 100%;
+    bottom: 0;
     /* bottom: 0vh; */
 }
 

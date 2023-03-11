@@ -11,7 +11,6 @@ import globeIcon from '../../Assets/globe-icon.svg';
 import facebookIcon from '../../Assets/facebook-icon.svg';
 import telephoneIcon from '../../Assets/telephone-icon.svg';
 import envelopeIcon from '../../Assets/envelope-icon.svg';
-import Footer from '../../Components/Footer/Footer';
 
 
 
@@ -95,7 +94,7 @@ const Login = ({children}) => {
 
             </div>
 
-            <div className='footer-container'>
+            <div className='footer-container1'>
                     <p className='login-footer-text-1'>UNIVERSITY OF THE PHILIPPINES - CEBU</p>
                     <p className='login-footer-text-2'>COLLEGE OF SCIENCE</p>
                     <p className='login-footer-text-3'>OFFICE OF THE COLLEGE SECRETARY</p>
