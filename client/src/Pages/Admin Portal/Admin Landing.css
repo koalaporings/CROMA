@@ -49,36 +49,60 @@ th, td {
 }
 
 th {
-    padding: 8  px;
+    padding: 8px;
     background-color: #7A1113;
     color: white;
     font-family: 'Fredoka';
     font-size: 18px;
+
 }
 
-th.urgent {
-    min-width: 60px;
+
+/* .urgent {
+    
+} 
+
+.date {
+
 }
 
-th.date {
-    min-width: 50px;
+.student-name {
+
 }
 
-th.student-name {
-    min-width: 100px;
+.transaction-request {
+
 }
 
-th.transaction-request {
-    min-width: 100px;
-}
+.form {
 
-th.form {
-    min-width: 80px;
-}
+} */
 
 td {
     font-family: 'Poppins';
     font-size: 15px;
+}
+
+td.urgent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}   
+
+.urgent-box {
+    background-color: #FF0000;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+    font-family: 'Fredoka One';
+    width: 80px;
+
+}
+
+.urgent-icon {
+    color: #FF0000;
+
 }
 
 tr {
@@ -89,6 +113,10 @@ tr.header {
     height: 40px;   
 }
 
+tr.urgent-row {
+    color: #FF0000;
+    font-weight: 700;
+}
 
 
 .view {
@@ -153,7 +181,7 @@ tr:nth-child(odd) {
 .table-page-number {
     color: #7A1113;
     width: 25px;
-    height:  100%;
+    height:  38px;
     padding: 5px;
     margin: 1px;
     background-color: #FFD17F;
@@ -166,3 +194,77 @@ tr:nth-child(odd) {
     font-size: 10px;
     margin-left: auto;
 }   
+
+.search-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-box {
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 3px;
+    margin: 3px;
+    font-size: 13px;
+    font-family: 'Fredoka';
+    border-color: #7A1113;
+}
+
+.filter {
+    padding: 5px;
+    font-family: 'Fredoka One';
+    color: #7A1113;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.filter-dropdown {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100px;
+    background-color: #7A1113;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.selected-filter-text {
+    color: white;
+    font-family: 'Fredoka One';
+    font-size: 13px;
+}
+
+.dropdown-icon {
+    color: white;
+}
+
+.show-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.show-text {
+    font-size: 9px;
+    margin: 5px
+}
+
+.show-dropdown {
+    margin: 5px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    min-width: 18px;
+}
+
+.show-number {
+    color: #2EB1A1;
+    padding: 2px;
+}
+.show-icon {
+    color: #6D6D6D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
