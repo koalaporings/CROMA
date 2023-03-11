@@ -13,7 +13,9 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 const AdminLanding = ({children}) => {
     return(
         <div>
-            <Header/>
+            <div className="header-admin">
+                <Header/>
+            </div>
             <div className='admin-container'>
                 <p>Placeholder text</p>
                 <div className="table1-container">
@@ -162,7 +164,9 @@ const AdminLanding = ({children}) => {
                     </div>
                 </div>
             </div>
-            <Footer/>
+            <div className="footer-admin">
+                <Footer/>
+            </div>
 
         </div>
     )

@@ -1,13 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One');
 
+.header-admin {
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
+.footer-admin {
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
+}
+
 .page {
     display: grid;
 }
 
 .admin-container {
-    position: absolute;
-    top: 12%;
+    /* position: absolute;
+    top: 12%; */
     width: 100%;
     background-color: white;
 }
