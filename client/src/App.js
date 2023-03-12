@@ -8,6 +8,9 @@ import AdminLanding from './Pages/Admin Portal/Admin Landing.jsx';
 import StudentLanding from './Pages/Student Portal/Student Landing.jsx';
 import SignatoryLanding from './Pages/Signatory Portal/Signatory Landing.jsx';
 import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
+import Add from './Pages/dbPage/Add.jsx';
+import Update from './Pages/dbPage/Update.jsx';
+import View from './Pages/dbPage/View.jsx';
 import { UseQueryResultsHook } from './api';
 
 function App() {
@@ -41,6 +44,20 @@ function App() {
               path="/clerk" 
               element={<ClerkLanding/>}  
             />
+            {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
+            <Route 
+              path="/db" 
+              element={<View/>}  
+            />
+            <Route 
+              path="/db/add" 
+              element={<Add/>}  
+            />
+            <Route 
+              path="/db/update" 
+              element={<Update/>}  
+            />
+            {/* BACKEND ROUTE FOR TESTING ENDS HERE*/}
           </Routes>
       </BrowserRouter>
     </div>
