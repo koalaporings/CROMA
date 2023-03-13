@@ -9,6 +9,11 @@ const db = mysql.createConnection({
     database: 'croma'
 });
 
+const cors = require('cors');
+
+app.use(express.json());
+app.use(cors())
+
 db.connect((err) => {
     if (err) {
       console.error('Error connecting to database:', err);
@@ -28,8 +33,21 @@ app.get("/api/database", (req, res) => {
   });
 })
 
-app.get("/api", (req, res) => {
-    res.json({"users": ["userOne, userTwo, userThree, userFour"]})
+app.get("/db", (req, res) => {
+    db.query('SELECT * FROM users', (err, results) => {
+      if(err) console.error('ERROR', err);
+      res.json(results)
+    })
+})
+
+app.post('/db', (req, res) => {
+  const q = 'INSERT INTO users (`first_name`, `last_name`, `email`, `password`) VALUES (?)'
+  const values = ['NAME', 'LASTNAME', 'EMAIL@EMAIL.COM', 'PASSWORD']
+
+  db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(results)
+  })
 })
 
 //testing for webhook, dun mind comment hehe
