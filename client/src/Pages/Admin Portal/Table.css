@@ -212,7 +212,16 @@ tr:nth-child(odd) {
     flex-direction: row;
 }
 
+.search-icon {
+    height: 100%;
+    width: 15px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
 .search-box {
+    display: flex;
+    flex-direction: row;
     border: 1px solid black;
     border-radius: 7px;
     padding: 3px;
@@ -221,6 +230,11 @@ tr:nth-child(odd) {
     font-family: 'Fredoka';
     border-color: #7A1113;
 }
+
+.search-input {
+    height: 100%;
+    font-family: 'Fredoka';
+    }
 
 .filter {
     padding: 5px;

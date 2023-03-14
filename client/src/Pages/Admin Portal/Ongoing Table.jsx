@@ -3,6 +3,7 @@ import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { BsExclamationLg, BsChevronDown } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const OngoingTable = () => {
     return (
@@ -16,7 +17,10 @@ const OngoingTable = () => {
                             <div className="selected-filter-text">Date</div>
                             <div className='dropdown-icon'><BsChevronDown/></div>
                         </div>
-                        <input id="table1-input" className='search-box' type="text" name="search-input" placeholder='Search'/>   
+                        <div className="search-box">
+                            <AiOutlineSearch className='search-icon'/>
+                            <input id="table2-input" className='search-input' type="text" name="search-input" placeholder='Search'/>   
+                        </div>
                     </div>
                 </div>
                 <table className="table1">
