@@ -3,21 +3,22 @@ import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
-import SignatoryTransactionTable from './Signatory Transaction Table';
 
+import './Announcements.css';
 
-import './Signatory Landing.css';
-
-const SignatoryLanding = ({children}) => {
+const AnnouncementPage = ({children}) => {
 
     return(
         <div>
             <NavBar/>
             <Header/>
 
-            <div className='signatory-container'>
-                <SignatoryTransactionTable/>
-                
+            <div className='announce-container'>
+                <p>-</p>
+                <p>-</p>
+                <p>-</p>
+                <p>-</p>
+                <p>Announcements Page</p>
             </div>
 
             <Footer/>
@@ -25,4 +26,4 @@ const SignatoryLanding = ({children}) => {
     )
 }
 
-export default SignatoryLanding;
+export default AnnouncementPage;

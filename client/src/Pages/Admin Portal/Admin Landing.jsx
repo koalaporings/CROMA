@@ -6,12 +6,12 @@ import TransactionTable from './Transaction Table';
 import OngoingTable from './Ongoing Table';
 import AnnouncementTable from './Announcement Table';
 import './Admin Landing.css';
-
-
+import NavBar from '../../Components/Navigation Bar/NavBar.jsx';
 
 const AdminLanding = ({children}) => {
     return(
         <div>
+            <NavBar/>
             <div className="header-admin">
                 <Header/>
             </div>

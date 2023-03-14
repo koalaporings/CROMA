@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One');
 
 .header-admin {
+    display: flex;
     margin-bottom: 1vh;
     height: 10vh;
     width: 100%
@@ -15,6 +16,7 @@
 }
 
 .footer-admin {
+    display: flex;
     margin-top: 1vh;
     height: 15vh;
     width: 100%

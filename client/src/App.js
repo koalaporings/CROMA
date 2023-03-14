@@ -8,12 +8,17 @@ import AdminLanding from './Pages/Admin Portal/Admin Landing.jsx';
 import StudentLanding from './Pages/Student Portal/Student Landing.jsx';
 import SignatoryLanding from './Pages/Signatory Portal/Signatory Landing.jsx';
 import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
+import AnnouncementPage from './Pages/Announcements/Announcements';
+import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
+import HistoryPage from './Pages/History/History';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
 import View from './Pages/dbPage/View.jsx';
 
 
 function App() {
+
+  document.title = "Automated Request System";
 
   // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
   // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
@@ -42,6 +47,19 @@ function App() {
             <Route 
               path="/clerk" 
               element={<ClerkLanding/>}  
+            />
+            <Route 
+              path="/announcements" 
+              element={<AnnouncementPage/>}  
+            />
+            {/* TEMPORARY ONLY WHILE NO API YET*/}
+            <Route 
+              path="/signatory/announcements" 
+              element={<AnnouncementSigPage/>}  
+            />
+            <Route 
+              path="/history" 
+              element={<HistoryPage/>}  
             />
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
             <Route 

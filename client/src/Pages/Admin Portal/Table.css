@@ -319,6 +319,7 @@ tr:nth-child(odd) {
     align-content: center; 
     background-color: #FFEBC8;
     margin-top: 25px;
+    z-index: 0;
 }
 
 .announcement-header{
