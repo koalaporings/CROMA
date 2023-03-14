@@ -11,7 +11,7 @@ import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
 import View from './Pages/dbPage/View.jsx';
-import { UseQueryResultsHook } from './api';
+
 
 function App() {
 
