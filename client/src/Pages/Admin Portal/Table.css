@@ -244,25 +244,25 @@ tr:nth-child(odd) {
     margin-right: 5px;
 }
 
-.filter-dropdown {
-    display: flex;
-    justify-content: space-between;
+/* select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(<BsChevronDown/>) no-repeat right center;
+    background-size: 17px;
+  } */
+  
+.table-filter {
     min-width: 100px;
     background-color: #7A1113;
     border-radius: 5px;
     margin: 3px;
     padding: 3px;
-}
-
-.selected-filter-text {
-    color: white;
     font-family: 'Fredoka One';
     font-size: 13px;
-}
-
-.dropdown-icon {
     color: white;
 }
+
 
 .show-section {
     display: flex;
