@@ -10,7 +10,7 @@ const OngoingTable = () => {
         <div>
              <div className="table1-container">
                 <div className="table-top">
-                    <div className="table-label">Transaction Requests</div>
+                    <div className="table-label">Ongoing Transaction</div>
                     <div className="search-filter">
                         <label className='filter' htmlFor="ongoing-filter">Filter by:</label>
                         <select className='table-filter' name="ongoing-filter" id="ongoing-filter">
