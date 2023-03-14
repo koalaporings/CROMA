@@ -11,6 +11,7 @@
 }
 
 .signatory-container {
+    padding: 5%;
     height: 100vh;
     background-color: white;
 }
