@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const View = () => {
   const [user, setName] = useState([])
@@ -16,15 +18,23 @@ const View = () => {
     }
     fetchAllUsers()
   }, [])
+
+const navigate = useNavigate()
+const handleClick = async e => {
+  e.preventDefault()
+  navigate('/db/update/' + user.id)
+}
   return (
     <div>
       <h1>DB Users</h1>
       {user.map(user => (
         <div className="user" key={user.id}>
-          <p2>{user.first_name}</p2>
-          <p2>{user.last_name}</p2>
-          <p2>{user.email}</p2>
-          <p2>{user.password}</p2>
+          <div><p2>{user.first_name}  |  </p2>
+          <p2>{user.last_name}  |  </p2>
+          <p2>{user.email}  |  </p2>
+          <p2>{user.password}  |  </p2>
+          <button><Link to={`/db/update/${user.id}`}> Update </Link></button>
+        </div>
         </div>
       ))}
     </div>
