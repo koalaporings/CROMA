@@ -34,9 +34,19 @@ app.get("/api/database", (req, res) => {
 })
 
 app.get("/db", (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
+    db.query('SELECT * FROM users', (err, results) => {
+      if(err) console.error('ERROR', err);
+      res.json(results)
+    })
+})
+
+app.post('/db', (req, res) => {
+  const q = 'INSERT INTO users (`first_name`, `last_name`, `email`, `password`) VALUES (?)'
+  const values = [req.body.first_name, req.body.last_name, req.body.email, req.body.password]
+
+  db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
-    res.json(results)
+    res.json('User has been added successfully!')
   })
 })
 
