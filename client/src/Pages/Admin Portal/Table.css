@@ -280,3 +280,152 @@ tr:nth-child(odd) {
     justify-content: center;
     align-items: center;
 }
+
+
+/* .table1-container{
+    padding: 10px;
+    height: 450px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.table-top {
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    min-width: 600px;
+} */
+
+.announcement-container{
+    position: relative;
+    border-radius: 15px;
+    display: grid; 
+    left: 16%;
+    width: 68%;
+    /* padding: 15px; */
+    height: 185px;
+    display: grid;
+    justify-content: center; 
+    align-content: center; 
+    background-color: #FFEBC8;
+    margin-top: 25px;
+}
+
+.announcement-header{
+    /* font-family: 'Fredoka One';
+    font-size: 22px;
+    color: #7A1113; */
+    display: flex;
+    height: 10px;
+    justify-content: space-between;
+    min-width: 600px; 
+}
+
+.announcement-icon{
+    position: absolute;
+    top: 3.5%;
+    left: 2%;
+    width:3%;
+    height: auto;
+    /* color: #7A1113; */
+}
+
+.announcement-text{
+    position: absolute;
+    top: 3.5%;
+    left: 5.5%;
+    width:3%;
+    height: auto;
+    
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.5vh;
+    align-items: center;
+    letter-spacing: 0.02em;
+    
+    /* Maroon */
+    
+    color: #7A1113;
+      
+}
+
+
+
+
+
+/* .announce-header{
+    position: relative;
+    top: 3%;
+    /* left: 1.5%; */
+    /* height: 30%; 
+} */
+
+/* .announce-div{
+    position: relative;
+    top: 30%; 
+    /* left: 1.5%; */
+    /* height: 70%; 
+}  */
+
+table.announcement-table{
+    position: relative; 
+    padding: 0;
+    border-spacing: 0;
+    min-width: 900px; 
+    margin-top: 27px;   
+}
+
+/* table.table1 {
+    padding: 0;
+    border-spacing: 0;
+    min-width: 1000px;
+} */
+
+tr.announcement-tr{
+    position: relative;
+    height: 17.5%;  
+}
+
+tr.announcement-tr:nth-child(odd) {
+    background-color: #FFEBC8;
+}  
+
+td.announcement-date{
+    /* padding: 5px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    padding: 3px;
+}
+
+td.announcement-info{
+    font-family: 'Poppins';
+    font-size: 2vh; 
+    color: #7A1113;   
+    justify-content: left; 
+    align-items: left;
+    padding: 3px;
+}
+
+
+/* .table1-container{
+    padding: 10px;
+    height: 450px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    
+} */
+
+.date-box {
+    background-color: #FFF6E6;
+    color: #7A1113;
+    border-radius: 10px;
+    padding: 5px;
+    font-family: 'Fredoka One';
+    width: 150px;
+
+}
