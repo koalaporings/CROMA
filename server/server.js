@@ -64,6 +64,15 @@ app.put('/db/update/:id', (req, res) => {
   })
 })
 
+app.delete('/db/delete/:id', (req, res) => {
+  const userId = req.params.id
+  const q = 'DELETE FROM users WHERE id = ?'
+
+  db.query(q, [userId], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+})
+
 //testing for webhook, dun mind comment hehe
 
 app.listen(5000, () => {console.log("Server started on port 5000")})
