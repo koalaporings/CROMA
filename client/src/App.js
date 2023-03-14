@@ -16,7 +16,6 @@ import { UseQueryResultsHook } from './api';
 function App() {
 
   // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
-  console.log(UseQueryResultsHook())
   // BACKEND TESTING, DO NOT DELETE, CONSOLE TEST ONLY
 
   return (
@@ -54,7 +53,7 @@ function App() {
               element={<Add/>}  
             />
             <Route 
-              path="/db/update" 
+              path="/db/update/:id" 
               element={<Update/>}  
             />
             {/* BACKEND ROUTE FOR TESTING ENDS HERE*/}

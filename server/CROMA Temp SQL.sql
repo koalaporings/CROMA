@@ -12,3 +12,4 @@ INSERT INTO users (id, first_name, last_name, email, password) VALUES
 (3, 'Bob', 'Smith', 'bob.smith@example.com', 'password3'),
 (4, 'Alice', 'Johnson', 'alice.johnson@example.com', 'password4'),
 (5, 'Mike', 'Brown', 'mike.brown@example.com', 'password5');
+
