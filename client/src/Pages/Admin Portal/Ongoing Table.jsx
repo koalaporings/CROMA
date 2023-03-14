@@ -35,9 +35,7 @@ const OngoingTable = () => {
                     </tr>
                     <tr className='urgent-row'>
                         <td className='urgent'>
-                            <div className="urgent-icon">
-                                <BsExclamationLg/>
-                            </div>
+                            <BsExclamationLg className="urgent-icon"/>
                             <div className="urgent-box">
                                 URGENT
                             </div>

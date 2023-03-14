@@ -1,11 +1,5 @@
 
 
-.admin-container {
-    /* position: absolute;
-    top: 12%; */
-    width: 100%;
-    background-color: white;
-}
 
 
 .table1-container{
@@ -53,10 +47,11 @@ th {
 }
 
 
-/* .urgent {
-    
+.urgent {
+    width: 100px;
 } 
 
+/*
 .date {
 
 }
@@ -81,7 +76,7 @@ td {
 td.urgent {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     
 }   
 
@@ -97,7 +92,6 @@ td.urgent {
 
 .urgent-icon {
     color: #FF0000;
-
 }
 
 tr {

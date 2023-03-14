@@ -34,9 +34,7 @@ const TransactionTable = () => {
                     </tr>
                     <tr className='urgent-row'>
                         <td className='urgent'>
-                            <div className="urgent-icon">
-                                <BsExclamationLg/>
-                            </div>
+                            <BsExclamationLg class="urgent-icon"/>
                             <div className="urgent-box">
                                 URGENT
                             </div>

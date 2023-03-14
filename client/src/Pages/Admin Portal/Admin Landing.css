@@ -7,6 +7,13 @@
     width: 100%
 }
 
+.admin-container {
+    /* position: absolute;
+    top: 12%; */
+    width: 100%;
+    background-color: white;
+}
+
 .footer-admin {
     margin-top: 1vh;
     height: 15vh;
