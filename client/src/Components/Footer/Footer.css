@@ -14,28 +14,28 @@
     left: 9%;
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2.8vh;
+    font-size: 2vh;
     color: white;
 }
 
 .footer-text-2 {
     position: absolute;
-    top: 27.5%;
+    top: 21%;
     left: 9%;
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2.8vh;
+    font-size: 2vh;
     color: white;
 }
 
 .footer-text-3 {
     position: absolute;
-    top: 47.5%;
+    top: 35%;
     left: 9%;
     font-family: 'Poppins';
     font-weight: 700;
     text-align: left;
-    font-size: 3.2vh;
+    font-size: 2.5vh;
     color: #FAAC1F;
 }
 
