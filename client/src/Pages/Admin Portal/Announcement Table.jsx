@@ -1,5 +1,7 @@
 import './Table.css';
+// import {CampaignOutlined} from "@mui/icons-material"
 import announcementIcon from '../../Assets/announcement-icon.svg';
+
 
 
 const AnnouncementTable = () => {
@@ -7,6 +9,7 @@ const AnnouncementTable = () => {
         <div>
             <div className="announcement-container">
                 <div className = "announcement-header">
+                {/* <CampaignOutlined className='announcement-icon'/> */}
                 <img alt="announcement-icon"
                     src={announcementIcon}
                 className="announcement-icon"/>
