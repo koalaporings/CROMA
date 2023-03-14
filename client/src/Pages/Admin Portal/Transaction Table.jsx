@@ -1,8 +1,9 @@
-import './Table.css';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { BsExclamationLg, BsChevronDown } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import { AiOutlineSearch } from 'react-icons/ai';
+import './Table.css';
 
 const TransactionTable = () => {
     return (
@@ -11,12 +12,16 @@ const TransactionTable = () => {
                 <div className="table-top">
                     <div className="table-label">Transaction Requests</div>
                     <div className="search-filter">
-                        <div className='filter'>Filter by:</div>
-                        <div className="filter-dropdown">
-                            <div className="selected-filter-text">Date</div>
-                            <div className='dropdown-icon'><BsChevronDown/></div>
+                        <label className='filter' htmlFor="ongoing-filter">Filter by:</label>
+                        <select className='table-filter' name="ongoing-filter" id="ongoing-filter">
+                            <option value="1">Date</option>
+                            <option value="2">Student Name</option>
+                            <option value="2">Transaction Name</option>
+                        </select>
+                        <div className="search-box">
+                            <AiOutlineSearch className='search-icon'/>
+                            <input id="table1-input" className='search-input' type="text" name="search-input" placeholder='Search'/>   
                         </div>
-                        <input id="table1-input" className='search-box' type="text" name="search-input" placeholder='Search'/>   
                     </div>
                 </div>
                 <table className="table1">
@@ -29,9 +34,7 @@ const TransactionTable = () => {
                     </tr>
                     <tr className='urgent-row'>
                         <td className='urgent'>
-                            <div className="urgent-icon">
-                                <BsExclamationLg/>
-                            </div>
+                            <BsExclamationLg class="urgent-icon"/>
                             <div className="urgent-box">
                                 URGENT
                             </div>

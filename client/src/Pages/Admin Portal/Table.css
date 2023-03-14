@@ -1,11 +1,5 @@
 
 
-.admin-container {
-    /* position: absolute;
-    top: 12%; */
-    width: 100%;
-    background-color: white;
-}
 
 
 .table1-container{
@@ -53,10 +47,11 @@ th {
 }
 
 
-/* .urgent {
-    
+.urgent {
+    width: 100px;
 } 
 
+/*
 .date {
 
 }
@@ -81,7 +76,7 @@ td {
 td.urgent {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     
 }   
 
@@ -97,7 +92,6 @@ td.urgent {
 
 .urgent-icon {
     color: #FF0000;
-
 }
 
 tr {
@@ -212,7 +206,16 @@ tr:nth-child(odd) {
     flex-direction: row;
 }
 
+.search-icon {
+    height: 100%;
+    width: 15px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
 .search-box {
+    display: flex;
+    flex-direction: row;
     border: 1px solid black;
     border-radius: 7px;
     padding: 3px;
@@ -222,6 +225,11 @@ tr:nth-child(odd) {
     border-color: #7A1113;
 }
 
+.search-input {
+    height: 100%;
+    font-family: 'Fredoka';
+    }
+
 .filter {
     padding: 5px;
     font-family: 'Fredoka One';
@@ -230,25 +238,25 @@ tr:nth-child(odd) {
     margin-right: 5px;
 }
 
-.filter-dropdown {
-    display: flex;
-    justify-content: space-between;
+/* select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(<BsChevronDown/>) no-repeat right center;
+    background-size: 17px;
+  } */
+  
+.table-filter {
     min-width: 100px;
     background-color: #7A1113;
     border-radius: 5px;
     margin: 3px;
     padding: 3px;
-}
-
-.selected-filter-text {
-    color: white;
     font-family: 'Fredoka One';
     font-size: 13px;
-}
-
-.dropdown-icon {
     color: white;
 }
+
 
 .show-section {
     display: flex;
