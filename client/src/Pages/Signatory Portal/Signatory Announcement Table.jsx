@@ -1,15 +1,13 @@
-import './Table.css';
-// import {CampaignOutlined} from "@mui/icons-material"
+import '../../Pages/Admin Portal/Table.css';
+import './Signatory Table.css';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 
 
-
-const AnnouncementTable = () => {
+const SignatoryAnnouncementTable = () => {
     return (
         <div>
-            <div className="announcement-container">
+            <div className="signatory-announcement-container">
                 <div className = "announcement-header">
-                {/* <CampaignOutlined className='announcement-icon'/> */}
                 <img alt="announcement-icon"
                     src={announcementIcon}
                 className="announcement-icon"/>
@@ -57,4 +55,4 @@ const AnnouncementTable = () => {
 }
 
 
-export default AnnouncementTable;
+export default SignatoryAnnouncementTable;

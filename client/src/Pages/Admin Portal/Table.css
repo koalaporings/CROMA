@@ -238,74 +238,6 @@ tr:nth-child(odd) {
     margin-right: 5px;
 }
 
-/* select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: url(<BsChevronDown/>) no-repeat right center;
-    background-size: 17px;
-  } */
-  
-.table-filter {
-    min-width: 100px;
-    background-color: #7A1113;
-    border-radius: 5px;
-    margin: 3px;
-    padding: 3px;
-    font-family: 'Fredoka One';
-    font-size: 13px;
-    color: white;
-}
-
-
-.show-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.show-text {
-    font-size: 9px;
-    margin: 5px
-}
-
-.show-dropdown {
-    margin: 5px;
-    background-color: white;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    min-width: 18px;
-}
-
-.show-number {
-    color: #2EB1A1;
-    padding: 2px;
-}
-.show-icon {
-    color: #6D6D6D;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* .table1-container{
-    padding: 10px;
-    height: 450px;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    
-}
-
-.table-top {
-    display: flex;
-    height: 30px;
-    justify-content: space-between;
-    min-width: 600px;
-} */
-
 .announcement-container{
     position: relative;
     border-radius: 15px;
@@ -319,7 +251,7 @@ tr:nth-child(odd) {
     align-content: center; 
     background-color: #FFEBC8;
     margin-top: 25px;
-    z-index: 0;
+    z-index: 0
 }
 
 .announcement-header{
@@ -336,9 +268,9 @@ tr:nth-child(odd) {
     position: absolute;
     top: 3.5%;
     left: 2%;
-    width:3%;
+    width: 3%;
     height: auto;
-    /* color: #7A1113; */
+    color: #7A1113;
 }
 
 .announcement-text{
@@ -355,29 +287,9 @@ tr:nth-child(odd) {
     align-items: center;
     letter-spacing: 0.02em;
     
-    /* Maroon */
-    
     color: #7A1113;
       
 }
-
-
-
-
-
-/* .announce-header{
-    position: relative;
-    top: 3%;
-    /* left: 1.5%; */
-    /* height: 30%; 
-} */
-
-/* .announce-div{
-    position: relative;
-    top: 30%; 
-    /* left: 1.5%; */
-    /* height: 70%; 
-}  */
 
 table.announcement-table{
     position: relative; 
@@ -387,19 +299,13 @@ table.announcement-table{
     margin-top: 27px;   
 }
 
-/* table.table1 {
-    padding: 0;
-    border-spacing: 0;
-    min-width: 1000px;
-} */
-
 tr.announcement-tr{
     position: relative;
     height: 17.5%;  
 }
 
 tr.announcement-tr:nth-child(odd) {
-    background-color: #FFEBC8;
+    background-color: transparent;
 }  
 
 td.announcement-date{
@@ -418,16 +324,6 @@ td.announcement-info{
     align-items: left;
     padding: 3px;
 }
-
-
-/* .table1-container{
-    padding: 10px;
-    height: 450px;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    
-} */
 
 .date-box {
     background-color: #FFF6E6;
