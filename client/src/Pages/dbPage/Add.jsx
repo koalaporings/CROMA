@@ -4,10 +4,10 @@ import axios from 'axios';
 
 const Add  = () => {
   const [user, setUser] = useState({
-    first_name:"",
-    last_name:"",
-    email:"",
-    password:"",    
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',    
   });
 
   const navigate = useNavigate()
@@ -19,7 +19,7 @@ const Add  = () => {
   const handleClick = async e => {
     e.preventDefault()
     try{
-      await axios.post('http://localhost:5000/db', user)
+      axios.post('http://localhost:5000/db/add', user)
       navigate('/db')
     }catch(err){
       console.log(err)
