@@ -16,7 +16,36 @@ const TransactionTable = () => {
             .then(data => setData(data));
     }, []);
     
-    console.log(data);
+    function urgent(isUrgent){
+        if(isUrgent){
+            return (
+                <td className='urgent'>
+                    <BsExclamationLg class="urgent-icon"/>
+                    <div className="urgent-box">
+                        URGENT
+                    </div>
+                </td>
+            )
+        } 
+
+        else return (
+            <td></td>
+        )
+    }
+
+    function renderEmptyRows(dataLength){
+        if(dataLength < 10) {
+            const rowArray = [];
+            for (let i = 0; i < 10-dataLength; i++){
+                const emptyRow = <tr><td></td><td></td><td></td><td></td><td></td></tr>;
+                rowArray.push(emptyRow);
+            }       
+            return rowArray;
+        }
+    }
+
+
+    console.log(data.length);
 
     return (
         <div>
@@ -48,8 +77,8 @@ const TransactionTable = () => {
                     </thead>
                     <tbody>
                         {data.map(item => (
-                            <tr key={item.id}>
-                                <td className='urgent'>{item.urgent}</td>
+                            <tr key={item.id} className={item.urgent === 1 ? "urgent-row" : ""}>
+                                {urgent(item.urgent)}
                                 <td className='date'>{item.date}</td>
                                 <td className='student-name'>{item.student_name}</td>
                                 <td className='transaction-request'>{item.transaction_name}</td>
@@ -60,6 +89,7 @@ const TransactionTable = () => {
                                 </td>
                             </tr>
                         ))}
+                        {renderEmptyRows(data.length)}
 
 
                         {/* <tr className='urgent-row'>
