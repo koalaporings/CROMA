@@ -4,8 +4,20 @@ import { BsExclamationLg, BsChevronDown } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { AiOutlineSearch } from 'react-icons/ai';
 import './Table.css';
+import React, { useState, useEffect } from 'react';
+
 
 const TransactionTable = () => {
+    
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        fetch('transacdata.json')
+            .then(response => response.json())
+            .then(data => setData(data));
+    }, []);
+    
+    console.log(data);
+
     return (
         <div>
              <div className="table1-container">
@@ -25,116 +37,135 @@ const TransactionTable = () => {
                     </div>
                 </div>
                 <table className="table1">
-                    <tr className='header'>
-                        <th className='urgent'></th>
-                        <th className='date'>Date</th>
-                        <th className='student-name'>Student Name</th>
-                        <th className='transaction-request'>Transaction Request</th>
-                        <th className='form'>Form</th>
-                    </tr>
-                    <tr className='urgent-row'>
-                        <td className='urgent'>
-                            <BsExclamationLg class="urgent-icon"/>
-                            <div className="urgent-box">
-                                URGENT
-                            </div>
-                        </td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>Gabriel Howard Awatin</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                        <td className='form'>
-                            <button className='view'>
-                                View
-                            </button>
-                        </td>
-                    </tr>  
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'></td>
-                        <td className='student-name'></td>
-                        <td className='transaction-request'></td>
-                        <td className='form'></td>
-                    </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'></td>
-                        <td className='student-name'></td>
-                        <td className='transaction-request'></td>
-                        <td className='form'></td>
-                    </tr>  
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'></td>
-                        <td className='student-name'></td>
-                        <td className='transaction-request'></td>
-                        <td className='form'></td>
-                    </tr>                    
+                    <thead>
+                        <tr className='header'>
+                            <th className='urgent'></th>
+                            <th className='date'>Date</th>
+                            <th className='student-name'>Student Name</th>
+                            <th className='transaction-request'>Transaction Request</th>
+                            <th className='form'>Form</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map(item => (
+                            <tr key={item.id}>
+                                <td className='urgent'>{item.urgent}</td>
+                                <td className='date'>{item.date}</td>
+                                <td className='student-name'>{item.student_name}</td>
+                                <td className='transaction-request'>{item.transaction_name}</td>
+                                <td className='form'>
+                                    <button className='view'>
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+
+
+                        {/* <tr className='urgent-row'>
+                            <td className='urgent'>
+                                <BsExclamationLg class="urgent-icon"/>
+                                <div className="urgent-box">
+                                    URGENT
+                                </div>
+                            </td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>John Oliver Ochea</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'>10/01/2022</td>
+                            <td className='student-name'>Gabriel Howard Awatin</td>
+                            <td className='transaction-request'>True Copy of Grades</td>
+                            <td className='form'>
+                                <button className='view'>
+                                    View
+                                </button>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'></td>
+                            <td className='student-name'></td>
+                            <td className='transaction-request'></td>
+                            <td className='form'></td>
+                        </tr>
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'></td>
+                            <td className='student-name'></td>
+                            <td className='transaction-request'></td>
+                            <td className='form'></td>
+                        </tr>  
+                        <tr>
+                            <td className='urgent'></td>
+                            <td className='date'></td>
+                            <td className='student-name'></td>
+                            <td className='transaction-request'></td>
+                            <td className='form'></td>
+                        </tr>                     */}
+                    </tbody>
                 </table>
                 <div className="table1-footer">
                     <div className="display-section">DISPLAY 1 OUT OF 1</div>
