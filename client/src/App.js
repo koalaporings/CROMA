@@ -11,6 +11,7 @@ import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
 import AnnouncementPage from './Pages/Announcements/Announcements';
 import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
 import HistoryPage from './Pages/History/History';
+import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
 import View from './Pages/dbPage/View.jsx';
@@ -60,6 +61,10 @@ function App() {
             <Route 
               path="/history" 
               element={<HistoryPage/>}  
+            />
+            <Route 
+              path="/tracking" 
+              element={<TrackingPage/>}  
             />
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
             <Route 

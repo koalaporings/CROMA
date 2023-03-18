@@ -14,3 +14,43 @@
     height: 100vh;
     background-color: white;
 }
+
+.name-header{
+    position: absolute;
+    width: 435px;
+    height: 47px;
+    left: 197px;
+    top: 146px;
+    
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    
+    color: #7A1113; 
+}
+
+.transaction-header{
+    position: absolute;
+    width: 667px;
+    height: 29px;
+    left: 197px;
+    top: 189px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+
+    color: #21523C;
+
+}
+
