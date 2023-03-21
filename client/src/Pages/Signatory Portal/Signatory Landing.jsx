@@ -4,7 +4,6 @@ import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 import SignatoryTransactionTable from './Signatory Transaction Table';
-
 import './Signatory Landing.css';
 
 import SignatoryAnnouncementTable from '../../Pages/Admin Portal/Announcement Table';;
