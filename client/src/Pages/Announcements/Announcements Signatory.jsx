@@ -14,10 +14,6 @@ const AnnouncementPage = ({children}) => {
             <Header/>
 
             <div className='announce-container'>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
                 <p>Announcements Page</p>
             </div>
 

@@ -18,6 +18,9 @@ import View from './Pages/dbPage/View.jsx';
 import GetUser from './Pages/dbPage/GetUser.jsx';
 import LoginTest from './Pages/dbPage/LoginTest.jsx';
 
+// Forms
+import Form1 from './Pages/Forms/Form 1';
+import Form2 from './Pages/Forms/Form 2';
 
 function App() {
 
@@ -68,6 +71,18 @@ function App() {
               path="/tracking" 
               element={<TrackingPage/>}  
             />
+
+            {/* FORM REQUESTS */}
+
+            <Route 
+              path="/student/request/1" 
+              element={<Form1/>}  
+            />
+            <Route 
+              path="/student/request/2" 
+              element={<Form2/>}  
+            />
+
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
             <Route 
               path="/db" 

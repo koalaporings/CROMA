@@ -34,7 +34,7 @@ const Sidebar = ({ children }) => {
 
   const menuItem = [
     {
-      path: "/admin",
+      path: "/student",
       name: "Home",
       icon: <HomeOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
