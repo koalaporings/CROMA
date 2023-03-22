@@ -2,8 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
-import NavBar from '../../Components/Navigation Bar/NavBar';
-import Table from './Announcement Portal Table';
+import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 
 import './Announcements.css';
 
@@ -20,8 +19,6 @@ const AnnouncementPage = ({children}) => {
                 <p>-</p>
                 <p>-</p>
                 <p>Announcements Page</p>
-                <Table/>
-
             </div>
 
             <Footer/>
