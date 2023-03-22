@@ -21,7 +21,7 @@ const Login = ({children}) => {
 
     // TEMPORARY
 
-    const navigateLogin = () => navigate('/admin');
+    const navigateLogin = () => navigate('/db/');
 
     return(
         <div>
