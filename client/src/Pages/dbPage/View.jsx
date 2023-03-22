@@ -41,8 +41,6 @@ const handleDelete = async id =>{
       {user.map(user => (
         <div className="user" key={user.id}>
           <p2>{user.id}  |  </p2>
-          <p2>{user.first_name}  |  </p2>
-          <p2>{user.last_name}  |  </p2>
           <p2>{user.email}  |  </p2>
           <p2>{user.password}  |  </p2>
           <button><Link to={`/db/update/${user.id}`}> Update </Link></button>

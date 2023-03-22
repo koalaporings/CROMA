@@ -15,6 +15,7 @@ const LoginTest  = () => {
         try{
             const response = await axios.get('http://localhost:5000/db/logintest/' + id)
             setName(response.data)
+            
         }catch(err){
             console.log(err)
         }
@@ -28,16 +29,17 @@ const LoginTest  = () => {
         
         <div className='form'>
             loading
-            {user[0].permission === 1 &&
+            {console.log(user)}
+            {user[0].role === 'admin' &&
                     navigate('/admin')
             }
-            {user[0].permission === 2 &&
+            {user[0].role === 'clerk' &&
                     navigate('/clerk')
             }
-            {user[0].permission === 3 &&
+            {user[0].role === 'signatory' &&
                     navigate('/signatory')
             }
-            {user[0].permission === 4 &&
+            {user[0].role === 'student' &&
                     navigate('/student')
             }
         </div>

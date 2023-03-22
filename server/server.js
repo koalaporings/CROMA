@@ -29,15 +29,7 @@ app.get("/db", (req, res) => {
   })
 })
 
-app.get('/db/logintest/:id', (req, res) => {
-  const q = 'SELECT * FROM user_permission WHERE id = ?'
-  const userId = req.params.id
-  
-  db.query(q, userId, (err, data) => {
-    if(err) console.error('ERROR', err);
-    res.json(data)
-  })
-})
+
 
 app.get("/db/get/:id", (req, res) => {
   const q = 'SELECT * FROM users WHERE id = ?'
@@ -87,5 +79,36 @@ app.delete('/db/delete/:id', (req, res) => {
   })
 })
 
+app.put('/db/update/form_description/:form_id', (req, res) => {
+  const transactionId = req.params.form_id
+  const q = 'UPDATE forms SET `form_desc` = ? WHERE form_id = ?'
+  const values = req.body.form_desc
+
+  db.query(q,[values, transactionId], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+})
+
+app.get('/db/logintest/:user_id', (req, res) => {
+  const q = 'SELECT role FROM user_roles WHERE user_id = ?'
+  const userId = req.params.user_id
+  
+  db.query(q, userId, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+})
+
+app.post('/db/announcement', (req, res) => {
+  const q = 'INSERT INTO announcements (`announcement_title`, `announcement_body`) VALUES (?)'
+  const values = [
+    req.body.announcement_title,
+    req.body.announcement_body,]
+  
+
+  db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+})
 
 app.listen(5000, () => {console.log("Server started on port 5000")})
