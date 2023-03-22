@@ -15,6 +15,8 @@ import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
 import View from './Pages/dbPage/View.jsx';
+import GetUser from './Pages/dbPage/GetUser.jsx';
+import LoginTest from './Pages/dbPage/LoginTest.jsx';
 
 
 function App() {
@@ -78,6 +80,14 @@ function App() {
             <Route 
               path="/db/update/:id" 
               element={<Update/>}  
+            />
+            <Route
+              path="/db/get/:id"
+              element={<GetUser/>}
+            />
+            <Route
+              path="/db/logintest/:id"
+              element={<LoginTest/>}
             />
             {/* BACKEND ROUTE FOR TESTING ENDS HERE*/}
           </Routes>

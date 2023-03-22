@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     user: 'root',
     host: 'localhost',
-    password: 'password',
+    password: null,
     database: 'croma'
 });
 
@@ -23,10 +23,30 @@ db.connect((err) => {
   });
 
 app.get("/db", (req, res) => {
-    db.query('SELECT * FROM users', (err, results) => {
-      if(err) console.error('ERROR', err);
-      res.json(results)
-    })
+  db.query('SELECT * FROM users', (err, results) => {
+    if(err) console.error('ERROR', err);
+    res.json(results)
+  })
+})
+
+app.get('/db/logintest/:id', (req, res) => {
+  const q = 'SELECT * FROM user_permission WHERE id = ?'
+  const userId = req.params.id
+  
+  db.query(q, userId, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+})
+
+app.get("/db/get/:id", (req, res) => {
+  const q = 'SELECT * FROM users WHERE id = ?'
+  const userId = req.params.id 
+
+  db.query(q, userId, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
 })
 
 app.post('/db/add', (req, res) => {
@@ -36,6 +56,7 @@ app.post('/db/add', (req, res) => {
     req.body.last_name,
     req.body.email,
     req.body.password,]
+  
 
   db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
