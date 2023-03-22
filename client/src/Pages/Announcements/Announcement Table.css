@@ -1,0 +1,283 @@
+
+
+
+
+.table1-container{
+    padding: 10px;
+    height: 450px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.table-top {
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    min-width: 600px;
+}
+
+.table-label {
+    font-family: 'Fredoka One';
+    font-size: 22px;
+    color: #7A1113;
+}
+
+table.table1 {
+    padding: 0;
+    border-spacing: 0;
+    min-width: 1000px;
+}
+
+
+
+th, td {
+    padding: 5px;
+    
+}
+
+th {
+    padding: 8px;
+    background-color: #7A1113;
+    color: white;
+    font-family: 'Fredoka';
+    font-size: 18px;
+
+}
+
+
+.urgent {
+    width: 100px;
+} 
+
+/*
+.date {
+
+}
+
+.student-name {
+
+}
+
+.transaction-request {
+
+}
+
+.form {
+
+} */
+
+td {
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+
+td.urgent {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    
+}   
+
+.urgent-box {
+    background-color: #FF0000;
+    color: white;
+    border-radius: 5px;
+    padding: 3px;
+    font-family: 'Fredoka One';
+    width: 80px;
+
+}
+
+.urgent-icon {
+    color: #FF0000;
+}
+
+tr {
+    height: 30px;
+ 
+}
+tr.header {
+    height: 40px;   
+}
+
+tr.urgent-row {
+    color: #FF0000;
+    font-weight: 700;
+}
+
+
+.view {
+    font-size: 13px;
+    font-family: 'Poppins';
+    border-radius: 4px;
+    background-color: #21523C;
+    color: white;
+    min-width: 100px;
+    min-height: 20px;
+}
+
+.view:hover {
+    cursor: pointer;
+    background-color: #08321F;
+}
+
+.action-button {
+    font-size: 13px;
+    font-family: 'Poppins';
+    border-radius: 4px;
+    background-color: #21523C;
+    color: white;
+    min-width: 100px;
+    min-height: 20px;
+}
+
+.action-button:hover {
+    cursor: pointer;
+    background-color: #08321F;
+}
+
+
+tr:nth-child(odd) {
+    background-color: #FFF6E6;
+}
+
+.table1-footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #7A1113;
+    color: white;
+    padding: 5px;
+    border-radius: 0 0 10px 10px;
+    height: 35px; 
+    align-items: center;  
+    min-width: 800px;
+}
+.display-section{
+    margin-right: auto;
+    font-family: 'Fredoka One';
+    font-size: 10px;
+}
+
+.page-section {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+}
+
+.table-page-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 38px; /* or 100% */
+    padding: 2px;
+    margin: 1px;
+    background-color: #FFF6E6;
+    border-radius: 6px;
+    color: #7A1113;
+}
+
+.table-page-button:hover {
+    cursor: pointer;
+    background-color: #FFE3B0;
+}
+
+.table-page-number {
+    color: #7A1113;
+    width: 25px;
+    height:  38px;
+    padding: 5px;
+    margin: 1px;
+    background-color: #FFD17F;
+    border-radius: 6px;
+}
+
+
+.show-section {
+    font-family: 'Fredoka One';
+    font-size: 10px;
+    margin-left: auto;
+}   
+
+.search-filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-icon {
+    height: 100%;
+    width: 15px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.search-box {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 3px;
+    margin: 3px;
+    font-size: 13px;
+    font-family: 'Fredoka';
+    border-color: #7A1113;
+}
+
+.search-input {
+    height: 100%;
+    font-family: 'Fredoka';
+    }
+
+.filter {
+    padding: 5px;
+    font-family: 'Fredoka One';
+    color: #7A1113;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+select.table-filter {
+    min-width: 100px;
+    background-color: #7A1113;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+    font-family: 'Fredoka One';
+    font-size: 13px;
+    color: white;
+}
+
+
+.show-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.show-text {
+    font-size: 9px;
+    margin: 5px
+}
+
+.show-dropdown {
+    margin: 5px;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    min-width: 18px;
+}
+
+.show-number {
+    color: #2EB1A1;
+    padding: 2px;
+}
+.show-icon {
+    color: #6D6D6D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
