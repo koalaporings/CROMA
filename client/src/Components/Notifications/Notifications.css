@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Fredoka');
+
+.notif-container{
+    position: absolute;
+    background-color: #faddaa;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.notif-logo {
+    position: absolute;
+    top: 5%;
+    left: 2.5%;
+}
+
+.notif-list-container {
+    position: absolute;
+    top: 25%;
+    height: 60%;
+    width: 100%;
+}
+
+.notif-details-container {
+    height: 20%;
+}
+
+.notif-title-text {
+    color: #7A1113;
+    font-family: 'Fredoka One';
+    font-size: 25px;
+    position: absolute;
+    top: 7%;
+    left: 7.5%;
+}
+
+.notif-date-time-container {
+    background-color: #FFF6E6;
+    color: #741B47;
+    position: absolute;
+    left: 2.5%;
+    padding: 2.5px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Fredoka One';
+    width: 15%;
+}
+
+.notif-body-text {
+    text-align: left;
+    position: absolute;
+    left: 19%;
+    width: 80%;
+    color: #7A1113;
+    font-family: 'Fredoka';
+    font-size: 18px;
+}
+
+.notif-show-more-button {
+    background-color: #21523C;
+    border-radius: 10px;
+    color: white;
+    width: 12%;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    font-family: 'Fredoka';
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.notif-show-more-button:hover {
+    background-color: #132e22;
+}

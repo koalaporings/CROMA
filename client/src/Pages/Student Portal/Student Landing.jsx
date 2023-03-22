@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
+import Notifications from '../../Components/Notifications/Notifications';
 import { useState } from 'react';
 
 
@@ -199,6 +200,10 @@ const StudentLanding = ({children}) => {
                 <div className="transaction-header">
                     You currently have 4 transactions. Check its progress here.                
                 </div>
+                <div className='student-notifs-container'>
+                    <Notifications/>
+                </div>
+                    
                 <div className="transaction-container">
                     <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">
