@@ -5,7 +5,8 @@ import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import Notifications from '../../Components/Notifications/Notifications';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 
 import './Student Landing.css';
@@ -18,160 +19,19 @@ const StudentLanding = ({children}) => {
     const [paymentInfo, setPaymentInfo] = useState(0);
     const [durationInfo, setDurationInfo] = useState("--");
 
+    const [formData, setFormData] = useState([])
 
-    const dummyData = [
-        {
-            trans_id: 1,
-            trans_name: "True Copy of Grades (TCG)",
-            trans_desc: "This is the description for the True Copy of Grades (TCG). Insert more text here. Insert even more text here.",
-            payment: 50,
-            duration: "7 to 14 days",
-        },
-        {
-            trans_id: 2,
-            trans_name: "Form #2",
-            trans_desc: "This is the description for Form #2. Insert more text here. Insert even more text here.",
-            payment: 51,
-            duration: "8 to 16 days",
-        },
-        {
-            trans_id: 3,
-            trans_name: "Form #3",
-            trans_desc: "This is the description for Form #3. Insert more text here. Insert even more text here.",
-            payment: 52,
-            duration: "9 to 18 days",
-        },
-        {
-            trans_id: 4,
-            trans_name: "Form #4",
-            trans_desc: "This is the description for Form #4. Insert more text here. Insert even more text here.",
-            payment: 53,
-            duration: "10 days",
-        },
-        {
-            trans_id: 5,
-            trans_name: "Form #5",
-            trans_desc: "This is the description for Form #5. Insert more text here. Insert even more text here.",
-            payment: 54,
-            duration: "11 days",
-        },
-        {
-            trans_id: 6,
-            trans_name: "Form #6",
-            trans_desc: "This is the description for Form #6. Insert more text here. Insert even more text here.",
-            payment: 55,
-            duration: "12 days",
-        },
-        {
-            trans_id: 7,
-            trans_name: "Form #7",
-            trans_desc: "This is the description for Form #7. Insert more text here. Insert even more text here.",
-            payment: 56,
-            duration: "13 days",
-        },
-
-
-
-
-        {
-            trans_id: 1,
-            trans_name: "True Copy of Grades (TCG)",
-            trans_desc: "This is the description for the True Copy of Grades (TCG). Insert more text here. Insert even more text here.",
-            payment: 50,
-            duration: "7 to 14 days",
-        },
-        {
-            trans_id: 2,
-            trans_name: "Form #2",
-            trans_desc: "This is the description for Form #2. Insert more text here. Insert even more text here.",
-            payment: 51,
-            duration: "8 to 16 days",
-        },
-        {
-            trans_id: 3,
-            trans_name: "Form #3",
-            trans_desc: "This is the description for Form #3. Insert more text here. Insert even more text here.",
-            payment: 52,
-            duration: "9 to 18 days",
-        },
-        {
-            trans_id: 4,
-            trans_name: "Form #4",
-            trans_desc: "This is the description for Form #4. Insert more text here. Insert even more text here.",
-            payment: 53,
-            duration: "10 days",
-        },
-        {
-            trans_id: 5,
-            trans_name: "Form #5",
-            trans_desc: "This is the description for Form #5. Insert more text here. Insert even more text here.",
-            payment: 54,
-            duration: "11 days",
-        },
-        {
-            trans_id: 6,
-            trans_name: "Form #6",
-            trans_desc: "This is the description for Form #6. Insert more text here. Insert even more text here.",
-            payment: 55,
-            duration: "12 days",
-        },
-        {
-            trans_id: 7,
-            trans_name: "Form #7",
-            trans_desc: "This is the description for Form #7. Insert more text here. Insert even more text here.",
-            payment: 56,
-            duration: "13 days",
-        },
-        {
-            trans_id: 1,
-            trans_name: "True Copy of Grades (TCG)",
-            trans_desc: "This is the description for the True Copy of Grades (TCG). Insert more text here. Insert even more text here.",
-            payment: 50,
-            duration: "7 to 14 days",
-        },
-        {
-            trans_id: 2,
-            trans_name: "Form #2",
-            trans_desc: "This is the description for Form #2. Insert more text here. Insert even more text here.",
-            payment: 51,
-            duration: "8 to 16 days",
-        },
-        {
-            trans_id: 3,
-            trans_name: "Form #3",
-            trans_desc: "This is the description for Form #3. Insert more text here. Insert even more text here.",
-            payment: 52,
-            duration: "9 to 18 days",
-        },
-        {
-            trans_id: 4,
-            trans_name: "Form #4",
-            trans_desc: "This is the description for Form #4. Insert more text here. Insert even more text here.",
-            payment: 53,
-            duration: "10 days",
-        },
-        {
-            trans_id: 5,
-            trans_name: "Form #5",
-            trans_desc: "This is the description for Form #5. Insert more text here. Insert even more text here.",
-            payment: 54,
-            duration: "11 days",
-        },
-        {
-            trans_id: 6,
-            trans_name: "Form #6",
-            trans_desc: "This is the description for Form #6. Insert more text here. Insert even more text here.",
-            payment: 55,
-            duration: "12 days",
-        },
-        {
-            trans_id: 7,
-            trans_name: "Form #7",
-            trans_desc: "This is the description for Form #7. Insert more text here. Insert even more text here.",
-            payment: 56,
-            duration: "13 days",
-        },
-    ]
+    useEffect (() =>{
+    const fetchAllForms = async ()=>{
+        try{
+        const response = await axios.get('http://localhost:5000/db/form/')
+        setFormData(response.data)
+        }catch(err){
+        console.log(err)
+        }
+    }
+    fetchAllForms()
+    }, [])
 
     async function changeInfo(data1, data2, data3, data4, data5){
         setFormName(data1)
@@ -207,10 +67,10 @@ const StudentLanding = ({children}) => {
                 <div className="transaction-container">
                     <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">
-                        {dummyData.map((data) => {
+                        {formData.map((data) => {
                             return(
-                                <div className="transaction-name-container" onClick={(e) => changeInfo(data.trans_name, data.trans_desc, data.payment, data.duration, data.trans_id)}>
-                                    {data.trans_name}
+                                <div className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
+                                    {data.form_name}
                                 </div>
                             )
                         })}

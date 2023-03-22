@@ -111,4 +111,13 @@ app.post('/db/announcement', (req, res) => {
   })
 })
 
+app.get('/db/form/', (req, res) => {
+  const q = 'SELECT * FROM forms'
+  
+  db.query(q, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+})
+
 app.listen(5000, () => {console.log("Server started on port 5000")})
