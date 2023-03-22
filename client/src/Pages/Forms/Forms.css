@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Fredoka');
+
+.header-signatory {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
+.signatory-container {
+    /* position: absolute;
+    top: 12%; */
+    width: 100%;
+    background-color: white;
+}
+
+.footer-signatory {
+    display: flex;
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
+}
