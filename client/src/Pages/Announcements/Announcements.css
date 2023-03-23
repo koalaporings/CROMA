@@ -10,12 +10,27 @@
     vertical-align: baseline;
 }
 
-.announce-container {
+.header-announcement {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
+.footer-announcement {
+    display: flex;
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
+
+}
+
+.announce-portal-container {
     height: 100vh;
     background-color: white;
 }
-/* 
-.header{
+
+.announcement-portal-header{
     display: block;
     position: relative;
     top: 13%;
@@ -25,9 +40,55 @@
     background-color: transparent;
 }
 
+.announcement-portal-icon{
+    position: absolute;
+    top: 3.5%;
+    left: 2%;
+    width: 3%;
+    height: auto;
+    color: #7A1113;
+}
+
+.announcement-portal-text{
+    position: absolute;
+    top: 3.5%;
+    left: 5.5%;
+    width:3%;
+    height: auto;
+    
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4.3vh;
+    align-items: center;
+    letter-spacing: 0.02em;
+    
+    color: #7A1113;
+      
+}
+
+.announcement-admin {
+    display: flex;
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
+}
+
+
+
+.announce-button{
+    display: block;
+    position: relative;
+    top: 0%;
+    left: 12%;
+    height: 4vh;
+    width: 80%;
+    background-color: transparent;    
+}
 
 
 .add {
+    position: absolute;
     font-size: 13px;
     font-family: 'Poppins';
     border-radius: 4px;
@@ -35,10 +96,11 @@
     color: white;
     min-width: 100px;
     min-height: 20px;
-    left: 90%
+    left: 91%;
+    top: 1%;
 }
 
 .add:hover {
     cursor: pointer;
     background-color: #08321F;
-} */
+} 
