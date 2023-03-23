@@ -3,8 +3,8 @@ import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar';
-import Table from './Announcement Portal Table';
-import announcementIcon from '../../Assets/announcement-icon.svg';
+// import AnnounceTable from './Announcement Portal Table';
+// import announcementIcon from '../../Assets/announcement-icon.svg';
 
 
 import './Announcements.css';
@@ -17,19 +17,19 @@ const AnnouncementPage = ({children}) => {
             <Header/>
 
             <div className='announce-container'>
-                <div className="header">
+                {/* <div className="header">
                     <img alt="announcement-icon"
                         src={announcementIcon}
                         className="announcement-icon"/>
                     <p className='announcement-text'>Announcement</p>
                 </div>
 
-                {/* <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>Announcements Page</p> */}
-                <Table/>
+                <td className='announce-button'>
+                    <button className='add'>
+                        Add
+                    </button>
+                    </td>
+                <AnnounceTable/> */}
 
             </div>
 

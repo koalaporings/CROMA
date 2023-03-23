@@ -14,7 +14,7 @@
     height: 100vh;
     background-color: white;
 }
-
+/* 
 .header{
     display: block;
     position: relative;
@@ -25,28 +25,20 @@
     background-color: transparent;
 }
 
-.announcement-header{
-    /* font-family: 'Fredoka One';
-    font-size: 22px;
-    color: #7A1113; */
-    display: flex;
-    height: 10px;
-    justify-content: space-between;
-    min-width: 600px; 
+
+
+.add {
+    font-size: 13px;
+    font-family: 'Poppins';
+    border-radius: 4px;
+    background-color: #21523C;
+    color: white;
+    min-width: 100px;
+    min-height: 20px;
+    left: 90%
 }
 
-.announcement-icon{
-    position: absolute;
-    top: 3.5%;
-    left: 2%;
-    width: 3%;
-    height: auto;
-    color: #7A1113;
-}
-
-.footer-announcement {
-    display: flex;
-    margin-top: 1vh;
-    height: 15vh;
-    width: 100%
-}
+.add:hover {
+    cursor: pointer;
+    background-color: #08321F;
+} */
