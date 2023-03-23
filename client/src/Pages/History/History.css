@@ -1,16 +1,76 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Fredoka');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+
+.header-history {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
 }
 
 .history-container {
-    height: 100vh;
+    /* position: absolute;
+    top: 12%; */
+    width: 100%;
     background-color: white;
+}
+
+.footer-history {
+    display: flex;
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
+}
+
+ .history-title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+h1.history-title-text {   
+    color: #7A1113;
+    font-family: 'Fredoka One';
+    font-weight: 200;
+    font-size: 30px;
+    margin-left: 5px;
+}
+
+.history-table-top {
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
+    min-width: 600px;
+}
+
+.history-table1-container {
+    padding: 10px;
+    /* height: 700px; */
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.download-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.download-csv-button {
+    font-size: 13px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: 'Fredoka One';
+    border-radius: 4px;
+    background-color: #21523C;
+    color: white;
+    min-width: 100px;
+    min-height: 21px;
+}
+
+.download-csv-button:hover {
+    cursor: pointer;
+    background-color: #08321F;
 }
