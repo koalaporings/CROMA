@@ -10,6 +10,8 @@ import SignatoryLanding from './Pages/Signatory Portal/Signatory Landing.jsx';
 import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
 import AnnouncementPage from './Pages/Announcements/Announcements';
 import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
+import AnnouncementStudPage from './Pages/Announcements/Announcements Student';
+import AnnouncementClerkPage from './Pages/Announcements/Announcements Clerk';
 import HistoryPage from './Pages/History/History';
 import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
@@ -17,6 +19,9 @@ import Update from './Pages/dbPage/Update.jsx';
 import View from './Pages/dbPage/View.jsx';
 import GetUser from './Pages/dbPage/GetUser.jsx';
 import LoginTest from './Pages/dbPage/LoginTest.jsx';
+import StudentTrackingPage from './Pages/History/History Student';
+import ClerkTrackingPage from './Pages/History/History Clerk';
+
 
 // Forms
 import Form1 from './Pages/Forms/Form 1';
@@ -62,6 +67,14 @@ function App() {
             <Route 
               path="/signatory/announcements" 
               element={<AnnouncementSigPage/>}  
+            /> 
+            <Route 
+              path="/student/announcements" 
+              element={<AnnouncementStudPage/>}  
+            />
+            <Route 
+              path="/clerk/announcements" 
+              element={<AnnouncementClerkPage/>}  
             />
             <Route 
               path="/history" 
@@ -70,6 +83,14 @@ function App() {
             <Route 
               path="/tracking" 
               element={<TrackingPage/>}  
+            />
+            <Route 
+              path="/student/history" 
+              element={<StudentTrackingPage/>}  
+            />
+            <Route 
+              path="/clerk/history" 
+              element={<ClerkTrackingPage/>}  
             />
 
             {/* FORM REQUESTS */}
