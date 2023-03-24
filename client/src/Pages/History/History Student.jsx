@@ -4,21 +4,21 @@ import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 
-import './Announcements.css';
+import './History.css';
 
-const AnnouncementPage = ({children}) => {
+const StudentHistoryPage = ({children}) => {
 
     return(
         <div>
             <NavBar/>
             <Header/>
 
-            <div className='announce-container'>
+            <div className='history-container'>
                 <p>-</p>
                 <p>-</p>
                 <p>-</p>
                 <p>-</p>
-                <p>Announcements Page</p>
+                <p>Tracking History Student Page</p>
             </div>
 
             {/* <Footer/> */}
@@ -26,4 +26,4 @@ const AnnouncementPage = ({children}) => {
     )
 }
 
-export default AnnouncementPage;
+export default StudentHistoryPage;

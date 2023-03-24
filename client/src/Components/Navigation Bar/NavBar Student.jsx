@@ -44,12 +44,12 @@ const Sidebar = ({ children }) => {
       icon: <Search  sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
-      path: "/announcements",
+      path: "/student/announcements",
       name: "Announcements",
       icon: <CampaignOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
-      path: "/history",
+      path: "/student/history",
       name: "History",
       icon: <ReceiptLongOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
