@@ -1,9 +1,10 @@
 import React from 'react';
+
 import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar';
-
+import HistoryTable from './History Table';
 import './History.css';
 
 const HistoryPage = ({children}) => {
@@ -11,17 +12,19 @@ const HistoryPage = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <Header/>
 
-            <div className='history-container'>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>-</p>
-                <p>Transaction History Page</p>
+            <div className="header-history">
+                <Header/>
             </div>
-
-            <Footer/>
+            <div className='history-container'>
+                
+                <div className="history-table-container">
+                    <HistoryTable/>
+                </div>
+            </div>
+            <div className="footer-history">
+                <Footer/>
+            </div>
         </div>
     )
 }
