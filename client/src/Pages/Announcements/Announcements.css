@@ -17,16 +17,15 @@
     width: 100%
 }
 
-.footer-announcement {
+.footer-admin-announcement {
     display: flex;
     margin-top: 1vh;
     height: 15vh;
     width: 100%
-
 }
 
-.announce-portal-container {
-    height: 100vh;
+.announcement-portal-container {
+    height: 120vh;
     background-color: white;
 }
 
