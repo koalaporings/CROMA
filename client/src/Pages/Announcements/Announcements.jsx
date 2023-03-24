@@ -16,7 +16,7 @@ const AnnouncementPage = ({children}) => {
             <NavBar/>
             <Header/>
 
-            <div className='announce-portal-container'>
+            <div className='announcement-portal-container'>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -32,8 +32,10 @@ const AnnouncementPage = ({children}) => {
                 <AnnounceTable/>
 
             </div>
+            <div className='footer-admin-announcement'>
+            <Footer/> 
+            </div>
 
-            {/* <Footer/>  */}
         </div>
     )
 }
