@@ -11,7 +11,7 @@
 }
 
 .student-container {
-    height: 150vh;
+    height: 200vh;
     background-color: white;
 }
 
@@ -27,6 +27,12 @@
     width: 80%;
     position: absolute;
     top: 26.5%;
+    left: 12%;
+}
+
+.student-ongoing-table-container{
+    position: absolute;
+    top: 65%;
     left: 12%;
 }
 
@@ -73,8 +79,8 @@
 .transaction-container {
     display: block;
     position: relative;
-    top: 60%;
-    left: 12%;
+    top: 50%;
+    left: 11.5%;
     height: 60vh;
     width: 80%;
     background-color: transparent;
@@ -114,6 +120,12 @@
 }
 
 .transaction-name-container:hover{
+    color: #21523C;
+    font-weight: bold;
+    background-color: #FFF6E6;
+}
+
+.transaction-name-container:focus{
     color: #21523C;
     font-weight: bold;
     background-color: #FFF6E6;

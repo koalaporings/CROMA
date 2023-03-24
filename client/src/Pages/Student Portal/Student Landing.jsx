@@ -47,6 +47,30 @@ const StudentLanding = ({children}) => {
         navigate('/student/request/'+formId)
     }
 
+    const dummy = [
+        {
+            form_id: 1,
+            form_name: "1",
+            form_desc: "desc",
+            form_payment: 5,
+            form_duration: "3 days",
+        },
+        {
+            form_id: 1,
+            form_name: "2",
+            form_desc: "desc",
+            form_payment: 5,
+            form_duration: "3 days",
+        },
+        {
+            form_id: 1,
+            form_name: "3",
+            form_desc: "desc",
+            form_payment: 5,
+            form_duration: "3 days",
+        },
+    ]
+
     return(
         <div>
             <NavBar/>
@@ -63,15 +87,15 @@ const StudentLanding = ({children}) => {
                 <div className='student-notifs-container'>
                     <Notifications/>
                 </div>
-                <div className="ongoing-table-container">
+                <div className="student-ongoing-table-container">
                     <CurrentTable/>
                 </div>    
                 <div className="transaction-container">
                     <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">
-                        {formData.map((data) => {
+                        {dummy.map((data,index) => {
                             return(
-                                <div className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
+                                <div tabIndex={index} className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
                                     {data.form_name}
                                 </div>
                             )
