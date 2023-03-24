@@ -14,3 +14,19 @@
     height: 100vh;
     background-color: white;
 }
+
+.ongoing-table-container {
+    position: absolute;
+    top: 55%;
+    left: 12%;
+    height: 30vh;
+    width: 80%;
+}
+
+.ongoing-table1-container {
+    padding: 10px;
+    height: 30vh;
+    display: grid;
+    justify-content: center;
+    align-content: center
+}
