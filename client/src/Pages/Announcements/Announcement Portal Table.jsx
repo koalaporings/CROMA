@@ -2,83 +2,64 @@ import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { BsExclamationLg, BsChevronDown } from 'react-icons/bs';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { AiOutlineSearch } from 'react-icons/ai';
-import './Announcement Table.css';
+import './AnnouncementTable.css';
+
 
 const AnnounceTable = () => {
     return (
         <div>
-             <div className="table1-container">
-                <div className="table-top">
-                    <div className="table-label">Announcements</div>
-                    {/* <div className="search-filter">
-                        <label className='filter' htmlFor="ongoing-filter">Filter by:</label>
-                        <select className='table-filter' name="ongoing-filter" id="ongoing-filter">
+            {/* <div className = "announcements-headers">
+                <div className="search-filters">
+                        <label className='filters' htmlFor="ongoing-filter">Filter by:</label>
+                        <select className='table-filters' name="ongoing-filter" id="ongoing-filter">
                             <option value="1">Date</option>
-                            <option value="2">Student Name</option>
-                            <option value="2">Transaction Name</option>
+                            <option value="2">Announcement Title</option>
                         </select>
-                        <div className="search-box">
-                            <AiOutlineSearch className='search-icon'/>
-                            <input id="table2-input" className='search-input' type="text" name="search-input" placeholder='Search'/>   
-                        </div>
-                    </div> */}
-                </div>
-                <table className="table1">
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    </div>
+            </div> */}
+             <div className="tables-container">
+  
+                <table className="announce-table">
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
                     </tr>
-                    <tr>
-                        <td className='urgent'></td>
-                        <td className='date'>10/01/2022</td>
-                        <td className='student-name'>John Oliver Ochea</td>
-                        <td className='transaction-request'>True Copy of Grades</td>
-                    </tr>                 
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
+                    </tr>           
+                    <tr className='announce-tr'>
+                        <td className='title-date'><p className='title'>Announcement Title</p><p className='date'>10/01/2022 , 12:43pm</p></td>
+                        <td className='description'>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr className='announce-tr'ud exercita...”</td>
+                    </tr>    
                 </table>
                 <div className="table1-footer">
                     <div className="display-section">DISPLAY 1 OUT OF 1</div>
