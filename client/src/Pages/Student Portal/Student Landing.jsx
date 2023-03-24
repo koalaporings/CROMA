@@ -7,7 +7,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import Notifications from '../../Components/Notifications/Notifications';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import CurrentTable from './Current Table';
 
 import './Student Landing.css';
 
@@ -63,7 +63,9 @@ const StudentLanding = ({children}) => {
                 <div className='student-notifs-container'>
                     <Notifications/>
                 </div>
-                    
+                <div className="ongoing-table-container">
+                    <CurrentTable/>
+                </div>    
                 <div className="transaction-container">
                     <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">

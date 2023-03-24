@@ -12,7 +12,9 @@
     background-color: transparent;
 }
 
-
+th.ongoing {
+    min-width: 15vw;
+}
 
 .announcements-headers {
 display: block;
