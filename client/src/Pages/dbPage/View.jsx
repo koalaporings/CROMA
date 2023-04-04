@@ -39,15 +39,15 @@ const handleDelete = async id =>{
     <div>
       <h1>DB Users</h1>
       {user.map(user => (
-        <div className="user" key={user.id}>
-          <p2>{user.id}  |  </p2>
+        <div className="user" key={user.user_id}>
+          <p2>{user.user_id}  |  </p2>
           <p2>{user.email}  |  </p2>
           <p2>{user.password}  |  </p2>
-          <button><Link to={`/db/update/${user.id}`}> Update </Link></button>
+          <button><Link to={`/db/update/${user.user_id}`}> Update </Link></button>
           <p2>  |  </p2>
-          <button> <Link to={`/db/get/${user.id}`}> Get Data Solo</Link> </button>
+          <button> <Link to={`/db/get/${user.user_id}`}> Get Data Solo</Link> </button>
           <p2>  |  </p2>
-          <button> <Link to={`/db/logintest/${user.id}`}> Log In</Link> </button>
+          <button> <Link to={`/db/logintest/${user.user_id}`}> Log In</Link> </button>
           <p2>  |  </p2>
           <button type="submit" onClick = {()=> handleDelete(user.id)}> Delete</button>
         </div>

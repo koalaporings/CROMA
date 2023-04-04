@@ -24,7 +24,7 @@ const StudentLanding = ({children}) => {
     useEffect (() =>{
     const fetchAllForms = async ()=>{
         try{
-        const response = await axios.get('http://localhost:5000/db/form/')
+        const response = await axios.get('http://localhost:5000/form/db/view')
         setFormData(response.data)
         }catch(err){
         console.log(err)
@@ -93,7 +93,7 @@ const StudentLanding = ({children}) => {
                 <div className="transaction-container">
                     <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">
-                        {dummy.map((data,index) => {
+                        {formData.map((data,index) => {
                             return(
                                 <div tabIndex={index} className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
                                     {data.form_name}
