@@ -1,26 +1,20 @@
 const express = require('express');
 const app = express();
 
-const mysql = require('mysql2');
-const db = mysql.createConnection({
-    user: 'root',
-    host: 'localhost',
-    password: null,
-    database: 'croma'
-});
-
 const cors = require('cors');
+const db = require('./database').databaseConnection;
+const adminRoute = require('./routes/admin')
+const clerkRoute = require('./routes/clerk')
+const signatoryRoute = require('./routes/signatory')
+const studentRoute = require('./routes/student')
+const announcementRoute = require('./routes/announcement')
+const notificationRoute = require('./routes/notification')
+const formRoute = require('./routes/form')
 
 app.use(express.json());
 app.use(cors())
 
-db.connect((err) => {
-    if (err) {
-      console.error('Error connecting to database:', err);
-      return;
-    }
-    console.log('Connected to database.');
-  });
+
 
 app.get("/db", (req, res) => {
   db.query('SELECT * FROM users', (err, results) => {
@@ -99,25 +93,14 @@ app.get('/db/logintest/:user_id', (req, res) => {
   })
 })
 
-app.post('/db/announcement', (req, res) => {
-  const q = 'INSERT INTO announcements (`announcement_title`, `announcement_body`) VALUES (?)'
-  const values = [
-    req.body.announcement_title,
-    req.body.announcement_body,]
-  
 
-  db.query(q,[values], (err, data) => {
-    if(err) console.error('ERROR', err);
-  })
-})
+app.use('/admin', adminRoute);
+app.use('/clerk', clerkRoute);
+app.use('/signatory', signatoryRoute);
+app.use('/student', studentRoute);
+app.use('/announcement', announcementRoute);
+app.use('/notification', notificationRoute);
+app.use('/form', formRoute);
 
-app.get('/db/form/', (req, res) => {
-  const q = 'SELECT * FROM forms'
-  
-  db.query(q, (err, data) => {
-    if(err) console.error('ERROR', err);
-    res.json(data)
-  })
-})
 
 app.listen(5000, () => {console.log("Server started on port 5000")})
