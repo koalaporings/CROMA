@@ -15,5 +15,18 @@
     border-radius: 10px;
     background-color: #741B47;
     color: white;
+}
 
+.action-button {
+    background-color: #20422A;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
 }

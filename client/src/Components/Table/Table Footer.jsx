@@ -74,102 +74,101 @@ const TableFooter = ({
 
   return (
     <div className="table-footer">
-      <div className="page-count-cont">
-        <span>Rows per page: </span>
-        <select
-          className="rows-input"
-          onChange={(e) => setRowsPerPage(e.target.value)}>
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-        </select>
-        <span>
-          | &nbsp; {page} of {range.length}
-        </span>
-      </div>
-      <div className="pages-cont">
-        <button className="button navigateButton" onClick={() => start()}>
-          <FontAwesomeIcon
-            icon={"angles-left"}
-            title={"Start"}
-            alt={"Start"}
-            aria-hidden="true"
-            className="prev-icon"
-          />
-        </button>
-        <button
-          className={
-            range.length <= 5
-              ? "disable button navigateButton"
-              : "button navigateButton"
-          }
-          onClick={() => prev()}
-        >
-          <FontAwesomeIcon
-            icon={"chevron-left"}
-            title={"Previous"}
-            alt={"previous"}
-            aria-hidden="true"
-            className="prev-icon"
-          />
-        </button>
-        {range.slice(startIndex, endIndex).map((num, index) => (
-          <button
-            key={index}
-            className={`${"button"} ${
-              page === num ? "activeButton" : "inactiveButton"
-            }`}
-            onClick={() => setPage(num)}
-          >
-            {num}
-          </button>
-        ))}
-        <button
-          className={
-            range.length <= 5
-              ? "disable button navigateButton"
-              : "button navigateButton"
-          }
-          onClick={() => next()}
-        >
-          <FontAwesomeIcon
-            icon="chevron-right"
-            alt={"next"}
-            title={"Next"}
-            aria-hidden="true"
-            className="next-icon"
-          />
-        </button>
-        <button className="button navigateButton" onClick={() => end()}>
-          <FontAwesomeIcon
-            icon="angles-right"
-            alt={"previous"}
-            title={"End"}
-            aria-hidden="true"
-            className="prev-icon"
-          />
-        </button>
-      </div>
-      <div className="page-number-input-container">
-        <select
-          className="page-number-input"
-          value={page}
-          onChange={(e) => setPageNav(e.target.value)}
-        >
-          <option value="" disabled>
-            page
-          </option>
-          {range.map((el, index) => {
-            return (
-              <option key={index} value={el}>
-                {index + 1}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+        <div className="page-count-cont">
+            <span>Rows per page: </span>
+            <select
+            className="rows-input"
+            onChange={(e) => setRowsPerPage(e.target.value)}>
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={20}>20</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+            </select>
+            <span>
+            | &nbsp; {page} of {range.length}
+            </span>
+        </div>
+        <div className="pages-cont">
+            <button className="button navigateButton" onClick={() => start()}>
+            <FontAwesomeIcon
+                icon={"angles-left"}
+                title={"Start"}
+                alt={"Start"}
+                aria-hidden="true"
+                className="prev-icon"
+            />
+            </button>
+            <button
+            className={
+                range.length <= 5
+                ? "disable button navigateButton"
+                : "button navigateButton"
+            }
+            onClick={() => prev()}
+            >
+            <FontAwesomeIcon
+                icon={"chevron-left"}
+                title={"Previous"}
+                alt={"previous"}
+                aria-hidden="true"
+                className="prev-icon"
+            />
+            </button>
+            {range.slice(startIndex, endIndex).map((num, index) => (
+            <button
+                key={index}
+                className={`${"button"} ${
+                page === num ? "activeButton" : "inactiveButton"
+                }`}
+                onClick={() => setPage(num)}
+            >
+                {num}
+            </button>
+            ))}
+            <button
+            className={
+                range.length <= 5
+                ? "disable button navigateButton"
+                : "button navigateButton"
+            }
+            onClick={() => next()}
+            >
+            <FontAwesomeIcon
+                icon="chevron-right"
+                alt={"next"}
+                title={"Next"}
+                aria-hidden="true"
+                className="next-icon"
+            />
+            </button>
+            <button className="button navigateButton" onClick={() => end()}>
+            <FontAwesomeIcon
+                icon="angles-right"
+                alt={"previous"}
+                title={"End"}
+                aria-hidden="true"
+                className="prev-icon"
+            />
+            </button>
+        </div>
+        <div className="page-number-input-container">
+            <select
+            className="page-number-input"
+            value={page}
+            onChange={(e) => setPageNav(e.target.value)}>
+            <option value="" disabled>
+                page
+            </option>
+            {range.map((el, index) => {
+                return (
+                <option key={index} value={el}>
+                    {index + 1}
+                </option>
+                );
+            })}
+            </select>
+        </div>
     </div>
   );
 };

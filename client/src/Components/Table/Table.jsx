@@ -26,6 +26,8 @@ function TableComponent ({
     // const tableType = props.type
     // const tableData = props.tableData
 
+    const fillData = [];
+
     const data = slice.map((row,index) => {
         let i = 0;
         let rowData = [];
@@ -37,79 +39,60 @@ function TableComponent ({
             });
             i++;
         }
+
+        if (slice.length < rowsPerPage){
+            const fillSpace = rowsPerPage - slice.length
+            fillData.length = 0;
+
+            for (let i = 0; i < fillSpace; i++) {    
+                fillData.push({
+                    key: headingColumns[i],
+                    value: " ",
+                });
+            }
+        }
         
         if (type === 'student_ongoing_table'){
             return(
-            <tr key={row.index}>
-                {rowData.map((data,index) => (
-                    <td key={index} data-heading={data.key}>
-                        {data.val}
-                  </td>
-                )
-                
-                )}
-                {/* <td key={row.index}
-                    data-heading={row.index}>
-                    {row.id}
-                </td>
-                <td key={row.index}
-                    data-heading={row.index}>
-                    {row.name}
-                </td>
-                <td key={row.index}
-                    data-heading={row.index}>
-                    {row.transaction}
-                </td>
-                <td key={row.index}
-                    data-heading={row.index}>
-                    {row.status}
-                </td> */}
-            </tr>
+                <tr key={row.index} className="table-row-center">
+                    {/* {rowData.map((data,index) => (
+                        <td key={index} data-heading={data.key}>
+                            {data.val}
+                        </td>
+                    )
+                    
+                    )} */}
+                    <td key={row.index}
+                        data-heading={row.index}>
+                        {row.date}
+                    </td>
+                    <td key={row.index}
+                        data-heading={row.index}>
+                        {row.transactionName}
+                    </td>
+                    <td key={row.index}
+                        data-heading={row.index}>
+                        {row.transactionID}
+                    </td>
+                    <td key={row.index}
+                        data-heading={row.index}>
+                        {row.transactionStatus}
+                    </td>
+                    <td key={row.index}
+                        data-heading={row.index}>
+                        <button className="action-button">
+                            View Details
+                        </button>
+                    </td>
+                </tr>
             )
         }
-    })
 
-    //         return(
-            //     <div>
-            //         <Table striped bordered>
-            //             <thead>
-            //                 <tr className="main-table-header-container">
-            //                     {headingColumns.map((data, index) => {
-            //                     return (
-            //                         <th key={index}>
-            //                             {data}
-            //                         </th>
-            //                     );
-            //                     })}
-            //                 </tr>
-            //             </thead>
-            //             <tbody>
-                            // <tr key={row.index}>
-                            //     <td key={row.index}
-                            //         data-heading={row.index}>
-                            //         {row.id}
-                            //     </td>
-                            //     <td key={row.index}
-                            //         data-heading={row.index}>
-                            //         {row.name}
-                            //     </td>
-                            //     <td key={row.index}
-                            //         data-heading={row.index}>
-                            //         {row.transaction}
-                            //     </td>
-                            //     <td key={row.index}
-                            //         data-heading={row.index}>
-                            //         {row.status}
-                            //     </td>
-                            // </tr>
-            //             </tbody>
-            //         </Table>
-            //     </div>
-            // )
+
+    })
 
 
     return(
-
         <div>
             <Table>
                 <thead>
@@ -123,20 +106,22 @@ function TableComponent ({
                 </thead>
     
                 <tbody>
-                    {/* {tableData.map((data) => {
-                        return (
-                            <tr>
-                                <td>{data.id}</td>
-                                <td>{data.name}</td>
-                                <td>{data.transaction}</td>
-                                <td>{data.status}</td>
-                            </tr>
-                        )
-                    })} */}
                     {data}
+                    {fillData.map((data,index) => (
+                        <tr key={index}>
+                            {headingColumns.map((data1) => {
+                                return(
+                                <td>
+                                    {data.val}
+                                </td>
+                                )
+                            })}
+                            
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
-            
+
             <TableFooterComponent
                 range={range}
                 slice={slice}
