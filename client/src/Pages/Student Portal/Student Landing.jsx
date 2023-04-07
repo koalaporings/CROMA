@@ -7,9 +7,14 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import Notifications from '../../Components/Notifications/Notifications';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import CurrentTable from './Current Table';
+// import CurrentTable from './Current Table';
+import TableComponent from '../../Components/Table/Table';
 
 import './Student Landing.css';
+
+// DUMMY DATA
+import dummyTableData from './dummyTableData';
+import dummyFormData from './dummyTransactionList';
 
 const StudentLanding = ({children}) => {
     
@@ -23,15 +28,17 @@ const StudentLanding = ({children}) => {
 
     useEffect (() =>{
     const fetchAllForms = async ()=>{
-        try{
         const response = await axios.get('http://localhost:5000/form/db/view')
         setFormData(response.data)
-        }catch(err){
-        console.log(err)
-        }
     }
     fetchAllForms()
     }, [])
+
+    if (formData.length === 0){
+        setFormData(dummyFormData)
+    }
+
+    console.log(formData)
 
     async function changeInfo(data1, data2, data3, data4, data5){
         setFormName(data1)
@@ -47,51 +54,50 @@ const StudentLanding = ({children}) => {
         navigate('/student/request/'+formId)
     }
 
-    const dummy = [
-        {
-            form_id: 1,
-            form_name: "1",
-            form_desc: "desc",
-            form_payment: 5,
-            form_duration: "3 days",
-        },
-        {
-            form_id: 1,
-            form_name: "2",
-            form_desc: "desc",
-            form_payment: 5,
-            form_duration: "3 days",
-        },
-        {
-            form_id: 1,
-            form_name: "3",
-            form_desc: "desc",
-            form_payment: 5,
-            form_duration: "3 days",
-        },
-    ]
+    const num_transactions = dummyTableData.length
+    const userFirstName = 'User'
 
     return(
+
         <div>
             <NavBar/>
             <Header/>
 
             <div className='student-container'>
                 <div className="name-header">
-                    Hello, John!
+                    Hello, {userFirstName}!
                 </div>
 
                 <div className="transaction-header">
-                    You currently have 4 transactions. Check its progress here.                
+                    You currently have&nbsp;<span style={{fontWeight: '700'}}>{num_transactions} transactions.</span>&nbsp;Check its progress here.                
                 </div>
                 <div className='student-notifs-container'>
                     <Notifications/>
                 </div>
+
+                <div className='title-text'>
+                    Current Transactions
+                </div>
+
                 <div className="student-ongoing-table-container">
-                    <CurrentTable/>
-                </div>    
+                    <TableComponent
+                        type = 'student_ongoing_table'
+                        headingColumns = {[
+                            "Date",
+                            "Transaction Name",
+                            "Transaction ID",
+                            "Status",
+                            "Action",
+                        ]}
+                        tableData = {dummyTableData}
+                    />
+                </div>
+                
+                <div className='title-text'>
+                    Request a form?
+                </div>
+
                 <div className="transaction-container">
-                    <div className = "request-form-title">Request a form?</div>
                     <div className="transaction-list-container">
                         {formData.map((data,index) => {
                             return(

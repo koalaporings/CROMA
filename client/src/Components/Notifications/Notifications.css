@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka');
 
 .notif-container{
-    position: absolute;
+    display: grid;
+    position: relative;
     background-color: #faddaa;
     height: 100%;
     width: 100%;
@@ -10,63 +11,76 @@
 }
 
 .notif-logo {
+    display: inline-block;
     position: absolute;
-    top: 5%;
-    left: 2.5%;
+    align-items: center;
+    padding-top: 1%;
+    left: 1.5%;
 }
 
 .notif-list-container {
-    position: absolute;
-    top: 25%;
+    display: block;
+    margin-top: 5%;
     height: 60%;
     width: 100%;
 }
 
 .notif-details-container {
-    height: 20%;
+    display: block;
+    height: 30px;
 }
 
 .notif-title-text {
+    display: inline-block;
+    align-content: center;
     color: #7A1113;
     font-family: 'Fredoka One';
     font-size: 25px;
     position: absolute;
-    top: 7%;
-    left: 7.5%;
+    padding-top: 20px;
+    left: 6%;
 }
 
 .notif-date-time-container {
+    display: inline-block;
+    position: relative;
     background-color: #FFF6E6;
     color: #741B47;
-    position: absolute;
-    left: 2.5%;
+    margin-top: 1px;
+    margin-bottom: 1px;
     padding: 2.5px;
     border-radius: 10px;
     font-size: 15px;
     font-family: 'Fredoka One';
     width: 15%;
+    height: auto;
 }
 
 .notif-body-text {
+    display: inline-block;
     text-align: left;
-    position: absolute;
-    left: 19%;
+    position: relative;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    left: 1%;
     width: 80%;
+    height: 100%;
     color: #7A1113;
     font-family: 'Fredoka';
     font-size: 18px;
 }
 
 .notif-show-more-button {
+    display: block;
     background-color: #21523C;
     border-radius: 10px;
     color: white;
-    width: 12%;
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
+    width: 10%;
+    position: relative;
+    margin-bottom: 0.5%;
+    margin-left: 89%;
     font-family: 'Fredoka';
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
 }
 
