@@ -74,3 +74,18 @@ h1.history-title-text {
     cursor: pointer;
     background-color: #08321F;
 }
+
+.action-button {
+    font-size: 13px;
+    font-family: 'Poppins';
+    border-radius: 4px;
+    background-color: #21523C;
+    color: white;
+    min-width: 100px;
+    min-height: 20px;
+}
+
+.action-button:hover {
+    cursor: pointer;
+    background-color: #08321F;
+}
