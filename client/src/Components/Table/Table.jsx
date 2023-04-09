@@ -2,6 +2,7 @@ import { TableFooter } from "@mui/material";
 import { width } from "@mui/system";
 import { useState } from "react";
 import React from "react";
+import ViewModal from '../../Components/Modal/View Modal';
 import Table from 'react-bootstrap/Table';
 import TableFooterComponent from './Table Footer';
 import { useNavigate } from "react-router-dom";
@@ -25,6 +26,10 @@ function TableComponent ({
     // const tableColumns = props.headingColumns
     // const tableType = props.type
     // const tableData = props.tableData
+
+    // for modal
+    const [isOpen, setIsOpen] = useState(false);
+
 
     const fillData = [];
 
@@ -124,6 +129,46 @@ function TableComponent ({
                 </tr>
             )
         }
+
+
+
+
+    if (type === 'student_history_table'){
+        return(
+            <tr key={row.index} className="table-row-center">
+                {/* {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                    </td>
+                )
+                
+                )} */}
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.date}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transactionName}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transactionID}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transactionStatus}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    <button className='action-button' onClick={() => setIsOpen(true)}>
+                        View
+                    </button>
+                    {isOpen && <ViewModal setIsOpen={setIsOpen} />}
+                </td>
+            </tr>
+        )
+    }
 
     })
 
