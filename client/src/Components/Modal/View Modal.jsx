@@ -2,7 +2,7 @@ import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 
-const Modal = ({ setIsOpen }) => {
+const ViewModal = ({ setIsOpen }) => {
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -30,4 +30,4 @@ const Modal = ({ setIsOpen }) => {
   );
 };
 
-export default Modal;
+export default ViewModal;
