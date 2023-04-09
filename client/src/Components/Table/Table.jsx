@@ -48,6 +48,8 @@ function TableComponent ({
                 )
                 
                 )}
+
+        
                 {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.id}
@@ -64,6 +66,19 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.status}
                 </td> */}
+            </tr>
+            )
+        }
+
+        if (type === 'student_tracking_table'){
+            return(
+            <tr key={row.index}>
+                {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                  </td>
+                )    
+                )}
             </tr>
             )
         }

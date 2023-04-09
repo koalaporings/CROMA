@@ -1,32 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Fredoka');
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
+.header-tracking {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
 }
 
 .tracking-container {
-    height: 100vh;
+    /* position: absolute;
+    top: 12%; */
+    width: 100%;
     background-color: white;
 }
 
-.ongoing-table-container {
-    position: absolute;
-    top: 55%;
-    left: 12%;
-    height: 30vh;
-    width: 80%;
+.footer-tracking {
+    display: flex;
+    margin-top: 1vh;
+    height: 15vh;
+    width: 100%
 }
 
-.ongoing-table1-container {
-    padding: 10px;
-    height: 30vh;
-    display: grid;
-    justify-content: center;
-    align-content: center
+
+.tracking-title-container {
+    display: block;
+    flex-direction: row;
+    align-items: left;
+    width: 435px;
+    height: 50px;
+    padding-left: 12%;
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+}
+
+
+.leche{
+    display: flex;
+    position: relative; 
+    align-items: left; 
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+    color: #7A1113; 
+    width: 30px;
+}
+
+.tracking-title-text { 
+    display: block;  
+    color: #7A1113;
+    font-family: 'Fredoka One';
+    font-weight: 200;
+    font-size: 30px;
+    margin-left: 5px;
+    position: relative; 
+}
+
+.student-tracking-table-container{
+    display: block;
+    padding-left: 12%;
+    width: 80%;
+    height: auto;
 }
