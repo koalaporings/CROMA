@@ -27,14 +27,10 @@ const TrackingPage = ({children}) => {
             </div>
 
             <Container>
-
-                
-
-                <Row className="col-2" >
-                    <Col xs={1}><SearchOutlinedIcon className="leche" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
-                    <h1 className='tracking-title-text'>Tracking Page</h1></Col>
-                </Row>
-
+                <div className="tracking-title-container">
+                    <SearchOutlinedIcon className="leche" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
+                    <h1 className='tracking-title-text'>Tracking Page</h1>
+                </div>
                 <div className="student-tracking-table-container">
                     <TableComponent
                         type = 'student_tracking_table'
