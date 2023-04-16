@@ -1,23 +1,124 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Fredoka');
 
-.header-signatory {
-    display: flex;
-    margin-bottom: 1vh;
-    height: 10vh;
-    width: 100%
+form {
+    text-align: left;
+}
+.tcg-form label {
+    font-family: 'Poppins';
+    font-size: 14px;
 }
 
-.signatory-container {
-    /* position: absolute;
-    top: 12%; */
-    width: 100%;
+.form-title {
+    text-align: left;
+    margin-top: 12vh;
+    margin-bottom: 15px;
+    font-family: 'Fredoka One';
+    color: #7A1113; 
+    font-size: 30px ;
+}
+
+h1.form-group-title{
+    font-family: 'Fredoka One';
+    color: #7A1113; 
+    font-size: 20px ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h2.form-subtitle-1 {
+    color: #7A1113;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 18px;
+}
+
+h3.form-subtitle-2 {
+    color: #7A1113;
+    font-family: 'Poppins';
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 7px;
+    margin-bottom: 3px;
+}
+
+
+ul li.important-item {
+    margin-left: 20px;
+}
+
+.inline-form-details .form-details {
+    display: inline;
+    margin-right: 30px;
+}
+.form-details {
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+.form-details-price {
+    font-size: 20px;
+}
+
+.privacy-notice-text {
+    font-family: 'Poppins';
+    background-color: #FFEBC8;
+    padding: 10px;
+    border-radius: 20px 20px 20px 20px ;
+    margin-bottom: 20px;
+}
+
+.privacy-notice-text-end {
+    color: #7A1113;
+    font-weight: 700;
+}
+
+.request-price-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.request-price-container .column-2 {
+    padding: 15px;
+    background-color: #FFEBC8;
+    border-radius: 20px;
+}
+
+.form-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-button button {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 120px;
+    font-family: 'Fredoka';
+    background-color: #21523C;
+    border-radius: 10px;
+}
+
+
+.submit-button button:hover {
+    background-color: #21523C;
+    opacity: 0.9;
+    
+}
+
+.cancel-button button {
+    margin: 20px;
+    width: 120px;
+    font-family: 'Fredoka';
+    border: 1px solid #21523C;
     background-color: white;
+    color: #21523C;
+    border-radius: 10px;
 }
 
-.footer-signatory {
-    display: flex;
-    margin-top: 1vh;
-    height: 15vh;
-    width: 100%
+.cancel-button button:hover {
+    background-color: #21523C;
+    opacity: 0.9;
+    
 }
+

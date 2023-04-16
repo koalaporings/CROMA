@@ -17,7 +17,7 @@ const Form1 = ({children}) => {
             <Header/>
             <Container>
                 <div className="form-title">
-                    True Copy of Grades (TCG)
+                    True Copy of Form 5
                 </div>
                 <form class="tcg-form" >
                     <h1 className='form-group-title'>A. Student Details</h1>
@@ -66,7 +66,7 @@ const Form1 = ({children}) => {
                     </div>
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
-                            <label for="purpose">Purpose for TCG</label>
+                            <label for="purpose">Purpose for Request</label>
                             <select class="custom-select" id='purpose'>
                                 <option selected value="1">Scholarship</option>
                                 <option value="2">Readmission</option>
