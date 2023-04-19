@@ -17,7 +17,7 @@ import dummyTableData from './dummyTableData';
 import dummyFormData from './dummyTransactionList';
 
 const StudentLanding = ({children}) => {
-    
+    const userId = 4
     const [formId, setFormId] = useState(0);
     const [formName, setFormName] = useState("Form");
     const [formDescription, setFormDescription] = useState("Select a form from the list on the left to show the description of the form and click the 'Request' button once you are ready to request.");
@@ -25,20 +25,38 @@ const StudentLanding = ({children}) => {
     const [durationInfo, setDurationInfo] = useState("--");
 
     const [formData, setFormData] = useState([])
+    const [tablesData, setTableData] = useState([])
 
     useEffect (() =>{
     const fetchAllForms = async ()=>{
-        const response = await axios.get('http://localhost:5000/form/db/view')
+        const response = await axios.get('http://localhost:5000/form_api/view')
         setFormData(response.data)
     }
     fetchAllForms()
     }, [])
 
-    if (formData.length === 0){
-        setFormData(dummyFormData)
+    useEffect (() =>{
+    const fetchTable = async ()=>{
+        try{
+        const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
+        setTableData(response.data)
+    } catch(err){
+        await axios.get('http://localhost:5000/logout')
+        console.log("err")
+        navigate('/')
     }
 
+    }
+    fetchTable()
+    }, [])
+
+
+    // if (formData.length === 0){
+    //     setFormData(dummyFormData)
+    // }
+
     console.log(formData)
+    console.log(tablesData)
 
     async function changeInfo(data1, data2, data3, data4, data5){
         setFormName(data1)
@@ -89,7 +107,7 @@ const StudentLanding = ({children}) => {
                             "Status",
                             "Action",
                         ]}
-                        tableData = {dummyTableData}
+                        tableData = {tablesData}
                     />
                 </div>
                 

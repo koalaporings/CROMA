@@ -6,14 +6,14 @@ import axios from 'axios';
 const LoginTest  = () => {
   
     const [user, setName] = useState([{
-        'permission': null
+        'role': null
 }])
     const userId = useLocation().pathname.split('/')[3]
     const navigate = useNavigate()
     useEffect (() =>{
         const fetchUser = async id =>{
         try{
-            const response = await axios.get('http://localhost:5000/db/logintest/' + id)
+            const response = await axios.get('http://localhost:5000/db/logintest/' + id, {withCredentials:true})
             setName(response.data)
             
         }catch(err){
@@ -23,8 +23,6 @@ const LoginTest  = () => {
         fetchUser(userId)
         
     }, [])
-
-    
     return (
         
         <div className='form'>

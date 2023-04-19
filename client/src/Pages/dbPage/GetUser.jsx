@@ -8,9 +8,9 @@ const GetUser  = () => {
     const [user, setName] = useState([])
     const userId = useLocation().pathname.split('/')[3]
     useEffect (() =>{
-        const fetchUser = async id =>{
+        const fetchUser = async user_id =>{
         try{
-            const response = await axios.get('http://localhost:5000/db/get/' + id)
+            const response = await axios.get('http://localhost:5000/db/get/' + user_id)
             setName(response.data)
             console.log(response)
         }catch(err){
@@ -23,8 +23,8 @@ const GetUser  = () => {
     return (
     <div className='form'>
           {user.map(user => (
-        <div className="user" key={user.id}>
-          <p2>{user.id}  |  </p2>
+        <div className="user" key={user.user_id}>
+          <p2>{user.user_id}  |  </p2>
           <p2>{user.first_name}  |  </p2>
           <p2>{user.last_name}  |  </p2>
           <p2>{user.email}  |  </p2>
