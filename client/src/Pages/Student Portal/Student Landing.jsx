@@ -28,7 +28,8 @@ const StudentLanding = ({children}) => {
 
     useEffect (() =>{
     const fetchAllForms = async ()=>{
-        const response = await axios.get('http://localhost:5000/form/db/view')
+        try{
+        const response = await axios.get('http://localhost:5000/form/view')
         setFormData(response.data)
     }
     fetchAllForms()

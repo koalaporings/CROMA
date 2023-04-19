@@ -24,10 +24,9 @@ app.get("/db", (req, res) => {
 })
 
 
-
-app.get("/db/get/:id", (req, res) => {
-  const q = 'SELECT * FROM users WHERE id = ?'
-  const userId = req.params.id 
+app.get("/db/get/:user_id", (req, res) => {
+  const q = 'SELECT * FROM users WHERE user_id = ?'
+  const userId = req.params.user_id 
 
   db.query(q, userId, (err, data) => {
     if(err) console.error('ERROR', err);
@@ -51,7 +50,7 @@ app.post('/db/add', (req, res) => {
 
 app.put('/db/update/:id', (req, res) => {
   const userId = req.params.id
-  const q = 'UPDATE users SET `first_name` = ?, `last_name` = ?, `email` = ?, `password` = ? WHERE id = ?'
+  const q = 'UPDATE users SET `first_name` = ?, `last_name` = ?, `email` = ?, `password` = ? WHERE user_id = ?'
   const values = [
   req.body.first_name,
   req.body.last_name,
@@ -66,19 +65,9 @@ app.put('/db/update/:id', (req, res) => {
 
 app.delete('/db/delete/:id', (req, res) => {
   const userId = req.params.id
-  const q = 'DELETE FROM users WHERE id = ?'
+  const q = 'DELETE FROM users WHERE user_id = ?'
 
   db.query(q, [userId], (err, data) => {
-    if(err) console.error('ERROR', err);
-  })
-})
-
-app.put('/db/update/form_description/:form_id', (req, res) => {
-  const transactionId = req.params.form_id
-  const q = 'UPDATE forms SET `form_desc` = ? WHERE form_id = ?'
-  const values = req.body.form_desc
-
-  db.query(q,[values, transactionId], (err, data) => {
     if(err) console.error('ERROR', err);
   })
 })
@@ -93,14 +82,13 @@ app.get('/db/logintest/:user_id', (req, res) => {
   })
 })
 
-
-app.use('/admin', adminRoute);
-app.use('/clerk', clerkRoute);
-app.use('/signatory', signatoryRoute);
-app.use('/student', studentRoute);
-app.use('/announcement', announcementRoute);
-app.use('/notification', notificationRoute);
-app.use('/form', formRoute);
+app.use('/admin_api', adminRoute);
+app.use('/clerk_api', clerkRoute);
+app.use('/signatory_api', signatoryRoute);
+app.use('/student_api', studentRoute);
+app.use('/announcement_api', announcementRoute);
+app.use('/notification_api', notificationRoute);
+app.use('/form_api', formRoute);
 
 
 app.listen(5000, () => {console.log("Server started on port 5000")})
