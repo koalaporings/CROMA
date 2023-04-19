@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2023 at 11:42 AM
+-- Generation Time: Apr 20, 2023 at 01:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -133,7 +133,7 @@ CREATE TABLE `transactions` (
   `user_id` int(11) NOT NULL,
   `form_id` int(11) NOT NULL,
   `form_name` varchar(30) NOT NULL,
-  `form_recipients` text NOT NULL,
+  `transaction_status` text NOT NULL,
   `payment_proof` text NOT NULL,
   `transaction_date` date NOT NULL DEFAULT current_timestamp(),
   `transaction_ETA` date NOT NULL,
@@ -144,8 +144,9 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`transaction_id`, `user_id`, `form_id`, `form_name`, `form_recipients`, `payment_proof`, `transaction_date`, `transaction_ETA`, `remarks`) VALUES
-(1, 1, 1, 'True Copy of Grades (TCG)', 'john', 'link to proof? not sure about this', '2023-03-22', '2023-03-29', 'N/A');
+INSERT INTO `transactions` (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `payment_proof`, `transaction_date`, `transaction_ETA`, `remarks`) VALUES
+(1, 1, 1, 'True Copy of Grades (TCG)', 'john', 'link to proof? not sure about this', '2023-03-22', '2023-03-29', 'N/A'),
+(2, 4, 1, 'test', 'adadasd', 'asd', '2023-04-19', '2023-04-21', 'adasdas');
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

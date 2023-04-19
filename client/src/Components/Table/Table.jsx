@@ -69,19 +69,19 @@ function TableComponent ({
                     )} */}
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.date}
+                        {row.transaction_date}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionName}
+                        {row.form_name}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionID}
+                        {row.transaction_id}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionStatus}
+                        {row.transaction_status}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
