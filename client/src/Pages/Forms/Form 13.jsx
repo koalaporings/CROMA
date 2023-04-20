@@ -7,7 +7,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import { fontSize } from '@mui/system';
 
 
-// Overload
+// Change of Matriculation
 const Form13 = ({children}) => {
 
     return(
@@ -50,30 +50,119 @@ const Form13 = ({children}) => {
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
-                    <div class="form-row">
-                        <div class="col-md-4 mb-2">     
-                            <label for="academicYear">Academic Year</label>
-                            <input type="text" class="form-control" id="academicYear"    />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="semester">Semester</label>
-                            <input type="text" class="form-control" id="semester"/>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="copies">Number of Copies</label>
-                            <input type="text" class="form-control" id="copies"/>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-7 mb-2">
-                            <label for="purpose">Purpose for Request</label>
+                    <label for="purpose">Purpose</label>
+                    <div class="row">
+                        <div class="col-md-6">
                             <select class="custom-select" id='purpose'>
-                                <option selected value="1">Scholarship</option>
-                                <option value="2">Readmission</option>
-                                <option value="3">Shift</option>
+                                <option selected value="1">Ill Advised</option>
+                                <option value="2">Conflict of Time</option>
+                                <option value="3">Lacks Prerequisite</option>
+                                <option value="4">Class Dissolved</option>
+                                <option value="5">Section Closed</option>
+                                <option value="6">Others</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="others"/>
+                        </div>
                     </div>
+                    <br></br>
+                    <div className="row">
+                        <div className="col-md-2 pr-1">
+                            <label for="">Subjects Cancelled</label>
+                            <input type="text" class="form-control" id="cSub1"/>
+                            <input type="text" class="form-control" id="cSub2"/>
+                            <input type="text" class="form-control" id="cSub3"/>
+                            <input type="text" class="form-control" id="cSub4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Instructor</label>
+                            <input type="text" class="form-control" id="cProf1"/>
+                            <input type="text" class="form-control" id="cProf2"/>
+                            <input type="text" class="form-control" id="cProf3"/>
+                            <input type="text" class="form-control" id="cProf4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Units</label>
+                            <input type="text" class="form-control" id="cUnit1"/>
+                            <input type="text" class="form-control" id="cUnit2"/>
+                            <input type="text" class="form-control" id="cUnit3"/>
+                            <input type="text" class="form-control" id="cUnit4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Time</label>
+                            <input type="text" class="form-control" id="cTime1"/>
+                            <input type="text" class="form-control" id="cTime2"/>
+                            <input type="text" class="form-control" id="cTime3"/>
+                            <input type="text" class="form-control" id="cTime4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Day</label>
+                            <input type="text" class="form-control" id="cDay1"/>
+                            <input type="text" class="form-control" id="cDay2"/>
+                            <input type="text" class="form-control" id="cDay3"/>
+                            <input type="text" class="form-control" id="cDay4"/>
+                        </div>
+                        <div className="col-md-2 pl-1">
+                            <label for="">Room</label>
+                            <input type="text" class="form-control" id="cRoom1"/>
+                            <input type="text" class="form-control" id="cRoom2"/>
+                            <input type="text" class="form-control" id="cRoom3"/>
+                            <input type="text" class="form-control" id="cRoom4"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div className="row">
+                        <div className="col-md-2 pr-1">
+                            <label for="">Subjects Authorized</label>
+                            <input type="text" class="form-control" id="aSub1"/>
+                            <input type="text" class="form-control" id="aSub2"/>
+                            <input type="text" class="form-control" id="aSub3"/>
+                            <input type="text" class="form-control" id="aSub4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Instructor</label>
+                            <input type="text" class="form-control" id="aProf1"/>
+                            <input type="text" class="form-control" id="aProf2"/>
+                            <input type="text" class="form-control" id="aProf3"/>
+                            <input type="text" class="form-control" id="aProf4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Units</label>
+                            <input type="text" class="form-control" id="aUnit1"/>
+                            <input type="text" class="form-control" id="aUnit2"/>
+                            <input type="text" class="form-control" id="aUnit3"/>
+                            <input type="text" class="form-control" id="aUnit4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Time</label>
+                            <input type="text" class="form-control" id="aTime1"/>
+                            <input type="text" class="form-control" id="aTime2"/>
+                            <input type="text" class="form-control" id="aTime3"/>
+                            <input type="text" class="form-control" id="aTime4"/>
+                        </div>
+                        <div className="col-md-2 pl-1 pr-1">
+                            <label for="">Day</label>
+                            <input type="text" class="form-control" id="aDay1"/>
+                            <input type="text" class="form-control" id="aDay2"/>
+                            <input type="text" class="form-control" id="aDay3"/>
+                            <input type="text" class="form-control" id="aDay4"/>
+                        </div>
+                        <div className="col-md-2 pl-1">
+                            <label for="">Room</label>
+                            <input type="text" class="form-control" id="aRoom1"/>
+                            <input type="text" class="form-control" id="aRoom2"/>
+                            <input type="text" class="form-control" id="aRoom3"/>
+                            <input type="text" class="form-control" id="aRoom4"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div className="col-md-12 p-0">
+                        <label htmlFor="remarks">Remarks</label>
+                        <textarea name="remarks" id="remarks" class="form-control" rows="3"></textarea>
+                    </div>
+
+
                     <h1 className='form-group-title'>C. Proof of Payment</h1>
                     <h2 className='form-subtitle-1'>Pay via Philippine Veterans Bank</h2>
                     <div className="inline-form-details">

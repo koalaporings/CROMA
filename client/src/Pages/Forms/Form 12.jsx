@@ -31,8 +31,8 @@ const Form12 = ({children}) => {
                             <input type="text" class="form-control" id="studentNumber"/>
                         </div>
                         <div class="col-md-2 mb-2">
-                            <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber"/>
+                            <label for="date">Date</label>
+                            <input type="date" class="form-control" id="date"/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -44,76 +44,98 @@ const Form12 = ({children}) => {
                             <label for="yearLevel">Year Level</label>
                             <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
                         </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress"/>
-                        </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <div class="form-row">
-                        <div class="col-md-4 mb-2">     
-                            <label for="academicYear">Academic Year</label>
-                            <input type="text" class="form-control" id="academicYear"    />
+                        <div class="form-text">I am a graduating student and I would like to request for an overload of</div>
+                        <div class="col-md-3 mb-1">     
+                            <input type="text" class="form-control" id="units"    />
                         </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="semester">Semester</label>
-                            <input type="text" class="form-control" id="semester"/>
+                        
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="sem">Semester</label>
+                                <input type="text" class="form-control" id="sem"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="acadYear">Academic Year</label>
+                                <input type="text" class="form-control" id="acadYear"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastSem">Status of Last Semester Enrolled</label>
+                                <input type="text" class="form-control" id="lastSem"/>
+                            </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="reason">Reason</label>
+                                <textarea class="form-control" id="reason" rows="8"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div class="form-row">
                         <div class="col-md-4 mb-2">
-                            <label for="copies">Number of Copies</label>
-                            <input type="text" class="form-control" id="copies"/>
+                            <label for="sem">Semester</label>
+                                <input type="text" class="form-control" id="sem"/>
+                            </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-2">
+                            <label for="acadYear">Academic Year</label>
+                            <input type="text"  class="form-control" id="acadYear"/>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-7 mb-2">
-                            <label for="purpose">Purpose for Request</label>
-                            <select class="custom-select" id='purpose'>
-                                <option selected value="1">Scholarship</option>
-                                <option value="2">Readmission</option>
-                                <option value="3">Shift</option>
-                            </select>
+                        <div class="col-md-4 mb-2">
+                            <label for="lastSem">Status of Last Semester Enrolled</label>
+                            <input type="text"  class="form-control" id="lastSem"/>
                         </div>
                     </div>
-                    <h1 className='form-group-title'>C. Proof of Payment</h1>
-                    <h2 className='form-subtitle-1'>Pay via Philippine Veterans Bank</h2>
-                    <div className="inline-form-details">
-                        <div className='form-details'><b>Account Name:</b> UP Cebu</div>
-                        <div className='form-details'><b>Account Number:</b> 21-0000-067</div>
-                        <div className='form-details'><b>Branch:</b> Cebu City</div>
-                    </div>
-                    <h3 className='form-subtitle-2'>Note:</h3>
-                    <div className='form-details'>If asked for mobile number, please provide your own mobile number</div>
-                    <div className='form-details'>If paying via GCash, please add 4 zeroes at the start to have 13 digits, 000021-0000-067.</div>
-                    <h3 className='form-subtitle-2'>Total Amount to be Paid</h3>
-                    <div className="request-price-container">
-                        <div className="column-1">
-                            <div className='form-details-price'>₱150.00</div>
-                            <div className='form-details'>This is the total amount to be paid through Philippine Veterans Bank</div>
-                            <div className='form-details'>(Payment may be made via online channels such as gcash, instapay, pesonet, bank transfers.)</div>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-2">
+                            <label for="reason">Reason</label>
+                            <textarea class="form-control" id="reason" cols="30" rows="10"/>
                         </div>
-                        <div className="column-2">
+                    </div> */}
+                    <div className="form-text">The subjects I intend to enroll in are: (include non-academic subjects such as PE, NSTP)</div>
+                    <br></br>
+                    <label for="">Subjects</label>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="text" class="form-control" id="subject1"/>
+                                <input type="text" class="form-control" id="subject2"/>
+                                <input type="text" class="form-control" id="subject3"/>
+                                <input type="text" class="form-control" id="subject4"/>
+                                <input type="text" class="form-control" id="subject5"/>
+                                <input type="text" class="form-control" id="subject6"/>
+                                <input type="text" class="form-control" id="subject7"/>
+                                <input type="text" class="form-control" id="subject8"/>
+                                <input type="text" class="form-control" id="subject9"/>
+                                <input type="text" class="form-control" id="subject10"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="unit1"/>
+                                <input type="text" class="form-control" id="unit2"/>
+                                <input type="text" class="form-control" id="unit3"/>
+                                <input type="text" class="form-control" id="unit4"/>
+                                <input type="text" class="form-control" id="unit5"/>
+                                <input type="text" class="form-control" id="unit6"/>
+                                <input type="text" class="form-control" id="unit7"/>
+                                <input type="text" class="form-control" id="unit8"/>
+                                <input type="text" class="form-control" id="unit9"/>
+                                <input type="text" class="form-control" id="unit10"/>
                             </div>
                         </div>
                     </div>
 
-                    <div className="form-row">
-                    <div class="col-md-4 mb-2">
-                            <label for="paymentMode">Mode of Payment</label>
-                            <select class="custom-select" id="paymentMode">
-                                <option selected value="1">GCASH</option>
-                                <option value="2">Bank</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h3 className='form-subtitle-2'>Important:</h3>
-                    <ul className='important-list'>
-                        <li className='important-item'>Payment status must be COMPLETED or SUCCESSFUL.</li>
-                        <li className='important-item'>Proof of payment (screenshot/image) must include <b><u>Amount Paid</u></b>, <b><u>Transaction Date</u></b>, <b><u>Time</u></b>, and <b><u>Reference Number</u></b>.</li>
-                        <li className='important-item'>For GCash transactions, make sure to enable mobile or email notifications. Attach proof of completed payment from GCash SMS or GCash Email with InstaPay Trace Number. (also found in your GCash Inbox, "Your Bank Transfer Status" message)</li>
-                        <li className='important-item'>Otherwise, if payment is not verifiable, your request may not be processed or may be delayed.</li>
-                    </ul>
+
                     <div className='privacy-notice-container'>
                         <h1 className="form-group-title">Privacy Notice for UP Students</h1>
                         <div className="privacy-notice-text">

@@ -7,7 +7,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import { fontSize } from '@mui/system';
 
 
-// Overload
+// Report of Grades
 const Form10 = ({children}) => {
 
     return(
