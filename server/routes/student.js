@@ -22,5 +22,18 @@ router.get("/transactions/:user_id", (req,res) => {
       })
 })
 
+router.get("/transaction_details/:id", (req,res) => {
+  console.log("yes")
+    const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
+    const userId = req.params.id
+    console.log(req.body)
+
+    db.query(q, userId, (err, results) => {
+        if(err) console.error('ERROR', err);
+        console.log(results)
+        res.json(results)
+      })
+})
+
 
 module.exports = router;

@@ -9,8 +9,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 // import CurrentTable from './Current Table';
 import TableComponent from '../../Components/Table/Table';
+import PDFdocument from '../../Components/PDF/PDF Document 1';
 
 import './Student Landing.css';
+import ViewStudentModal from '../../Components/Modal/View Modal - Student';
 
 // DUMMY DATA
 import dummyTableData from './dummyTableData';
@@ -24,8 +26,12 @@ const StudentLanding = ({children}) => {
     const [paymentInfo, setPaymentInfo] = useState(0);
     const [durationInfo, setDurationInfo] = useState("--");
 
-    const [formData, setFormData] = useState([])
-    const [tablesData, setTableData] = useState([])
+    const [formData, setFormData] = useState([]);
+    const [tablesData, setTableData] = useState([]);
+    const [selected, setSelected] = useState(0);
+    const [documentDetails, setDocumentDetails] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [numTransactions, setNumTransactions] = useState(0);
 
     useEffect (() =>{
     const fetchAllForms = async ()=>{
@@ -40,6 +46,7 @@ const StudentLanding = ({children}) => {
         try{
         const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
         setTableData(response.data)
+        setNumTransactions(response.data.length)
     } catch(err){
         await axios.get('http://localhost:5000/logout')
         console.log("err")
@@ -70,9 +77,23 @@ const StudentLanding = ({children}) => {
 
     const reqRedirect = () => {
         navigate('/student/request/'+formId)
+        console.log("o")
     }
 
-    const num_transactions = dummyTableData.length
+    const clickHandler = (data) => {
+        viewDocumentDetails(data)
+    }
+
+
+    async function viewDocumentDetails(id) {
+        const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        if (response){
+            setDocumentDetails(response.data[0])
+            console.log(documentDetails)
+            setIsOpen(true)
+        }
+    }
+
     const userFirstName = 'User'
 
     return(
@@ -87,7 +108,7 @@ const StudentLanding = ({children}) => {
                 </div>
 
                 <div className="transaction-header">
-                    You currently have&nbsp;<span style={{fontWeight: '700'}}>{num_transactions} transactions.</span>&nbsp;Check its progress here.                
+                    You currently have&nbsp;<span style={{fontWeight: '700'}}>{numTransactions} transactions.</span>&nbsp;Check its progress here.                
                 </div>
                 <div className='student-notifs-container'>
                     <Notifications/>
@@ -108,7 +129,10 @@ const StudentLanding = ({children}) => {
                             "Action",
                         ]}
                         tableData = {tablesData}
+                        action = {clickHandler}
+                        // setID = {setSelected}
                     />
+                    {isOpen && <ViewStudentModal data={documentDetails} setIsOpen={setIsOpen}/>}
                 </div>
                 
                 <div className='title-text'>
@@ -117,7 +141,7 @@ const StudentLanding = ({children}) => {
 
                 <div className="transaction-container">
                     <div className="transaction-list-container">
-                        {dummyFormData.map((data,index) => {
+                        {formData.map((data,index) => {
                             return(
                                 <div tabIndex={index} className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
                                     {data.form_name}

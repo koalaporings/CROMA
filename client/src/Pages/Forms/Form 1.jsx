@@ -54,9 +54,11 @@ const Form1 = ({children}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
-    async function add() {
+    async function addInfo() {
         // setIsClicked(true);
         const response = addFormInformation(formDetails);
+        console.log(response)
+        setIsOpen(false)
         // if(response.data && response.data.status === 200) {
         //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
         // }
@@ -196,7 +198,7 @@ const Form1 = ({children}) => {
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
-                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo}/>}
                     </div>
                 </div>
             </Container>
