@@ -1,11 +1,12 @@
-import React from 'react';
+import { useState } from "react";
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
+import CancelModal from '../../Components/Modal/Cancel Modal';
+import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
-import { useState } from 'react';
 import { addFormInformation } from './Forms API Call';
 
 // True Copy of Grades
@@ -50,6 +51,8 @@ const Form1 = ({children}) => {
 
         console.log(formDetails)
     }
+
+    const [isOpen, setIsOpen] = useState(false);
 
     async function add() {
         // setIsClicked(true);
@@ -185,15 +188,17 @@ const Form1 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                    <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit" onClick={add}>Submit</button>
-                        </div>
-                    </div>
                 </form>
+                <div className="form-buttons-container">
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isOpen && <CancelModal setIsOpen={setIsOpen} />}
+                    </div>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
+                    </div>
+                </div>
             </Container>
             <Footer/>
         </div>
