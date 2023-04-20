@@ -5,14 +5,12 @@
     background-color: white;
 }
 
-
 .table1-container{
     padding: 10px;
     height: 450px;
     display: grid;
     justify-content: center;
     align-content: center;
-    
 }
 
 .table-top {
@@ -127,7 +125,7 @@ tr.urgent-row {
     background-color: #08321F;
 }
 
-.action-button {
+/* .action-button {
     font-size: 13px;
     font-family: 'Poppins';
     border-radius: 4px;
@@ -140,7 +138,7 @@ tr.urgent-row {
 .action-button:hover {
     cursor: pointer;
     background-color: #08321F;
-}
+} */
 
 
 tr:nth-child(odd) {

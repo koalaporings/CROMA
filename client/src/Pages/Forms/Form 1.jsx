@@ -5,10 +5,50 @@ import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import { fontSize } from '@mui/system';
-
+import { useState } from 'react';
+import { addFormInformation } from './Forms API Call';
 
 // True Copy of Grades
 const Form1 = ({children}) => {
+
+    const [formDetails, setFormDetails] = useState({
+        user_id: 1,
+        form_id: 1,
+        payment_proof: null,
+        remarks: null,
+        student_id: 1,
+        last_name: "",
+        first_name: "",
+        middle_initial: "",
+        student_number: "",
+        mobile_number: "",
+        year_level: "",
+        degree_program: "",
+        email: "",
+        academic_year: "",
+        semester: "",
+        num_copies: "",
+        purpose: "",
+    });
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormDetails(prevState => ({
+        ...prevState,
+        [name]: value
+        }));
+    }
+
+    async function add() {
+        // setIsClicked(true);
+        const response = await addFormInformation(formDetails);
+        // if(response.data && response.data.status === 200) {
+        //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
+        // }
+        // else {
+        //     toast.error("ACADEMIC INFORMATION IS ADDED UNSUCCESSFULLY!");
+        // }
+    }
 
     return(
         <div>
@@ -22,52 +62,60 @@ const Form1 = ({children}) => {
                 <form class="tcg-form" >
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
-                        <div class="col-md-8 mb-2">     
-                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
-                            <input type="text" class="form-control" id="studentName"    />
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentName">Last Name</label>
+                            <input type="text" class="form-control" id="studentLastName" value={formDetails.last_name} onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentName">First Name</label>
+                            <input type="text" class="form-control" id="studentFirstName" value={formDetails.first_name} onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-2 mb-2">     
+                            <label for="studentName">Middle Initial</label>
+                            <input type="text" class="form-control" id="studentMiddleInitial" value={formDetails.middle_initial} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber"/>
+                            <input type="text" class="form-control" id="studentNumber" value={formDetails.student_number} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber"/>
+                            <input type="text" class="form-control" id="mobileNumber" value={formDetails.mobile_number} onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
                             <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram"/>
+                            <input type="text" class="form-control" id="degreeProgram" value={formDetails.degree_program} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" value={formDetails.year_level} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress"/>
+                            <input type="email" class="form-control" id="emailAddress" value={formDetails.email} onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <div class="form-row">
                         <div class="col-md-4 mb-2">     
                             <label for="academicYear">Academic Year</label>
-                            <input type="text" class="form-control" id="academicYear"    />
+                            <input type="text" class="form-control" id="academicYear" value={formDetails.academic_year} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="semester">Semester</label>
-                            <input type="text" class="form-control" id="semester"/>
+                            <input type="text" class="form-control" id="semester" value={formDetails.semester} onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="copies">Number of Copies</label>
-                            <input type="text" class="form-control" id="copies"/>
+                            <input type="text" class="form-control" id="copies" value={formDetails.num_copies} onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
                             <label for="purpose">Purpose for TCG</label>
-                            <select class="custom-select" id='purpose'>
+                            <select class="custom-select" id='purpose' value={formDetails.purpose} onChange={(e) => handleChange(e)}>
                                 <option selected value="1">Scholarship</option>
                                 <option value="2">Readmission</option>
                                 <option value="3">Shift</option>
@@ -128,7 +176,7 @@ const Form1 = ({children}) => {
                             <button class="btn btn-primary" type="submit">Cancel</button>
                         </div>
                         <div className="submit-button">
-                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit" onClick={add}>Submit</button>
                         </div>
                     </div>
                 </form>

@@ -15,6 +15,13 @@
     background-color: white;
 }
 
+.admin-transaction-requests-table-container{
+    display: block;
+    padding-left: 12%;
+    width: 80%;
+    height: auto;
+}
+
 .footer-admin {
     display: flex;
     margin-top: 1vh;

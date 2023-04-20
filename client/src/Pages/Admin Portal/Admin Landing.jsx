@@ -7,6 +7,9 @@ import OngoingTable from './Ongoing Table';
 import AnnouncementTable from './Announcement Table';
 import './Admin Landing.css';
 import NavBar from '../../Components/Navigation Bar/NavBar.jsx';
+import TableComponent from '../../Components/Table/Table';
+
+import dummyTableData from '../Admin Portal/dummyTableData';
 
 const AdminLanding = ({children}) => {
     return(
@@ -19,7 +22,19 @@ const AdminLanding = ({children}) => {
             <div className='admin-container'>
                 {/* <p>Placeholder text</p> */}
                 <AnnouncementTable/>
-                <TransactionTable/>
+                <div className="admin-transaction-requests-table-container">
+                    <TableComponent
+                        type = 'admin_transaction_req_table'
+                        headingColumns = {[
+                            " ",
+                            "Date",
+                            "Student Name",
+                            "Transaction Request",
+                            "Form",
+                        ]}
+                        tableData = {dummyTableData}
+                    />
+                </div>
                 <OngoingTable/>
             </div>
 

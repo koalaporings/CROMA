@@ -26,7 +26,23 @@
     font-size: 14px;
 }
 
+th {
+    padding: 8px;
+    background-color: #7A1113;
+    color: white;
+    font-family: 'Fredoka';
+    font-size: 18px;
+
+}
+
 td {
     text-align: center;
     vertical-align: middle;
+
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+
+tr:nth-child(odd) {
+    background-color: #FFF6E6;
 }

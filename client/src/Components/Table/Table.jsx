@@ -45,18 +45,6 @@ function TableComponent ({
             i++;
         }
 
-        if (slice.length < rowsPerPage){
-            const fillSpace = rowsPerPage - slice.length
-            fillData.length = 0;
-
-            for (let i = 0; i < fillSpace; i++) {    
-                fillData.push({
-                    key: headingColumns[i],
-                    value: " ",
-                });
-            }
-        }
-        
         if (type === 'student_ongoing_table'){
             return(
                 <tr key={row.index} className="table-row-center">
@@ -172,6 +160,17 @@ function TableComponent ({
 
     })
 
+    if (slice.length < rowsPerPage){
+        const fillSpace = rowsPerPage - slice.length
+        fillData.length = 0;
+
+        for (let i = 0; i < fillSpace; i++) {    
+            fillData.push({
+                key: headingColumns[i],
+                value: " ",
+            });
+        }
+    }
 
     return(
         <div>
