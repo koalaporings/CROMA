@@ -117,7 +117,7 @@ const StudentLanding = ({children}) => {
 
                 <div className="transaction-container">
                     <div className="transaction-list-container">
-                        {formData.map((data,index) => {
+                        {dummyFormData.map((data,index) => {
                             return(
                                 <div tabIndex={index} className="transaction-name-container" onClick={(e) => changeInfo(data.form_name, data.form_desc, data.form_payment, data.form_duration, data.form_id)}>
                                     {data.form_name}

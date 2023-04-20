@@ -51,6 +51,15 @@
     color: #2c3e50;
     text-align: center;
   }
+
+  .view-document-content {
+    padding: 10px;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
   
   .view-modalActions {
     position: absolute;
