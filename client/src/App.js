@@ -27,6 +27,9 @@ import ClerkTrackingPage from './Pages/History/History Clerk';
 import Form1 from './Pages/Forms/Form 1';
 import Form2 from './Pages/Forms/Form 2';
 import Form3 from './Pages/Forms/Form 3';
+import Form4 from './Pages/Forms/Form 4';
+import Form5 from './Pages/Forms/Form 5';
+
 
 function App() {
 
@@ -108,6 +111,20 @@ function App() {
               path="/student/request/3" 
               element={<Form3/>}  
             />
+
+            <Route 
+              path="/student/request/4" 
+              element={<Form4/>}  
+            />
+
+            <Route 
+              path="/student/request/5" 
+              element={<Form5/>}  
+            />
+
+
+
+
 
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
             <Route 

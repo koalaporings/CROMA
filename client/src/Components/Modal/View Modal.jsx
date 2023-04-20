@@ -11,7 +11,7 @@ const ViewModal = ({ setIsOpen }) => {
           <div className='view-modalHeader'>
             <h5 className='view-heading'>True Copy of Grades</h5>
           </div>
-          <button className="closeBtn" onClick={() => setIsOpen(false)}>
+          <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="view-modalContent">
