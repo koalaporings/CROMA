@@ -10,7 +10,7 @@ import { addFormInformation } from './Forms API Call';
 
 // True Copy of Grades
 const Form1 = ({children}) => {
-
+    const [price, setPrice] = useState(50);
     const [formDetails, setFormDetails] = useState({
         user_id: 4,
         form_id: 1,
@@ -33,10 +33,22 @@ const Form1 = ({children}) => {
     
     const handleChange = (e) => {
         const { name, value } = e.target;
+        console.log(value)
+
+        if (name==="num_copies"){
+            if (value){
+                setPrice(50*parseInt(value))
+            }
+            else{
+                setPrice(50)
+            }
+        }
         setFormDetails(prevState => ({
         ...prevState,
         [name]: value
         }));
+
+        console.log(formDetails)
     }
 
     async function add() {
@@ -117,9 +129,10 @@ const Form1 = ({children}) => {
                         <div class="col-md-7 mb-2">
                             <label for="purpose">Purpose for TCG</label>
                             <select class="custom-select" id='purpose' name="purpose" onChange={(e) => handleChange(e)}>
-                                <option selected value="1">Scholarship</option>
-                                <option value="2">Readmission</option>
-                                <option value="3">Shift</option>
+                                <option selected value=""> </option>
+                                <option value="scholarship">Scholarship</option>
+                                <option value="readmission">Readmission</option>
+                                <option value="shift">Shift</option>
                             </select>
                         </div>
                     </div>
@@ -136,7 +149,7 @@ const Form1 = ({children}) => {
                     <h3 className='form-subtitle-2'>Total Amount to be Paid</h3>
                     <div className="request-price-container">
                         <div className="column-1">
-                            <div className='form-details-price'>₱150.00</div>
+                            <div className='form-details-price'>₱{price}.00</div>
                             <div className='form-details'>This is the total amount to be paid through Philippine Veterans Bank</div>
                             <div className='form-details'>(Payment may be made via online channels such as gcash, instapay, pesonet, bank transfers.)</div>
                         </div>
