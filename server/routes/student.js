@@ -10,10 +10,8 @@ function parseJwt (token) {
 }
 
 router.get("/transactions/:user_id", (req,res) => {
-  console.log("yes")
-    const q = 'SELECT transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ?'
+    const q = 'SELECT transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing"'
     const userId = req.params.user_id
-    console.log(req.body)
 
     db.query(q, userId, (err, results) => {
         if(err) console.error('ERROR', err);
@@ -23,10 +21,8 @@ router.get("/transactions/:user_id", (req,res) => {
 })
 
 router.get("/transaction_details/:id", (req,res) => {
-  console.log("yes")
     const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
     const userId = req.params.id
-    console.log(req.body)
 
     db.query(q, userId, (err, results) => {
         if(err) console.error('ERROR', err);

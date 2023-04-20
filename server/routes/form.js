@@ -42,19 +42,6 @@ router.post('/new', async (req, res) => {
   res.json(req.body.form_name)
 })
 
-router.get('/transaction/get/:id', async (req, res) => {
-  console.log("test")
-  const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
-  const id = req.params.id
-
-
-  db.query(q,id, (err, data) => {
-    if(err) console.error('ERROR', err);
-    res.json(data)
-  })
-  
-})
-
 router.post('/transaction_made', async (req,res) =>{
   const q = 'INSERT INTO transactions (`user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
   const q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
