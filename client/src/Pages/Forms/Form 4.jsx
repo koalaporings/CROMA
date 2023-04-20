@@ -59,10 +59,10 @@ const Form4 = ({children}) => {
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
-                    <div className="submit-button">
+                    {/* <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
                         {isOpen && <SubmitModal setIsOpen={isOpen} />}
-                    </div>
+                    </div> */}
                 </div>
             </Container>
             <Footer/>
