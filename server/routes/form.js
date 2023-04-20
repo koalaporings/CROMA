@@ -43,7 +43,8 @@ router.post('/new', async (req, res) => {
 })
 
 router.post('/transaction_made', async (req,res) =>{
-  const q = 'INSERT INTO transactions (`user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`, `remarks`) VALUES (?)'
+  const q = 'INSERT INTO transactions (`user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
+  const q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
   const formId = req.body.form_id
 
   const form_values = await new Promise((resolve) => {
@@ -64,14 +65,34 @@ router.post('/transaction_made', async (req,res) =>{
     req.body.form_id,
     form_values[0].form_name,
     req.body.payment_proof,
-    req.body.transaction_status,
+    "ongoing",
     transaction_ETA,
-    req.body.remarks,
+  ]
+
+  const info = [
+    req.body.last_name,
+    req.body.first_name,
+    req.body.middle_initial,
+    req.body.student_number,
+    req.body.mobile_number,
+    req.body.year_level,
+    req.body.degree_program,
+    req.body.email,
+    req.body.academic_year,
+    req.body.semester,
+    req.body.num_copies,
+    req.body.purpose,
   ]
   db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
   })
-  res.json(req.body.form_name)
+  db.query(q2,[info], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+
+  res.send()
 })
+
+router.post('/transaction_info')
 
 module.exports = router;
