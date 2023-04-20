@@ -11,7 +11,7 @@ function ViewStudentModal({
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)}/>
       <div className="centered">
-        <div className="view-modal">
+        <div className="student-view-modal">
           <div className='view-modalHeader'>
             <h5 className='view-heading'>True Copy of Grades</h5>
           </div>
@@ -25,9 +25,6 @@ function ViewStudentModal({
           </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
-              <button className="download-button" onClick={() => setIsOpen(false)}>
-                DOWNLOAD
-              </button>
             </div>
           </div> 
         </div>

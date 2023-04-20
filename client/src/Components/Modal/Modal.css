@@ -1,15 +1,16 @@
 .darkBG {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 100vh;
-    z-index: 0;
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
   }
   
   .centered {
+    z-index: 10;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -21,7 +22,17 @@
     height: 500px;
     background: white;
     color: white;
-    z-index: 10;
+    z-index: 101;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  }
+
+  .student-view-modal {
+    width: 1000px;
+    height: 800px;
+    background: white;
+    color: white;
+    z-index: 101;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   }
@@ -50,6 +61,7 @@
     font-size: 14px;
     color: #2c3e50;
     text-align: center;
+    z-index: 101;
   }
 
   .view-document-content {
@@ -59,6 +71,7 @@
     text-align: center;
     overflow-x: hidden;
     overflow-y: scroll;
+    z-index: 101;
   }
   
   .view-modalActions {
@@ -210,6 +223,7 @@
   color: white;
   min-width: 100px;
   min-height: 20px;
+  z-index: 1000;
 }
 
 .confirm-button:hover {

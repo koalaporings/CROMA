@@ -13,14 +13,23 @@ function TableComponent ({
     headingColumns,
     type,
     tableData,
+    action,
+    // setID,
 }) {
+
+    
 
     const navigate = useNavigate();
 
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(1);
+    const [clickData, setClickData] = useState();
 
     const { slice, range } = useTable(tableData, page, rowsPerPage);
+
+    // const clickEvent = () => {
+    //     setID(clickData)
+    // }
     // const showMoreNavigate = () => navigate('/notifications');
 
     // const tableColumns = props.headingColumns
@@ -29,8 +38,6 @@ function TableComponent ({
 
     // for modal
     const [isOpen, setIsOpen] = useState(false);
-
-
 
     const fillData = [];
 
@@ -49,6 +56,7 @@ function TableComponent ({
         if (type === 'student_ongoing_table'){
             return(
                 <tr key={row.index} className="table-row-center">
+                    
                     {/* {rowData.map((data,index) => (
                         <td key={index} data-heading={data.key}>
                             {data.val}
@@ -59,7 +67,6 @@ function TableComponent ({
                     <td key={row.index}
                         data-heading={row.index}>
                         {row.transaction_date.substring(0,10)}
-                        {console.log(row.transaction_date.substring(0,10))}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
@@ -75,7 +82,7 @@ function TableComponent ({
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        <button className="action-button">
+                        <button className="action-button" onClick={() => action(row.transaction_id)}>
                             View Details
                         </button>
                     </td>
