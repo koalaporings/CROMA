@@ -42,4 +42,36 @@ router.post('/new', async (req, res) => {
   res.json(req.body.form_name)
 })
 
+router.post('/transaction_made', async (req,res) =>{
+  const q = 'INSERT INTO transactions (`user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`, `remarks`) VALUES (?)'
+  const formId = req.body.form_id
+
+  const form_values = await new Promise((resolve) => {
+    db.query("SELECT form_duration, form_name FROM forms WHERE form_id = ?", formId, (err, data) => {
+    resolve(data)
+    if(err) console.error('ERROR', err);
+    })
+})
+  let ts = Date.now() + (86400000 * form_values[0].form_duration)
+  let date_time = new Date(ts)
+  let date = ("0" + date_time.getDate()).slice(-2);
+  let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+  let year = date_time.getFullYear();
+  const transaction_ETA = year + "-" + month + "-" + date
+
+  const values = [
+    req.body.user_id,
+    req.body.form_id,
+    form_values[0].form_name,
+    req.body.payment_proof,
+    req.body.transaction_status,
+    transaction_ETA,
+    req.body.remarks,
+  ]
+  db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+  res.json(req.body.form_name)
+})
+
 module.exports = router;
