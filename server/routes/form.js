@@ -106,6 +106,18 @@ router.post('/transaction_made', async (req,res) =>{
   res.send()
 })
 
+router.get('/request/get/:user_id', (req, res) => {
+  const q = 'SELECT * FROM students WHERE user_id = ?'
+  const userId = req.params.user_id
+
+  db.query(q,userId, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+
+  
+  
+})
 
 
 module.exports = router;
