@@ -33,11 +33,10 @@ const StudentHistoryPage = ({children}) => {
 
 
             <Container>            
-
-            <Row className="col-2" >
-                <Col xs={1}><ReceiptLongOutlined className="history-icon" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
-                <h1 className='history-title-text'>Transaction History</h1></Col>
-            </Row>
+            <div className="tracking-title-container">
+                     <ReceiptLongOutlined className="history-icon" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
+                    <h1 className='tracking-title-text'>Tracking Page</h1>
+            </div>
 
             <div className="student-history-table-container">
                 <TableComponent

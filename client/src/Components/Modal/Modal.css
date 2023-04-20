@@ -67,7 +67,7 @@
   
   }
   
-  .closeBtn {
+  .modal-close-button {
     cursor: pointer;
     font-weight: 500;
     padding: 4px 8px;
@@ -123,4 +123,91 @@
 .download-button:hover {
     cursor: pointer;
     background-color: #08321F;
+}
+
+
+.submit-modal {
+  width: 1000px;
+  height: 200px;
+  background: white;
+  color: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.submit-modalHeader {
+  height: 50px;
+  background: white;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.submit-heading {
+  font-family: 'Fredoka';
+  font-style: normal;
+  margin: 0;
+  padding: 20px;
+  color: #7A1113;    
+  font-weight: 600;
+  font-size: 24px;
+  text-align: left;
+  }
+
+.submit-modalContent {
+  padding: 10px;
+  font-size: 14px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.submit-modalActions {
+  position: absolute;
+  bottom: 2px;
+  margin-bottom: 10px;
+  width: 100%;
+
+}
+
+.submit-modal-actionsContainer {
+  display: flex;
+  padding: 20px;
+  justify-content: flex-end;
+
+}
+
+
+.cancel-modal-button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+}
+
+.cancel-modal-button:hover {
+  cursor: pointer;
+  background-color: #08321F;
+}
+
+.confirm-button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+}
+
+.confirm-button:hover {
+  cursor: pointer;
+  background-color: #08321F;
+}
+
+.modal-icon{
+  color: #7A1113;
 }
