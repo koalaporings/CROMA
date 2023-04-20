@@ -184,8 +184,8 @@
 
 .transaction-more-desc-container {
     background-color: #FFD17F;
-    position: relative;
-    top: 35%;
+    position: absolute;
+    top: 55%;
     left: 15%;
     width: 70%;
     height: 40%;
