@@ -64,58 +64,58 @@ const Form1 = ({children}) => {
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
                             <label for="studentName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" value={formDetails.last_name} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" value={formDetails.first_name} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">     
                             <label for="studentName">Middle Initial</label>
-                            <input type="text" class="form-control" id="studentMiddleInitial" value={formDetails.middle_initial} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber" value={formDetails.student_number} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber" value={formDetails.mobile_number} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
                             <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram" value={formDetails.degree_program} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="degreeProgram" name="degree_program" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" value={formDetails.year_level} onChange={(e) => handleChange(e)}/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" value={formDetails.email} onChange={(e) => handleChange(e)}/>
+                            <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <div class="form-row">
                         <div class="col-md-4 mb-2">     
                             <label for="academicYear">Academic Year</label>
-                            <input type="text" class="form-control" id="academicYear" value={formDetails.academic_year} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="academicYear" name="academic_year" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="semester">Semester</label>
-                            <input type="text" class="form-control" id="semester" value={formDetails.semester} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="semester" name="semester" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="copies">Number of Copies</label>
-                            <input type="text" class="form-control" id="copies" value={formDetails.num_copies} onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="copies" name="num_copies" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
                             <label for="purpose">Purpose for TCG</label>
-                            <select class="custom-select" id='purpose' value={formDetails.purpose} onChange={(e) => handleChange(e)}>
+                            <select class="custom-select" id='purpose' name="purpose" onChange={(e) => handleChange(e)}>
                                 <option selected value="1">Scholarship</option>
                                 <option value="2">Readmission</option>
                                 <option value="3">Shift</option>
