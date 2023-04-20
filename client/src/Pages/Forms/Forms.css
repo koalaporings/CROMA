@@ -18,6 +18,11 @@ form {
     font-size: 30px ;
 }
 
+.form-text {
+    display: flex;
+    align-items: center;
+}
+
 h1.form-group-title{
     font-family: 'Fredoka One';
     color: #7A1113; 
