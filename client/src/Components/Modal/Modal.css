@@ -22,7 +22,6 @@
     height: 500px;
     background: white;
     color: white;
-    z-index: 101;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   }
@@ -90,22 +89,22 @@
   }
   
   .modal-close-button {
-    cursor: pointer;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 8px;
-    border: none;
-    font-size: 18px;
-    color: #2c3e50;
-    background: white;
-    transition: all 0.25s ease;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06);
-    position: absolute;
-    right: 0;
-    top: 0;
-    align-self: flex-end;
-    margin-top: -7px;
-    margin-right: -7px;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    padding: 4px 8px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    font-size: 18px !important;
+    color: #2c3e50 !important;
+    background: white !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.06) !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    align-self: flex-end !important;
+    margin-top: -7px !important;
+    margin-right: -7px !important;
   }
   
   .closeBtn:hover {
@@ -178,24 +177,29 @@
   }
 
 .submit-modalContent {
-  padding: 10px;
-  font-size: 14px;
-  color: #2c3e50;
+  padding: 5px;
+  font-size: 25px;
+  color: #7A1113;
   text-align: center;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
 }
 
 .submit-modalActions {
-  position: absolute;
-  bottom: 2px;
-  margin-bottom: 10px;
+  position: flex;
+  margin-bottom: 30px;
   width: 100%;
+  height: 5%;
 
 }
 
 .submit-modal-actionsContainer {
   display: flex;
-  padding: 20px;
+  padding: 5px;
   justify-content: flex-end;
+  padding-left: 30px;
+  padding-bottom: 20px;
 
 }
 
@@ -218,7 +222,7 @@
 .confirm-button {
   font-size: 13px;
   font-family: 'Poppins';
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: #21523C;
   color: white;
   min-width: 100px;
@@ -233,4 +237,39 @@
 
 .modal-icon{
   color: #7A1113;
+  font-size: "Large" !important;
+
+
 }
+
+.cancel-modalActions {
+  position: flex !important;
+  margin-bottom: 30px !important;
+  width: 100% !important;
+  height: 1% !important;
+
+}
+
+.cancel-modal-actionsContainer {
+  display: flex !important;
+  padding: 5px !important;
+  justify-content: flex-end !important;
+
+}
+
+
+.cancel-modal-button {
+  font-size: 13px !important;
+  font-family: 'Poppins' !important;
+  border-radius: 10px !important;
+  background-color: #21523C !important;
+  color: white !important;
+  min-width: 100px !important;
+  min-height: 30px !important;
+}
+
+.cancel-modal-button:hover {
+  cursor: pointer;
+  background-color: #08321F;
+}
+

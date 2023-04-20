@@ -10,18 +10,20 @@ const CancelModal = ({ setIsOpen }) => {
       <div className="centered">
         <div className="submit-modal">
 
-          <div className='submit-modalHeader'>
-              <ErrorIcon className="modal-icon"/>
-          </div>
+        <ErrorIcon className="modal-icon" sx={{ fontSize: "80px" }} style={{ marginTop: "10px" }}/>
+
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="submit-modalContent">
-          ARE YOU SURE YOU WANT TO CANCELTHIS REQUEST?
-                    </div>
-          <div className="submit-modalActions">
-            <div className="submit-modal-actionsContainer">
-              <button className="confirm-button" onClick={() => setIsOpen(false)}>
+          ARE YOU SURE YOU WANT TO CANCEL THIS REQUEST?     
+          </div>
+          <div className="cancel-modalActions">
+            <div className="cancel-modal-actionsContainer">
+              <button className="cancel-modal-button" onClick={(add) => setIsOpen(false)}>
+                CANCEL
+              </button>
+              <button className="cancel-modal-button" onClick={(add) => setIsOpen(false)}>
                 CONFIRM
               </button>
             </div>
