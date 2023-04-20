@@ -15,11 +15,11 @@ router.get('/view', (req, res) => {
   })
 
 router.put('/update_form_desc/:form_id', (req, res) => {
-  const transactionId = req.params.form_id
+  const formId = req.params.form_id
   const q = 'UPDATE forms SET `form_desc` = ? WHERE form_id = ?'
   const values = req.body.form_desc
 
-  db.query(q,[values, transactionId], (err, data) => {
+  db.query(q,[values, formId], (err, data) => {
     if(err) console.error('ERROR', err);
   })
   res.json(req.body.form_desc)
@@ -40,6 +40,19 @@ router.post('/new', async (req, res) => {
     if(err) console.error('ERROR', err);
   })
   res.json(req.body.form_name)
+})
+
+router.get('/transaction/get/:id', async (req, res) => {
+  console.log("test")
+  const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
+  const id = req.params.id
+
+
+  db.query(q,id, (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+  
 })
 
 router.post('/transaction_made', async (req,res) =>{
@@ -93,6 +106,6 @@ router.post('/transaction_made', async (req,res) =>{
   res.send()
 })
 
-router.post('/transaction_info')
+
 
 module.exports = router;
