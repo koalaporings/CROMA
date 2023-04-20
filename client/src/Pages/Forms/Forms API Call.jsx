@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const addFormInformation = async(data) => {
-    const response = await axios.post('localhost:5000/form_api/transaction_made', {
-        requester: data.user_id,
+    const response = axios.post('http://localhost:5000/form_api/transaction_made', {
+        user_id: data.user_id,
         form_id: data.form_id,
-        payment_proof: null,
-        remarks: null,
+        payment_proof: "",
+        remarks: "",
         student_id: 1,
         last_name: data.last_name,
         first_name: data.first_name,

@@ -31,6 +31,7 @@ function TableComponent ({
     const [isOpen, setIsOpen] = useState(false);
 
 
+
     const fillData = [];
 
     const data = slice.map((row,index) => {
@@ -57,7 +58,8 @@ function TableComponent ({
                     )} */}
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transaction_date}
+                        {row.transaction_date.substring(0,10)}
+                        {console.log(row.transaction_date.substring(0,10))}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
@@ -69,7 +71,7 @@ function TableComponent ({
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transaction_status}
+                        {row.transaction_status.charAt(0).toUpperCase() + row.transaction_status.slice(1)}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>

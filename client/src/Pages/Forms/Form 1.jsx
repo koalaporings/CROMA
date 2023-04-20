@@ -12,7 +12,7 @@ import { addFormInformation } from './Forms API Call';
 const Form1 = ({children}) => {
 
     const [formDetails, setFormDetails] = useState({
-        user_id: 1,
+        user_id: 4,
         form_id: 1,
         payment_proof: null,
         remarks: null,
@@ -41,7 +41,7 @@ const Form1 = ({children}) => {
 
     async function add() {
         // setIsClicked(true);
-        const response = await addFormInformation(formDetails);
+        const response = addFormInformation(formDetails);
         // if(response.data && response.data.status === 200) {
         //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
         // }
@@ -49,6 +49,7 @@ const Form1 = ({children}) => {
         //     toast.error("ACADEMIC INFORMATION IS ADDED UNSUCCESSFULLY!");
         // }
     }
+
 
     return(
         <div>
@@ -63,15 +64,15 @@ const Form1 = ({children}) => {
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
-                            <label for="studentName">Last Name</label>
+                            <label for="studentLastName">Last Name</label>
                             <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-3 mb-2">     
-                            <label for="studentName">First Name</label>
+                            <label for="studentFirstName">First Name</label>
                             <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">     
-                            <label for="studentName">Middle Initial</label>
+                            <label for="studentMiddleInitial">Middle Initial</label>
                             <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
