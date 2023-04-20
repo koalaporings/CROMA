@@ -68,6 +68,14 @@ ul li.important-item {
     margin-bottom: 20px;
 }
 
+.upload {
+    font-family: 'Poppins';
+    background-color: #FFEBC8;
+    padding: 10px;
+    border-radius: 20px 20px 20px 20px ;
+    margin-bottom: 20px;
+}
+
 .privacy-notice-text-end {
     color: #7A1113;
     font-weight: 700;
@@ -122,3 +130,22 @@ ul li.important-item {
     
 }
 
+.form-description-text {
+    font-family: 'Poppins';
+    /* padding: 10px;
+    border-radius: 20px 20px 20px 20px ;
+    margin-bottom: 20px; */
+}
+
+
+.download-form {
+    font-family: 'Poppins';
+    
+    color: #21523C;
+    text-decoration-line: underline;
+    font-weight: 700;
+    font-size: 20px;
+    font-style: bold;
+    font-weight: 700;
+
+}
