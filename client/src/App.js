@@ -33,6 +33,10 @@ import Form6 from './Pages/Forms/Form 6';
 import Form7 from './Pages/Forms/Form 7';
 import Form8 from './Pages/Forms/Form 8';
 import Form9 from './Pages/Forms/Form 9';
+import Form10 from './Pages/Forms/Form 10';
+import Form11 from './Pages/Forms/Form 11';
+import Form12 from './Pages/Forms/Form 12';
+import Form13 from './Pages/Forms/Form 13';
 
 
 function App() {
@@ -144,6 +148,25 @@ function App() {
               element={<Form9/>}  
             />
 
+            <Route 
+              path="/student/request/10" 
+              element={<Form10/>}  
+            />
+
+            <Route 
+              path="/student/request/11" 
+              element={<Form11/>}  
+            />
+
+            <Route 
+              path="/student/request/12" 
+              element={<Form12/>}  
+            />
+
+            <Route 
+              path="/student/request/13" 
+              element={<Form13/>}  
+            />
 
 
 
