@@ -50,17 +50,17 @@ const Form5 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                    <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                            {isOpen && <CancelModal setIsOpen={setIsOpen} />}
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Submit</button> 
-                            {isOpen && <SubmitModal setIsOpen={setIsOpen} />}
-                        </div>
-                    </div>
                 </form>
+                <div className="form-buttons-container">
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isOpen && <CancelModal setIsOpen={setIsOpen} />}
+                    </div>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
+                    </div>
+                </div>            
             </Container>
             <Footer/>
         </div>

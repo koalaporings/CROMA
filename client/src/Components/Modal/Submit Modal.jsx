@@ -21,7 +21,7 @@ const SubmitModal = ({ setIsOpen }) => {
           </div>
           <div className="submit-modalActions">
             <div className="submit-modal-actionsContainer">
-              <button className="confirm-button" onClick={() => setIsOpen(false)}>
+              <button className="confirm-button" onClick={(add) => setIsOpen(false)}>
                 CONFIRM
               </button>
             </div>
