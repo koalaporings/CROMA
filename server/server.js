@@ -119,6 +119,6 @@ app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
 app.use('/db/logintest/:user_id', loginRoute);
 
-app.listen(5000, () => {})
+app.listen(5000, () => {console.log("Server started on port 5000")})
 
 module.exports = app

@@ -8,6 +8,7 @@ import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
+import { useNavigate } from "react-router-dom";
 
 // True Copy of Grades
 const Form1 = ({children}) => {
@@ -31,6 +32,10 @@ const Form1 = ({children}) => {
         num_copies: "",
         purpose: "",
     });
+
+    const navigate = useNavigate();
+
+    const navigateLanding = () => navigate('/student');
     
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,12 +58,15 @@ const Form1 = ({children}) => {
     }
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isCancelOpen, setIsCancelOpen] = useState(false);
 
     async function addInfo() {
         // setIsClicked(true);
         const response = addFormInformation(formDetails);
         console.log(response)
         setIsOpen(false)
+        navigateLanding()
+
         // if(response.data && response.data.status === 200) {
         //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
         // }
@@ -194,7 +202,7 @@ const Form1 = ({children}) => {
                 <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
-                        {isOpen && <CancelModal setIsOpen={setIsOpen} />}
+                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 

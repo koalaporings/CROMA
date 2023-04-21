@@ -85,6 +85,7 @@ router.post('/transaction_made', async (req,res) =>{
   ]
   db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
+    
   })
   db.query(q2,[info], (err, data) => {
     if(err) console.error('ERROR', err);

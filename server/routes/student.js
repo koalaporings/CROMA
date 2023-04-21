@@ -9,15 +9,16 @@ function parseJwt (token) {
   return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 }
 
-router.get("/transactions/:user_id", (req,res) => {
-    const q = 'SELECT transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing"'
+router.get("/transactions/:user_id", async (req,res) => {
+    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing"'
     const userId = req.params.user_id
 
     db.query(q, userId, (err, results) => {
-        if(err) console.error('ERROR', err);
-        console.log(results)
-        res.json(results)
-      })
+      if(err) console.error('ERROR', err);
+      console.log(results)
+      res.json(results)
+    })
+    
 })
 
 router.get("/transaction_details/:id", (req,res) => {
