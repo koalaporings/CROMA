@@ -1,8 +1,9 @@
 import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
+import PDFdocument1 from "./../PDF/PDF Document 2"
 
-const ViewModal = ({ setIsOpen }) => {
+const ViewModal = ({setIsOpen }) => {
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -15,15 +16,10 @@ const ViewModal = ({ setIsOpen }) => {
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="view-modalContent">
-            CONTENT
-          </div>
-          <div className="view-modalActions">
-            <div className="view-modal-actionsContainer">
-              <button className="download-button" onClick={() => setIsOpen(false)}>
-                DOWNLOAD
-              </button>
+            <div className="view-document-content">
+              <PDFdocument1/>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     </>
