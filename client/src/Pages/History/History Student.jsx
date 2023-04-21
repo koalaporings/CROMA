@@ -35,7 +35,7 @@ const StudentHistoryPage = ({children}) => {
             <Container>            
             <div className="tracking-title-container">
                      <ReceiptLongOutlined className="history-icon" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
-                    <h1 className='tracking-title-text'>Tracking Page</h1>
+                    <h1 className='tracking-title-text'>History Page</h1>
             </div>
 
             <div className="student-history-table-container">
