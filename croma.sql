@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2023 at 01:38 AM
+-- Generation Time: Apr 21, 2023 at 04:44 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -50,7 +50,7 @@ INSERT INTO `announcements` (`announcement_id`, `announcement_title`, `announcem
 
 CREATE TABLE `forms` (
   `form_id` int(11) NOT NULL,
-  `form_name` varchar(50) NOT NULL,
+  `form_name` varchar(100) NOT NULL,
   `form_desc` text NOT NULL,
   `form_duration` int(11) NOT NULL,
   `form_payment` int(11) NOT NULL,
@@ -70,7 +70,7 @@ INSERT INTO `forms` (`form_id`, `form_name`, `form_desc`, `form_duration`, `form
 (6, 'Dropping of Courses', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
 (7, 'Change of Matriculation', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
 (8, 'Substitution of Courses/Subjects', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
-(9, 'Apply for Shifting to another Degree Program or Pl', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
+(9, 'Apply for Shifting to another Degree Program or Plan within UP Cebu', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
 (10, 'Apply for Transfer from other schools or UP Units ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
 (11, 'Apply for Advance Credit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
 (12, 'Apply for Removal of Incomplete or 4.0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 7, 50, 'UPC'),
@@ -116,11 +116,21 @@ CREATE TABLE `signatory` (
 
 CREATE TABLE `students` (
   `user_id` int(11) NOT NULL,
+  `student_number` varchar(15) NOT NULL,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
-  `year_level` int(11) NOT NULL,
-  `course` varchar(50) NOT NULL
+  `middle_initial` varchar(5) NOT NULL,
+  `year_level` varchar(1) NOT NULL,
+  `course` varchar(50) NOT NULL,
+  `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`user_id`, `student_number`, `first_name`, `last_name`, `middle_initial`, `year_level`, `course`, `email`) VALUES
+(4, '2020-04051', 'Kyle Alan', 'Manayon', 'C.', '3', 'BS Computer Science', 'kcmanayon@up.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -145,8 +155,56 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `payment_proof`, `transaction_date`, `transaction_ETA`, `remarks`) VALUES
-(1, 1, 1, 'True Copy of Grades (TCG)', 'john', 'link to proof? not sure about this', '2023-03-22', '2023-03-29', 'N/A'),
-(2, 4, 1, 'test', 'adadasd', 'asd', '2023-04-19', '2023-04-21', 'adasdas');
+(1, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20', '2023-04-27', ''),
+(2, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20', '2023-04-27', ''),
+(3, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(4, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(5, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(6, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(7, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(8, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(9, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(10, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
+(11, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction_info`
+--
+
+CREATE TABLE `transaction_info` (
+  `transaction_id` int(10) NOT NULL,
+  `last_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `middle_initial` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `student_number` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mobile_number` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `year_level` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `degree_program` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `academic_year` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `semester` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `num_copies` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `purpose` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `transaction_info`
+--
+
+INSERT INTO `transaction_info` (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES
+(1, 'Awatin', 'Gabriel Howard', 'J.', '2020-00001', '09123456789', '3', 'BS Computer Science', 'gjawatin@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(2, 'Manayon', 'Kyle Alan', 'C.', '2020-00002', '09112233445', '3', 'BS Computer Science', 'kcmanayon@up.edu.ph', '2022-2023', '1', '2', 'scholarship'),
+(3, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(4, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(5, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(6, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(7, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(8, 'Ochea', 'John Oliver', 'E.', '2020-04079', '09987654321', '3', 'BS Computer Science', 'jeochea@up.edu.ph', '2022-2023', '2', '2', 'scholarship'),
+(9, '', '', '', '', '', '', '', '', '', '', '', ''),
+(10, '', '', '', '', '', '', '', '', '', '', '', ''),
+(11, '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -232,6 +290,12 @@ ALTER TABLE `transactions`
   ADD PRIMARY KEY (`transaction_id`);
 
 --
+-- Indexes for table `transaction_info`
+--
+ALTER TABLE `transaction_info`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -269,7 +333,13 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `transaction_info`
+--
+ALTER TABLE `transaction_info`
+  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
