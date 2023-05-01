@@ -1,11 +1,10 @@
 const { Router } = require('express');
-const { route } = require('./admin');
 
 const router = Router();
 const db = require('../database').databaseConnection;
 
 
-router.get('/view', (req, res) => {
+router.get('/view', async (req, res) => {
     const q = 'SELECT * FROM forms'
     
     db.query(q, (err, data) => {
@@ -14,7 +13,7 @@ router.get('/view', (req, res) => {
     })
   })
 
-router.put('/update_form_desc/:form_id', (req, res) => {
+router.put('/update_form_desc/:form_id', async (req, res) => {
   const formId = req.params.form_id
   const q = 'UPDATE forms SET `form_desc` = ? WHERE form_id = ?'
   const values = req.body.form_desc
@@ -65,7 +64,7 @@ router.post('/transaction_made', async (req,res) =>{
     req.body.form_id,
     form_values[0].form_name,
     req.body.payment_proof,
-    "ongoing",
+    "await_approval",
     transaction_ETA,
   ]
 
@@ -94,7 +93,7 @@ router.post('/transaction_made', async (req,res) =>{
   res.send()
 })
 
-router.get('/request/get/:user_id', (req, res) => {
+router.get('/request/get/:user_id', async (req, res) => {
   const q = 'SELECT * FROM students WHERE user_id = ?'
   const userId = req.params.user_id
 

@@ -21,7 +21,7 @@ router.get("/transactions/:user_id", async (req,res) => {
     
 })
 
-router.get("/transaction_details/:id", (req,res) => {
+router.get("/transaction_details/:id", async (req,res) => {
     const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
     const userId = req.params.id
 
