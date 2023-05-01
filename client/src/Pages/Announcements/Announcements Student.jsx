@@ -29,7 +29,7 @@ const AnnouncementPage = ({children}) => {
                         Add
                     </button>
                 </div>
-                <AnnounceTable/>
+                <AnnounceTable/> 
 
             </div>
             <div className='footer-admin-announcement'>

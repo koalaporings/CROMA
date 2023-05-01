@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Fredoka');
+
+.main-table-container{
+    position: absolute;
+    background-color: #faddaa;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.main-table-header-container {
+    height: 10%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #741B47;
+    color: white;
+}
+
+.action-button {
+    background-color: #20422A;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-size: 14px;
+}
+
+th {
+    padding: 8px;
+    background-color: #7A1113;
+    color: white;
+    font-family: 'Fredoka';
+    font-size: 18px;
+
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+
+    font-family: 'Poppins';
+    font-size: 15px;
+}
+
+tr:nth-child(odd) {
+    background-color: #FFF6E6;
+}
+
+.title{
+    color:#7A1113;
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    /* display: flex; */
+    text-align: center;
+    /* letter-spacing: 0.02em; */
+    }
+
+td.title-date{
+        width: 25%;
+        text-align: center;
+        
+        }
