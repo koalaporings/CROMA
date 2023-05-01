@@ -38,7 +38,9 @@ import Form11 from './Pages/Forms/Form 11';
 import Form12 from './Pages/Forms/Form 12';
 import Form13 from './Pages/Forms/Form 13';
 import Form14 from './Pages/Forms/Form 14';
-
+import Form15 from './Pages/Forms/Form 15';
+import Form16 from './Pages/Forms/Form 16';
+import Form17 from './Pages/Forms/Form 17';
 
 function App() {
 
@@ -173,6 +175,23 @@ function App() {
               path="/student/request/14" 
               element={<Form14/>}  
             />
+
+            <Route 
+              path="/student/request/15" 
+              element={<Form15/>}  
+            />
+
+            <Route 
+              path="/student/request/16" 
+              element={<Form16/>}  
+            />
+  
+            <Route 
+              path="/student/request/17" 
+              element={<Form17/>}  
+            />
+
+
 
 
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}

@@ -95,6 +95,7 @@ ul li.important-item {
     padding: 15px;
     background-color: #FFEBC8;
     border-radius: 20px;
+    width: 100%;
 }
 
 .form-buttons-container {
@@ -142,6 +143,12 @@ ul li.important-item {
     margin-bottom: 20px; */
 }
 
+.green-label {
+    font-family: "Poppins";
+    color: #21523C;
+    font-weight: 700;
+    font-size: 20;
+}
 
 .download-form {
     font-family: 'Poppins';

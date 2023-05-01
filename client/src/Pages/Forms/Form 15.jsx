@@ -7,8 +7,8 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import { fontSize } from '@mui/system';
 
 
-// Dropping of Course
-const Form14 = ({children}) => {
+// Removal of Incomplete or 4.0s
+const Form15 = ({children}) => {
 
     return(
         <div>
@@ -17,22 +17,14 @@ const Form14 = ({children}) => {
             <Header/>
             <Container>
                 <div className="form-title">
-                    Dropping of Course
+                Removal of Incomplete or 4.0s
                 </div>
                 <form class="tcg-form" >
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
-                        <div class="col-md-3 mb-2">     
-                            <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name"/>
-                        </div>
-                        <div class="col-md-3 mb-2">     
-                            <label for="studentFirstName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" name="first_name" />
-                        </div>
-                        <div class="col-md-2 mb-2">     
-                            <label for="studentMiddleInitial">Middle Initial</label>
-                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" />
+                        <div class="col-md-8 mb-2">     
+                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
+                            <input type="text" class="form-control" id="studentName"    />
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="studentNumber">Student Number</label>
@@ -44,31 +36,62 @@ const Form14 = ({children}) => {
                             <label for="degreeProgram">Degree Program</label>
                             <input type="text" class="form-control" id="degreeProgram"/>
                         </div>
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-6 mb-2">
                             <label for="yearLevel">Year Level</label>
                             <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
-                    <div class="form-row">
-                        <div class="col-md-4 mb-2">     
-                            <label for="academicYear">Subject Dropped</label>
-                            <input type="text" class="form-control" id="academicYear"    />
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="semester">Section</label>
-                            <input type="text" class="form-control" id="semester"/>
-                        </div>
-                        <div class="col-md-4 mb-2">
-                            <label for="copies">Instructor's Name</label>
-                            <input type="text" class="form-control" id="copies"/>
+                    <div className="green-label">Upload your Form 26A or PERMIT FOR REMOVAL OF INCOMPLETE/4.0</div>
+                    <div className="request-price-container">
+                        <div className="column-2">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="paymentProof"/>
+                            </div>
                         </div>
                     </div>
                     <div class="form-row">
-                    <div class="col-md-12 mb-2">
-                            <label for="copies">Reason</label>
-                            <input type="text" class="form-control" id="copies"/>
+                        <div class="col-md-6 mb-2">     
+                            <label for="academicYear">Course Description and Title</label>
+                            <input type="text" class="form-control" id="courseTitle"    />
                         </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="semester">Course No. and Section</label>
+                            <input type="text" class="form-control" id="courseNumber"/>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="copies">Units</label>
+                            <input type="text" class="form-control" id="units"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-2">     
+                            <label for="academicYear">Original Grade</label>
+                            <input type="text" class="form-control" id="originalGrade"    />
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="semester">Semester Incurred</label>
+                            <input type="text" class="form-control" id="semIncurred"/>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="copies">Academic Year Incurred</label>
+                            <input type="text" class="form-control" id="acadYRIncurred"/>
+                        </div>
+                        <div class="col-md-3 mb-2">
+                            <label for="copies">Date</label>
+                            <input type="text" class="form-control" id="date"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-2">     
+                            <label for="academicYear">Completion/Removal Grade</label>
+                            <input type="text" class="form-control" id="removalGrade"    />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <label for="semester">Instructor Name</label>
+                            <input type="text" class="form-control" id="profName"/>
+                        </div>
+        
                     </div>
 
                     <div className='privacy-notice-container'>
@@ -80,15 +103,15 @@ const Form14 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                </form>
-                <div className="form-buttons-container">
+                    <div className="form-buttons-container">
                         <div className="cancel-button">
                             <button class="btn btn-primary" type="submit">Cancel</button>
                         </div>
                         <div className="submit-button">
                             <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
-                </div>
+                    </div>
+                </form>
             </Container>
             <Footer/>
         </div>
@@ -97,7 +120,7 @@ const Form14 = ({children}) => {
 
 
 
-export default Form14;
+export default Form15;
 
 
 
