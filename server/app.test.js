@@ -1,6 +1,5 @@
 const request = require("supertest");
 const test = require("./server");
-jest.useFakeTimers()
 
 it('List of Request Forms', async () => {
 	request(test)

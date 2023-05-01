@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const db = require('./database').databaseConnection;
+
 const adminRoute = require('./routes/admin')
 const clerkRoute = require('./routes/clerk')
 const signatoryRoute = require('./routes/signatory')
@@ -37,7 +38,7 @@ const authorization = (req, res, next) => {
   }
 };
 
-app.get("/logout", (req, res) => {
+app.get("/logout", async (req, res) => {
   
   res.clearCookie("token")
   
@@ -45,14 +46,14 @@ app.get("/logout", (req, res) => {
 
 app.get("/db", (req, res) => {
   
-  db.query('SELECT * FROM users', (err, results) => {
+  db.query('SELECT * FROM users', async (err, results) => {
     if(err) console.error('ERROR', err);
     res.json(results)
   })
 })
 
 
-app.get("/db/get/:user_id", (req, res) => {
+app.get("/db/get/:user_id", async (req, res) => {
   const q = 'SELECT * FROM users WHERE user_id = ?'
   const userId = req.params.user_id 
 
@@ -62,7 +63,7 @@ app.get("/db/get/:user_id", (req, res) => {
   })
 })
 
-app.post('/db/add', (req, res) => {
+app.post('/db/add', async (req, res) => {
   const q = 'INSERT INTO users (`first_name`, `last_name`, `email`, `password`) VALUES (?)'
   const values = [
     req.body.first_name,
@@ -71,12 +72,12 @@ app.post('/db/add', (req, res) => {
     req.body.password,]
   
 
-  db.query(q,[values], (err, data) => {
+  db.query(q,[values], async (err, data) => {
     if(err) console.error('ERROR', err);
   })
 })
 
-app.put('/db/update/:id', (req, res) => {
+app.put('/db/update/:id', async (req, res) => {
   const userId = req.params.id
   const q = 'UPDATE users SET `first_name` = ?, `last_name` = ?, `email` = ?, `password` = ? WHERE user_id = ?'
   const values = [
@@ -91,7 +92,7 @@ app.put('/db/update/:id', (req, res) => {
   })
 })
 
-app.delete('/db/delete/:id', (req, res) => {
+app.delete('/db/delete/:id', async (req, res) => {
   const userId = req.params.id
   const q = 'DELETE FROM users WHERE user_id = ?'
 
@@ -119,6 +120,7 @@ app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
 app.use('/db/logintest/:user_id', loginRoute);
 
-app.listen(5000, () => {console.log("Server started on port 5000")})
+app.listen(5000, () => {})
+// console.log("Server started on port 5000")
 
 module.exports = app
