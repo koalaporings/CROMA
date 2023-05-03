@@ -5,7 +5,6 @@ const getUser = async (userId) => {
     const q1 = 'SELECT * FROM users WHERE user_id = ?'
     db.query(q1, userId, (err, data) => {
         resolve(data)
-        if(err) console.error('ERROR', err);
         })
 }
 
@@ -17,7 +16,6 @@ module.exports = async (req, res) => {
         const q1 = 'SELECT * FROM users WHERE user_id = ?'
         db.query(q1, userId, (err, data) => {
         resolve(data)
-        if(err) console.error('ERROR', err);
         })
     }))
 
@@ -26,7 +24,6 @@ module.exports = async (req, res) => {
         httpOnly: true,
     })
     db.query(q, userId, (err, data) => {
-        if(err) console.error('ERROR', err);
         res.json(data)
         })
 };

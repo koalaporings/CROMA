@@ -8,7 +8,6 @@ router.get("/transactions", async (req,res) => {
     const status = req.params.transaction_status
 
     db.query(q, status, (err, results) => {
-        if(err) console.error('ERROR', err);
         res.json(results)
       })
 })

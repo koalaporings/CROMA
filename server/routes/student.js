@@ -14,8 +14,6 @@ router.get("/transactions/:user_id", async (req,res) => {
     const userId = req.params.user_id
 
     db.query(q, userId, (err, results) => {
-      if(err) console.error('ERROR', err);
-      console.log(results)
       res.json(results)
     })
     
@@ -26,7 +24,6 @@ router.get("/transaction_details/:id", async (req,res) => {
     const userId = req.params.id
 
     db.query(q, userId, (err, results) => {
-        if(err) console.error('ERROR', err);
         console.log(results)
         res.json(results)
       })

@@ -11,7 +11,6 @@ router.post('/post', async (req, res) => {
     
   
     db.query(q,[values], (err, data) => {
-      if(err) console.error('ERROR', err);
     })
     res.json(req.body.announcement_body)
   })
@@ -23,15 +22,12 @@ router.get('/details/:id', async (req,res) => {
   const details = await new Promise((resolve) => {
     db.query(q, announcementId, (err, data) => {
       resolve(data)
-      if(err) console.error('ERROR', err);
     })
   })
 
   let temp = String(details[0].announcement_datetime)
   const date = temp.substring(4,15)
   const time = temp.substring(16,24)
-  console.log(date)
-  console.log(time)
 
   const values = {
     announcement_title: details[0].announcement_title,

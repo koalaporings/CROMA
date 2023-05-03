@@ -30,10 +30,8 @@ const authorization = (req, res, next) => {
   try {
     const data = jwt.verify(token, process.env.MY_SECRET);
     req.user_id = data.user_id;
-    console.log(req.user_id)
     return next();
   } catch {
-    console.log("no")
     return res.sendStatus(403);
   }
 };
@@ -47,7 +45,6 @@ app.get("/logout", async (req, res) => {
 app.get("/db", (req, res) => {
   
   db.query('SELECT * FROM users', async (err, results) => {
-    if(err) console.error('ERROR', err);
     res.json(results)
   })
 })
@@ -58,7 +55,6 @@ app.get("/db/get/:user_id", async (req, res) => {
   const userId = req.params.user_id 
 
   db.query(q, userId, (err, data) => {
-    if(err) console.error('ERROR', err);
     res.json(data)
   })
 })
@@ -73,7 +69,6 @@ app.post('/db/add', async (req, res) => {
   
 
   db.query(q,[values], async (err, data) => {
-    if(err) console.error('ERROR', err);
   })
 })
 
@@ -88,7 +83,6 @@ app.put('/db/update/:id', async (req, res) => {
 ]
 
   db.query(q,[...values, userId], (err, data) => {
-    if(err) console.error('ERROR', err);
   })
 })
 
@@ -97,7 +91,6 @@ app.delete('/db/delete/:id', async (req, res) => {
   const q = 'DELETE FROM users WHERE user_id = ?'
 
   db.query(q, [userId], (err, data) => {
-    if(err) console.error('ERROR', err);
   })
 })
 
@@ -121,6 +114,5 @@ app.use('/form_api', formRoute);
 app.use('/db/logintest/:user_id', loginRoute);
 
 app.listen(5000, () => {})
-console.log("Server started on port 5000")
 
 module.exports = app
