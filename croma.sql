@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2023 at 08:24 AM
+-- Generation Time: May 04, 2023 at 09:49 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -143,6 +143,32 @@ INSERT INTO `students` (`user_id`, `student_number`, `first_name`, `last_name`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tracking`
+--
+
+CREATE TABLE `tracking` (
+  `transaction_id` int(11) NOT NULL,
+  `tracking_status` varchar(100) NOT NULL,
+  `tracking_datetime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `tracking`
+--
+
+INSERT INTO `tracking` (`transaction_id`, `tracking_status`, `tracking_datetime`) VALUES
+(1, 'awaiting approval', '0000-00-00 00:00:00'),
+(1, 'approved, forwarded to clerk', '0000-00-00 00:00:00'),
+(13, 'Awaiting Approval', '0000-00-00 00:00:00'),
+(13, 'Awaiting Approval', '0000-00-00 00:00:00'),
+(13, 'Awaiting Approval', '2023-05-04 15:15:17'),
+(17, 'Awaiting Approval', '2023-05-04 15:15:55'),
+(20, 'Awaiting Approval', '2023-05-04 15:20:09'),
+(13, 'Forwarded to Gab', '2023-05-04 15:34:04');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transactions`
 --
 
@@ -153,8 +179,8 @@ CREATE TABLE `transactions` (
   `form_name` varchar(30) NOT NULL,
   `transaction_status` text NOT NULL,
   `payment_proof` text NOT NULL,
-  `transaction_date` date NOT NULL DEFAULT current_timestamp(),
-  `transaction_ETA` date NOT NULL,
+  `transaction_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `transaction_ETA` datetime NOT NULL,
   `remarks` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -163,18 +189,26 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `payment_proof`, `transaction_date`, `transaction_ETA`, `remarks`) VALUES
-(1, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20', '2023-04-27', ''),
-(2, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20', '2023-04-27', ''),
-(3, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(4, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(5, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(6, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(7, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(8, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(9, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(10, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(11, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21', '2023-04-28', ''),
-(12, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-05-01', '2023-05-08', '');
+(1, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20 00:00:00', '2023-04-27 00:00:00', ''),
+(2, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-20 00:00:00', '2023-04-27 00:00:00', ''),
+(3, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(4, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(5, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(6, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(7, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(8, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(9, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(10, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(11, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-04-21 00:00:00', '2023-04-28 00:00:00', ''),
+(12, 4, 1, 'True Copy of Grades (TCG)', 'ongoing', '', '2023-05-01 00:00:00', '2023-05-08 00:00:00', ''),
+(13, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 00:00:00', '2023-05-11 00:00:00', ''),
+(14, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 00:00:00', '2023-05-11 00:00:00', ''),
+(15, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 00:00:00', '2023-05-11 00:00:00', ''),
+(16, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 00:00:00', '2023-05-11 00:00:00', ''),
+(17, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 15:15:55', '2023-05-11 00:00:00', ''),
+(18, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 15:18:28', '2023-05-11 15:18:28', ''),
+(19, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 15:19:19', '2023-05-11 15:19:19', ''),
+(20, 4, 1, 'True Copy of Grades (TCG)', 'await_approval', 'this', '2023-05-04 15:20:09', '2023-05-11 15:20:09', '');
 
 -- --------------------------------------------------------
 
@@ -214,7 +248,15 @@ INSERT INTO `transaction_info` (`transaction_id`, `last_name`, `first_name`, `mi
 (9, '', '', '', '', '', '', '', '', '', '', '', ''),
 (10, '', '', '', '', '', '', '', '', '', '', '', ''),
 (11, '', '', '', '', '', '', '', '', '', '', '', ''),
-(12, 'Obado', 'Shygfred Christian', 'D.', '2020-00005', '09123456789', '3', 'BS Computer Science', 'sdobado@up.edu.ph', '2020-2021', '2', '3', 'scholarship');
+(12, 'Obado', 'Shygfred Christian', 'D.', '2020-00005', '09123456789', '3', 'BS Computer Science', 'sdobado@up.edu.ph', '2020-2021', '2', '3', 'scholarship'),
+(13, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(14, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(15, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(16, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(17, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(18, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(19, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng'),
+(20, 'test', 'kyle test', 'C.', '2020-04051', '09294556966', '3', 'BS Computer Science', 'testmanayon@gmail.com', '2022-2023', '2', '1', 'wala lng');
 
 -- --------------------------------------------------------
 
@@ -343,13 +385,13 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `transaction_info`
 --
 ALTER TABLE `transaction_info`
-  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `transaction_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`

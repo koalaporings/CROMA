@@ -21,7 +21,7 @@ router.get("/transactions/:user_id", async (req,res) => {
 })
 
 router.get("/transaction_details/:id", async (req,res) => {
-    const q = 'SELECT * FROM transaction_info WHERE transaction_id = ?'
+    const q = 'SELECT * FROM transaction_info INNER JOIN transactions ON transactions.transaction_id = transaction_info.transaction_id WHERE transaction_info.transaction_id = ?'
     const userId = req.params.id
 
     db.query(q, userId, (err, results) => {

@@ -15,16 +15,48 @@
     background-color: white;
 }
 
-.admin-transaction-requests-table-container{
+.admin-announcements{
+    display: block
+}
+
+.admin-approve-requests-table-container{
     display: block;
     padding-left: 12%;
+    padding-bottom: 3%;
     width: 80%;
     height: auto;
 }
 
+.name-header-admin{
+    display: flex;
+    padding-left: 12.5%;
+    padding-top: 2.5%;
+    font-family: 'Fredoka One';
+    font-size: 36px;
+    align-items: center;
+    letter-spacing: 0.02em;
+    
+    color: #7A1113; 
+}
+
+.title-text-admin{
+    display: flex;
+    margin-bottom: 0.5%;
+    padding-left: 12.5%;
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+    font-family: 'Fredoka One';
+    font-style: normal;
+    font-size: 26px;
+    align-items: center;
+    letter-spacing: 0.02em;
+    
+    color: #7A1113; 
+}
+
 .footer-admin {
     display: flex;
-    margin-top: 1vh;
+    margin-top: 2.5%;
     height: 15vh;
     width: 100%
 }

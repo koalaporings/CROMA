@@ -12,6 +12,7 @@ import AnnouncementPage from './Pages/Announcements/Announcements';
 import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
 import AnnouncementStudPage from './Pages/Announcements/Announcements Student';
 import AnnouncementClerkPage from './Pages/Announcements/Announcements Clerk';
+import AddAnnouncement from './Pages/Announcements/Add Announcement';
 import HistoryPage from './Pages/History/History';
 import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
@@ -21,6 +22,7 @@ import GetUser from './Pages/dbPage/GetUser.jsx';
 import LoginTest from './Pages/dbPage/LoginTest.jsx';
 import StudentTrackingPage from './Pages/History/History Student';
 import ClerkTrackingPage from './Pages/History/History Clerk';
+import ViewAnnouncementPage from './Pages/Announcements/View Announcement';
 
 
 // Forms
@@ -91,6 +93,15 @@ function App() {
               path="/clerk/announcements" 
               element={<AnnouncementClerkPage/>}  
             />
+            <Route 
+              path="/announcements/add" 
+              element={<AddAnnouncement/>}  
+            />
+            <Route 
+              path="/student/announcements/view/0" 
+              element={<ViewAnnouncementPage/>}  
+            />
+
             <Route 
               path="/history" 
               element={<HistoryPage/>}  

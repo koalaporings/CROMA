@@ -4,6 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 import ErrorIcon from '@mui/icons-material/Error';
 
 
+
 const SubmitModal = ({ setIsOpen, action }) => {
   return(
     <>
@@ -19,6 +20,9 @@ const SubmitModal = ({ setIsOpen, action }) => {
           </div>
           <div className="submit-modalActions">
             <div className="submit-modal-actionsContainer">
+              <button className="confirm-button" onClick={(add) => setIsOpen(false)}>
+                CANCEL
+              </button>
               <button className="confirm-button" onClick={(add) => setIsOpen(false)}>
                 CANCEL
               </button>

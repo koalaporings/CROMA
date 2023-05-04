@@ -32,7 +32,9 @@ const StudentLanding = ({children}) => {
     const [documentDetails, setDocumentDetails] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [numTransactions, setNumTransactions] = useState(0);
+    const [notifData, setNotifData] = useState([]);
 
+    // GET TRANSACTION LIST
     useEffect (() =>{
     const fetchAllForms = async ()=>{
         const response = await axios.get('http://localhost:5000/form_api/view')
@@ -41,26 +43,44 @@ const StudentLanding = ({children}) => {
     fetchAllForms()
     }, [])
 
+
+    // GET STUDENT TRANSACTIONS
     useEffect (() =>{
     const fetchTable = async ()=>{
+        console.log("hehe")
         try{
-        const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
-        setTableData(response.data)
-        setNumTransactions(response.data.length)
-    } catch(err){
-        await axios.get('http://localhost:5000/logout')
-        console.log("err")
-        navigate('/')
-    }
+            const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
+            setTableData(response.data)
+            setNumTransactions(response.data.length)
+        }
+        catch(err){
 
+        }
     }
     fetchTable()
     }, [])
 
 
-    // if (formData.length === 0){
-    //     setFormData(dummyFormData)
-    // }
+    // GET NOTIFICATIONS
+    useEffect (() =>{
+        const fetchNotifications = async ()=>{
+            try{
+            const response = await axios.get('http://localhost:5000/notification_api/get/' + 4, {credentials: 'same-origin'})
+            console.log(response.data)
+            setNotifData(response.data)
+            console.log(notifData)
+        }
+        catch(err){
+        }
+            
+        }
+        fetchNotifications()
+        }, [])
+
+
+    if (formData.length === 0){
+        setFormData(dummyFormData)
+    }
 
     console.log(formData)
     console.log(tablesData)
@@ -108,10 +128,10 @@ const StudentLanding = ({children}) => {
                 </div>
 
                 <div className="transaction-header">
-                    You currently have&nbsp;<span style={{fontWeight: '700'}}>{numTransactions} transactions.</span>&nbsp;Check its progress here.                
+                    You currently have&nbsp;<span style={{fontWeight: '700'}}>{numTransactions} ongoing transactions.</span>&nbsp;              
                 </div>
                 <div className='student-notifs-container'>
-                    <Notifications/>
+                    <Notifications notifsData={notifData}/>
                 </div>
 
                 <div className='title-text'>
