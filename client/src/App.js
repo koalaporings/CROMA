@@ -12,6 +12,7 @@ import AnnouncementPage from './Pages/Announcements/Announcements';
 import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
 import AnnouncementStudPage from './Pages/Announcements/Announcements Student';
 import AnnouncementClerkPage from './Pages/Announcements/Announcements Clerk';
+import AddAnnouncement from './Pages/Announcements/Add Announcement';
 import HistoryPage from './Pages/History/History';
 import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
@@ -90,6 +91,10 @@ function App() {
             <Route 
               path="/clerk/announcements" 
               element={<AnnouncementClerkPage/>}  
+            />
+            <Route 
+              path="/announcements/add" 
+              element={<AddAnnouncement/>}  
             />
             <Route 
               path="/history" 

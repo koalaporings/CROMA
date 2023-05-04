@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import AnnounceTable from './Announcement Portal Table';
+// import AnnounceTable from './Announcement Portal Table';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 
 
@@ -29,7 +29,7 @@ const AnnouncementPage = ({children}) => {
                         Add
                     </button>
                 </div>
-                <AnnounceTable/> 
+                {/* <AnnounceTable/>  */}
 
             </div>
             <div className='footer-admin-announcement'>
