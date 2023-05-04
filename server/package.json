@@ -5,10 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test:mocha": "mocha --recursive --exit",
-    "test:jest": "jest",
     "test:silent": "jest --silent",
     "test:watch": "jest --watch",
-    "test": "npm run test:jest && npm run test:mocha",
+    "test": "jest",
     "start": "node server",
     "dev": "nodemon server"
   },
