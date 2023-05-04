@@ -38,12 +38,12 @@ function AnnouncementTableComponent ({
             return(
                 <tr key={row.index} className="table-row-center">
                     
-                    <td className="title-date"key={row.index}>
-                        <p className="title">{row.name}</p> 
-                        <p>{row.date} {row.time}</p> 
+                    <td className="title-date"key={row.index} data-heading={row.index}>
+                        <p className="title">{row.announcement_title}</p> 
+                        <p>{row.announcement_date} {row.announcement_time}</p> 
                     </td>
-                    <td key={row.index}>
-                        {row.description}
+                    <td key={row.index} data-heading={row.index}>
+                        {row.announcement_body}
                     </td>
                 </tr>
             )
@@ -72,12 +72,9 @@ function AnnouncementTableComponent ({
                     {data}
                     {fillData.map((data,index) => (
                         <tr key={index}>
-
                                 <td>
                                     {data.val}
                                 </td>
-
-                            
                         </tr>
                     ))}
                 </tbody>
