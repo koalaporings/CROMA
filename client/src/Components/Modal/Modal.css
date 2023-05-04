@@ -35,6 +35,16 @@
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   }
+
+  .add-modal {
+    width: 1000px;
+    height: 550px;
+    background: white;
+    color: white;
+    z-index: 101;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  }
   
   .view-modalHeader {
     height: 50px;
@@ -333,3 +343,52 @@
   background-color: #08321F;
 }
 
+.add-modalContent {
+  padding: 30px;
+  font-size: 25px;
+  color: #7A1113;
+  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 25px;
+  color: #7A1113;
+  text-align: left;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+}
+
+.input-container {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 300px;
+  resize: vertical;
+  font-size: 18px;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #ccc;
+  font-size: 18px;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #4b7bec;
+}
