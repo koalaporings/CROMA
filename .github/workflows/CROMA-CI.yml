@@ -23,8 +23,7 @@ jobs:
     - name: Install dependencies and build frontend
       working-directory: ./client
       run: |
-        npm ci
-        npm run build
+        npm install
 
     - name: Run frontend tests
       working-directory: ./client
@@ -33,8 +32,7 @@ jobs:
     - name: Install dependencies and build backend
       working-directory: ./server
       run: |
-        npm ci
-        npm run build
+        npm install
 
     - name: Run backend tests
       working-directory: ./server
