@@ -87,4 +87,14 @@ router.get('/view/:announcement_id', async (req,res) => {
   res.json(values)
 })
 
+router.delete('/delete/:announcement_id', async (req,res) => {
+  const q = 'DELETE FROM announcements WHERE announcement_id = ?'
+  const id = req.params.announcement_id
+
+  db.query(q, id, (err,data) => {
+    if(err) console.error("ERROR", err);
+    res.json("Deleted")
+  })
+})
+
 module.exports = router;

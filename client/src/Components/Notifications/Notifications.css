@@ -20,14 +20,15 @@
 
 .notif-list-container {
     display: block;
-    margin-top: 5%;
+    margin-top: 4%;
     height: 60%;
     width: 100%;
 }
 
 .notif-details-container {
     display: block;
-    height: 30px;
+    height: 35px;
+    padding-top: 2px;
 }
 
 .notif-title-text {
@@ -38,6 +39,15 @@
     font-size: 25px;
     position: absolute;
     padding-top: 20px;
+    left: 6%;
+}
+
+.no-notifs{
+    display: block;
+    margin-top: 5%;
+    color: #7A1113;
+    font-family: 'Fredoka';
+    font-size: 18px;
     left: 6%;
 }
 
@@ -60,8 +70,8 @@
     display: inline-block;
     text-align: left;
     position: relative;
-    margin-top: 2.5px;
-    margin-bottom: 2.5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     left: 1%;
     width: 80%;
     height: 100%;

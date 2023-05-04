@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     viewer: {
         width: 850,
-        height: 700,
+        height: 650,
     },
     title:{
         marginTop: 40,
