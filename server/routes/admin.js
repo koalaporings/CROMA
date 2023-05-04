@@ -32,6 +32,16 @@ router.put("/transaction_status/:id", async (req,res) => {
   })
 })
 
+router.get('/get_user/:id', async (req, res) => {
+  const q = 'SELECT user_id FROM transactions WHERE transaction_id = ?'
+  const transaction = req.params.id
+
+  db.query(q, transaction, (err,data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data)
+  })
+})
+
 
 
 module.exports = router;
