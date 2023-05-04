@@ -1,0 +1,41 @@
+name: Continuous Integration
+
+on:
+  push
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies and build frontend
+      working-directory: ./client
+      run: |
+        npm ci
+        npm run build
+
+    - name: Run frontend tests
+      working-directory: ./client
+      run: npm test
+
+    - name: Install dependencies and build backend
+      working-directory: ./server
+      run: |
+        npm ci
+        npm run build
+
+    - name: Run backend tests
+      working-directory: ./server
+      run: npm run test:mocha
