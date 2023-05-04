@@ -8,6 +8,7 @@ router.get('/view', async (req, res) => {
     const q = 'SELECT * FROM forms'
     
     db.query(q, (err, data) => {
+      if(err) console.error('ERROR', err);
       res.json(data)
     })
   })
@@ -18,6 +19,7 @@ router.put('/update_form_desc/:form_id', async (req, res) => {
   const values = req.body.form_desc
 
   db.query(q,[values, formId], (err, data) => {
+    if(err) console.error('ERROR', err);
   })
   res.json(req.body.form_desc)
 })
@@ -34,6 +36,7 @@ router.post('/new', async (req, res) => {
   
 
   db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
   })
   res.json(req.body.form_name)
 })
@@ -45,6 +48,7 @@ router.post('/transaction_made', async (req,res) =>{
 
   const form_values = await new Promise((resolve) => {
     db.query("SELECT form_duration, form_name FROM forms WHERE form_id = ?", formId, (err, data) => {
+      if(err) console.error('ERROR', err);
     resolve(data)
     })
 })
@@ -79,9 +83,11 @@ router.post('/transaction_made', async (req,res) =>{
     req.body.purpose,
   ]
   db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
     
   })
   db.query(q2,[info], (err, data) => {
+    if(err) console.error('ERROR', err);
   })
 
   res.send()
@@ -92,6 +98,7 @@ router.get('/request/get/:user_id', async (req, res) => {
   const userId = req.params.user_id
 
   db.query(q,userId, (err, data) => {
+    if(err) console.error('ERROR', err);
     res.json(data)
   })
 
