@@ -8,6 +8,9 @@ import AnnouncementTableComponent from '../../Components/Table/Announcement Tabl
 import announcementIcon from '../../Assets/announcement-icon.svg';
 import dummyTableData from '../Announcements/dummyTableData';
 import { useState, useEffect } from 'react';
+import AddAnnouncement from '../../Components/Modal/Add Announcement Modal';
+
+
 
 import axios from 'axios'
 
@@ -16,6 +19,8 @@ import './Announcements.css';
 const AnnouncementPage = ({children}) => {
 
     const [announcementData, setAnnouncementData] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+
 
     useEffect (() =>{
         const fetchAllAnnouncement = async ()=>{
@@ -24,6 +29,7 @@ const AnnouncementPage = ({children}) => {
         }
         fetchAllAnnouncement()
         }, [])
+
 
     console.log(announcementData)
 
@@ -41,9 +47,10 @@ const AnnouncementPage = ({children}) => {
                 </div>
 
                 <div className='announce-button'>
-                    <button className='add'>
+                    <button className='add' onClick={() => setIsOpen(true)}>
                         Add
                     </button>
+                    {isOpen && <AddAnnouncement setIsOpen={setIsOpen} />}
                 </div>
                 <div className="admin-transaction-requests-table-container">
                     <AnnouncementTableComponent
