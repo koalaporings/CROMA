@@ -57,7 +57,7 @@ router.post('/transaction_made', async (req,res) =>{
   let date = ("0" + date_time.getDate()).slice(-2);
   let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
   let year = date_time.getFullYear();
-  const transaction_ETA = year + "-" + month + "-" + date
+  const transaction_ETA = year + "-" + month + "-" + date + " " + date_time.getHours() + ":" + date_time.getMinutes() + ":" + date_time.getSeconds()
 
   const values = [
     req.body.user_id,
@@ -90,8 +90,26 @@ router.post('/transaction_made', async (req,res) =>{
     if(err) console.error('ERROR', err);
   })
 
+  const get_latest = await new Promise((resolve) => {
+    db.query("SELECT transaction_id, transaction_date FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC LIMIT 1", req.body.user_id, (err, data) => {
+      if(err) console.error('ERROR', err);
+    resolve(data)
+    })
+  })
+  const tracking = [
+    get_latest[0].transaction_id, 
+    'Awaiting Approval',
+    get_latest[0].transaction_date
+
+  ]
+  db.query('INSERT INTO tracking (`transaction_id`, `tracking_status`, `tracking_datetime`) VALUES (?)', [tracking], (err, data) => {
+    if(err) console.error('ERROR', err);
+  })
+
   res.send()
 })
+
+
 
 router.get('/request/get/:user_id', async (req, res) => {
   const q = 'SELECT * FROM students WHERE user_id = ?'
