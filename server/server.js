@@ -15,6 +15,7 @@ const announcementRoute = require('./routes/announcement')
 const notificationRoute = require('./routes/notification')
 const formRoute = require('./routes/form')
 const loginRoute = require('./routes/login')
+const trackingRoute = require('./routes/tracking')
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }))
@@ -116,6 +117,7 @@ app.use('/student_api', studentRoute);
 app.use('/announcement_api', announcementRoute);
 app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
+app.use('/tracking_api', trackingRoute);
 app.use('/db/logintest/:user_id', loginRoute);
 
 app.listen(5000, () => {})
