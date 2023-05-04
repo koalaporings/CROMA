@@ -48,8 +48,8 @@ router.post('/transaction_made', async (req,res) =>{
 
   const form_values = await new Promise((resolve) => {
     db.query("SELECT form_duration, form_name FROM forms WHERE form_id = ?", formId, (err, data) => {
+      if(err) console.error('ERROR', err);
     resolve(data)
-    if(err) console.error('ERROR', err);
     })
 })
   let ts = Date.now() + (86400000 * form_values[0].form_duration)

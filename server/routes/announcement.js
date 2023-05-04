@@ -16,29 +16,31 @@ router.post('/post', async (req, res) => {
     res.json(req.body.announcement_body)
   })
 
-router.get('/details/:id', async (req,res) => {
-  const q = 'SELECT * FROM announcements WHERE announcement_id = ?'
-  const announcementId = req.params.id
+router.get('/details', async (req,res) => {
+  const q = 'SELECT * FROM announcements'
 
   const details = await new Promise((resolve) => {
-    db.query(q, announcementId, (err, data) => {
-      resolve(data)
+    db.query(q, (err, data) => {
       if(err) console.error('ERROR', err);
+      resolve(data)
     })
   })
 
-  let temp = String(details[0].announcement_datetime)
+  const values = []
+
+  for(i=0;i<details.length;i++){
+    let temp = String(details[i].announcement_datetime)
   const date = temp.substring(4,15)
   const time = temp.substring(16,24)
-  console.log(date)
-  console.log(time)
 
-  const values = {
-    announcement_title: details[0].announcement_title,
+  values.push({
+    announcement_title: details[i].announcement_title,
     announcement_date: date,
     announcement_time: time,
-    announcement_body: details[0].announcement_body
+    announcement_body: details[i].announcement_body
+  })
   }
+  
   res.json(values)
 })
 module.exports = router;

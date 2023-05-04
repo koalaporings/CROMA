@@ -30,10 +30,8 @@ const authorization = (req, res, next) => {
   try {
     const data = jwt.verify(token, process.env.MY_SECRET);
     req.user_id = data.user_id;
-    console.log(req.user_id)
     return next();
   } catch {
-    console.log("no")
     return res.sendStatus(403);
   }
 };
@@ -122,5 +120,4 @@ app.use('/db/logintest/:user_id', loginRoute);
 
 app.listen(5000, () => {})
 console.log("Server started on port 5000")
-
 module.exports = app

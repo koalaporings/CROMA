@@ -7,9 +7,8 @@ router.get('/approval_table', async (req, res) => {
   const q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?'
   const status = "await_approval"
     db.query(q, status, (err, results) => {
-        if(err) console.error('ERROR', err);
+      if(err) console.error('ERROR', err);
         res.json(results)
-        console.log(results)
       })
 })
 
@@ -17,9 +16,8 @@ router.get('/ongoing_table', async (req, res) => {
   const q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?'
   const status = "ongoing"
     db.query(q, status, (err, results) => {
-        if(err) console.error('ERROR', err);
+      if(err) console.error('ERROR', err);
         res.json(results)
-        console.log(results)
       })
 })
 
