@@ -2,6 +2,7 @@ import { TableFooter } from "@mui/material";
 import { width } from "@mui/system";
 import { useState } from "react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import ViewModal from '../../Components/Modal/View Modal';
 import Table from 'react-bootstrap/Table';
 import TableFooterComponent from './Table Footer';
@@ -34,20 +35,40 @@ function AnnouncementTableComponent ({
             i++;
         }
 
-        if (type === 'admin_announcement_table'){
-            return(
-                <tr key={row.index} className="table-row-center">
-                    
-                    <td className="title-date"key={row.index} data-heading={row.index}>
-                        <p className="title">{row.announcement_title}</p> 
-                        <p>{row.announcement_date} {row.announcement_time}</p> 
-                    </td>
-                    <td key={row.index} data-heading={row.index}>
-                        {row.announcement_body}
-                    </td>
-                </tr>
+
+
+        if (type === 'admin_announcement_table') {
+            return (
+              <tr key={row.index} className="table-row-center">
+                <td className="title-date" key={row.index} data-heading={row.index}>
+                  <NavLink to={`/announcements/view/${row.announcement_id}`} state={{ row }}>
+                    {console.log(row.announcement_id)}
+                    <p className="title">{row.announcement_title}</p> 
+                  </NavLink>
+                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                </td>
+                <td key={row.index} data-heading={row.index}>
+                  {row.announcement_body}
+                </td>
+              </tr>
             )
-        }
+          }
+
+          
+        // if (type === 'admin_announcement_table'){
+        //     return(
+        //         <tr key={row.index} className="table-row-center">
+                    
+        //             <td className="title-date"key={row.index} data-heading={row.index}>
+        //                 <p className="title">{row.announcement_title}</p> 
+        //                 <p>{row.announcement_date} {row.announcement_time}</p> 
+        //             </td>
+        //             <td key={row.index} data-heading={row.index}>
+        //                 {row.announcement_body}
+        //             </td>
+        //         </tr>
+        //     )
+        // }
 
     
 

@@ -35,6 +35,7 @@ router.get('/details', async (req,res) => {
   const time = temp.substring(16,24)
 
   values.push({
+    announcement_id: details[i].announcement_id,
     announcement_title: details[i].announcement_title,
     announcement_date: date,
     announcement_time: time,
@@ -61,7 +62,7 @@ router.put('/edit/:announcement_id', async (req,res) => {
 })
 
 router.get('/view/:announcement_id', async (req,res) => {
-  const q = 'SELECT announcement_title, announcement_body, announcement_status, announcement_datetime  FROM announcements WHERE announcement_id = ?'
+  const q = 'SELECT announcement_title, announcement_body, announcement_status, announcement_datetime FROM announcements WHERE announcement_id = ?'
   const id = req.params.announcement_id
 
   const details = await new Promise((resolve) => {
@@ -81,11 +82,13 @@ router.get('/view/:announcement_id', async (req,res) => {
     announcement_title: details[0].announcement_title,
     announcement_date: date,
     announcement_time: time,
-    announcement_body: details[0].announcement_body
+    announcement_body: details[0].announcement_body,
+    announcement_status: details[0].announcement_status
   })
   
   res.json(values)
 })
+
 
 router.delete('/delete/:announcement_id', async (req,res) => {
   const q = 'DELETE FROM announcements WHERE announcement_id = ?'
