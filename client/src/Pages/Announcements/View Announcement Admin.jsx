@@ -15,7 +15,8 @@ const ViewAnnouncementPage = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const { id } = useParams();
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         async function getAnnouncementDetails() {
             try {
@@ -39,10 +40,12 @@ const ViewAnnouncementPage = () => {
 
     const handleDeleteModalClose = () => {
         setShowDeleteModal(false);
+        navigate('/announcement');
     };
 
     const handleEditModalClose = () => {
         setShowEditModal(false);
+        navigate('/announcement');
     };
 
     return (
@@ -88,7 +91,7 @@ const ViewAnnouncementPage = () => {
 
             {showEditModal && (
                 <EditModal
-                    announcementId={id}
+                    announcement={announcementDetails}
                     onClose={handleEditModalClose}
                 />
             )}

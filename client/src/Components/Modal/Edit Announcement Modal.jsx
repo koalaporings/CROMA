@@ -3,44 +3,44 @@ import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import axios from "axios";
 
-const EditAnnouncement = ({ setIsOpen }) => {
+const EditAnnouncement = ({ setIsOpen, announcement, onUpdate }) => {
   const [announcementDetails, setAnnouncementDetails] = useState({
-    announcement_title: "",
-    announcement_body: "",
+    announcement_title: announcement.announcement_title,
+    announcement_body: announcement.announcement_body,
   });
-  
-  const AddAnnouncementData = async (data) => {
-    const response = await axios.post(
-      "http://localhost:5000/announcement_api/post",{
-      announcement_title: data.announcement_title,
-      announcement_body: data.announcement_body,
-      }
-    );
-    return response.data;
-  };
 
-  const handleSubmit = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(value)
-
-    setAnnouncementDetails(prevState => ({
+    setAnnouncementDetails((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  async function submitAnnouncement() {
-    const response = await AddAnnouncementData(announcementDetails);
-    console.log(response)
-    setIsOpen(false)
+  const updateAnnouncement = async () => {
+    try {
+      await axios.put(
+        `http://localhost:5000/announcement_api/edit/${announcement.announcement_id}`,
+        announcementDetails
+      );
+      setIsOpen(false);
+      onUpdate();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+    onUpdate();
   }
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
+      <div className="darkBG" onClick={handleClose} />
       <div className="centered">
         <div className="add-modal">
-          <button className="modal-close-button" onClick={() => setIsOpen(false)}>
+          <button className="modal-close-button" onClick={handleClose}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="add-modalContent">
@@ -50,7 +50,7 @@ const EditAnnouncement = ({ setIsOpen }) => {
                 type="text"
                 name="announcement_title"
                 value={announcementDetails.announcement_title}
-                onChange={(e) => handleSubmit(e)}
+                onChange={handleInputChange}
                 placeholder="Title"
               />
             </div>
@@ -58,15 +58,15 @@ const EditAnnouncement = ({ setIsOpen }) => {
               <textarea
                 name="announcement_body"
                 value={announcementDetails.announcement_body}
-                onChange={(e) => handleSubmit(e)}
+                onChange={handleInputChange}
                 placeholder="Description"
               />
             </div>
           </div>
           <div className="cancel-modalActions">
             <div className="cancel-modal-actionsContainer">
-              <button className="cancel-modal-button" onClick={submitAnnouncement}>
-                SUBMIT
+              <button className="cancel-modal-button" onClick={updateAnnouncement}>
+                SAVE
               </button>
             </div>
           </div>
