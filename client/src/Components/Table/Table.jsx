@@ -24,8 +24,10 @@ function TableComponent ({
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(1);
     const [clickData, setClickData] = useState();
+    const [transactionStatus, setTransactionStatus] = useState("");
 
     const { slice, range } = useTable(tableData, page, rowsPerPage);
+    const [flag, setFlag] = useState(0);
 
     // const clickEvent = () => {
     //     setID(clickData)
@@ -103,23 +105,23 @@ function TableComponent ({
                     )} */}
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.date}
+                        {row.transaction_date.substring(0,10)}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionName}
+                        {row.form_name}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionID}
+                        {row.transaction_id}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        {row.transactionStatus}
+                        {row.transaction_status}
                     </td>
                     <td key={row.index}
                         data-heading={row.index}>
-                        <button className="action-button">
+                        <button className="action-button" onClick={() => action(row.transaction_id)}>
                             View
                         </button>
                     </td>
@@ -296,6 +298,9 @@ function TableComponent ({
                 page={page}
                 setRowsPerPage={setRowsPerPage}
                 rowsPerPage={rowsPerPage}
+                type={type}
+                flag={flag}
+                setFlag={setFlag}
             />
         </div> 
     )

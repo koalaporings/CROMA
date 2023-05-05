@@ -55,10 +55,21 @@ const AdminLanding = ({children}) => {
         }
     }
 
+    async function addTracking(id) {
+        const response = await axios.post("http://localhost:5000/tracking_api/update",{
+            transaction_id: id,
+            tracking_status: "Your request has been approved by the admin.",
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
     async function changeStatus(id) {
         const response = await axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'ongoing'
         })
+        addTracking(id)
         if (response){
             console.log(response)
         }
@@ -82,7 +93,7 @@ const AdminLanding = ({children}) => {
     const approveTransaction = (data) => {
         changeStatus(id)
         const msg = "Your request for " + documentDetails.form_name + " has been approved by the admin."
-        //window.location.reload()
+        window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
 
