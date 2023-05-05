@@ -46,4 +46,4 @@ jobs:
         npm install
     - name: Run backend tests
       working-directory: ./server
-      run: npm test
+      run: npm run test:mocha
