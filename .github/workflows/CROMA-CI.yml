@@ -17,7 +17,7 @@ jobs:
       
     - name: Start MySQL service using Docker Compose
       run: |
-        docker-compose --file .github/docker-compose.yml up -d
+        docker-compose --file .github/workflows/docker-compose.yml up -d
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
