@@ -52,7 +52,7 @@ const AnnouncementPage = ({children}) => {
                     </button>
                     {isOpen && <AddAnnouncement setIsOpen={setIsOpen} />}
                 </div>
-                <div className="admin-transaction-requests-table-container">
+                <div className="admin-announcement-table-container">
                     <AnnouncementTableComponent
                         type = 'admin_announcement_table'
                         tableData = {announcementData}

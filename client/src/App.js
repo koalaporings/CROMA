@@ -100,7 +100,7 @@ function App() {
               element={<AddAnnouncement/>}  
             />
             <Route 
-              path="/student/announcements/view/0" 
+              path="/student/announcements/view/:id" 
               element={<ViewAnnouncementPage/>}  
             />
             <Route 
