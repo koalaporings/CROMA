@@ -23,9 +23,6 @@ const SubmitModal = ({ setIsOpen, action }) => {
               <button className="confirm-button" onClick={(add) => setIsOpen(false)}>
                 CANCEL
               </button>
-              <button className="confirm-button" onClick={(add) => setIsOpen(false)}>
-                CANCEL
-              </button>
               <button className="confirm-button" onClick={action}>
                 CONFIRM
               </button>

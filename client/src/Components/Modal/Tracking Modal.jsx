@@ -71,7 +71,6 @@ const TrackingModal = ({ setIsOpen, details, trackingData }) => {
                     <div className="tracking-status">{data.tracking_status}</div>
                     <div className="tracking-line"></div>
                   </div>
-                  
               </div>
             )
           })}

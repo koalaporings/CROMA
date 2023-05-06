@@ -8,9 +8,28 @@
     transform: translate(-50%, -50%);
     position: fixed;
   }
+
+  .darkBG-1 {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1002;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+  }
   
   .centered {
     z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .centered-1 {
+    z-index: 1003;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -189,6 +208,14 @@
     background-color: #08321F;
 }
 
+.approve-modal {
+  width: 1000px;
+  height: 200px;
+  background: white;
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
 
 .submit-modal {
   width: 1000px;
@@ -255,6 +282,15 @@
 
 }
 
+.approve-modal-actions-container {
+  display: flex;
+  padding: 5px;
+  justify-content: flex-end;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  padding-right: 40px;
+
+}
 
 .cancel-modal-button {
   font-size: 13px;
@@ -272,15 +308,16 @@
 }
 
 .confirm-button {
-  font-size: 13px;
+  font-size: 18px;
   font-family: 'Poppins';
-  border-radius: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #21523C;
   color: white;
   min-width: 100px;
   min-height: 20px;
+  width: 200px;
   z-index: 1000;
+  margin: 10px;
 }
 
 .confirm-button:hover {
