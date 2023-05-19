@@ -11,6 +11,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar.jsx';
 import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
+import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
 
 
 
@@ -23,6 +24,7 @@ const AdminLanding = ({children}) => {
     const [numOngoing, setNumOngoing] = useState(0);
     const [documentDetails, setDocumentDetails] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
 
 
@@ -55,10 +57,21 @@ const AdminLanding = ({children}) => {
         }
     }
 
+    async function addTracking(id) {
+        const response = await axios.post("http://localhost:5000/tracking_api/update",{
+            transaction_id: id,
+            tracking_status: "Your request has been approved by the admin.",
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
     async function changeStatus(id) {
-        const response = await axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
+        const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'ongoing'
         })
+        addTracking(id)
         if (response){
             console.log(response)
         }
@@ -79,10 +92,14 @@ const AdminLanding = ({children}) => {
         viewDocumentDetails(data)
     }
 
+    const openConfirmationModal = () => {
+        setConfirmOpen(true)
+    }
+
     const approveTransaction = (data) => {
         changeStatus(id)
         const msg = "Your request for " + documentDetails.form_name + " has been approved by the admin."
-        //window.location.reload()
+        window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
 
@@ -120,7 +137,8 @@ const AdminLanding = ({children}) => {
                         tableData = {tableData1}
                         action={approveClickHandler}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={approveTransaction}/>}
+                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal}/>}
+                    {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                 </div>
 
                 <div className='title-text-admin'>Ongoing Transactions</div>

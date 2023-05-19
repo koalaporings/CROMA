@@ -23,6 +23,8 @@ import LoginTest from './Pages/dbPage/LoginTest.jsx';
 import StudentTrackingPage from './Pages/History/History Student';
 import ClerkTrackingPage from './Pages/History/History Clerk';
 import ViewAnnouncementPage from './Pages/Announcements/View Announcement';
+import ViewAdminAnnouncementPage from './Pages/Announcements/View Announcement Admin';
+
 
 
 // Forms
@@ -98,8 +100,12 @@ function App() {
               element={<AddAnnouncement/>}  
             />
             <Route 
-              path="/student/announcements/view/0" 
+              path="/student/announcements/view/:id" 
               element={<ViewAnnouncementPage/>}  
+            />
+            <Route 
+              path="/announcements/view/:id" 
+              element={<ViewAdminAnnouncementPage/>}  
             />
 
             <Route 

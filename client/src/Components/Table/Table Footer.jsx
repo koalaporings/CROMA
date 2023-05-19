@@ -18,9 +18,21 @@ const TableFooter = ({
   slice,
   setRowsPerPage,
   rowsPerPage,
+  type,
+  flag,
+  setFlag,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
+
+  function setRows() {
+    if (type === "student_tracking_table" && flag === 0){
+      setRowsPerPage(10)
+      setFlag(1)
+    }
+  }
+
+  setRows()
 
   function prev() {
     var end = endIndex;
@@ -83,7 +95,6 @@ const TableFooter = ({
                 <option value={10}>10</option>
                 <option value={20}>20</option>
                 <option value={50}>50</option>
-                <option value={100}>100</option>
             </select>
             <span>
             | &nbsp; {page} of {range.length}
@@ -173,13 +184,14 @@ const TableFooter = ({
   );
 };
 
-TableFooter.propTypes = {
-  range: propTypes.any,
-  setPage: propTypes.any,
-  page: propTypes.any,
-  slice: propTypes.any,
-  setRowsPerPage: propTypes.any,
-  rowsPerPage: propTypes.number
-};
+// TableFooter.propTypes = {
+//   range: propTypes.any,
+//   setPage: propTypes.any,
+//   page: propTypes.any,
+//   slice: propTypes.any,
+//   setRowsPerPage: propTypes.any,
+//   rowsPerPage: propTypes.number,
+//   type: propTypes.any,
+// };
 
 export default TableFooter;

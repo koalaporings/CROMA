@@ -65,7 +65,7 @@ const Form1 = ({children}) => {
         const response = addFormInformation(formDetails);
         console.log(response)
         setIsOpen(false)
-        navigateLanding()
+        // navigateLanding()
 
         // if(response.data && response.data.status === 200) {
         //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");

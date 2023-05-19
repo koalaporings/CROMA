@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar';
+import DeleteModal from '../../Components/Modal/Delete Modal';
+import EditModal from '../../Components/Modal/Edit Announcement Modal';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 import axios from 'axios';
 
@@ -10,6 +12,8 @@ import './Announcements.css';
 
 const ViewAnnouncementPage = () => {
     const [announcementDetails, setAnnouncementDetails] = useState({});
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -26,7 +30,23 @@ const ViewAnnouncementPage = () => {
         getAnnouncementDetails();
     }, [id]);
 
+    const handleDeleteClick = () => {
+        setShowDeleteModal(true);
+    };
 
+    const handleEditClick = () => {
+        setShowEditModal(true);
+    };
+
+    const handleDeleteModalClose = () => {
+        setShowDeleteModal(false);
+        navigate('/announcement');
+    };
+
+    const handleEditModalClose = () => {
+        setShowEditModal(false);
+        navigate('/announcement');
+    };
 
     return (
         <div>
@@ -44,19 +64,37 @@ const ViewAnnouncementPage = () => {
                 <div className="announcement-date-container">
                     <div className="announcement-date-text">Date: {announcementDetails.announcement_date} {announcementDetails.announcement_time}</div>
                 </div>
+                <div className="announce-button">
+                    <button className="delete" onClick={handleDeleteClick}>Delete</button>
+                    <button className="add" onClick={handleEditClick}>Edit</button>
+                </div>
                 <div className="announcement-details-container">
                     <div className="announcement-details-text">
                         {announcementDetails.announcement_body}
                     </div>
                 </div>
                 <div className="announcement-details-footer">
-                    <a href="/student/announcements">RETURN</a>
+                    <a href="/">RETURN</a>
                 </div>
 
             </div>
             <div className='footer-admin-announcement'>
                 <Footer />
             </div>
+
+            {showDeleteModal && (
+                <DeleteModal
+                    announcementId={id}
+                    onClose={handleDeleteModalClose}
+                />
+            )}
+
+            {showEditModal && (
+                <EditModal
+                    announcement={announcementDetails}
+                    onClose={handleEditModalClose}
+                />
+            )}
         </div>
     )
 }
