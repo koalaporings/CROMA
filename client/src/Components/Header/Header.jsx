@@ -6,7 +6,7 @@ import headerBackground from '../../Assets/header-background.png';
 
 const Header = () => {
     return (
-        <div>
+        <div data-testid="header-component">
             <div className='header-container'>
                     <img alt="header-logo"
                         src={coslogo}

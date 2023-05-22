@@ -1,3 +1,4 @@
+import React from 'react';
 import './Table.css';
 // import {CampaignOutlined} from "@mui/icons-material"
 import announcementIcon from '../../Assets/announcement-icon.svg';
