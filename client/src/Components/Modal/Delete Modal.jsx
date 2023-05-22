@@ -4,11 +4,11 @@ import { RiCloseLine } from "react-icons/ri";
 import ErrorIcon from '@mui/icons-material/Error';
 import axios from "axios";
 
-const DeleteModal = ({ setIsOpen, announcement_id, onUpdate }) => {
+const DeleteModal = ({ onClose, announcementId, onUpdate }) => {
   const deleteAnnouncement = async () => {
     try {
-      await axios.delete(`http://localhost:5000/announcement_api/delete/${announcement_id}`);
-      setIsOpen(false);
+      await axios.delete(`http://localhost:5000/announcement_api/delete/${announcementId}`);
+      onClose(); // Call the onClose prop instead of setIsOpen
       onUpdate();
     } catch (error) {
       console.error(error);
@@ -17,11 +17,11 @@ const DeleteModal = ({ setIsOpen, announcement_id, onUpdate }) => {
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
+      <div className="darkBG" onClick={onClose} />
       <div className="centered">
         <div className="submit-modal">
           <ErrorIcon className="modal-icon" sx={{ fontSize: "80px" }} style={{ marginTop: "10px" }}/>
-          <button className="modal-close-button" onClick={() => setIsOpen(false)}>
+          <button className="modal-close-button" onClick={onClose}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="submit-modalContent">

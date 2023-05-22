@@ -40,13 +40,25 @@ const ViewAnnouncementPage = () => {
 
     const handleDeleteModalClose = () => {
         setShowDeleteModal(false);
-        navigate('/announcement');
+        navigate('/announcements');
     };
 
     const handleEditModalClose = () => {
         setShowEditModal(false);
-        navigate('/announcement');
+        // navigate('/announcements');
     };
+
+
+    async function getAnnouncementDetails() {
+            try {
+                const response = await axios.get(`http://localhost:5000/announcement_api/view/${id}`);
+                setAnnouncementDetails(response.data[0]);
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
 
     return (
         <div>
@@ -85,16 +97,41 @@ const ViewAnnouncementPage = () => {
             {showDeleteModal && (
                 <DeleteModal
                     announcementId={id}
-                    onClose={handleDeleteModalClose}
+                    onClose={handleDeleteModalClose} // Pass handleDeleteModalClose as the prop
+                    onUpdate={() => {
+                    // ...
+                    }}
                 />
-            )}
+                )}
 
             {showEditModal && (
+            <EditModal
+                announcement={announcementDetails}
+                onClose={handleEditModalClose}
+                onUpdate={() => {
+                getAnnouncementDetails(); // Call getAnnouncementDetails to update the announcement details
+                }}
+            />
+            )}
+
+            {/* {showEditModal && (
                 <EditModal
                     announcement={announcementDetails}
                     onClose={handleEditModalClose}
-                />
-            )}
+                    onUpdate={() => {
+                        async function getAnnouncementDetails() {
+                            try {
+                                const response = await axios.get(`http://localhost:5000/announcement_api/view/${id}`);
+                                setAnnouncementDetails(response.data[0]);
+                                console.log(response.data);
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+                    }}
+                    />
+            )} */}
+
         </div>
     )
 }
