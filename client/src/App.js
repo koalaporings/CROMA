@@ -23,7 +23,10 @@ import LoginTest from './Pages/dbPage/LoginTest.jsx';
 import StudentTrackingPage from './Pages/History/History Student';
 import ClerkTrackingPage from './Pages/History/History Clerk';
 import ViewAnnouncementPage from './Pages/Announcements/View Announcement';
+import ViewSignatoryAnnouncementPage from './Pages/Announcements/View Announcement Signatory';
+import ViewClerkAnnouncementPage from './Pages/Announcements/View Announcement Clerk';
 import ViewAdminAnnouncementPage from './Pages/Announcements/View Announcement Admin';
+
 
 
 
@@ -102,6 +105,14 @@ function App() {
             <Route 
               path="/student/announcements/view/:id" 
               element={<ViewAnnouncementPage/>}  
+            />
+            <Route 
+              path="/signatory/announcements/view/:id" 
+              element={<ViewSignatoryAnnouncementPage/>}  
+            />
+            <Route 
+              path="/clerk/announcements/view/:id" 
+              element={<ViewClerkAnnouncementPage/>}  
             />
             <Route 
               path="/announcements/view/:id" 

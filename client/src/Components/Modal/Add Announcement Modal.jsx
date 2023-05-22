@@ -33,6 +33,7 @@ const AddAnnouncement = ({ setIsOpen }) => {
     const response = await AddAnnouncementData(announcementDetails);
     console.log(response)
     setIsOpen(false)
+    window.location.reload()
   }
 
   return (
