@@ -71,6 +71,40 @@ function AnnouncementTableComponent ({
             )
           }
 
+          if (type === 'signatory_announcement_table') {
+            return (
+              <tr key={row.index} className="table-row-center">
+                <td className="title-date" key={row.index} data-heading={row.index}>
+                  <NavLink to={`/signatory/announcements/view/${row.announcement_id}`} state={{ row }}>
+                    {console.log(row.announcement_id)}
+                    <p className="title">{row.announcement_title}</p> 
+                  </NavLink>
+                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                </td>
+                <td key={row.index} data-heading={row.index}>
+                  {row.announcement_body}
+                </td>
+              </tr>
+            )
+          }
+
+          if (type === 'clerk_announcement_table') {
+            return (
+              <tr key={row.index} className="table-row-center">
+                <td className="title-date" key={row.index} data-heading={row.index}>
+                  <NavLink to={`/clerk/announcements/view/${row.announcement_id}`} state={{ row }}>
+                    {console.log(row.announcement_id)}
+                    <p className="title">{row.announcement_title}</p> 
+                  </NavLink>
+                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                </td>
+                <td key={row.index} data-heading={row.index}>
+                  {row.announcement_body}
+                </td>
+              </tr>
+            )
+          }
+
     
 
     })
