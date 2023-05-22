@@ -42,7 +42,7 @@ const AnnouncementPage = ({children}) => {
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
                         className="announcement-portal-icon"/>
-                    <p1 className='announcement-portal-text'>Announcement</p>
+                    <p className='announcement-portal-text'>Announcement</p>
                 </div>
 
                 <div className='announce-button'>

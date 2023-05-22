@@ -17,6 +17,7 @@
 
 .container {
     min-height: 76vh;
+    padding-bottom: 5px;
 }
 
 .footer-tracking {
