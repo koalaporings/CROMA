@@ -18,40 +18,41 @@
 }
 
 .footer-admin-announcement {
-    display: flex;
+    /* display: flex;
     margin-top: 1vh;
     height: 15vh;
-    width: 100%
+    width: 100% */
 }
 
-.announcement-portal-container {
+/* .announcement-portal-container {
     height: 120vh;
     background-color: white;
-}
+} */
 
 .announcement-portal-header{
     display: block;
-    position: relative;
+    margin-top: 100px;
+    /* position: relative;
     top: 13%;
     left: 12%;
-    height: 20vh;
-    width: 80%;
+    /* height: 20vh; */
+    /* width: 80%;  */
     background-color: transparent;
 }
 
 .announcement-portal-icon{
-    position: absolute;
+    /* position: absolute;
     top: 3.5%;
-    left: 2%;
+    left: 2%; */
     width: 3%;
     height: auto;
     color: #7A1113;
 }
 
 .announcement-portal-text{
-    position: absolute;
+    /* position: absolute;
     top: 3.5%;
-    left: 5.5%;
+    left: 5.5%; */
     /* width:3%; */
     height: auto;
     

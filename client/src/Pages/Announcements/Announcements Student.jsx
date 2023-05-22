@@ -34,7 +34,7 @@ const AnnouncementStudentPage = ({children}) => {
         <div>
             <NavBar/>
             <Header/>
-
+            
             <div className='announcement-portal-container'>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"

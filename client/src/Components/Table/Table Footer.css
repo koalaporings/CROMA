@@ -67,6 +67,7 @@
   .page-number-input-container {
     display: block;
     position: relative;
+    margin-right: 30px;
     width: 20%;
   }
 

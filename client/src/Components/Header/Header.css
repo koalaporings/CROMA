@@ -14,10 +14,11 @@
 
 .header-logo {
     position: absolute;
-    width: 5%;
+    width: auto;
     height: 97%;
     left: 8%;
     top: 1%;
+    object-fit: contain;
     
 }
 
@@ -28,7 +29,7 @@
     
     font-family: 'Poppins';
     font-style: normal;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     /* identical to box height */
     color: #000000;
@@ -42,7 +43,7 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 1rem;    
+    font-size: 1.1rem;    
     
     color: #7A1113;
         
@@ -51,7 +52,7 @@
 .header-text-3{
     position: absolute;
     left: 13%;
-    top: 50%;
+    top: 55%;
     
     font-family: 'Fredoka';
     font-weight: 700;
@@ -68,12 +69,14 @@
     top: 0%;
 }
 
-@media screen and (max-width: 1000px) {
-    .header-bg-1{
-        opacity: 0;
-    }
-
+@media screen and (max-width: 1620px) {
     .header-logo {
         opacity: 0
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .header-bg-1{
+        opacity: 0;
     }
 }

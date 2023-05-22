@@ -54,8 +54,9 @@ const StudentHistoryPage = ({children}) => {
             </Container>
 
 
-
-            {/* <Footer/> */}
+            <div className="history-student-footer">
+                <Footer/>
+            </div>
         </div>
 
         </main>

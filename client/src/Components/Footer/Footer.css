@@ -1,55 +1,62 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.footer-container {
+.footer-component-container {
+    padding-top: 5px;
     background-color: #262626;
-    position: absolute;
-    height: 15%;
+    /* position: absolute; */
+    /* height: fit-content; */
     width: 100%;
     /* bottom: 0vh; */
 }
 
-.footer-text-1 {
-    position: absolute;
+.row-1 {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10vh;
+}
+.footer-component-text-1 {
+    /* position: absolute;
     top: 7.5%;
-    left: 9%;
+    left: 9%; */
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2vh;
+    font-size: 1.2rem;
     color: white;
 }
 
-.footer-text-2 {
-    position: absolute;
+.footer-component-text-2 {
+    /* position: absolute;
     top: 21%;
-    left: 9%;
+    left: 9%; */
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2vh;
+    font-size: 1.2rem;
     color: white;
 }
 
-.footer-text-3 {
-    position: absolute;
+.footer-component-text-3 {
+    /* position: absolute;
     top: 35%;
-    left: 9%;
+    left: 9%; */
     font-family: 'Poppins';
     font-weight: 700;
     text-align: left;
-    font-size: 2.5vh;
+    font-size: 1.2rem;
     color: #FAAC1F;
 }
 
-.footer-text-4 {
+.footer-component-text-4 {
     font-size: 1.5vh;
-    margin-top: 6%;
+    /* margin-top: 6%; */
     color: white;
     font-family: 'Poppins';
+    margin-top: 10px;
 }
 
-.footer-text-5 {
-    position: absolute;
+.footer-component-text-5 {
+    /* position: absolute;
     top: 7.5%;
-    right: 30%;
+    right: 30%; */
     font-family: 'Poppins';
     text-align: left;
     font-weight: 600;
@@ -57,10 +64,10 @@
     color: white;
 }
 
-.footer-text-6 {
-    position: absolute;
+.footer-component-text-6 {
+    /* position: absolute;
     top: 7.5%;
-    right: 18%;
+    right: 18%; */
     font-family: 'Poppins';
     text-align: left;
     font-weight: 600;
@@ -68,54 +75,96 @@
     color: white;
 }
 
-.footer-text-7 {
-    position: absolute;
+.footer-component-text-7 {
+    /* position: absolute;
     top: 28.5%;
-    left: 80%;
+    left: 80%; */
     font-family: 'Poppins';
     text-align: left;
     font-size: 2vh;
     color: white;
 }
 
-.footer-text-8 {
-    position: absolute;
+.footer-component-text-8 {
+    /* position: absolute;
     top: 52.5%;
-    left: 80%;
+    left: 80%; */
     font-family: 'Poppins';
     text-align: left;
     font-size: 2vh;
     color: white;
 }
 
-.footer-icon-1 {
-    position: absolute;
+.footer-component-icon-1 {
+    /* position: absolute;
     top: 30%;
-    right: 32.5%;
-    width: 2.3%;
-    height: auto;
+    right: 32.5%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-2 {
-    position: absolute;
+.footer-component-icon-2 {
+    /* position: absolute;
     top: 31%;
-    right: 29.5%;
-    width: 2.3%;
-    height: auto;
+    right: 29.5%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-3 {
-    position: absolute;
+.footer-component-icon-3 {
+    /* position: absolute;
     top: 30%;
-    right: 21%;
-    width: 1.8%;
-    height: auto;
+    right: 21%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-4 {
-    position: absolute;
+.footer-component-icon-4 {
+    /* position: absolute;
     top: 55%;
-    right: 21%;
-    width: 1.8%;
-    height: auto;
+    right: 21%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
+}
+
+.contact-container-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact-container-2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.media-logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-1-container {
+    position: relative;
+}
+
+.col-1-container p {
+    position: relative;
+    left: -100px;
+}
+
+@media screen and (max-width: 1390px){
+    .col-1-container {
+        position: block;
+    }
+    
+    .col-1-container p {
+        position: block;
+        left: 0;
+    }
 }
