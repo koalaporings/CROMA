@@ -1,3 +1,4 @@
+import React from 'react';
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai';
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 import { BsExclamationLg, BsChevronDown } from 'react-icons/bs';

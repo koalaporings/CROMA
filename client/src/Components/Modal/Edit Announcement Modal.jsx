@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import "./Modal.css";
 
-const EditAnnouncement = ({ setIsOpen, announcement, onUpdate }) => {
+const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
   const [announcementDetails, setAnnouncementDetails] = useState({
     announcement_title: announcement.announcement_title,
     announcement_body: announcement.announcement_body,
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,19 +24,19 @@ const EditAnnouncement = ({ setIsOpen, announcement, onUpdate }) => {
     try {
       await axios.put(
         `http://localhost:5000/announcement_api/edit/${announcement.announcement_id}`,
-        announcementDetails
+        { data: { ...announcementDetails } }
       );
-      setIsOpen(false);
+      onClose();
       onUpdate();
+      navigate('/announcements');
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleClose = () => {
-    setIsOpen(false);
-    onUpdate();
-  }
+    onClose();
+  };
 
   return (
     <>

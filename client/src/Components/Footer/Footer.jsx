@@ -8,7 +8,7 @@ import envelopeIcon from '../../Assets/envelope-icon.svg';
 
 const Footer = () => {
     return (
-        <div>
+        <div data-testid="footer-component">
             <div className='footer-container'>
                     <p className='footer-text-1'>UNIVERSITY OF THE PHILIPPINES - CEBU</p>
                     <p className='footer-text-2'>COLLEGE OF SCIENCE</p>
