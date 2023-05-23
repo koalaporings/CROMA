@@ -7,6 +7,7 @@ import ClerkTransactionTable from './Clerk Transaction Table';
 import ClerkAnnouncementTable from './Clerk Announcement Table';
 import './Clerk Landing.css';
 import NavBar from '../../Components/Navigation Bar/NavBar Clerk.jsx';
+import Container from 'react-bootstrap/Container';
 
 const ClerkLanding = ({children}) => {
     return(
@@ -15,13 +16,10 @@ const ClerkLanding = ({children}) => {
             <div className="header-clerk">
                 <Header/>
             </div>
-
-            <div className='clerk-container'>
-                {/* <p>Placeholder text</p> */}
+            <Container>
                 <ClerkAnnouncementTable/>
                 <ClerkTransactionTable/>
-                {/* <ClerkOngoingTable/> */}
-            </div>
+            </Container>
 
             <div className="footer-clerk">
                 <Footer/>
