@@ -10,15 +10,15 @@ const Footer = () => {
     return (
         <div data-testid="footer-component">
             <div className='footer-component-container'>
-                <div className="row-1">
-                    <div className="col-1">
+                <div className="frow-1">
+                    <div className="fcol-1">
                         <div className="col-1-container">
                             <p className='footer-component-text-1'>UNIVERSITY OF THE PHILIPPINES - CEBU</p>
                             <p className='footer-component-text-2'>COLLEGE OF SCIENCE</p>
                             <p className='footer-component-text-3'>OFFICE OF THE COLLEGE SECRETARY</p>
                         </div>
                     </div>
-                    <div className="col-2">
+                    <div className="fcol-2">
                         <p className='footer-component-text-5'>Follow us:</p>
                         <div className="media-logo-container">
                             <img alt="footer-component-icon-1"
@@ -29,7 +29,7 @@ const Footer = () => {
                                 className="footer-component-icon-2"/>
                         </div>
                     </div>
-                    <div className="col-3">
+                    <div className="fcol-3">
                         <p className='footer-component-text-6'>Contact us:</p>
                         <div className="contact-container-1">
                             <img alt="footer-component-icon-3"
@@ -45,7 +45,7 @@ const Footer = () => {
                         </div>
                     </div>    
                 </div>
-                <div className="row-2">
+                <div className="frow-2">
                     <p className='footer-component-text-4'>© 2022 OCS-ARS. All rights reserved.</p>
                 </div>
             </div>

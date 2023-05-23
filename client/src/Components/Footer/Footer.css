@@ -9,7 +9,7 @@
     /* bottom: 0vh; */
 }
 
-.row-1 {
+.frow-1 {
     display: flex;
     justify-content: space-around;
     margin-left: 10vh;
