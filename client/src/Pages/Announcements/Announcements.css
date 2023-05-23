@@ -240,3 +240,11 @@
     height: 10vh;
     width: 100%
 }
+
+.header-announcements-signatory {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
