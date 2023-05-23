@@ -5,7 +5,7 @@ import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar';
 import './History.css';
-
+import Container from 'react-bootstrap/Container';
 import TableComponent from '../../Components/Table/Table';
 import dummyTableData from './dummyTableData';
 
@@ -20,30 +20,30 @@ const HistoryPage = ({children}) => {
             <div className="header-history">
                 <Header/>
             </div>
-            <div className='history-container'>
+            <Container>
+                <div className="tracking-title-container">
+                        <ReceiptLongOutlined className="history-icon" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
+                        <h1 className='tracking-title-text'>History Page</h1>
+                </div>
+                    
+                <div className="student-history-table-container">
+                    <TableComponent
+                        type = 'admin_history_table'
+                        headingColumns = {[
+                            "Date",
+                            "Transaction Name",
+                            "Transaction ID",
+                            "Status",
+                            "Action",
+                        ]}
+                        tableData = {dummyTableData}
+                    />
+                </div>
+            </Container>
 
-            <div className="tracking-title-container">
-                     <ReceiptLongOutlined className="history-icon" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
-                    <h1 className='tracking-title-text'>History Page</h1>
-            </div>
-                
-            <div className="student-history-table-container">
-                <TableComponent
-                    type = 'admin_history_table'
-                    headingColumns = {[
-                        "Date",
-                        "Transaction Name",
-                        "Transaction ID",
-                        "Status",
-                        "Action",
-                    ]}
-                    tableData = {dummyTableData}
-                />
-            </div>
-            </div>
-            {/* <div className="footer-history">
+            <div className="footer-history">
                 <Footer/>
-            </div> */}
+            </div>
         </div>
     )
 }

@@ -36,7 +36,9 @@ const AnnouncementPage = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <Header/>
+            <div className="header-admin-announcements">
+                <Header/>
+            </div>
             <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
