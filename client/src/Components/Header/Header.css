@@ -24,7 +24,7 @@
 
 .header-text-1{
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 5%;
     
     font-family: 'Poppins';
@@ -37,7 +37,7 @@
 
 .header-text-2{
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 29%;
     
     font-family: 'Poppins';
@@ -51,7 +51,7 @@
 
 .header-text-3{
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 55%;
     
     font-family: 'Fredoka';
@@ -69,9 +69,19 @@
     top: 0%;
 }
 
-@media screen and (max-width: 1620px) {
+@media screen and (max-width: 1500px) {
     .header-logo {
         opacity: 0
+    }
+
+    .header-text-1 {
+        left: 13%;
+    }
+    .header-text-2 {
+        left: 13%;
+    }
+    .header-text-3 {
+        left: 13%;
     }
 }
 
