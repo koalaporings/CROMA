@@ -14,7 +14,7 @@ import { fontSize } from '@mui/system';
 const Form7 = ({children}) => {
 
     const navigate = useNavigate();
-    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
+    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-3.1-Application-for-Transfer-from-Other-Schools-or-UP-Units.pdf';
     const [isOpen, setIsOpen] = useState(false);
 
     return(
