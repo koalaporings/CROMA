@@ -8,10 +8,10 @@ import AnnouncementTableComponent from '../../Components/Table/Announcement Tabl
 import { useState, useEffect } from 'react';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 
-
 import axios from 'axios'
 
 import './Announcements.css';
+import Container from 'react-bootstrap/esm/Container';
 
 const AnnouncementStudentPage = ({children}) => {
 
@@ -33,9 +33,10 @@ const AnnouncementStudentPage = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <Header/>
-
-            <div className='announcement-portal-container'>
+            <div className="header-announcements-student">
+                <Header/>
+            </div>
+            <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -48,11 +49,9 @@ const AnnouncementStudentPage = ({children}) => {
                         tableData = {announcementData}
                     />
                 </div>
-
-            </div>
-
+            </Container>
             <div className='footer-admin-announcement'>
-            <Footer/> 
+                <Footer/> 
             </div>
 
         </div>

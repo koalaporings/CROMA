@@ -9,9 +9,16 @@ form {
     font-size: 14px;
 }
 
+.header-form {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
 .form-title {
     text-align: left;
-    margin-top: 12vh;
+    /* margin-top: 12vh; */
     margin-bottom: 15px;
     font-family: 'Fredoka One';
     color: #7A1113; 

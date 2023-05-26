@@ -5,7 +5,7 @@ import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 import SignatoryTransactionTable from './Signatory Transaction Table';
 import './Signatory Landing.css';
-
+import Container from 'react-bootstrap/Container';
 import SignatoryAnnouncementTable from '../../Pages/Admin Portal/Announcement Table';;
 
 
@@ -18,12 +18,10 @@ const SignatoryLanding = ({children}) => {
             <div className="header-signatory">
                 <Header/>
             </div>
-
-            <div className='signatory-container'>
+            <Container>
                 <SignatoryAnnouncementTable/>
                 <SignatoryTransactionTable/>
-                
-            </div>
+            </Container>
 
             <div className="footer-signatory">
                 <Footer/>

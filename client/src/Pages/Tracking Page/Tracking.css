@@ -16,14 +16,15 @@
 }
 
 .container {
-    min-height: 75vh;
+    min-height: 76vh;
+    padding-bottom: 5px;
 }
 
 .footer-tracking {
-    display: flex;
+    /* display: flex;
     height: 15vh;
     width: 100%;
-    margin-top: 2%;
+    margin-top: 2%; */
 }
 
 

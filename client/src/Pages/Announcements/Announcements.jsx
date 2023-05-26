@@ -9,7 +9,7 @@ import announcementIcon from '../../Assets/announcement-icon.svg';
 import dummyTableData from '../Announcements/dummyTableData';
 import { useState, useEffect } from 'react';
 import AddAnnouncement from '../../Components/Modal/Add Announcement Modal';
-
+import Container from 'react-bootstrap/Container';
 
 
 import axios from 'axios'
@@ -36,9 +36,10 @@ const AnnouncementPage = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <Header/>
-
-            <div className='announcement-portal-container'>
+            <div className="header-admin-announcements">
+                <Header/>
+            </div>
+            <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -57,9 +58,8 @@ const AnnouncementPage = ({children}) => {
                         type = 'admin_announcement_table'
                         tableData = {announcementData}
                     />
-                </div>
-
-            </div>
+                </div>  
+            </Container>
             <div className='footer-admin-announcement'>
                 <Footer/> 
             </div>

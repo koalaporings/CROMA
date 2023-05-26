@@ -40,7 +40,7 @@
     width: 435px;
     height: 47px;
     padding-left: 12.5%;
-    padding-top: 7.5%;
+    padding-top: 95px;
     
     font-family: 'Fredoka One';
     font-style: normal;
@@ -76,7 +76,7 @@
 
 .title-text{
     display: flex;
-    margin-top: 3%;
+    /* margin-top: 3%; */
     padding-left: 12.5%;
     padding-top: 2%;
     padding-bottom: 0.5%;

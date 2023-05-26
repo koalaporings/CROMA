@@ -9,7 +9,7 @@ import AnnouncementTable from './Announcement Table';
 import './Admin Landing.css';
 import NavBar from '../../Components/Navigation Bar/NavBar.jsx';
 import TableComponent from '../../Components/Table/Table';
-
+import Container from 'react-bootstrap/Container';
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
 
@@ -110,8 +110,7 @@ const AdminLanding = ({children}) => {
             <div className="header-admin">
                 <Header/>
             </div>
-
-            <div className='admin-container'>
+            <Container>
                 {/* <p>Placeholder text</p> */}
                 {/* <div className='admin-announcements'>
                     <AnnouncementTable/>
@@ -158,7 +157,7 @@ const AdminLanding = ({children}) => {
                     />
                 </div>
                 {/* <OngoingTable/> */}
-            </div>
+            </Container>
 
             <div className="footer-admin">
                 <Footer/>

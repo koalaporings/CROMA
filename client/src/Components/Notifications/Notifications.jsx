@@ -52,8 +52,10 @@ function Notifications ({
     return (
         <div>
             <div className='notif-container'>
-                <div className="notif-logo"><NotificationsActiveOutlinedIcon sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/></div>
-                <div className="notif-title-text">Notifications</div>
+                <div className="notif-header-container">
+                    <div className="notif-logo"><NotificationsActiveOutlinedIcon sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/></div>
+                    <div className="notif-title-text">Notifications</div>
+                </div>
                 {length === 0 ?
                     <div className="no-notifs">There are no notifications.</div>
                     :
@@ -68,7 +70,9 @@ function Notifications ({
                     })}
                     </div>
                     }
-                <div className="notif-show-more-button" onClick={showMoreNavigate}>Show more</div>
+                <div className="notif-button-container">
+                    <div className="notif-show-more-button" onClick={showMoreNavigate}>Show more</div>
+                </div>
             </div>
         </div>
     )

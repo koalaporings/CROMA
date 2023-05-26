@@ -5,7 +5,7 @@
 .header-container {
     display: flex;
     position: fixed;
-    height: 10%;
+    height: 88px;
     width: 100%;
     background-color: white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -14,21 +14,22 @@
 
 .header-logo {
     position: absolute;
-    width: 5%;
+    width: auto;
     height: 97%;
     left: 8%;
     top: 1%;
+    object-fit: contain;
     
 }
 
 .header-text-1{
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 5%;
     
     font-family: 'Poppins';
     font-style: normal;
-    font-size: 2vh;
+    font-size: 1.2rem;
     font-weight: 500;
     /* identical to box height */
     color: #000000;
@@ -36,13 +37,13 @@
 
 .header-text-2{
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 29%;
     
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 2vh;    
+    font-size: 1.1rem;    
     
     color: #7A1113;
         
@@ -50,12 +51,12 @@
 
 .header-text-3{
     position: absolute;
-    left: 13%;
-    top: 50%;
+    left: 14%;
+    top: 55%;
     
     font-family: 'Fredoka';
     font-weight: 700;
-    font-size: 3.5vh;
+    font-size: 1rem;
     
     color: #FAAC1F;   
 }
@@ -66,4 +67,26 @@
     height: 100%;
     left: 25%;
     top: 0%;
+}
+
+@media screen and (max-width: 1500px) {
+    .header-logo {
+        opacity: 0
+    }
+
+    .header-text-1 {
+        left: 13%;
+    }
+    .header-text-2 {
+        left: 13%;
+    }
+    .header-text-3 {
+        left: 13%;
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .header-bg-1{
+        opacity: 0;
+    }
 }

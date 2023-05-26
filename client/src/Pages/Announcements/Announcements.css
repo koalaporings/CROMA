@@ -18,42 +18,62 @@
 }
 
 .footer-admin-announcement {
-    display: flex;
+    /* display: flex;
     margin-top: 1vh;
     height: 15vh;
+    width: 100% */
+}
+
+/* .announcement-portal-container {
+    height: 120vh;
+    background-color: white;
+} */
+.header-announcements-student {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
     width: 100%
 }
 
-.announcement-portal-container {
-    height: 120vh;
-    background-color: white;
-}
-
 .announcement-portal-header{
-    display: block;
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 435px;
+    height: 50px;
+    padding-left: 12%;
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+    /* position: relative;
     top: 13%;
     left: 12%;
-    height: 20vh;
-    width: 80%;
-    background-color: transparent;
+    /* height: 20vh; */
+    /* width: 80%;  */
+    /* background-color: transparent; */
 }
 
 .announcement-portal-icon{
-    position: absolute;
+    /* position: absolute;
     top: 3.5%;
-    left: 2%;
-    width: 3%;
+    left: 2%; */
+    /* width: 3%;
     height: auto;
-    color: #7A1113;
+    color: #7A1113; */
+    display: flex;
+    position: relative; 
+    align-items: left; 
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+    color: #7A1113; 
+    width: 30px;
 }
 
 .announcement-portal-text{
-    position: absolute;
+    /* position: absolute;
     top: 3.5%;
-    left: 5.5%;
+    left: 5.5%; */
     /* width:3%; */
-    height: auto;
+    /* height: auto;
     
     font-family: 'Fredoka One';
     font-style: normal;
@@ -62,7 +82,15 @@
     align-items: center;
     letter-spacing: 0.02em;
     
+    color: #7A1113; */
+
+    display: block;  
     color: #7A1113;
+    font-family: 'Fredoka One';
+    font-weight: 200;
+    font-size: 30px;
+    margin-left: 5px;
+    position: relative; 
       
 }
 
@@ -203,6 +231,28 @@
     padding-bottom: 3%;
     width: 80%;
     height: auto;
-    padding-top: 3%;
+    /* padding-top: 3%; */
 }
+
+.header-announcements-clerk {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
+.header-announcements-signatory {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
+.header-admin-announcements {
+    display: flex;
+    margin-bottom: 1vh;
+    height: 10vh;
+    width: 100%
+}
+
 

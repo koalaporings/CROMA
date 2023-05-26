@@ -7,7 +7,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 import AnnouncementTableComponent from '../../Components/Table/Announcement Table';
 import { useState, useEffect } from 'react';
 import announcementIcon from '../../Assets/announcement-icon.svg';
-
+import Container from 'react-bootstrap/Container';
 
 import axios from 'axios'
 
@@ -33,9 +33,11 @@ const AnnouncementSignatoryPage = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <Header/>
+            <div className="header-announcements-signatory">
+                <Header/>
+            </div>
 
-            <div className='announcement-portal-container'>
+            <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -48,8 +50,7 @@ const AnnouncementSignatoryPage = ({children}) => {
                         tableData = {announcementData}
                     />
                 </div>
-
-            </div>
+            </Container>
 
             <div className='footer-admin-announcement'>
             <Footer/> 

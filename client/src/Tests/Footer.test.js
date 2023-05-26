@@ -21,9 +21,9 @@ describe('Footer component', () => {
     expect(screen.getByText('loremipsum@up.edu.ph')).toBeInTheDocument();
 
     // Check for footer icon elements
-    expect(screen.getByAltText('footer-icon-1')).toBeInTheDocument();
-    expect(screen.getByAltText('footer-icon-2')).toBeInTheDocument();
-    expect(screen.getByAltText('footer-icon-3')).toBeInTheDocument();
-    expect(screen.getByAltText('footer-icon-4')).toBeInTheDocument();
+    expect(screen.getByAltText('footer-component-icon-1')).toBeInTheDocument();
+    expect(screen.getByAltText('footer-component-icon-2')).toBeInTheDocument();
+    expect(screen.getByAltText('footer-component-icon-3')).toBeInTheDocument();
+    expect(screen.getByAltText('footer-component-icon-4')).toBeInTheDocument();
   });
 });
