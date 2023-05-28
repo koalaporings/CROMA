@@ -9,6 +9,26 @@ import { fontSize } from '@mui/system';
 
 // Report of Grades
 const Form10 = ({children}) => {
+    const [price, setPrice] = useState(50);
+    const [formDetails, setFormDetails] = useState({
+        user_id: 4,
+        form_id: 3,
+        payment_proof: null,
+        remarks: null,
+        student_id: 1,
+        last_name: "",
+        first_name: "",
+        middle_initial: "",
+        student_number: "",
+        mobile_number: "",
+        year_level: "",
+        degree_program: "",
+        email: "",
+        academic_year: "",
+        semester: "",
+        num_copies: "",
+        purpose: "",
+    });
 
     return(
         <div>
