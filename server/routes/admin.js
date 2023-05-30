@@ -21,12 +21,23 @@ router.get('/ongoing_table', async (req, res) => {
       })
 })
 
+// router.put("/transaction_status/:id", async (req,res) => {
+//   const q = 'UPDATE transactions SET `transaction_status` = ? WHERE transaction_id = ?'
+//   const status = req.body.transaction_status
+//   const transactionId = req.params.id
+
+//   db.query(q, [status, transactionId], (err, results) => {
+//     if(err) console.error('ERROR', err);
+//     res.json(results)
+//   })
+// })
+
 router.put("/transaction_status/:id", async (req,res) => {
-  const q = 'UPDATE transactions SET `transaction_status` = ? WHERE transaction_id = ?'
+  const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ? WHERE transaction_id = ?'
   const status = req.body.transaction_status
   const transactionId = req.params.id
 
-  db.query(q, [status, transactionId], (err, results) => {
+  db.query(q, [status, 3, transactionId], (err, results) => {
     if(err) console.error('ERROR', err);
     res.json(results)
   })

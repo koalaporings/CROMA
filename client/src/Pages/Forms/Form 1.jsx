@@ -65,15 +65,9 @@ const Form1 = ({children}) => {
         const response = addFormInformation(formDetails);
         console.log(response)
         setIsOpen(false)
-        // navigateLanding()
-
-        // if(response.data && response.data.status === 200) {
-        //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
-        // }
-        // else {
-        //     toast.error("ACADEMIC INFORMATION IS ADDED UNSUCCESSFULLY!");
-        // }
+        navigateLanding()
     }
+
 
 
     return(
@@ -114,7 +108,13 @@ const Form1 = ({children}) => {
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
                             <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram" name="degree_program" onChange={(e) => handleChange(e)}/>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="bscs">BS Computer Science</option>
+                                <option value="bsbio">BS Biology</option>
+                                <option value="bsmath">BS Mathematics</option>
+                                <option value="bsstat">BS Statistics</option>
+                            </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>

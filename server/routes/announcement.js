@@ -18,7 +18,7 @@ router.post('/post', async (req, res) => {
   })
 
 router.get('/details', async (req,res) => {
-  const q = 'SELECT * FROM announcements'
+  const q = 'SELECT * FROM announcements ORDER BY announcement_datetime DESC'
 
   const details = await new Promise((resolve) => {
     db.query(q, (err, data) => {

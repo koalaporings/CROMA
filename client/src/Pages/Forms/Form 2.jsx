@@ -10,65 +10,64 @@ import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
 import { useNavigate } from "react-router-dom";
 
-
 // Certification of GWA
 const Form2 = ({children}) => {
-    const [price, setPrice] = useState(50);
-    const [formDetails, setFormDetails] = useState({
-        user_id: 4,
-        form_id: 2,
-        payment_proof: null,
-        remarks: null,
-        student_id: 1,
-        last_name: "",
-        first_name: "",
-        middle_initial: "",
-        student_number: "",
-        mobile_number: "",
-        year_level: "",
-        degree_program: "",
-        email: "",
-        academic_year: "",
-        semester: "",
-        num_copies: "",
-        purpose: "",
-    });
-
-
-    const navigate = useNavigate();
-
-    const navigateLanding = () => navigate('/student');
+        const [price, setPrice] = useState(50);
+        const [formDetails, setFormDetails] = useState({
+            user_id: 4,
+            form_id: 2,
+            payment_proof: null,
+            remarks: null,
+            student_id: 1,
+            last_name: "",
+            first_name: "",
+            middle_initial: "",
+            student_number: "",
+            mobile_number: "",
+            year_level: "",
+            degree_program: "",
+            email: "",
+            academic_year: "",
+            semester: "",
+            num_copies: "",
+            purpose: "",
+        });
     
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        console.log(value)
-
-        if (name==="num_copies"){
-            if (value){
-                setPrice(50*parseInt(value))
+        const navigate = useNavigate();
+    
+        const navigateLanding = () => navigate('/student');
+        
+        const handleChange = (e) => {
+            const { name, value } = e.target;
+            console.log(value)
+    
+            if (name==="num_copies"){
+                if (value){
+                    setPrice(50*parseInt(value))
+                }
+                else{
+                    setPrice(50)
+                }
             }
-            else{
-                setPrice(50)
-            }
+            setFormDetails(prevState => ({
+            ...prevState,
+            [name]: value
+            }));
+    
+            console.log(formDetails)
         }
-        setFormDetails(prevState => ({
-        ...prevState,
-        [name]: value
-        }));
-
-        console.log(formDetails)
-    }
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [isCancelOpen, setIsCancelOpen] = useState(false);
-
-    async function addInfo() {
-        const response = addFormInformation(formDetails);
-        console.log(response)
-        setIsOpen(false)
-    }
-
-
+    
+        const [isOpen, setIsOpen] = useState(false);
+        const [isCancelOpen, setIsCancelOpen] = useState(false);
+    
+        async function addInfo() {
+            // setIsClicked(true);
+            const response = addFormInformation(formDetails);
+            console.log(response)
+            setIsOpen(false)
+            navigateLanding()
+    
+        }
 
 
     return(
@@ -84,11 +83,11 @@ const Form2 = ({children}) => {
                 </div>
                 <form class="tcg-form" >
                     <h1 className='form-group-title'>A. Student Details</h1>
-                    <div class="form-row">
-                        {/* <div class="col-md-8 mb-2">     
-                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
+                    <div class="form-row">    
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentLastName">Last Name</label>
                             <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
-                        </div> */}
+                        </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
                             <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
@@ -99,7 +98,7 @@ const Form2 = ({children}) => {
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentNumber" name= "student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
@@ -109,7 +108,13 @@ const Form2 = ({children}) => {
                     <div class="form-row">
                     <div class="col-md-6 mb-2">
                             <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram" name="degree_program" onChange={(e) => handleChange(e)}/>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="bscs">BS Computer Science</option>
+                                <option value="bsbio">BS Biology</option>
+                                <option value="bsmath">BS Mathematics</option>
+                                <option value="bsstat">BS Statistics</option>
+                            </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
@@ -117,7 +122,7 @@ const Form2 = ({children}) => {
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)}/>
+                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
@@ -137,8 +142,8 @@ const Form2 = ({children}) => {
                     </div>
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
-                            <label for="purpose">Purpose for TCG</label>
-                            <select class="custom-select" id='purpose' name="purpose" onChange={(e) => handleChange(e)}>
+                            <label for="purpose">Purpose for Request</label>
+                            <select class="custom-select" id='purpose' onChange={(e) => handleChange(e)}>
                                 <option selected value=""> </option>
                                 <option value="scholarship">Scholarship</option>
                                 <option value="readmission">Readmission</option>
@@ -195,8 +200,7 @@ const Form2 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                </form>
-                <div className="form-buttons-container">
+                    <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
@@ -206,6 +210,7 @@ const Form2 = ({children}) => {
                         {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo}/>}
                     </div>
                 </div>
+                </form>
             </Container>
             <Footer/>
         </div>

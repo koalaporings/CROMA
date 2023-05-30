@@ -29,7 +29,7 @@ const SignatoryLanding = ({children}) => {
     useEffect (() =>{
         const fetchTable = async ()=>{
             try{
-                const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 3, {credentials: 'same-origin'})
+                const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 5, {credentials: 'same-origin'})
                 console.log(response.data)
                 setTableData(response.data)
                 SetCount(response.data.length)
@@ -72,7 +72,7 @@ const SignatoryLanding = ({children}) => {
 
     const approveTransaction = (data) => {
         approveUpdate(documentDetails.transaction_id)
-        const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: Test Signatory 1."
+        const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: Test Signatory 2."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
@@ -90,7 +90,7 @@ const SignatoryLanding = ({children}) => {
     async function addTracking(id) {
         const response = await axios.post("http://localhost:5000/tracking_api/update",{
             transaction_id: id,
-            tracking_status: "Your request has been approved by signatory: Test Signatory 1.",
+            tracking_status: "Your request has been approved by signatory: Test Signatory 2.",
         })
     }
 
@@ -104,7 +104,7 @@ const SignatoryLanding = ({children}) => {
 
             <div className='signatory-container'>
                 <div className="name-header-admin">
-                    Hello, Test Signatory 1!
+                    Hello, Test Signatory 2!
                 </div>
                 <div className="transaction-header">
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       
@@ -112,7 +112,7 @@ const SignatoryLanding = ({children}) => {
                 <div className='title-text-admin'>Waiting Approval</div>
                 <div className='signatory-transactions-table-container'>
                     <TableComponent
-                        type = 'signatory_transaction_table'
+                        type = 'signatory_transaction_table_1'
                         headingColumns = {[
                             "Date",
                             "Transaction Name",
