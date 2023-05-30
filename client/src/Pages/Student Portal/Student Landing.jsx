@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Column, Col } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
@@ -14,9 +13,6 @@ import PDFdocument from '../../Components/PDF/PDF Document 1';
 import './Student Landing.css';
 import ViewStudentModal from '../../Components/Modal/View Modal - Student';
 
-// DUMMY DATA
-import dummyTableData from './dummyTableData';
-import dummyFormData from './dummyTransactionList';
 
 const StudentLanding = ({children}) => {
     const userId = 4
@@ -47,7 +43,6 @@ const StudentLanding = ({children}) => {
     // GET STUDENT TRANSACTIONS
     useEffect (() =>{
     const fetchTable = async ()=>{
-        console.log("hehe")
         try{
             const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
             setTableData(response.data)
@@ -66,9 +61,7 @@ const StudentLanding = ({children}) => {
         const fetchNotifications = async ()=>{
             try{
             const response = await axios.get('http://localhost:5000/notification_api/get/' + 4, {credentials: 'same-origin'})
-            console.log(response.data)
             setNotifData(response.data)
-            console.log(notifData)
         }
         catch(err){
         }
@@ -77,13 +70,6 @@ const StudentLanding = ({children}) => {
         fetchNotifications()
         }, [])
 
-
-    if (formData.length === 0){
-        setFormData(dummyFormData)
-    }
-
-    console.log(formData)
-    console.log(tablesData)
 
     async function changeInfo(data1, data2, data3, data4, data5){
         setFormName(data1)
@@ -97,9 +83,8 @@ const StudentLanding = ({children}) => {
 
     const reqRedirect = () => {
         navigate('/student/request/'+formId)
-        console.log("o")
     }
-
+    
     const clickHandler = (data) => {
         viewDocumentDetails(data)
     }

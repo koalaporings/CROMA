@@ -7,6 +7,7 @@ import Login from './Pages/Login/Login.jsx';
 import AdminLanding from './Pages/Admin Portal/Admin Landing.jsx';
 import StudentLanding from './Pages/Student Portal/Student Landing.jsx';
 import SignatoryLanding from './Pages/Signatory Portal/Signatory Landing.jsx';
+import SignatoryLanding2 from './Pages/Signatory Portal/Signatory Landing 2.jsx';
 import ClerkLanding from './Pages/Clerk Portal/Clerk Landing.jsx';
 import AnnouncementPage from './Pages/Announcements/Announcements';
 import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
@@ -76,6 +77,10 @@ function App() {
             <Route 
               path="/signatory" 
               element={<SignatoryLanding/>}  
+            />
+            <Route 
+              path="/signatory/2" 
+              element={<SignatoryLanding2/>}  
             />
             <Route 
               path="/clerk" 
