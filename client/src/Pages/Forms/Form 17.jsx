@@ -17,6 +17,13 @@ const Form16 = ({children}) => {
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
     const [isOpen, setIsOpen] = useState(false);
 
+    const pdfHandler = async e => {
+        const file = e.target.files[0];
+        const formData = new FormData()
+        formData.append('pdf', file)
+        console.log(formData)
+    }
+
     return(
         <div>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> 
@@ -37,7 +44,7 @@ const Form16 = ({children}) => {
                     <div className="form-description-text">Upload the filled up request form here: </div>
                     <div className="upload">
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof"/>
+                            <input type="file" class="form-control-file" id="paymentProof" onChange={pdfHandler}/>
                         </div>
                     </div>
 

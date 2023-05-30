@@ -1,11 +1,14 @@
 const express = require('express');
 const request = require("supertest");
 
+
 const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const db = require('./database').databaseConnection;
+const path = require('path');
+const upload = require('./storage').uploadStorage;
 
 const adminRoute = require('./routes/admin')
 const clerkRoute = require('./routes/clerk')
@@ -20,6 +23,7 @@ const trackingRoute = require('./routes/tracking')
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }))
 app.use(cookieParser());
+app.use('/', express.static(path.join(__dirname, '/')));
 
 process.env.MY_SECRET = 'hello';
 
@@ -36,6 +40,32 @@ const authorization = (req, res, next) => {
     return res.sendStatus(403);
   }
 };
+
+app.post("/api/image", upload.single('pdf'),(req,res,err)=> {
+
+  const image = req.file.filename
+  const id = 1
+  const q = 'UPDATE images SET `image` = ? WHERE id = ?'
+  db.query(q, [image,id], (err,result)=> {
+    if(err) console.error('ERROR', err)
+    res.json({
+      data: result,
+      msg: 'Your image has been updated!'
+    })
+  })}
+)
+
+app.get('/api/image/get', (req,res) =>{
+  const id = 1
+  const q = 'SELECT * FROM images where id = ?'
+
+  db.query(q, id, (err,result) => {
+    if(err) console.error('ERROR', err)
+    res.send({
+      image: result[0].image
+    })
+  })
+})
 
 app.get("/logout", async (req, res) => {
   
