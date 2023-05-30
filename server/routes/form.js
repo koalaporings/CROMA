@@ -2,6 +2,7 @@ const { Router } = require('express');
 
 const router = Router();
 const db = require('../database').databaseConnection;
+const upload = require('../storage').uploadStorage;
 
 
 router.get('/view', async (req, res) => {
@@ -41,8 +42,41 @@ router.post('/new', async (req, res) => {
   res.json(req.body.form_name)
 })
 
+router.post("/transaction_made_upload", upload.single('pdf'),(req,res,err)=> {
+
+  const image = req.file.filename
+  const id = 1
+  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
+  const q2 = 'INSERT INTO pdf (`pdf_file`, `transaction_id`) VALUES ?'
+
+  let now = new Date()
+  let transaction_id = now.getYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString() + now.getHours().toString() + now.getMinutes().toString() + req.body.user_id.toString()
+  
+  const values = [
+    transaction_id,
+    req.body.user_id,
+    req.body.form_id,
+    form_values[0].form_name,
+    req.body.payment_proof,
+    "await_approval",
+    transaction_ETA,
+  ]
+  db.query(q,[values], (err, data) => {
+    if(err) console.error('ERROR', err);
+    res.json(transaction_id)
+  })
+
+  db.query(q2, [image,id], (err,result)=> {
+    if(err) console.error('ERROR', err)
+    res.json({
+      data: result,
+      msg: 'Your image has been updated!'
+    })
+  })}
+)
+
 router.post('/transaction_made', async (req,res) =>{
-  const q = 'INSERT INTO transactions (`user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
+  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
   var q2 = ''
   var info = ''
   if(req.body.form_id >= 0 && req.body.form_id <= 3){
@@ -179,13 +213,16 @@ router.post('/transaction_made', async (req,res) =>{
     })
 })
   let ts = Date.now() + (86400000 * form_values[0].form_duration)
+  let now = new Date()
   let date_time = new Date(ts)
   let date = ("0" + date_time.getDate()).slice(-2);
   let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
   let year = date_time.getFullYear();
+  let transaction_id = now.getYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString() + now.getHours().toString() + now.getMinutes().toString() + req.body.user_id.toString()
   const transaction_ETA = year + "-" + month + "-" + date + " " + date_time.getHours() + ":" + date_time.getMinutes() + ":" + date_time.getSeconds()
 
   const values = [
+    transaction_id,
     req.body.user_id,
     req.body.form_id,
     form_values[0].form_name,
@@ -197,7 +234,7 @@ router.post('/transaction_made', async (req,res) =>{
 
   db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
-    
+    res.json(transaction_id)
   })
 
   //This section was made to insert data into the foreign key tables.
