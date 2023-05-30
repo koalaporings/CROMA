@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from '@fortawesome/fontawesome-free';
 import {library} from "@fortawesome/fontawesome-svg-core";
 
 import { faChevronLeft, faChevronRight, faAnglesLeft, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 import "./Table Footer.css";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 library.add(faChevronLeft, faChevronRight, faAnglesLeft, faAnglesRight);
 
@@ -22,6 +20,7 @@ const TableFooter = ({
   flag,
   setFlag,
 }) => {
+
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
 
@@ -30,11 +29,27 @@ const TableFooter = ({
       setRowsPerPage(10)
       setFlag(1)
     }
+    else if (type === "signatory_transaction_table" && flag === 0){
+      setRowsPerPage(10)
+      setFlag(1)
+    }
+    else if (type === "signatory_transaction_table_1" && flag === 0){
+      setRowsPerPage(10)
+      setFlag(1)
+    }
   }
 
   setRows()
 
-  function prev() {
+  function navigateStart() {
+    if (range.length !== 0) {
+      setPage(range[0]);
+      setEndIndex(5);
+      setStartIndex(0);
+    }
+  }
+
+  function navigatePrevious() {
     var end = endIndex;
     var start = startIndex;
     if (startIndex > 0) {
@@ -43,7 +58,7 @@ const TableFooter = ({
     }
   }
 
-  function next() {
+  function navigateNext() {
     var end = endIndex;
     var start = startIndex;
     if (endIndex <= range.length - 1) {
@@ -52,15 +67,7 @@ const TableFooter = ({
     }
   }
 
-  function start() {
-    if (range.length !== 0) {
-      setPage(range[0]);
-      setEndIndex(5);
-      setStartIndex(0);
-    }
-  }
-
-  function end() {
+  function navigateLast() {
     if (range.length !== 0) {
       setPage(range.length);
       setEndIndex(range.length);
@@ -90,7 +97,8 @@ const TableFooter = ({
             <span>Rows per page: </span>
             <select
             className="rows-input"
-            onChange={(e) => setRowsPerPage(e.target.value)}>
+            onChange={(e) => setRowsPerPage(e.target.value)}
+            value={rowsPerPage}>
                 <option value={5}>5</option>
                 <option value={10}>10</option>
                 <option value={20}>20</option>
@@ -101,7 +109,7 @@ const TableFooter = ({
             </span>
         </div>
         <div className="pages-cont">
-            <button className="button navigateButton" onClick={() => start()}>
+            <button className="button navigateButton" onClick={() => navigateStart()}>
             <FontAwesomeIcon
                 icon={"angles-left"}
                 title={"Start"}
@@ -116,7 +124,7 @@ const TableFooter = ({
                 ? "disable button navigateButton"
                 : "button navigateButton"
             }
-            onClick={() => prev()}
+            onClick={() => navigatePrevious()}
             >
             <FontAwesomeIcon
                 icon={"chevron-left"}
@@ -143,7 +151,7 @@ const TableFooter = ({
                 ? "disable button navigateButton"
                 : "button navigateButton"
             }
-            onClick={() => next()}
+            onClick={() => navigateNext()}
             >
             <FontAwesomeIcon
                 icon="chevron-right"
@@ -153,7 +161,7 @@ const TableFooter = ({
                 className="next-icon"
             />
             </button>
-            <button className="button navigateButton" onClick={() => end()}>
+            <button className="button navigateButton" onClick={() => navigateLast()}>
             <FontAwesomeIcon
                 icon="angles-right"
                 alt={"previous"}
@@ -169,7 +177,7 @@ const TableFooter = ({
             value={page}
             onChange={(e) => setPageNav(e.target.value)}>
             <option value="" disabled>
-                page
+                
             </option>
             {range.map((el, index) => {
                 return (
@@ -181,17 +189,7 @@ const TableFooter = ({
             </select>
         </div>
     </div>
-  );
-};
-
-// TableFooter.propTypes = {
-//   range: propTypes.any,
-//   setPage: propTypes.any,
-//   page: propTypes.any,
-//   slice: propTypes.any,
-//   setRowsPerPage: propTypes.any,
-//   rowsPerPage: propTypes.number,
-//   type: propTypes.any,
-// };
+  )
+}
 
 export default TableFooter;

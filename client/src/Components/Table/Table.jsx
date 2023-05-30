@@ -169,6 +169,88 @@ function TableComponent ({
         )
     }
 
+    if (type === 'signatory_transaction_table'){
+        return(
+            <tr key={row.index} className="table-row-center">
+                
+                {/* {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                    </td>
+                )
+                
+                )} */}
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transaction_date.substring(0,10)}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.form_name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.degree_program}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    COS Secretary
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    <button className="action-button" onClick={() => action(row.transaction_id)}>
+                        View Details
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
+    if (type === 'signatory_transaction_table_1'){
+        return(
+            <tr key={row.index} className="table-row-center">
+                
+                {/* {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                    </td>
+                )
+                
+                )} */}
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transaction_date.substring(0,10)}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.form_name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.degree_program}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    COS Secretary, Test Signatory 1
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    <button className="action-button" onClick={() => action(row.transaction_id)}>
+                        View Details
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
     if (type === 'admin_history_table'){
         return(
             <tr key={row.index} className="table-row-center">
