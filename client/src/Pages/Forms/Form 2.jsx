@@ -11,7 +11,7 @@ import { addFormInformation } from './Forms API Call';
 import { useNavigate } from "react-router-dom";
 
 // Certification of GWA
-const Form1 = ({children}) => {
+const Form2 = ({children}) => {
         const [price, setPrice] = useState(50);
         const [formDetails, setFormDetails] = useState({
             user_id: 4,
