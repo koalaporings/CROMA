@@ -4,7 +4,7 @@ const router = Router();
 const db = require('../database').databaseConnection;
 
 router.get("/history/:id", async (req,res) => {
-    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ?'
+    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
     const userId = req.params.id
 
     const details = await new Promise((resolve) => {
@@ -35,7 +35,7 @@ router.get("/history/:id", async (req,res) => {
 })
 
 router.get('/get/:id', async(req,res) => {
-    const q = 'SELECT * FROM tracking WHERE transaction_id = ? ORDER BY tracking_datetime DESC'
+    const q = 'SELECT * FROM tracking WHERE transaction_id = ?'
     const track = req.params.id
 
     const details = await new Promise((resolve) => {
