@@ -66,14 +66,8 @@ const Form1 = ({children}) => {
         console.log(response)
         setIsOpen(false)
         navigateLanding()
-
-        // if(response.data && response.data.status === 200) {
-        //     toast.success("ACADEMIC INFORMATION IS SUCCESSFULLY ADDED!");
-        // }
-        // else {
-        //     toast.error("ACADEMIC INFORMATION IS ADDED UNSUCCESSFULLY!");
-        // }
     }
+
 
 
     return(

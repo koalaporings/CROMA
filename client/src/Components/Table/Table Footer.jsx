@@ -24,6 +24,7 @@ const TableFooter = ({
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
 
+  
   function setRows() {
     if (type === "student_tracking_table" && flag === 0){
       setRowsPerPage(10)

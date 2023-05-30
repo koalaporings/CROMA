@@ -214,13 +214,6 @@ function TableComponent ({
         return(
             <tr key={row.index} className="table-row-center">
                 
-                {/* {rowData.map((data,index) => (
-                    <td key={index} data-heading={data.key}>
-                        {data.val}
-                    </td>
-                )
-                
-                )} */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_date.substring(0,10)}
