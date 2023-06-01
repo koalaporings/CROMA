@@ -1,8 +1,15 @@
 const { Router } = require('express');
+const express = require('express')
 
 const router = Router();
 const db = require('../database').databaseConnection;
 const upload = require('../storage').uploadStorage;
+const path = require('path');
+const app = require('../server');
+
+router.use('/', express.static(path.join(__dirname, '/')));
+router.use(express.urlencoded({ extended: true }))
+router.use(express.json())
 
 
 router.get('/view', async (req, res) => {
@@ -41,47 +48,106 @@ router.post('/new', async (req, res) => {
   })
   res.json(req.body.form_name)
 })
-
-router.post("/transaction_made_upload", upload.single('pdf'),(req,res,err)=> {
-
+router.post('/upload_pdf', upload.single('pdf'), (req,res) => {
   const image = req.file.filename
-  const id = 1
-  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
-  const q2 = 'INSERT INTO pdf (`pdf_file`, `transaction_id`) VALUES ?'
+  const q2 = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
+  let now = new Date()
+  let months = ''
+  let dates = ''
+  let hour = ''
+  let minute = ''
+  let second = ''
+  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
+  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
+  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
+  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
+  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
+
+  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+
+  db.query(q2, [image,transaction_id], (err,result)=> {
+    if(err) console.error('ERROR', err)
+    res.json({
+      data: result,
+      msg: 'Your image has been updated!'
+    })
+})
+})
+
+router.post("/transaction_made_upload",async (req,res,err)=> {
+  //formdata.append("user_id", the user id)
+  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `transaction_ETA`) VALUES (?)'
+  const q3 = 'INSERT INTO transaction_info (`transaction_id`) VALUES ?'
 
   let now = new Date()
-  let transaction_id = now.getYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString() + now.getHours().toString() + now.getMinutes().toString() + req.body.user_id.toString()
-  
+  let months = ''
+  let dates = ''
+  let hour = ''
+  let minute = ''
+  let second = ''
+  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
+  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
+  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
+  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
+  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
+
+  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+  const formId = req.body.form_id
+
+  const form_values = await new Promise((resolve) => {
+    db.query("SELECT form_duration, form_name FROM forms WHERE form_id = ?", formId, (err, data) => {
+      if(err) console.error('ERROR', err);
+    resolve(data)
+    })
+})
+  let ts = Date.now() + (86400000 * form_values[0].form_duration)
+  let date_time = new Date(ts)
+  let date = ("0" + date_time.getDate()).slice(-2);
+  let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
+  let year = date_time.getFullYear();
+  const transaction_ETA = year + "-" + month + "-" + date + " " + date_time.getHours() + ":" + date_time.getMinutes() + ":" + date_time.getSeconds()
+
   const values = [
     transaction_id,
     req.body.user_id,
     req.body.form_id,
     form_values[0].form_name,
-    req.body.payment_proof,
     "await_approval",
     transaction_ETA,
   ]
   db.query(q,[values], (err, data) => {
     if(err) console.error('ERROR', err);
     res.json(transaction_id)
+  })  
+
+  db.query(q3,transaction_id, (err, data) => {
+      if(err) console.error('ERROR', err);
+      res.json(transaction_id)
+    }) 
   })
 
-  db.query(q2, [image,id], (err,result)=> {
-    if(err) console.error('ERROR', err)
-    res.json({
-      data: result,
-      msg: 'Your image has been updated!'
-    })
-  })}
-)
-
 router.post('/transaction_made', async (req,res) =>{
-  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `payment_proof`, `transaction_status`, `transaction_ETA`) VALUES (?)'
+  const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `transaction_ETA`) VALUES (?)'
   var q2 = ''
   var info = ''
+  let now = new Date()
+  let months = ''
+  let dates = ''
+  let hour = ''
+  let minute = ''
+  let second = ''
+  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
+  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
+  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
+  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
+  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
+
+  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+  console.log
   if(req.body.form_id >= 0 && req.body.form_id <= 3){
-    q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
+      transaction_id,
       req.body.last_name,
       req.body.first_name,
       req.body.middle_initial,
@@ -95,27 +161,32 @@ router.post('/transaction_made', async (req,res) =>{
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if((req.body.form_id >= 10 && req.body.form_id <= 13) || req.body.form_id == 15){ // Because Form 14 has a different way to handle names
+  } else if((req.body.form_id >= 4 && req.body.form_id <= 9) || req.body.form_id == 16 || req.body.form_id == 17){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`) VALUES (?)'
+    info = [
+      transaction_id,
+    ]
+  }else if((req.body.form_id >= 10 && req.body.form_id <= 13) || req.body.form_id == 15){ // Because Form 14 has a different way to handle names
 
     //NAME HANDLING FOR FORMS
-    var last_name, first_name, middle_initial
-    try{      
-      const result = req.body.student_name.split(/,\s*|,/);
-      [last_name, first_name, middle_initial] = result
-    }catch{
-      console.log('Form Field Error')
-    }
+    // var last_name, first_name, middle_initial
+    // try{      
+    //   const result = req.body.student_name.split(/,\s*|,/);
+    //   [last_name, first_name, middle_initial] = result
+    // }catch{
+    //   console.log('Form Field Error')
+    // }
 
     //FORMS DATA HANDLING
     if(req.body.form_id == 10 || req.body.form_id == 11){
-      q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
+      q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
       info = [
-        last_name,
-        first_name,
-        middle_initial,
+        transaction_id,
+        req.body.last_name,
+        req.body.first_name,
+        req.body.middle_initial,
         req.body.student_number,
         req.body.mobile_number,
-  
         req.body.degree_program,
         req.body.year_level,      
         req.body.email,
@@ -213,12 +284,10 @@ router.post('/transaction_made', async (req,res) =>{
     })
 })
   let ts = Date.now() + (86400000 * form_values[0].form_duration)
-  let now = new Date()
   let date_time = new Date(ts)
   let date = ("0" + date_time.getDate()).slice(-2);
   let month = ("0" + (date_time.getMonth() + 1)).slice(-2);
   let year = date_time.getFullYear();
-  let transaction_id = now.getYear().toString() + (now.getMonth()+1).toString() + now.getDate().toString() + now.getHours().toString() + now.getMinutes().toString() + req.body.user_id.toString()
   const transaction_ETA = year + "-" + month + "-" + date + " " + date_time.getHours() + ":" + date_time.getMinutes() + ":" + date_time.getSeconds()
 
   const values = [
@@ -226,7 +295,6 @@ router.post('/transaction_made', async (req,res) =>{
     req.body.user_id,
     req.body.form_id,
     form_values[0].form_name,
-    req.body.payment_proof,
     "await_approval",
     transaction_ETA,
   ]
@@ -305,10 +373,30 @@ router.post('/transaction_made', async (req,res) =>{
     if(err) console.error('ERROR', err);
   })
 
-  res.send()
 })
 
+router.post('/upload_image', upload.single('image'), (req, res) => {
+  const image = req.file.filename
+  const id = req.body.user_id
+  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
+  let now = new Date()
+  let months = ''
+  let dates = ''
+  let hour = ''
+  let minute = ''
+  let second = ''
+  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
+  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
+  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
+  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
+  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
+  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+
+  db.query(upload, [image,transaction_id], (err,result)=> { 
+    if(err) console.error('ERROR', err)
+  })
+})
 
 router.get('/request/get/:user_id', async (req, res) => {
   const q = 'SELECT * FROM students WHERE user_id = ?'

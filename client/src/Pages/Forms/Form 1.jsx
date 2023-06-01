@@ -6,17 +6,19 @@ import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
-import { fontSize } from '@mui/system';
+//import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
+import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
 
 // True Copy of Grades
 const Form1 = ({children}) => {
+
+    const [image, setImage] = useState()
     const [price, setPrice] = useState(50);
     const [formDetails, setFormDetails] = useState({
         user_id: 4,
         form_id: 1,
-        payment_proof: null,
         remarks: null,
         student_id: 1,
         last_name: "",
@@ -49,10 +51,12 @@ const Form1 = ({children}) => {
                 setPrice(50)
             }
         }
-        setFormDetails(prevState => ({
-        ...prevState,
-        [name]: value
-        }));
+            setFormDetails(prevState => ({
+                ...prevState,
+                [name]: value
+                }))
+        
+        ;
 
         console.log(formDetails)
     }
@@ -62,14 +66,20 @@ const Form1 = ({children}) => {
 
     async function addInfo() {
         // setIsClicked(true);
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('user_id', formDetails.user_id)
         const response = addFormInformation(formDetails);
-        console.log(response)
+        uploadImage(formData)
         setIsOpen(false)
         navigateLanding()
     }
 
-
-
+    const pdfHandler = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        setImage(file)
+    }
     return(
         <div>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> 
@@ -170,7 +180,7 @@ const Form1 = ({children}) => {
                         </div>
                         <div className="column-2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="file" class="form-control-file" id="paymentProof" name="image" accept="image/*" multiple={false} onChange={pdfHandler}/>
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,8 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
+import { uploadPdf } from "./Upload Pdf";
+import { addFormInformation } from "./Forms API Call";
 
 
 // Form 67a/67b
@@ -16,13 +18,33 @@ const Form16 = ({children}) => {
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
     const [isOpen, setIsOpen] = useState(false);
-
-    const pdfHandler = async e => {
-        const file = e.target.files[0];
-        const formData = new FormData()
-        formData.append('pdf', file)
-        console.log(formData)
-    }
+    const [pdf, setPdf] = useState()
+    const [formDetails, setFormDetails] = useState({
+            user_id: 4,
+            form_id: 17,
+        });
+    
+    
+        const navigateLanding = () => navigate('/student');     
+    
+        async function addInfo() {
+            // setIsClicked(true);
+            const formData = new FormData()
+            formData.append('pdf', pdf)
+            formData.append('user_id', formDetails.user_id)
+            const response = addFormInformation(formDetails);
+            uploadPdf(formData)
+            console.log(response)
+            setIsOpen(false)
+            navigateLanding()
+    
+        }
+    
+        const pdfHandler = (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            setPdf(file)
+        }
 
     return(
         <div>
@@ -44,7 +66,7 @@ const Form16 = ({children}) => {
                     <div className="form-description-text">Upload the filled up request form here: </div>
                     <div className="upload">
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof" onChange={pdfHandler}/>
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
                         </div>
                     </div>
 
@@ -58,17 +80,17 @@ const Form16 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
+                    </form>
                     <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                            {isOpen && <CancelModal setIsOpen={setIsOpen} />}
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Submit</button> 
-                            {isOpen && <SubmitModal setIsOpen={setIsOpen} />}
-                        </div>
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
-                </form>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
+                    </div> 
+                </div>
             </Container>
             <Footer/>
         </div>
