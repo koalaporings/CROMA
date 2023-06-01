@@ -14,7 +14,7 @@ import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
 import AnnouncementStudPage from './Pages/Announcements/Announcements Student';
 import AnnouncementClerkPage from './Pages/Announcements/Announcements Clerk';
 import AddAnnouncement from './Pages/Announcements/Add Announcement';
-import HistoryPage from './Pages/History/History Admin';
+import HistoryPage from './Pages/History/History';
 import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
@@ -49,6 +49,9 @@ import Form14 from './Pages/Forms/Form 14';
 import Form15 from './Pages/Forms/Form 15';
 import Form16 from './Pages/Forms/Form 16';
 import Form17 from './Pages/Forms/Form 17';
+import Form18 from './Pages/Forms/Form 18';
+import Form19 from './Pages/Forms/Form 19';
+import Form20 from './Pages/Forms/Form 20';
 
 function App() {
 
@@ -157,71 +160,100 @@ function App() {
             />
 
             <Route 
-              path="/student/request/4" 
+              // path="/student/request/4" 
+              path="/student/request/17" 
               element={<Form4/>}  
             />
 
             <Route 
-              path="/student/request/5" 
+              // path="/student/request/5" 
+              path="/student/request/14" 
               element={<Form5/>}  
             />
             <Route 
-              path="/student/request/6" 
+              // path="/student/request/6" 
+              path="/student/request/16" 
               element={<Form6/>}  
             />
             <Route 
-              path="/student/request/7" 
+              // path="/student/request/7" 
+              path="/student/request/10" 
               element={<Form7/>}  
             />
 
             <Route 
-              path="/student/request/8" 
+              // path="/student/request/8" 
+              path="/student/request/13" 
               element={<Form8/>}  
             />
 
             <Route 
-              path="/student/request/9" 
+              // path="/student/request/9" 
+              path="/student/request/4" 
               element={<Form9/>}  
             />
 
             <Route 
-              path="/student/request/10" 
+              // path="/student/request/10" 
+              path="/student/request/18" 
               element={<Form10/>}  
             />
 
             <Route 
-              path="/student/request/11" 
+              // path="/student/request/11" 
+              path="/student/request/20" 
               element={<Form11/>}  
             />
 
             <Route 
-              path="/student/request/12" 
+              // path="/student/request/12" 
+              path="/student/request/5" 
               element={<Form12/>}  
             />
 
             <Route 
-              path="/student/request/13" 
+              // path="/student/request/13" 
+              path="/student/request/7" 
               element={<Form13/>}  
             />
 
             <Route 
-              path="/student/request/14" 
+              // path="/student/request/14" 
+              path="/student/request/6" 
               element={<Form14/>}  
             />
 
             <Route 
-              path="/student/request/15" 
+              // path="/student/request/15" 
+              path="/student/request/12" 
               element={<Form15/>}  
             />
 
             <Route 
-              path="/student/request/16" 
+              // path="/student/request/16" 
+              path="/student/request/19" 
               element={<Form16/>}  
             />
   
             <Route 
-              path="/student/request/17" 
+              // path="/student/request/17" 
+              path="/student/request/21" 
               element={<Form17/>}  
+            />
+
+            <Route 
+              path="/student/request/8" 
+              element={<Form18/>}  
+            />
+
+          <Route 
+              path="/student/request/9" 
+              element={<Form19/>}  
+            />
+
+            <Route 
+              path="/student/request/11" 
+              element={<Form20/>}  
             />
 
 
