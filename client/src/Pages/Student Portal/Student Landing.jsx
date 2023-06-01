@@ -41,20 +41,31 @@ const StudentLanding = ({children}) => {
 
 
     // GET STUDENT TRANSACTIONS
-    useEffect (() =>{
-    const fetchTable = async ()=>{
-        try{
-            const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, {credentials: 'same-origin'})
+    // useEffect (() =>{
+    // const fetchTable = async (data)=>{
+    //     try{
+    //         const response = await axios.get('http://localhost:5000/student_api/transactions/' + 4, data)
+    //         setTableData(response.data)
+    //         setNumTransactions(response.data.length)
+    //     }
+    //     catch(err){
+
+    //     }
+    // }
+    // fetchTable()
+    // }, [])
+
+
+    async function fetchTable(data) {
+        console.log(typeof data)
+        const response = await axios.get("http://localhost:5000/student_api/transactions/" + 4 + "/" + data)
+        if (response){
+            
             setTableData(response.data)
             setNumTransactions(response.data.length)
-        }
-        catch(err){
-
+            console.log("heh")
         }
     }
-    fetchTable()
-    }, [])
-
 
     // GET NOTIFICATIONS
     useEffect (() =>{
@@ -89,17 +100,27 @@ const StudentLanding = ({children}) => {
         viewDocumentDetails(data)
     }
 
+    const handleFilterChange = (data) => {
+        const filter = data.target.value
+        fetchTable(filter)
+        console.log(tablesData)
+        console.log(data.target.value)
+    }
+
 
     async function viewDocumentDetails(id) {
         const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
         if (response){
             setDocumentDetails(response.data[0])
-            console.log(documentDetails)
             setIsOpen(true)
         }
     }
 
     const userFirstName = 'User'
+
+    useEffect(() => {
+        fetchTable()
+    }, [])
 
     return(
 
@@ -122,7 +143,13 @@ const StudentLanding = ({children}) => {
                 <div className='title-text'>
                     Current Transactions
                 </div>
-
+                <div className='filter-container'>
+                    Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChange(e)}>
+                        <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
+                        <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
+                    </select>
+                </div>
                 <div className="student-ongoing-table-container">
                     <TableComponent
                         type = 'student_ongoing_table'

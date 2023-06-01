@@ -28,25 +28,27 @@ const AdminLanding = ({children}) => {
     const [id, setID] = useState(0);
 
 
-    useEffect (() =>{
-        const fetchApproval = async ()=>{
-            const response = await axios.get('http://localhost:5000/admin_api/approval_table')
+        async function fetchApproval(data){
+            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data)
             console.log(response.data)
             setTableData1(response.data)
             setNumApprove(response.data.length)
         }
-        fetchApproval()
-        }, [])
 
-    useEffect (() =>{
-        const fetchApproval = async ()=>{
-            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table')
+        useEffect (() =>{
+            fetchApproval()
+            }, [])
+
+        async function fetchOngoing(data){
+            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data)
             console.log(response.data)
             setTableData2(response.data)
             setNumOngoing(response.data.length)
         }
-        fetchApproval()
-        }, [])
+
+        useEffect (() =>{
+            fetchOngoing()
+            }, [])
 
     async function viewDocumentDetails(id) {
         const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
@@ -103,6 +105,15 @@ const AdminLanding = ({children}) => {
         addNotif(documentDetails.user_id, msg)
     }
 
+    const handleFilterChange1 = (data) => {
+        const filter = data.target.value
+        fetchApproval(filter)
+    }
+
+    const handleFilterChange2 = (data) => {
+        const filter = data.target.value
+        fetchOngoing(filter)
+    }
     
     return(
         <div>
@@ -122,6 +133,13 @@ const AdminLanding = ({children}) => {
                     There are currently&nbsp;<span style={{fontWeight: '700'}}>{numApprove} transactions waiting to be approved</span>&nbsp; and <span style={{fontWeight: '700'}}>{numOngoing} ongoing transactions</span>.       
                 </div>
                 <div className='title-text-admin'>Waiting Approval</div>
+                <div className='filter-container'>
+                    Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChange1(e)}>
+                        <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
+                        <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
+                    </select>
+                </div>
                 <div className="admin-approve-requests-table-container">
                     <TableComponent
                         type = 'admin_transaction_req_table'
@@ -141,6 +159,13 @@ const AdminLanding = ({children}) => {
                 </div>
 
                 <div className='title-text-admin'>Ongoing Transactions</div>
+                <div className='filter-container'>
+                    Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChange2(e)}>
+                        <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
+                        <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
+                    </select>
+                </div>
                 <div className="admin-approve-requests-table-container">
                     <TableComponent
                         type = 'admin_transaction_req_table'

@@ -21,19 +21,12 @@ const TrackingPage = ({children}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [status, setStatus] = useState("");
 
-    useEffect (() =>{
-        const fetchTrackingTransactions = async ()=>{
-            try{
-            const response = await axios.get('http://localhost:5000/tracking_api/history/' + 4, {credentials: 'same-origin'})
+    
+        async function fetchTrackingTransactions(filter_info) {
+            const response = await axios.get('http://localhost:5000/tracking_api/history/' + 4 + "/" + filter_info)
             console.log(response.data)
             setTransactionData(response.data)
         }
-        catch(err){
-        }
-            
-        }
-        fetchTrackingTransactions()
-        }, [])
 
         async function getTrackingDetails(id) {
             console.log(id)
@@ -59,6 +52,15 @@ const TrackingPage = ({children}) => {
             viewTransactionDetails(id)
         }
 
+        const handleFilterChange = (data) => {
+            const filter = data.target.value
+            fetchTrackingTransactions(filter)
+        }
+
+        useEffect (() =>{
+            fetchTrackingTransactions()
+            }, [])
+    
     return(
         <div>
             <NavBar/>
@@ -71,6 +73,13 @@ const TrackingPage = ({children}) => {
                 <div className="tracking-title-container">
                     <SearchOutlinedIcon className="leche" sx={{ fontSize: "40px" }} style={{color: '#7A1113'}}/>
                     <h1 className='tracking-title-text'>Tracking Page</h1>
+                </div>
+                <div className='filter-container'>
+                    Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChange(e)}>
+                        <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
+                        <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
+                    </select>
                 </div>
                 <div className="student-tracking-table-container">
                     <TableComponent
