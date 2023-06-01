@@ -35,7 +35,7 @@ router.get("/history/:id", async (req,res) => {
 })
 
 router.get('/get/:id', async(req,res) => {
-    const q = 'SELECT * FROM tracking WHERE transaction_id = ?'
+    const q = 'SELECT * FROM tracking WHERE transaction_id = ? ORDER BY tracking_datetime DESC'
     const track = req.params.id
 
     const details = await new Promise((resolve) => {

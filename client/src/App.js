@@ -14,7 +14,7 @@ import AnnouncementSigPage from './Pages/Announcements/Announcements Signatory';
 import AnnouncementStudPage from './Pages/Announcements/Announcements Student';
 import AnnouncementClerkPage from './Pages/Announcements/Announcements Clerk';
 import AddAnnouncement from './Pages/Announcements/Add Announcement';
-import HistoryPage from './Pages/History/History';
+import HistoryPage from './Pages/History/History Admin';
 import TrackingPage from './Pages/Tracking Page/Tracking';
 import Add from './Pages/dbPage/Add.jsx';
 import Update from './Pages/dbPage/Update.jsx';
@@ -87,7 +87,7 @@ function App() {
               element={<ClerkLanding/>}  
             />
             <Route 
-              path="/announcements" 
+              path="/admin/announcements" 
               element={<AnnouncementPage/>}  
             />
             {/* TEMPORARY ONLY WHILE NO API YET*/}
@@ -104,7 +104,7 @@ function App() {
               element={<AnnouncementClerkPage/>}  
             />
             <Route 
-              path="/announcements/add" 
+              path="/admin/announcements/add" 
               element={<AddAnnouncement/>}  
             />
             <Route 
@@ -125,11 +125,11 @@ function App() {
             />
 
             <Route 
-              path="/history" 
+              path="/admin/history" 
               element={<HistoryPage/>}  
             />
             <Route 
-              path="/tracking" 
+              path="/student/tracking" 
               element={<TrackingPage/>}  
             />
             <Route 
