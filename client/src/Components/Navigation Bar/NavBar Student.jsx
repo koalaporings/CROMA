@@ -39,7 +39,7 @@ const Sidebar = ({ children }) => {
       icon: <HomeOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
-      path: "/tracking",
+      path: "/student/tracking",
       name: "Tracking",
       icon: <Search  sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },

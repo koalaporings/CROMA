@@ -107,13 +107,13 @@ const Form1 = ({children}) => {
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
-                            <label for="degreeProgram">Degree Program</label>
+                        <label for="degreeProgram">Degree Program</label>
                             <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
                                 <option selected value=""> </option>
-                                <option value="bscs">BS Computer Science</option>
-                                <option value="bsbio">BS Biology</option>
-                                <option value="bsmath">BS Mathematics</option>
-                                <option value="bsstat">BS Statistics</option>
+                                <option value="BS Computer Science">BS Computer Science</option>
+                                <option value="BS Biology">BS Biology</option>
+                                <option value="BS Mathematics">BS Mathematics</option>
+                                <option value="BS Statistics">BS Statistics</option>
                             </select>
                         </div>
                         <div class="col-md-2 mb-2">
