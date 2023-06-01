@@ -1,42 +1,37 @@
-import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import { ReceiptLongOutlined } from "@mui/icons-material";
-import Container from 'react-bootstrap/Container';
+import {useNavigate} from 'react-router-dom';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
-import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import { useEffect } from "react";
-import axios from "axios";
-
-// import "./Modal.css";
-// import Modal from './Modal.jsx';
-
+import NavBar from '../../Components/Navigation Bar/NavBar';
+import './History.css';
+import Container from 'react-bootstrap/Container';
 import TableComponent from '../../Components/Table/Table';
 
-import dummyTableData from './dummyTableData';
-import './History.css';
 
 
 
-
-const StudentHistoryPage = ({children}) => {
+const HistoryPage = ({children}) => {
     const [tableData, setTableData] = useState([]);
     const [numTransactions, setNumTransactions] = useState(0);
 
-        async function fetchTable(filter_info) {
-            const response = await axios.get('http://localhost:5000/student_api/transaction_history/' + 4 + "/" + filter_info)
-            setTableData(response.data)
-            setNumTransactions(response.data.length)
-        }
-    
-        const handleFilterChange = (data) => {
-            const filter = data.target.value
-            fetchTable(filter)
-        }
+    async function fetchTable(filter_info) {
+        const response = await axios.get('http://localhost:5000/admin_api/history_table/' + filter_info)
+        setTableData(response.data)
+        setNumTransactions(response.data.length)
+    }
 
-        useEffect (() =>{
-            fetchTable()
-            }, [])
+    const handleFilterChange = (data) => {
+        const filter = data.target.value
+        fetchTable(filter)
+    }
+
+    useEffect (() =>{
+        fetchTable()
+        }, [])
 
     return(
 
@@ -60,14 +55,15 @@ const StudentHistoryPage = ({children}) => {
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
                     </select>
                 </div>
+
             <div className="student-history-table-container">
                 <TableComponent
-                    type = 'student_history_table'
+                    type = 'admin_history_table'
                     headingColumns = {[
                         "Date",
                         "Transaction Name",
                         "Transaction ID",
-                        "Status",
+                        "Student Name",
                         "Action",
                     ]}
                     tableData = {tableData}
@@ -87,4 +83,4 @@ const StudentHistoryPage = ({children}) => {
     )
 }
 
-export default StudentHistoryPage;
+export default HistoryPage;

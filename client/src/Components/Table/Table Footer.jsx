@@ -38,6 +38,14 @@ const TableFooter = ({
       setRowsPerPage(10)
       setFlag(1)
     }
+    else if (type === "student_history_table" && flag === 0){
+      setRowsPerPage(10)
+      setFlag(1)
+    }
+    else if (type === "admin_history_table" && flag === 0){
+      setRowsPerPage(10)
+      setFlag(1)
+    }
   }
 
   setRows()

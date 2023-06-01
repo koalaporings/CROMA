@@ -135,28 +135,21 @@ function TableComponent ({
     if (type === 'student_history_table'){
         return(
             <tr key={row.index} className="table-row-center">
-                {/* {rowData.map((data,index) => (
-                    <td key={index} data-heading={data.key}>
-                        {data.val}
-                    </td>
-                )
-                
-                )} */}
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.date}
+                    {row.transaction_date.substring(0,10)}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionName}
+                    {row.form_name}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionID}
+                    {row.transaction_id}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionStatus}
+                    {row.transaction_status.charAt(0).toUpperCase() + row.transaction_status.slice(1)}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
@@ -256,19 +249,19 @@ function TableComponent ({
                 )} */}
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.date}
+                    {row.transaction_date.substring(0,10)}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionName}
+                    {row.form_name}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionID}
+                    {row.transaction_id}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionStatus}
+                    {row.requester_name}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
