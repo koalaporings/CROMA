@@ -8,44 +8,12 @@ function Notifications ({
     notifsData
 }) {
 
-    console.log(notifsData)
     const navigate = useNavigate();
     const showMoreNavigate = () => navigate('/notifications');
     const [notifDate, setNotifDate] = useState("");
     const [notifTime, setNotifTime] = useState("");
 
-    // const dummyNotifs = [
-    //     {
-    //         notif_id: 1,
-    //         notif_text: "This is a notification. Notification #1.",
-    //         notif_date: "3/22/2023",
-    //         notif_time: "9:00 PM"
-    //     },
-    //     {
-    //         notif_id: 2,
-    //         notif_text: "This is a notification. Notification #2.",
-    //         notif_date: "3/23/2023",
-    //         notif_time: "9:30 AM"
-    //     },
-    //     {
-    //         notif_id: 3,
-    //         notif_text: "This is a notification. Notification #3.",
-    //         notif_date: "3/24/2023",
-    //         notif_time: "11:00 PM"
-    //     },
-    //     {
-    //         notif_id: 4,
-    //         notif_text: "This is a notification. Notification #4.",
-    //         notif_date: "3/25/2023",
-    //         notif_time: "9:40 PM"
-    //     },
-    //     {
-    //         notif_id: 5,
-    //         notif_text: "This is a notification. Notification #5. “Request for True Copy of Grades (TCG)” has been approved by OCS.",
-    //         notif_date: "3/26/2023",
-    //         notif_time: "10:00 AM"
-    //     },
-    // ]
+
 
     const length = notifsData.length
 
