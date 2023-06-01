@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { cookieJwtAuth } = require('../middleware/cookieJwtAuth')
 const jwt = require('jsonwebtoken');
 
 const router = Router();
