@@ -9,10 +9,14 @@ function parseJwt (token) {
   return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
 }
 
-router.get("/transactions/:user_id", async (req,res) => {
-    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date DESC'
+router.get("/transactions/:user_id/:filter_info", async (req,res) => {
+  let q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date DESC'
+    if(req.params.filter_info == 'dsc'){
+      q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date DESC'
+    } else if(req.params.filter_info == 'asc'){
+      q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date ASC'
+    }
     const userId = req.params.user_id
-
     db.query(q, userId, (err, results) => {
       if(err) console.error('ERROR', err);
       res.json(results)
@@ -20,15 +24,19 @@ router.get("/transactions/:user_id", async (req,res) => {
     
 })
 
-router.get("/transaction_history/:user_id", async (req,res) => {
-  const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "completed" ORDER BY transaction_date DESC'
-  const userId = req.params.user_id
-
-  db.query(q, userId, (err, results) => {
-    if(err) console.error('ERROR', err);
-    res.json(results)
-  })
-  
+router.get("/transaction_history/:user_id/:filter_info", async (req,res) => {
+  let q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "completed" ORDER BY transaction_date DESC'
+    if(req.params.filter_info == 'dsc'){
+      q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "completed" ORDER BY transaction_date DESC'
+    } else if(req.params.filter_info == 'asc'){
+      q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "completed" ORDER BY transaction_date ASC'
+    }
+    const userId = req.params.user_id
+    db.query(q, userId, (err, results) => {
+      if(err) console.error('ERROR', err);
+      res.json(results)
+    })
+    
 })
 
 router.get("/transaction_details/:id", async (req,res) => {

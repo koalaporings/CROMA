@@ -1,10 +1,16 @@
+const e = require('express');
 const { Router } = require('express');
 
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get('/approval_table', async (req, res) => {
-  const q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?'
+router.get('/approval_table/:filter_info', async (req, res) => {
+  let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  if (req.params.filter_info == "dsc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  } else if (req.params.filter_info == "asc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'
+  }
   const status = "await_approval"
     db.query(q, status, (err, results) => {
       if(err) console.error('ERROR', err);
@@ -12,8 +18,13 @@ router.get('/approval_table', async (req, res) => {
       })
 })
 
-router.get('/ongoing_table', async (req, res) => {
-  const q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?'
+router.get('/ongoing_table/:filter_info', async (req, res) => {
+  let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  if (req.params.filter_info == "dsc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  } else if (req.params.filter_info == "asc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'  
+  }
   const status = "ongoing"
     db.query(q, status, (err, results) => {
       if(err) console.error('ERROR', err);
@@ -21,8 +32,13 @@ router.get('/ongoing_table', async (req, res) => {
       })
 })
 
-router.get('/history_table', async (req, res) => {
-  const q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?'
+router.get('/history_table/:filter_info', async (req, res) => {
+  let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  if (req.params.filter_info == "dsc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+  } else if (req.params.filter_info == "asc") {
+    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'
+  }
   const status = "completed"
     db.query(q, status, (err, results) => {
       if(err) console.error('ERROR', err);

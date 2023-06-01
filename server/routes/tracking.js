@@ -3,8 +3,13 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get("/history/:id", async (req,res) => {
-    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
+router.get("/history/:id/:filter_info", async (req,res) => {
+    let q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
+    if (req.params.filter_info == "dsc"){
+        q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
+    } else if (req.params.filter_info == "asc"){
+        q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date ASC'
+    }
     const userId = req.params.id
 
     const details = await new Promise((resolve) => {
