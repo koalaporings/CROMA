@@ -8,6 +8,8 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
+import { uploadPdf } from "./Upload Pdf";
+import { addFormInformation } from "./Forms API Call";
 
 
 // LOA
@@ -16,6 +18,34 @@ const Form8 = ({children}) => {
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2023/01/UPC-FORM-Application-for-Leave-of-Absence-20230127.pdf';
     const [isOpen, setIsOpen] = useState(false);
+    const [pdf, setPdf] = useState()
+    const [formDetails, setFormDetails] = useState({
+            user_id: 4,
+            form_id: 8,
+        });
+    
+    
+        const navigateLanding = () => navigate('/student');     
+    
+        async function addInfo() {
+            // setIsClicked(true);
+            const formData = new FormData()
+            formData.append('pdf', pdf)
+            formData.append('user_id', formDetails.user_id)
+            const response = addFormInformation(formDetails);
+            uploadPdf(formData)
+            console.log(response)
+            setIsOpen(false)
+            navigateLanding()
+    
+        }
+    
+        const pdfHandler = (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            setPdf(file)
+        }
+
 
     return(
         <div>
@@ -45,7 +75,7 @@ const Form8 = ({children}) => {
 
                     <div className="upload">
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof"/>
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
                         </div>
                     </div>
 
@@ -59,17 +89,17 @@ const Form8 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
+                    </form>
                     <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                            {isOpen && <CancelModal setIsOpen={setIsOpen} />}
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Submit</button> 
-                            {isOpen && <SubmitModal setIsOpen={setIsOpen} />}
-                        </div>
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
-                </form>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
+                    </div> 
+                </div> 
             </Container>
             <Footer/>
         </div>

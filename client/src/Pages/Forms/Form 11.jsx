@@ -1,14 +1,87 @@
 import React from 'react';
+import { useState } from 'react';
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
+import CancelModal from '../../Components/Modal/Cancel Modal';
+import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
 
+import { addFormInformation } from './Forms API Call';
+import { uploadImage } from "./Upload Image";
+import { useNavigate } from "react-router-dom";
 
-// Certification of Underload
-const Form11 = ({children}) => {
+
+// Report of Grades
+const Form10 = ({children}) => {
+    const [price, setPrice] = useState(50);
+    const [image, setImage] = useState()
+    const [formDetails, setFormDetails] = useState({
+        user_id: 4,
+        form_id: 11,
+        remarks: null,
+        student_id: 1,
+        last_name: "",
+        first_name: "",
+        middle_initial: "",
+        student_number: "",
+        mobile_number: "",
+        year_level: "",
+        degree_program: "",
+        email: "",
+        academic_year: "",
+        semester: "",
+        num_copies: "",
+        purpose: "",
+    });
+
+    const navigate = useNavigate();
+    
+    const navigateLanding = () => navigate('/student');
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(value)
+
+        if (name==="num_copies"){
+            if (value){
+                setPrice(50*parseInt(value))
+            }
+            else{
+                setPrice(150)
+            }
+        }
+        setFormDetails(prevState => ({
+        ...prevState,
+        [name]: value
+        }));
+
+        console.log(formDetails)
+    }
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [isCancelOpen, setIsCancelOpen] = useState(false);
+
+    async function addInfo() {
+        // setIsClicked(true);
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('user_id', formDetails.user_id)
+        const response = addFormInformation(formDetails);
+        uploadImage(formData)
+        console.log(response)
+        setIsOpen(false)
+        navigateLanding()
+
+    }
+
+    const pdfHandler = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        setImage(file)
+    }
 
     return(
         <div>
@@ -23,56 +96,71 @@ const Form11 = ({children}) => {
                 </div>
                 <form class="tcg-form" >
                     <h1 className='form-group-title'>A. Student Details</h1>
-                    <div class="form-row">
-                        <div class="col-md-8 mb-2">     
-                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
-                            <input type="text" class="form-control" id="studentName"    />
+                    <div class="form-row">    
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentLastName">Last Name</label>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentFirstName">First Name</label>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-2 mb-2">     
+                            <label for="studentMiddleInitial">Middle Initial</label>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber"/>
+                            <input type="text" class="form-control" id="studentNumber" name= "student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber"/>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
                             <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram"/>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="bscs">BS Computer Science</option>
+                                <option value="bsbio">BS Biology</option>
+                                <option value="bsmath">BS Mathematics</option>
+                                <option value="bsstat">BS Statistics</option>
+                            </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress"/>
+                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <div class="form-row">
                         <div class="col-md-4 mb-2">     
                             <label for="academicYear">Academic Year</label>
-                            <input type="text" class="form-control" id="academicYear"    />
+                            <input type="text" class="form-control" id="academicYear" name="academic_year" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="semester">Semester</label>
-                            <input type="text" class="form-control" id="semester"/>
+                            <input type="text" class="form-control" id="semester" name="semester" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="copies">Number of Copies</label>
-                            <input type="text" class="form-control" id="copies"/>
+                            <input type="text" class="form-control" id="copies" name="num_copies" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
                             <label for="purpose">Purpose for Request</label>
-                            <select class="custom-select" id='purpose'>
-                                <option selected value="1">Scholarship</option>
-                                <option value="2">Readmission</option>
-                                <option value="3">Shift</option>
+                            <select class="custom-select" id='purpose' onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="scholarship">Scholarship</option>
+                                <option value="readmission">Readmission</option>
+                                <option value="shift">Shift</option>
                             </select>
                         </div>
                     </div>
@@ -89,13 +177,13 @@ const Form11 = ({children}) => {
                     <h3 className='form-subtitle-2'>Total Amount to be Paid</h3>
                     <div className="request-price-container">
                         <div className="column-1">
-                            <div className='form-details-price'>₱150.00</div>
+                            <div className='form-details-price'>₱{price}.00</div>
                             <div className='form-details'>This is the total amount to be paid through Philippine Veterans Bank</div>
                             <div className='form-details'>(Payment may be made via online channels such as gcash, instapay, pesonet, bank transfers.)</div>
                         </div>
                         <div className="column-2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="file" class="form-control-file" id="paymentProof" name="image" accept="image/*" multiple={false} onChange={pdfHandler}/>
                             </div>
                         </div>
                     </div>
@@ -125,15 +213,17 @@ const Form11 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
+                    </form>
                     <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
                     </div>
-                </form>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo}/>}
+                    </div>
+                    </div>
             </Container>
             <Footer/>
         </div>
@@ -142,7 +232,7 @@ const Form11 = ({children}) => {
 
 
 
-export default Form11;
+export default Form10;
 
 
 

@@ -6,17 +6,18 @@ import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
-import { fontSize } from '@mui/system';
+//import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
+import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
 
 // Certification of GWA
 const Form2 = ({children}) => {
         const [price, setPrice] = useState(50);
+        const [image, setImage] = useState()
         const [formDetails, setFormDetails] = useState({
             user_id: 4,
             form_id: 2,
-            payment_proof: null,
             remarks: null,
             student_id: 1,
             last_name: "",
@@ -62,13 +63,22 @@ const Form2 = ({children}) => {
     
         async function addInfo() {
             // setIsClicked(true);
+            const formData = new FormData()
+            formData.append('image', image)
+            formData.append('user_id', formDetails.user_id)
             const response = addFormInformation(formDetails);
+            uploadImage(formData)
             console.log(response)
             setIsOpen(false)
             navigateLanding()
     
         }
-
+    
+        const pdfHandler = (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            setImage(file)
+        }
 
     return(
         <div>
@@ -170,7 +180,7 @@ const Form2 = ({children}) => {
                         </div>
                         <div className="column-2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="file" class="form-control-file" id="paymentProof" name="image" accept="image/*" multiple={false} onChange={pdfHandler}/>
                             </div>
                         </div>
                     </div>

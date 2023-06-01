@@ -8,16 +8,17 @@ import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
+import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
 
 
 // True Copy of Form 5
 const Form3 = ({children}) => {
     const [price, setPrice] = useState(50);
+    const [image, setImage] = useState()
     const [formDetails, setFormDetails] = useState({
         user_id: 4,
         form_id: 3,
-        payment_proof: null,
         remarks: null,
         student_id: 1,
         last_name: "",
@@ -62,9 +63,20 @@ const Form3 = ({children}) => {
     const [isCancelOpen, setIsCancelOpen] = useState(false);
 
     async function addInfo() {
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('user_id', formDetails.user_id)
         const response = addFormInformation(formDetails);
+        uploadImage(formData)
         console.log(response)
         setIsOpen(false)
+        navigateLanding()
+    }
+
+    const pdfHandler = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        setImage(file)
     }
 
 
@@ -168,7 +180,7 @@ const Form3 = ({children}) => {
                         </div>
                         <div className="column-2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="file" class="form-control-file" id="paymentProof" name="image" accept="image/*" multiple={false} onChange={pdfHandler}/>
                             </div>
                         </div>
                     </div>

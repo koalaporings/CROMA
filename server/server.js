@@ -1,10 +1,7 @@
 const express = require('express');
 const request = require("supertest");
 
-
 const app = express();
-const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const db = require('./database').databaseConnection;
 const path = require('path');
@@ -17,29 +14,11 @@ const studentRoute = require('./routes/student')
 const announcementRoute = require('./routes/announcement')
 const notificationRoute = require('./routes/notification')
 const formRoute = require('./routes/form')
-const loginRoute = require('./routes/login')
 const trackingRoute = require('./routes/tracking')
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }))
-app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, '/')));
-
-process.env.MY_SECRET = 'hello';
-
-const authorization = (req, res, next) => {
-  const token = req.cookies.token;
-  if (!token) {
-    return res.sendStatus(403);
-  }
-  try {
-    const data = jwt.verify(token, process.env.MY_SECRET);
-    req.user_id = data.user_id;
-    return next();
-  } catch {
-    return res.sendStatus(403);
-  }
-};
 
 app.post("/api/image", upload.single('pdf'),(req,res,err)=> {
 
@@ -148,7 +127,6 @@ app.use('/announcement_api', announcementRoute);
 app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
 app.use('/tracking_api', trackingRoute);
-app.use('/db/logintest/:user_id', loginRoute);
 
 app.listen(5000, () => {})
 console.log("Server started on port 5000")
