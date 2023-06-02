@@ -237,6 +237,47 @@ function TableComponent ({
         )
     }
 
+    if (type === 'clerk_table'){
+        return(
+            <tr key={row.index} className="table-row-center">
+                
+                {/* {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                    </td>
+                )
+                
+                )} */}
+                <td key={row.index}
+                    data-heading={row.index}>
+                    
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transaction_date.substring(0,10)}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.requester_name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.transaction_id}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.form_name}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    <button className="action-button" onClick={() => action(row.transaction_id)}>
+                        View Details
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
     if (type === 'admin_history_table'){
         return(
             <tr key={row.index} className="table-row-center">
@@ -286,19 +327,19 @@ function TableComponent ({
                 )} */}
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.date}
+                    {row.transaction_date.substring(0,10)}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionName}
+                    {row.form_name}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionID}
+                    {row.transaction_id}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    {row.transactionStatus}
+                    {row.requester_name}
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
