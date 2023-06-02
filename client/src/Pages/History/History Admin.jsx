@@ -19,7 +19,7 @@ const HistoryPage = ({children}) => {
     const [numTransactions, setNumTransactions] = useState(0);
 
     async function fetchTable(filter_info) {
-        const response = await axios.get('http://localhost:5000/admin_api/history_table/' + filter_info)
+        const response = await axios.get('http://localhost:5000/clerk_api/history_table/' + filter_info)
         setTableData(response.data)
         setNumTransactions(response.data.length)
     }
@@ -58,7 +58,7 @@ const HistoryPage = ({children}) => {
 
             <div className="student-history-table-container">
                 <TableComponent
-                    type = 'admin_history_table'
+                    type = 'clerk_history_table'
                     headingColumns = {[
                         "Date",
                         "Transaction Name",

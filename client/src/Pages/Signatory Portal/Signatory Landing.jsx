@@ -26,20 +26,16 @@ const SignatoryLanding = ({children}) => {
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
 
+
+    async function fetchTable (data){
+        const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 3, {credentials: 'same-origin'})
+        console.log(response.data)
+        setTableData(response.data)
+        SetCount(response.data.length)
+    }
+
     useEffect (() =>{
-        const fetchTable = async ()=>{
-            try{
-                const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 3, {credentials: 'same-origin'})
-                console.log(response.data)
-                setTableData(response.data)
-                SetCount(response.data.length)
-                // setNumTransactions(response.data.length)
-            }
-            catch(err){
-    
-            }
-        }
-        fetchTable()
+        fetchTable ()
         }, [])
     
     async function viewDocumentDetails(id) {
@@ -94,6 +90,12 @@ const SignatoryLanding = ({children}) => {
         })
     }
 
+    
+    const handleFilterChange = (data) => {
+        const filter = data.target.value
+        fetchTable(filter)
+    }
+
     return(
         <div>
             <NavBar/>
@@ -109,6 +111,13 @@ const SignatoryLanding = ({children}) => {
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       
                 </div>
                 <div className='title-text-admin'>Waiting Approval</div>
+                <div className='filter-container'>
+                    Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChange(e)}>
+                        <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
+                        <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
+                    </select>
+                </div>
                 <div className='signatory-transactions-table-container'>
                     <TableComponent
                         type = 'signatory_transaction_table'
