@@ -40,7 +40,8 @@
     font-family: 'Poppins';
     font-style: normal;
     display: block;
-    padding-left: 70%;
+    position: relative;
+    left: 30vw;
     width: auto;
     height: auto;
     align-content: end;

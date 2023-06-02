@@ -6,7 +6,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import './Signatory Landing.css';
-
+import Container from 'react-bootstrap/Container';
 import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
@@ -101,8 +101,7 @@ const SignatoryLanding = ({children}) => {
             <div className="header-signatory">
                 <Header/>
             </div>
-
-            <div className='signatory-container'>
+            <Container>
                 <div className="name-header-admin">
                     Hello, Test Signatory 1!
                 </div>
@@ -129,7 +128,7 @@ const SignatoryLanding = ({children}) => {
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                     
                 </div>
-            </div>
+            </Container>
 
             <div className="footer-signatory">
                 <Footer/>

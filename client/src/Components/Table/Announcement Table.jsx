@@ -131,6 +131,9 @@ function AnnouncementTableComponent ({
                                 <td>
                                     {data.val}
                                 </td>
+                                <td>
+                                    {data.val}
+                                </td>
                         </tr>
                     ))}
                 </tbody>

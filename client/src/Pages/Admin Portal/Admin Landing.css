@@ -30,7 +30,7 @@
 .name-header-admin{
     display: flex;
     padding-left: 12.5%;
-    padding-top: 2.5%;
+    padding-top: 0px;
     font-family: 'Fredoka One';
     font-size: 36px;
     align-items: center;
@@ -52,6 +52,12 @@
     letter-spacing: 0.02em;
     
     color: #7A1113; 
+}
+
+@media screen and (max-width: 1015px) {
+    .title-text-admin{
+        padding-top: 6%;
+    }
 }
 
 .footer-admin {

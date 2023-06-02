@@ -7,7 +7,7 @@ import DeleteModal from '../../Components/Modal/Delete Modal';
 import EditModal from '../../Components/Modal/Edit Announcement Modal';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 import axios from 'axios';
-
+import Container from 'react-bootstrap/Container';
 import './Announcements.css';
 
 const ViewAnnouncementPage = () => {
@@ -63,9 +63,10 @@ const ViewAnnouncementPage = () => {
     return (
         <div>
             <NavBar />
-            <Header />
-
-            <div className='announcement-portal-container'>
+            <div className="announcements-header">
+                <Header />
+            </div>
+            <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -88,8 +89,7 @@ const ViewAnnouncementPage = () => {
                 <div className="announcement-details-footer">
                     <a href="/">RETURN</a>
                 </div>
-
-            </div>
+            </Container>
             <div className='footer-admin-announcement'>
                 <Footer />
             </div>

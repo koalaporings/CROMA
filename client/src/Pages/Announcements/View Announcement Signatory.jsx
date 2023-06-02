@@ -5,7 +5,7 @@ import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Signatory';
 import announcementIcon from '../../Assets/announcement-icon.svg';
 import axios from 'axios';
-
+import Container from 'react-bootstrap/Container';
 import './Announcements.css';
 
 const ViewAnnouncementPage = () => {
@@ -31,9 +31,10 @@ const ViewAnnouncementPage = () => {
     return (
         <div>
             <NavBar />
-            <Header />
-
-            <div className='announcement-portal-container'>
+            <div className="announcements-header">
+                <Header />
+            </div>
+            <Container>
                 <div className="announcement-portal-header">
                     <img alt="announcement-portal-icon"
                         src={announcementIcon}
@@ -52,8 +53,8 @@ const ViewAnnouncementPage = () => {
                 <div className="announcement-details-footer">
                     <a href="/signatory/announcements">RETURN</a>
                 </div>
+            </Container>
 
-            </div>
             <div className='footer-admin-announcement'>
                 <Footer />
             </div>
