@@ -2,11 +2,17 @@ import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import PDFdocument from "./../PDF/PDF Document 1"
+import createForm from "../PDF/PDF Document";
 
 function ViewStudentModal({
   data,
   setIsOpen
 }){
+
+  // function onClick() {
+  //   download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
+  // }
+
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)}/>
@@ -20,11 +26,13 @@ function ViewStudentModal({
           </button>
           <div className="view-document-content">
             <PDFdocument
-              docData = {data}
+              docdata = {data}
             />
+            {/* <button onClick={onClick}>Download</button> */}
           </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
+              
             </div>
           </div> 
         </div>

@@ -13,6 +13,7 @@ import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
+import { Container } from 'react-bootstrap';
 
 
 
@@ -108,7 +109,7 @@ const ClerkLanding = ({children}) => {
                 <Header/>
             </div>
 
-            <div className='signatory-container'>
+            <Container>
                 <div className="name-header-admin">
                     Hello, Clerk!
                 </div>
@@ -142,7 +143,7 @@ const ClerkLanding = ({children}) => {
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                     
                 </div>
-            </div>
+            </Container>
 
 {/* 
             <Container>
