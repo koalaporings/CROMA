@@ -54,6 +54,12 @@
     color: #7A1113; 
 }
 
+@media screen and (max-width: 1015px) {
+    .title-text-admin{
+        padding-top: 6%;
+    }
+}
+
 .footer-admin {
     /* display: flex;
     margin-top: 2.5%;
