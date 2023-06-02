@@ -30,7 +30,7 @@
 .name-header-admin{
     display: flex;
     padding-left: 12.5%;
-    padding-top: 2.5%;
+    padding-top: 0px;
     font-family: 'Fredoka One';
     font-size: 36px;
     align-items: center;
