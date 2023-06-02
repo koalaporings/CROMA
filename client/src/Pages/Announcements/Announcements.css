@@ -39,7 +39,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 435px;
+    /* width: 435px; */
     height: 50px;
     padding-left: 12%;
     padding-top: 2%;
@@ -62,8 +62,8 @@
     display: flex;
     position: relative; 
     align-items: left; 
-    padding-top: 2%;
-    padding-bottom: 0.5%;
+    /* padding-top: 2%;
+    padding-bottom: 0.5%; */
     color: #7A1113; 
     width: 30px;
 }
@@ -147,18 +147,20 @@
 
 
 .announce-button{
-    display: block;
+    display: flex;
     position: relative;
     top: 0%;
-    left: 12%;
+    right: 12%;
     height: 4vh;
-    width: 80%;
+    /* width: 80%; */
+    justify-content: flex-end;
     background-color: transparent;    
+    margin-bottom: 3px;
 }
 
 
 .add {
-    position: absolute;
+    /* position: absolute; */
     font-size: 13px;
     font-family: 'Poppins';
     border-radius: 4px;
@@ -166,12 +168,12 @@
     color: white;
     min-width: 100px;
     min-height: 20px;
-    left: 91%;
-    top: 1%;
+    /* left: 91%;
+    top: 1%; */
 }
 
 .delete {
-    position: absolute;
+    /* position: absolute; */
     border: 2px solid #21523C;
     background-color: transparent;
     color: #21523C;
@@ -181,8 +183,9 @@
     font-family: 'Poppins';
     min-width: 100px;
     min-height: 20px;
-    left: 81%;
-    top: 1%;
+    margin-right: 5px;
+    /* left: 81%;
+    top: 1%; */
   }
 
 .add:hover {
