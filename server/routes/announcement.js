@@ -46,16 +46,17 @@ router.get('/details', async (req,res) => {
   res.json(values)
 })
 
-router.put('/edit/:announcement_id', async (req,res) => {
+router.put('/edit', async (req,res) => {
   const q = 'UPDATE announcements SET announcement_title = COALESCE(?, announcement_title), announcement_body = COALESCE(?, announcement_body), announcement_status = ? WHERE announcement_id = ?'
-  const id = req.params.announcement_id
+  const user_id = req.body.announcement_id
   const values = [
     req.body.announcement_title,
     req.body.announcement_body,
-    "edited"
+    "edited",
+    user_id
   ]
 
-  db.query(q, [...values, id], (err, data) => {
+  db.query(q, [...values], (err, data) => {
     if(err) console.error("ERROR", err);
     res.json(data)
   })
