@@ -1,37 +1,53 @@
 import React, { useState } from "react";
 import { RiCloseLine } from "react-icons/ri";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./Modal.css";
 
 const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
-  const [announcementDetails, setAnnouncementDetails] = useState({
-    announcement_title: announcement.announcement_title,
-    announcement_body: announcement.announcement_body,
+  const [editedDetails, setEditedDetails] = useState({
+    edited_announcement_title: announcement.announcement_title,
+    edited_announcement_body: announcement.announcement_body,
   });
-
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAnnouncementDetails((prevState) => ({
+
+    setEditedDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
   const updateAnnouncement = async () => {
+    console.log("Updating announcement.....");
     try {
-      await axios.put(
-        `http://localhost:5000/announcement_api/edit/${announcement.announcement_id}`,
-        { data: { ...announcementDetails } }
+      const { announcement_id } = announcement;
+      const { edited_announcement_title, edited_announcement_body } = editedDetails;
+
+      const response = await axios.put(
+        "http://localhost:5000/announcement_api/edit",
+        {
+          announcement_title: edited_announcement_title,
+          announcement_body: edited_announcement_body,
+          announcement_status: "edited",
+          announcement_id: announcement_id, 
+        }
       );
-      onClose();
-      onUpdate();
-      navigate('/announcements');
+
+      if (response.status === 200) {
+        onUpdate(editedDetails); // Pass the edited details to the onUpdate function
+      } else {
+        console.error("Failed to update announcement");
+      }
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSaveClick = () => {
+    updateAnnouncement();
+    window.location.reload(); // Reload the window after submitting
   };
 
   const handleClose = () => {
@@ -51,16 +67,16 @@ const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
             <div className="input-container">
               <input
                 type="text"
-                name="announcement_title"
-                value={announcementDetails.announcement_title}
+                name="edited_announcement_title"
+                value={editedDetails.edited_announcement_title}
                 onChange={handleInputChange}
                 placeholder="Title"
               />
             </div>
             <div className="input-container">
               <textarea
-                name="announcement_body"
-                value={announcementDetails.announcement_body}
+                name="edited_announcement_body"
+                value={editedDetails.edited_announcement_body}
                 onChange={handleInputChange}
                 placeholder="Description"
               />
@@ -68,7 +84,7 @@ const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
           </div>
           <div className="cancel-modalActions">
             <div className="cancel-modal-actionsContainer">
-              <button className="cancel-modal-button" onClick={updateAnnouncement}>
+              <button className="cancel-modal-button" onClick={handleSaveClick}>
                 SAVE
               </button>
             </div>
