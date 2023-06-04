@@ -64,6 +64,16 @@
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
   }
 
+  .admin-view-modal {
+    width: 1000px;
+    height: 600px;
+    background: white;
+    color: white;
+    z-index: 101;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  }
+
   .add-modal {
     width: 1000px;
     height: 550px;
@@ -110,7 +120,9 @@
   .view-document-content {
     margin-top: 2%;
     padding: 10px;
-    margin-bottom: 5%;
+    padding-bottom: 1px;
+    /* margin-bottom: 1%; */
+    height: 400px;
     font-size: 14px;
     color: #2c3e50;
     text-align: center;
@@ -222,6 +234,16 @@
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
 
+.reject-modal {
+  width: 1000px;
+  height: 250px;
+  background: white;
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+
 .submit-modal {
   width: 1000px;
   height: 200px;
@@ -330,7 +352,8 @@
   background-color: #08321F;
 }
 
-.approve-button {
+.approve-button,
+.reject-button {
   font-size: 20px;
   font-family: 'Poppins';
   border-radius: 15px;
@@ -339,12 +362,16 @@
   color: white;
   width: 25%;
   z-index: 1000;
-  
 }
 
-.approve-button:hover {
+.approve-button:hover,
+.reject-button:hover {
   cursor: pointer;
   background-color: #08321F;
+}
+
+.reject-button {
+  margin-right: 10px;
 }
 
 .modal-icon{
@@ -676,4 +703,40 @@ textarea:focus {
   margin-left: -90%;
   margin-top: 78px;
   border-radius: 3px;
+}
+
+.comment-input {
+  margin-top: 10px;
+}
+
+.comment-input textarea {
+  width: 90%;
+  height: 50px;
+  padding: 5px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* .confirm-button {
+  /* Your existing button styles */
+/* } */
+
+.textboxes-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px; 
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.textboxes-container input {
+  flex: 1;
+  margin-right: 10px;
+  width: calc(33.33% - 10px);
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
