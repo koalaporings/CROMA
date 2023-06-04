@@ -12,6 +12,8 @@ import TableComponent from '../../Components/Table/Table';
 import Container from 'react-bootstrap/Container';
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
+import ConfirmReject from '../../Components/Modal/Reject Confirmation';
+
 
 
 
@@ -25,6 +27,7 @@ const AdminLanding = ({children}) => {
     const [documentDetails, setDocumentDetails] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [isConfirmOpen, setConfirmOpen] = useState(false);
+    const [isRejectOpen, setRejectOpen] = useState(false);
     const [id, setID] = useState(0);
 
 
@@ -98,6 +101,10 @@ const AdminLanding = ({children}) => {
         setConfirmOpen(true)
     }
 
+    const openRejectionModal = () => {
+        setRejectOpen(true)
+    }
+
     const approveTransaction = (data) => {
         changeStatus(id)
         const msg = "Your request for " + documentDetails.form_name + " has been approved by the admin."
@@ -154,8 +161,10 @@ const AdminLanding = ({children}) => {
                         tableData = {tableData1}
                         action={approveClickHandler}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal}/>}
+                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
+                    {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} />} 
+                    {/* //action={approveTransaction} add this */}
                 </div>
 
                 <div className='title-text-admin'>Ongoing Transactions</div>
