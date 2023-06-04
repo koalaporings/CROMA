@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Modal.css";
 
-const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
+const EditAnnouncement = ({ announcementId, onClose, announcement, onUpdate }) => {
   const [editedDetails, setEditedDetails] = useState({
     edited_announcement_title: announcement.announcement_title,
     edited_announcement_body: announcement.announcement_body,
@@ -19,22 +19,25 @@ const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
     }));
   };
 
+  const navigate = useNavigate();
+
   const updateAnnouncement = async () => {
     console.log("Updating announcement.....");
     try {
-      const { announcement_id } = announcement;
+      const editedAnnouncementId = parseInt(announcementId, 10); // Convert announcementId to integer
+  
       const { edited_announcement_title, edited_announcement_body } = editedDetails;
-
+  
       const response = await axios.put(
         "http://localhost:5000/announcement_api/edit",
         {
           announcement_title: edited_announcement_title,
           announcement_body: edited_announcement_body,
           announcement_status: "edited",
-          announcement_id: announcement_id, 
+          announcement_id: editedAnnouncementId, // Pass the edited announcement ID as integer
         }
       );
-
+  
       if (response.status === 200) {
         onUpdate(editedDetails); // Pass the edited details to the onUpdate function
       } else {
@@ -44,10 +47,12 @@ const EditAnnouncement = ({ onClose, announcement, onUpdate }) => {
       console.error(error);
     }
   };
+  
 
   const handleSaveClick = () => {
     updateAnnouncement();
-    window.location.reload(); // Reload the window after submitting
+    navigate('/admin/announcements')
+    // window.location.reload(); // Reload the window after submitting
   };
 
   const handleClose = () => {
