@@ -98,6 +98,7 @@ const ViewAnnouncementPage = () => {
 
         {showEditModal && (
         <EditModal
+            announcementId={id}
             onClose={handleEditModalClose}
             announcement={announcementDetails}
             onUpdate={updateAnnouncementDetails}
