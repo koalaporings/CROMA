@@ -16,6 +16,7 @@ const announcementRoute = require('./routes/announcement')
 const notificationRoute = require('./routes/notification')
 const formRoute = require('./routes/form')
 const trackingRoute = require('./routes/tracking')
+const idRoute = require('./routes/id')
 
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }))
@@ -129,7 +130,7 @@ app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
 app.use('/tracking_api', trackingRoute);
 app.use('/login_api', loginRoute);
-
+app.use('/id_api', idRoute);
 app.listen(5000, () => {})
 console.log("Server started on port 5000")
 module.exports = app

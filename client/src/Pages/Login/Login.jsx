@@ -32,7 +32,7 @@ const Login = ({children}) => {
         if (userObject.hd !== 'up.edu.ph'){
           setUser({})
           localStorage.removeItem("token")
-          alert('Incorrect email doman. Try again with the correct email with the correct domain')
+          alert('Incorrect email domain. Try again with the correct email with the correct domain')
           google.accounts.id.prompt()
         }
         else{

@@ -27,6 +27,7 @@ import ViewAnnouncementPage from './Pages/Announcements/View Announcement';
 import ViewSignatoryAnnouncementPage from './Pages/Announcements/View Announcement Signatory';
 import ViewClerkAnnouncementPage from './Pages/Announcements/View Announcement Clerk';
 import ViewAdminAnnouncementPage from './Pages/Announcements/View Announcement Admin';
+import Register from './Pages/Register/Register';
 
 
 
@@ -70,6 +71,10 @@ function App() {
               element={<Login/>}  
             />
             <Route 
+              path="/register" 
+              element={<Register/>}     
+            />
+            <Route 
               path="/admin" 
               element={<AdminLanding/>}  
             />
@@ -93,7 +98,7 @@ function App() {
               path="/admin/announcements" 
               element={<AnnouncementPage/>}  
             />
-            {/* TEMPORARY ONLY WHILE NO API YET*/}
+            
             <Route 
               path="/signatory/announcements" 
               element={<AnnouncementSigPage/>}  
