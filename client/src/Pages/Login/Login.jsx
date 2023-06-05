@@ -1,6 +1,10 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+
 import './Login.css';
 import coslogo from '../../Assets/cos-logo.png';
 import loginBackground from '../../Assets/login-background.png';
@@ -19,9 +23,53 @@ const Login = ({children}) => {
 
     const navigate = useNavigate();
 
+    const [user, setUser] = useState({})
+    
+    function handleCallbackResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential)
+        localStorage.setItem("token",response.credential)
+        var userObject = jwt_decode(response.credential)
+        if (userObject.hd !== 'up.edu.ph'){
+          setUser({})
+          localStorage.removeItem("token")
+          alert('Incorrect email doman. Try again with the correct email with the correct domain')
+          google.accounts.id.prompt()
+        }
+        else{
+          signIn(userObject)
+          console.log(userObject.email)
+          setUser(userObject)
+          navigateLogin()
+        }
+      }
+
+      useEffect(() => {
+        /* global google */
+        
+        google.accounts.id.initialize({
+          client_id: '830758545948-5ubqnng9697rv0hkdcd310klbfbbgar3.apps.googleusercontent.com',
+          callback: handleCallbackResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("signInDiv"),
+          {theme: "outline", size: "large "}
+        )
+    
+        google.accounts.id.prompt()
+      },[])
+
+      const signIn = async (user) => {
+        console.log(user.email)
+        axios.post('http://localhost:5000/login_api/checkUser', {
+          email: user.email
+        }).then((response) => {
+          console.log(response)
+        })
+      }
+
     // TEMPORARY
 
-    const navigateLogin = () => navigate('/db/');
+    const navigateLogin = () => navigate('/student');
 
     return(
         <div>

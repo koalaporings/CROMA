@@ -8,6 +8,7 @@ const path = require('path');
 const upload = require('./storage').uploadStorage;
 
 const adminRoute = require('./routes/admin')
+const loginRoute = require('./routes/login')
 const clerkRoute = require('./routes/clerk')
 const signatoryRoute = require('./routes/signatory')
 const studentRoute = require('./routes/student')
@@ -127,6 +128,7 @@ app.use('/announcement_api', announcementRoute);
 app.use('/notification_api', notificationRoute);
 app.use('/form_api', formRoute);
 app.use('/tracking_api', trackingRoute);
+app.use('/login_api', loginRoute);
 
 app.listen(5000, () => {})
 console.log("Server started on port 5000")
