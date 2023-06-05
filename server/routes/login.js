@@ -30,6 +30,8 @@ router.post("/checkUser", async (req,res) => {
 })
 
 router.put("/updateDetails", (req,res) => {
+    const q = 'UPDATE student SET `student_number` = ?, `first_name` = ?, `last_name` = ?, `middle_initial` = ?, `year_level` = ?, `course` = ? WHERE user_id = ?'
+    const userId = req.body.user_id
     const values = [
         req.body.student_number,
         req.body.first_name,
@@ -38,6 +40,11 @@ router.put("/updateDetails", (req,res) => {
         req.body.year_level,
         req.body.course
     ]
+
+    db.query(q, [...values, userId], (err,data) => {
+        if(err) console.log("ERROR", err)
+    })
+    
 })
 
 
