@@ -161,7 +161,7 @@ router.post('/transaction_made', async (req,res) =>{
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if((req.body.form_id >= 4 && req.body.form_id <= 9) || req.body.form_id == 16 || req.body.form_id == 17){
+  } else if((req.body.form_id >= 4 && req.body.form_id <= 9) || req.body.form_id >= 16 && req.body.form_id <= 20){
     q2 = 'INSERT INTO transaction_info (`transaction_id`) VALUES (?)'
     info = [
       transaction_id,
