@@ -72,11 +72,22 @@ const AdminLanding = ({children}) => {
         }
     }
 
-    async function changeStatus(id) {
+    async function changeStatusToAccepted(id) {
         const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'ongoing'
         })
-        addTracking(id)
+        //addTracking(id)
+        if (response){
+            console.log(response)
+        }
+    }
+
+    async function changeStatusToRejected(id, comment) {
+        const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
+            transaction_status: 'rejected',
+            remarks: comment
+        })
+        //addTracking(id)
         if (response){
             console.log(response)
         }
@@ -106,8 +117,15 @@ const AdminLanding = ({children}) => {
     }
 
     const approveTransaction = (data) => {
-        changeStatus(id)
+        changeStatusToAccepted(id)
         const msg = "Your request for " + documentDetails.form_name + " has been approved by the admin."
+        window.location.reload()
+        addNotif(documentDetails.user_id, msg)
+    }
+    
+    const rejectTransaction = (data) => {
+        changeStatusToRejected(id,data)
+        const msg = "Your request for " + documentDetails.form_name + " has been rejected by the admin."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
@@ -163,7 +181,7 @@ const AdminLanding = ({children}) => {
                     />
                     {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
-                    {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} />} 
+                    {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} action={rejectTransaction}/>} 
                     {/* //action={approveTransaction} add this */}
                 </div>
 
