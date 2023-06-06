@@ -411,6 +411,16 @@ router.get('/request/get/:user_id', async (req, res) => {
   
 })
 
+router.get("/formRecipients/:transaction_id", (req,res) => {
+  const q = "SELECT form_recipients FROM transactions WHERE transaction_id = ?"
+  const id = req.params.transaction_id
+
+  db.query(q, id, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+})
+
 
 
 module.exports = router;

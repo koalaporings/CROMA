@@ -88,4 +88,13 @@ router.put("/approvetemp/:transaction_id", async(req,res) => {
   
   })
 
+router.get("/getSignatories", async (req,res) => {
+  const q = "SELECT * FROM signatory"
+
+  db.query(q,(err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+})
+
 module.exports = router;

@@ -47,5 +47,15 @@ router.put("/updateDetails", (req,res) => {
     
 })
 
+router.get("/getRole/:email", (req,res) => {
+    const q = "SELECT role FROM users WHERE email = ?"
+    const email = req.params.email
+
+    db.query(q, email, (err,data) => {
+        if(err) console.log("ERROR", err)
+        res.json(data)
+    })
+} )
+
 
 module.exports = router;
