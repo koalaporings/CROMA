@@ -27,18 +27,22 @@ const Form8 = ({children}) => {
     
         const navigateLanding = () => navigate('/student');     
     
-        async function addInfo() {
-            // setIsClicked(true);
-            const formData = new FormData()
-            formData.append('pdf', pdf)
-            formData.append('user_id', formDetails.user_id)
-            const response = addFormInformation(formDetails);
-            uploadPdf(formData)
-            console.log(response)
-            setIsOpen(false)
-            navigateLanding()
-    
-        }
+        async function addInfo (e) {
+            e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = addFormInformation(formDetails);
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
+          }
     
         const pdfHandler = (e) => {
             const file = e.target.files[0];
@@ -58,7 +62,7 @@ const Form8 = ({children}) => {
                 <div className="form-title">
                     Request for Leave of Absence 
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div className="form-description-text">
                             <p className='form-description-text -1'>A student who does not intend to enroll in a semester may apply for a leave of absence (LOA). This also applies to a student currently enrolled and who intends to withdraw his/her enrollment for the rest of the term. A student on leave of absence does not sever their ties with the University. A request for a leave of absence should be made in writing to the Dean. The request should state the reason for the leave and should specify the period. The leave may be approved for a period of one (1) year but may be renewed for at most another year.</p>

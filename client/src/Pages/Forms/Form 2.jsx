@@ -62,16 +62,17 @@ const Form2 = ({children}) => {
         const [isCancelOpen, setIsCancelOpen] = useState(false);
     
         async function addInfo() {
-            // setIsClicked(true);
-            const formData = new FormData()
-            formData.append('image', image)
-            formData.append('user_id', formDetails.user_id)
-            const response = addFormInformation(formDetails);
-            uploadImage(formData)
-            console.log(response)
-            setIsOpen(false)
-            navigateLanding()
+            if (!formValid()) {
+                return;
+            }
     
+            const formData = new FormData();
+            formData.append('image', image);
+            formData.append('user_id', formDetails.user_id);
+            const response = addFormInformation(formDetails);
+            uploadImage(formData);
+            setIsOpen(false);
+            navigateLanding();
         }
     
         const pdfHandler = (e) => {
@@ -79,6 +80,74 @@ const Form2 = ({children}) => {
             console.log(file)
             setImage(file)
         }
+
+        const formValid = () => {
+            const {
+                last_name,
+                first_name,
+                middle_initial,
+                student_number,
+                mobile_number,
+                year_level,
+                degree_program,
+                email,
+                academic_year,
+                semester,
+                num_copies,
+                purpose
+            } = formDetails;
+    
+            if (
+                !last_name ||
+                !first_name ||
+                !student_number ||
+                !mobile_number ||
+                !year_level ||
+                !degree_program ||
+                !email ||
+                !academic_year ||
+                !semester ||
+                !num_copies ||
+                !purpose
+            ) {
+                // Form validation failed
+                alert("Please fill in all fields");
+                return false;
+            }
+    
+            if (isNaN(student_number) || isNaN(mobile_number)) {
+                alert("Student number and mobile number must be integers.");
+                return;
+            }
+    
+            if (!image) {
+                // No file selected for upload
+                alert("Please select a file to upload");
+                return false;
+            }
+    
+            return true;
+        };
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            setIsOpen(true);
+        };
+
+        const handleCancel = (e) => {
+            e.preventDefault();
+            setIsCancelOpen(true);
+        };
+    
+        const handleCancelModalClose = () => {
+            setIsCancelOpen(false);
+        };
+    
+        const handleSubmitModalClose = () => {
+            setIsOpen(false);
+        };
+    
+    
 
     return(
         <div>
@@ -91,7 +160,7 @@ const Form2 = ({children}) => {
                 <div className="form-title">
                     Certification of GWA
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={handleSubmit}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">    
                         <div class="col-md-3 mb-2">     

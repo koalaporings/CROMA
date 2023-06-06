@@ -27,18 +27,22 @@ const Form9 = ({children}) => {
     
         const navigateLanding = () => navigate('/student');     
     
-        async function addInfo() {
-            // setIsClicked(true);
-            const formData = new FormData()
-            formData.append('pdf', pdf)
-            formData.append('user_id', formDetails.user_id)
-            const response = addFormInformation(formDetails);
-            uploadPdf(formData)
-            console.log(response)
-            setIsOpen(false)
-            navigateLanding()
-    
-        }
+        async function addInfo (e) {
+            e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = addFormInformation(formDetails);
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
+          }
     
         const pdfHandler = (e) => {
             const file = e.target.files[0];
@@ -57,7 +61,7 @@ const Form9 = ({children}) => {
                 <div className="form-title">
                     Request to Cross-Register (Incoming)
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div className="form-description-text">
                             <p className='form-description-text -1'>Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]</p>
