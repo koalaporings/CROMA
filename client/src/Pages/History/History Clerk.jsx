@@ -61,7 +61,7 @@ const ClerkHistoryPage = ({children}) => {
                     headingColumns = {[
                         "Date",
                         "Transaction Name",
-                        "Transaction ID",
+                        // "Transaction ID",
                         "Student Name",
                         "Action",
                     ]}

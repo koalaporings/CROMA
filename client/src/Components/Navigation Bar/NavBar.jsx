@@ -51,7 +51,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="sidebar-container">
-      <div style={{ width: isOpen ? "28vh" : "80px" }} className="sidebar">
+      <div style={{ width: isOpen ? "28vh" : "9vh" }} className="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
             <Box>

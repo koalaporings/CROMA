@@ -74,10 +74,10 @@ function TableComponent ({
                         data-heading={row.index}>
                         {row.form_name}
                     </td>
-                    <td key={row.index}
+                    {/* <td key={row.index}
                         data-heading={row.index}>
                         {row.transaction_id}
-                    </td>
+                    </td> */}
                     <td key={row.index}
                         data-heading={row.index}>
                         {row.transaction_status.charAt(0).toUpperCase() + row.transaction_status.slice(1)}
@@ -111,10 +111,10 @@ function TableComponent ({
                         data-heading={row.index}>
                         {row.form_name}
                     </td>
-                    <td key={row.index}
+                    {/* <td key={row.index}
                         data-heading={row.index}>
                         {row.transaction_id}
-                    </td>
+                    </td> */}
                     <td key={row.index}
                         data-heading={row.index}>
                         {row.transaction_status}
@@ -143,10 +143,10 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.form_name}
                 </td>
-                <td key={row.index}
+                {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_id}
-                </td>
+                </td> */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_status.charAt(0).toUpperCase() + row.transaction_status.slice(1)}
@@ -260,10 +260,10 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.requester_name}
                 </td>
-                <td key={row.index}
+                {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_id}
-                </td>
+                </td> */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.form_name}
@@ -296,10 +296,10 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.form_name}
                 </td>
-                <td key={row.index}
+                {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_id}
-                </td>
+                </td> */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.requester_name}
@@ -333,10 +333,10 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.form_name}
                 </td>
-                <td key={row.index}
+                {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_id}
-                </td>
+                </td> */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.requester_name}
@@ -375,10 +375,10 @@ function TableComponent ({
                     data-heading={row.index}>
                     {row.requester_name}
                 </td>
-                <td key={row.index}
+                {/* <td key={row.index}
                     data-heading={row.index}>
                     {row.transaction_id}
-                </td>
+                </td> */}
                 <td key={row.index}
                     data-heading={row.index}>
                     {row.form_name}

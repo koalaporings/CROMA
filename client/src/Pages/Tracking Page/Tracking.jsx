@@ -87,7 +87,7 @@ const TrackingPage = ({children}) => {
                         headingColumns = {[
                             "Date",
                             "Transaction Name",
-                            "Transaction ID",
+                            // "Transaction ID",
                             "Status",
                             "Action",
                         ]}
