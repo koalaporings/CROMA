@@ -1,293 +1,324 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Fredoka');
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-
-.login-background {
-    height: 100vh;
-    background-color: white;
+.login-body-container {
+    display: flex;
+    flex-direction: row;
+    /* height: 90vh; */
 }
 
 .login-bg-1 {
-    position: absolute;
-    height: 100vh;
     width: 60%;
-    top: 0vh;
-    left: 0vh;
 }
 
-.login-bg-2 {
-    position: absolute;
-    height: 70vh;
-    width: 100%;
-    top: 40vh;
-    left: 0vh;
-}
 
-.login-container {
-    background-color: white;
-    position: absolute;
-    height: 100vh;
+.login-content-container {
     width: 40%;
-    top: 0vh;
-    left: 60%;
+    background-image: url("../../Assets/login-background-1.png");
+    background-size: 100% 70%;
+    background-repeat: no-repeat;
+    background-position: 0% 130%;
 }
+
+
 
 .cos-logo {
     width: 30%;
     height: auto;
-    position: absolute;
-    left: 35%;
-    top: 2%;
 }
 
 .welcome-text-1 {
-    position: absolute;
-    left: 0vh;
-    top: 27%;
-    width: 100%;
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 500;
-    font-size: 4vh;
-    line-height: 5vh;
+    font-weight: 700;
+    font-size: 22px;
     text-align: center;
 }
 
 .welcome-text-2 {
-    position: absolute;
-    width: 100%;
-    left: 0vh;
-    top: 32%;
     font-family: 'Fredoka';
     font-style: normal;
     font-weight: 600;
-    font-size: 5.5vh;
-    line-height: 5vh;
+    font-size: 26px;
     text-align: center;
     color: #FAAC1F;
 }
 
-.login-box-top {
-    position: absolute;
-    width: 70%;
-    height: 10%;
-    left: 15%;
-    top: 42.5%;
-    border-top-left-radius: 2.5vh;
-    border-top-right-radius: 2.5vh;
+.login-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     background-color: #7A1113;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 
-.login-box-bottom {
-    position: absolute;
-    width: 70%;
-    height: 17.5%;
-    left: 15%;
-    top: 52.5%;
-    border-bottom-left-radius: 2.5vh;
-    border-bottom-right-radius: 2.5vh;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.login-top-1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.login-icon {
-    position: absolute;
-    width: 7.5%;
-    top: 15%;
-    height: auto;
-    left: 7.5%;
+.login-top-1 img {
+    margin: 2px;
+    height: 1.3vw;
 }
 
 .login-text-1 {
-    position: absolute;
-    top: 17.5%;
-    left: 17.5%;
-    font-family: 'Fredoka';
-    font-weight: bolder;
+    color: white;
+    font-family: "Poppins";
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .login-text-2 {
-    position: absolute;
-    width: 90%;
-    top: 60%;
-    left: 7.5%;
-    font-family: 'Poppins';
+    color: white;
+    font-family: "Poppins";
+    font-size: 16px;
+    text-align: left;
+}   
+
+.login-text-3 {
+    font-family: "Poppins";
+    font-size: 16px;
     text-align: left;
 }
 
+.login-bottom {
+    padding: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form-container-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-container-2 {
+    margin: 20px;
+    width: 70%;
+}
+
 .login-button-container {
-    position: absolute;
-    width: 50%;
+    min-width: 50%;
     height: 27.5%;
-    top: 17.5%;
-    left: 25%;
     background-color: #21523C;
     border: none;
     border-radius: 1vh;
+    font-size: 16px;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    margin-bottom: 1vw;
+    font-family: "Poppins";
 }
 
 .login-button-container:hover {
     background-color: #132e22;
     cursor: pointer;
+    
 }
 
-.login-button {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 17.5%;
-    left: 25%;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    border-radius: 1vh;
-}
-
-.login-button:hover {
-    cursor: pointer;
-}
 
 .login-button-icon {
-    position: absolute;
-    top: 12.5%;
-    left: 5%;
-    width: 13%;
-    height: auto;
+    width: auto;
+    height: 20px;
+    margin-right: 5px;
 }
 
-.login-button-text {
-    position: absolute;
-    top: 20%;
-    left: 22%;
-    font-size: 2.1vh;
-    color: white;
-}
 
-.footer-container1 {
+
+.footer-component-container {
+    padding-top: 5px;
     background-color: #262626;
-    position: absolute;
-    height: 15%;
+    /* position: absolute; */
+    /* height: fit-content; */
     width: 100%;
     /* bottom: 0vh; */
 }
 
-.login-footer-text-1 {
-    position: absolute;
-    top: 7.5%;
-    left: 1%;
+.frow-1 {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 0;
+}
+
+
+.footer-component-text-1 {
+/* position: absolute;
+top: 7.5%;
+left: 9%; */
+font-family: 'Poppins';
+text-align: left;
+font-size: 16px;
+color: white;
+}
+
+.footer-component-text-2 {
+    /* position: absolute;
+    top: 21%;
+    left: 9%; */
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2.8vh;
+    font-size: 16px;
     color: white;
 }
 
-.login-footer-text-2 {
-    position: absolute;
-    top: 27.5%;
-    left: 1%;
-    font-family: 'Poppins';
-    text-align: left;
-    font-size: 2.8vh;
-    color: white;
-}
-
-.login-footer-text-3 {
-    position: absolute;
-    top: 47.5%;
-    left: 1%;
+.footer-component-text-3 {
+    /* position: absolute;
+    top: 35%;
+    left: 9%; */
     font-family: 'Poppins';
     font-weight: 700;
     text-align: left;
-    font-size: 3.2vh;
+    font-size: 16px;
     color: #FAAC1F;
 }
 
-.footer-text-4 {
-    font-size: 1.5vh;
-    margin-top: 6%;
+.footer-component-text-4 {
+    font-size: 12px;
+    /* margin-top: 6%; */
     color: white;
     font-family: 'Poppins';
+    margin-top: 10px;
 }
 
-.footer-text-5 {
-    position: absolute;
+.footer-component-text-5 {
+    /* position: absolute;
     top: 7.5%;
-    right: 30%;
+    right: 30%; */
     font-family: 'Poppins';
     text-align: left;
     font-weight: 600;
-    font-size: 2vh;
+    font-size: 16px;
     color: white;
 }
 
-.footer-text-6 {
-    position: absolute;
+.footer-component-text-6 {
+    /* position: absolute;
     top: 7.5%;
-    right: 18%;
+    right: 18%; */
     font-family: 'Poppins';
     text-align: left;
     font-weight: 600;
-    font-size: 2vh;
+    font-size: 16px;
     color: white;
 }
 
-.footer-text-7 {
-    position: absolute;
+.footer-component-text-7 {
+    /* position: absolute;
     top: 28.5%;
-    left: 80%;
+    left: 80%; */
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2vh;
+    font-size: 16px;
     color: white;
 }
 
-.footer-text-8 {
-    position: absolute;
+.footer-component-text-8 {
+    /* position: absolute;
     top: 52.5%;
-    left: 80%;
+    left: 80%; */
     font-family: 'Poppins';
     text-align: left;
-    font-size: 2vh;
+    font-size: 14px;
     color: white;
 }
 
-.footer-icon-1 {
-    position: absolute;
+.footer-component-icon-1 {
+    /* position: absolute;
     top: 30%;
-    right: 32.5%;
-    width: 2.3%;
-    height: auto;
+    right: 32.5%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-2 {
-    position: absolute;
+.footer-component-icon-2 {
+    /* position: absolute;
     top: 31%;
-    right: 29.5%;
-    width: 2.3%;
-    height: auto;
+    right: 29.5%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-3 {
-    position: absolute;
+.footer-component-icon-3 {
+    /* position: absolute;
     top: 30%;
-    right: 21%;
-    width: 1.8%;
-    height: auto;
+    right: 21%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
-.footer-icon-4 {
-    position: absolute;
+.footer-component-icon-4 {
+    /* position: absolute;
     top: 55%;
-    right: 21%;
-    width: 1.8%;
-    height: auto;
+    right: 21%; */
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 3px;
 }
 
+.contact-container-1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact-container-2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.media-logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-1-container {
+    position: relative;
+}
+
+.col-1-container p {
+    position: relative;
+    left: -100px;
+}
+
+@media screen and (max-width: 1390px){
+    .col-1-container {
+        position: block;
+    }
+    
+    .col-1-container p {
+        position: block;
+        left: 0;
+    }
+}
+@media screen and (max-width: 768px) {
+    .login-bg-1 {
+      display: none;
+    }
+    .login-content-container {
+        width: 100%;
+        height: 87vh;
+    }
+
+    .fcol-2 {
+        display: none;
+    }
+
+  }
 
