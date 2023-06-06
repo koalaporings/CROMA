@@ -6,15 +6,12 @@ import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
-//import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
 import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
 
-// True Copy of Grades
 const Form1 = ({children}) => {
-
-    const [image, setImage] = useState()
+    const [image, setImage] = useState();
     const [price, setPrice] = useState(50);
     const [formDetails, setFormDetails] = useState({
         user_id: 4,
@@ -38,50 +35,120 @@ const Form1 = ({children}) => {
     const navigate = useNavigate();
 
     const navigateLanding = () => navigate('/student');
-    
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(value)
+        setFormDetails(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
 
-        if (name==="num_copies"){
-            if (value){
-                setPrice(50*parseInt(value))
-            }
-            else{
-                setPrice(50)
+        if (name === "num_copies") {
+            if (value) {
+                setPrice(50 * parseInt(value));
+            } else {
+                setPrice(50);
             }
         }
-            setFormDetails(prevState => ({
-                ...prevState,
-                [name]: value
-                }))
-        
-        ;
-
-        console.log(formDetails)
-    }
+        setFormDetails(prevState => ({
+            ...prevState,
+            [name]: value
+            }));
+    
+            console.log(formDetails)
+    };
 
     const [isOpen, setIsOpen] = useState(false);
     const [isCancelOpen, setIsCancelOpen] = useState(false);
 
     async function addInfo() {
-        // setIsClicked(true);
-        const formData = new FormData()
-        formData.append('image', image)
-        formData.append('user_id', formDetails.user_id)
+        if (!formValid()) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('user_id', formDetails.user_id);
         const response = addFormInformation(formDetails);
-        uploadImage(formData)
-        setIsOpen(false)
-        navigateLanding()
+        uploadImage(formData);
+        setIsOpen(false);
+        navigateLanding();
     }
+
+    const formValid = () => {
+        const {
+            last_name,
+            first_name,
+            student_number,
+            mobile_number,
+            year_level,
+            degree_program,
+            email,
+            academic_year,
+            semester,
+            num_copies,
+            purpose
+        } = formDetails;
+
+        if (
+            !last_name ||
+            !first_name ||
+            !student_number ||
+            !mobile_number ||
+            !year_level ||
+            !degree_program ||
+            !email ||
+            !academic_year ||
+            !semester ||
+            !num_copies ||
+            !purpose
+        ) {
+            // Form validation failed
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        if (isNaN(student_number) || isNaN(mobile_number)) {
+            alert("Student number and mobile number must be integers.");
+            return;
+        }
+
+        if (!image) {
+            // No file selected for upload
+            alert("Please select a file to upload");
+            return false;
+        }
+
+        return true;
+    };
 
     const pdfHandler = (e) => {
         const file = e.target.files[0];
-        console.log(file)
-        setImage(file)
-    }
-    return(
+        setImage(file);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsOpen(true);
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsCancelOpen(true);
+    };
+
+    const handleCancelModalClose = () => {
+        setIsCancelOpen(false);
+    };
+
+    const handleSubmitModalClose = () => {
+        setIsOpen(false);
+    };
+
+    return (
         <div>
+
+<div>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> 
             <NavBar/>
             <div className="header-form">
@@ -91,12 +158,12 @@ const Form1 = ({children}) => {
                 <div className="form-title">
                     True Copy of Grades (TCG)
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={handleSubmit}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
                             <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)} required/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
@@ -224,14 +291,10 @@ const Form1 = ({children}) => {
             </Container>
 
             <Footer/>
+            </div>
 
         </div>
-    )
-}
-
-
+    );
+};
 
 export default Form1;
-
-
-

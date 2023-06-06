@@ -28,18 +28,22 @@ const Form6 = ({children}) => {
     
         const navigateLanding = () => navigate('/student');     
     
-        async function addInfo() {
-            // setIsClicked(true);
-            const formData = new FormData()
-            formData.append('pdf', pdf)
-            formData.append('user_id', formDetails.user_id)
-            const response = addFormInformation(formDetails);
-            uploadPdf(formData)
-            console.log(response)
-            setIsOpen(false)
-            navigateLanding()
-    
-        }
+        async function addInfo (e) {
+            e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = addFormInformation(formDetails);
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
+          }
     
         const pdfHandler = (e) => {
             const file = e.target.files[0];
@@ -58,7 +62,7 @@ const Form6 = ({children}) => {
                 <div className="form-title">
                     Late Payment /Extension of Enrolment
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Request Details</h1>
                     <div className="form-description-text">
                             <p className='form-description-text -1'>1. The student makes a letter of appeal for late registration/ payment addressed to the University Registrar or the Chancellor. </p>

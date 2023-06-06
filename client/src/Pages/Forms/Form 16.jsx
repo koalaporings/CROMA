@@ -27,17 +27,21 @@ const Form16 = ({children}) => {
     
         const navigateLanding = () => navigate('/student');     
     
-        async function addInfo() {
-            // setIsClicked(true);
-            const formData = new FormData()
-            formData.append('pdf', pdf)
-            formData.append('user_id', formDetails.user_id)
-            const response = addFormInformation(formDetails);
-            uploadPdf(formData)
-            console.log(response)
-            setIsOpen(false)
-            navigateLanding()
-    
+        async function addInfo (e) {
+            e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = addFormInformation(formDetails);
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
         }
     
         const pdfHandler = (e) => {
@@ -57,7 +61,7 @@ const Form16 = ({children}) => {
                 <div className="form-title">
                     Justification for Non-dissolution of Small Class Size
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Request Details</h1>
                     <ol>
                         <li>The student makes a letter of appeal for late registration/ payment addressed to the University Registrar or the Chancellor. </li>

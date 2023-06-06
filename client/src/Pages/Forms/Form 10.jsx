@@ -50,7 +50,7 @@ const Form10 = ({children}) => {
                 setPrice(50*parseInt(value))
             }
             else{
-                setPrice(150)
+                setPrice(50)
             }
         }
         setFormDetails(prevState => ({
@@ -66,6 +66,10 @@ const Form10 = ({children}) => {
 
     async function addInfo() {
         // setIsClicked(true);
+        if (!formValid()) {
+            return;
+        }
+
         const formData = new FormData()
         formData.append('image', image)
         formData.append('user_id', formDetails.user_id)
@@ -77,11 +81,76 @@ const Form10 = ({children}) => {
 
     }
 
+    const formValid = () => {
+        const {
+            last_name,
+            first_name,
+            student_number,
+            mobile_number,
+            year_level,
+            degree_program,
+            email,
+            academic_year,
+            semester,
+            num_copies,
+            purpose
+        } = formDetails;
+
+        if (
+            !last_name ||
+            !first_name ||
+            !student_number ||
+            !mobile_number ||
+            !year_level ||
+            !degree_program ||
+            !email ||
+            !academic_year ||
+            !semester ||
+            !num_copies ||
+            !purpose
+        ) {
+            // Form validation failed
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        if (isNaN(student_number) || isNaN(mobile_number)) {
+            alert("Student number and mobile number must be integers.");
+            return;
+        }
+
+        if (!image) {
+            // No file selected for upload
+            alert("Please select a file to upload");
+            return false;
+        }
+
+        return true;
+    };
+
     const pdfHandler = (e) => {
         const file = e.target.files[0];
         console.log(file)
         setImage(file)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsOpen(true);
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsCancelOpen(true);
+    };
+
+    const handleCancelModalClose = () => {
+        setIsCancelOpen(false);
+    };
+
+    const handleSubmitModalClose = () => {
+        setIsOpen(false);
+    };
 
     return(
         <div>
@@ -94,7 +163,7 @@ const Form10 = ({children}) => {
                 <div className="form-title">
                     Report of Grades
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form"  onSubmit={handleSubmit}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">    
                         <div class="col-md-3 mb-2">     
