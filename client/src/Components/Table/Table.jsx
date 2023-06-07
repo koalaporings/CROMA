@@ -85,7 +85,7 @@ function TableComponent ({
                     <td key={row.index}
                         data-heading={row.index}>
                         <button className="action-button" onClick={() => action(row.transaction_id)}>
-                            View Details
+                            View
                         </button>
                     </td>
                 </tr>
@@ -196,7 +196,7 @@ function TableComponent ({
                 <td key={row.index}
                     data-heading={row.index}>
                     <button className="action-button" onClick={() => action(row.transaction_id)}>
-                        View Details
+                        View
                     </button>
                 </td>
             </tr>
@@ -230,7 +230,7 @@ function TableComponent ({
                 <td key={row.index}
                     data-heading={row.index}>
                     <button className="action-button" onClick={() => action(row.transaction_id)}>
-                        View Details
+                        View
                     </button>
                 </td>
             </tr>
@@ -271,7 +271,7 @@ function TableComponent ({
                 <td key={row.index}
                     data-heading={row.index}>
                     <button className="action-button" onClick={() => action(row.transaction_id)}>
-                        View Details
+                        View
                     </button>
                 </td>
             </tr>
@@ -386,7 +386,7 @@ function TableComponent ({
                 <td key={row.index}
                     data-heading={row.index}>
                     <button className="action-button" onClick={() => action(row.transaction_id)}>
-                        View Details
+                        View
                     </button>
                 </td>
             </tr>
