@@ -541,7 +541,7 @@ textarea:focus {
   height: 7px;
   width: 32.5%;
   position: absolute;
-  margin-top: 8%;
+  margin-top: 12vh;
   margin-left: 17.5%;
   background-color: #21523C;
   z-index: inherit;
@@ -551,7 +551,7 @@ textarea:focus {
   height: 7px;
   width: 32.5%;
   position: absolute;
-  margin-top: 8%;
+  margin-top: 12vh;
   margin-left: 47.5%;
   background-color: #21523C;
   z-index: inherit;
@@ -562,11 +562,11 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
+  margin-top: 6vh;
   margin-left: 15%;
   z-index: 1001;
 }
@@ -605,7 +605,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 12vh;
   margin-left: 17.5%;
 }
 
@@ -615,7 +615,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 11vh;
   margin-left: 48.75%;
 }
 
@@ -625,7 +625,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 11vh;
   margin-left: 80%;
 }
 
@@ -635,7 +635,7 @@ textarea:focus {
   margin-left: 2%;
   background-color: white;
   overflow-y: scroll;
-  height: 50%;
+  height: 45%;
   width: 96%;
   border-radius: 7px;
 }
@@ -653,46 +653,54 @@ textarea:focus {
   align-content: start;
   background-color: white;
   width: 100%;
-  height: 80px;
+  /* height: 80px; */
+}
+
+.tracking-status-container-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
 }
 
 .tracking-status-container {
-  display: flex;
-  flex-direction: row;
+  
+
 }
 
 .tracking-datetime-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 5%;
+  /* margin-left: 5%; */
 }
 
 .tracking-date {
   font-family: 'Fredoka';
   font-weight: 800;
   font-size: 20px;
-  width: 300px;
+  /* width: 300px; */
   height: auto;
   color:#7A1113;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 .tracking-status {
   font-family: 'Fredoka';
   font-size: 20px;
-  width: 720px;
-  height: 50px;
+  /* width: 720px;
+  height: 50px; */
   color:#21523C;
-  margin-top: 25px;
-  margin-left: 1%;
+  /* margin-top: 25px;
+  margin-left: 1%; */
   text-align: start;
 }
 
 .tracking-time {
   font-family: 'Fredoka';
   font-size: 20px;
-  width: 300px;
+  /* width: 300px; */
   height: auto;
   color:#7A1113;
   margin-top: 0px;
@@ -702,8 +710,8 @@ textarea:focus {
   background-color: #21523C;
   width: 1000%;
   height: 3px;
-  margin-left: -90%;
-  margin-top: 78px;
+  /* margin-left: -90%;
+  margin-top: 78px; */
   border-radius: 3px;
 }
 
@@ -865,7 +873,14 @@ textarea:focus {
   .confirm-button {
     font-size: 12px;
   }
-  .add-modalContent {
+  .add-modalContent, .tracking-date, .tracking-status {
     font-size: 16px;
   }
+  .tracking-title {
+    font-size: 18px;
+  }
+  .tracking-sub-text, .tracking-sub-text-bold, .tracking-time {
+    font-size: 14px;
+  }
+
 }
