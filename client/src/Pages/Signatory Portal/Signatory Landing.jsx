@@ -97,7 +97,8 @@ const SignatoryLanding = ({children}) => {
     }
 
     async function rejectUpdate(id, comment) {
-        const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
+        const response = axios.put("http://localhost:5000/signatory_api/rejecttemp/" + id.toString(), {
+            transaction_status: 'rejected',
             remarks: comment
         })
         addTracking(id)

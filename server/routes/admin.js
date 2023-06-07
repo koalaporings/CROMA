@@ -47,7 +47,7 @@ router.get('/history_table/:filter_info', async (req, res) => {     // API endpo
 })
 
 router.put("/transaction_status/:id", async (req,res) => {          // API endpoint for updating transaction_status and signatory_id
-  const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ? WHERE transaction_id = ?'
+  const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ?, remarks = ? WHERE transaction_id = ?'
   const status = req.body.transaction_status
   const transactionId = req.params.id
 

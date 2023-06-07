@@ -88,6 +88,23 @@ router.put("/approvetemp/:transaction_id", async(req,res) => {        //API endp
   
   })
 
+  router.put("/rejecttemp/:transaction_id", async (req,res) => {          // API endpoint for updating transaction_status and signatory_id
+    const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ?, remarks = ? WHERE transaction_id = ?'
+    const status = req.body.transaction_status
+    const transactionId = req.params.transaction_id
+  
+    let remarks = ''
+    if(req.body.remarks){
+      remarks = req.body.remarks
+    }
+    
+  
+    db.query(q, [status, 3, remarks, transactionId], (err, results) => {
+      if(err) console.error('ERROR', err);
+      res.json(results)
+    })
+  })
+
 router.get("/getSignatories", async (req,res) => {        //API endpoint to get all signatories
   const q = "SELECT * FROM signatory"
 
