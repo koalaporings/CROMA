@@ -46,7 +46,7 @@ const Footer = () => {
                     </div>    
                 </div>
                 <div className="frow-2">
-                    <p className='footer-component-text-4'>© 2022 OCS-ARS. All rights reserved.</p>
+                    <div className='footer-component-text-4'>© 2022 OCS-ARS. All rights reserved.</div>
                 </div>
             </div>
         </div>

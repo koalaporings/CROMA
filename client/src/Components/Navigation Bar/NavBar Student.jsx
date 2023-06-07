@@ -55,34 +55,34 @@ const Sidebar = ({ children }) => {
     {
       path: "/student",
       name: "Home",
-      icon: <HomeOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <HomeOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
       path: "/student/tracking",
       name: "Tracking",
-      icon: <Search  sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <Search class="navbar-icon"  sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
       path: "/student/announcements",
       name: "Announcements",
-      icon: <CampaignOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <CampaignOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
     {
       path: "/student/history",
       name: "History",
-      icon: <ReceiptLongOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <ReceiptLongOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
   ]
 
   return (
     <div className="sidebar-container">
-      <div style={{ width: isOpen ? "28vh" : "80px" }} className="sidebar" id="sidebar">
+      <div style={{ width: isOpen ? "28vh" : "70px" }} className="sidebar" id="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
             <Box>
               <IconButton>
                 {" "}
-                <Menu onClick={() => {
+                <Menu class="navbar-icon" onClick={() => {
                   doubleToggle()
                 //   getUser()
                 }} sx={{ fontSize: "6vh" }} style={{color: 'white'}}/>
@@ -116,7 +116,7 @@ const Sidebar = ({ children }) => {
               <IconButton>
                 <div className="sidebar-user-icon">
   
-                    <LogoutOutlined sx={{fontSize: "5vh"}} style={{color: 'white'}}/>
+                    <LogoutOutlined  class="navbar-icon" sx={{fontSize: "5vh"}} style={{color: 'white'}}/>
 
                 </div>
               </IconButton>
