@@ -88,3 +88,11 @@
     transition: all 0.5s;
     
 }
+
+.sidebar.minimized {
+    height: 88px;
+}
+
+.sidebar-menu.minimized {
+    display: none;
+}

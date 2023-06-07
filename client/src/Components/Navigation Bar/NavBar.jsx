@@ -11,7 +11,13 @@ const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState('MENU');
   const [usernameDisplay, setUser] = useState('')
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => {
+    let sidebar = document.getElementById("sidebar");
+    let sidebarMenu = document.getElementById("sidebar-menu");
+    sidebar.classList.toggle("minimized");
+    sidebarMenu.classList.toggle("minimized");
+    // setIsOpen(!isOpen)
+  };
   const [roleID, setRoleId] = useState("-1")
 
   const doubleToggle = () => {
@@ -28,6 +34,25 @@ const Sidebar = ({ children }) => {
 //       setUser("Guest")
 //     }
 //   }
+  function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("minimized");
+  }
+
+  window.onresize = function() {
+    let viewportWidth = window.innerWidth;
+    console.log("Viewport width: " + viewportWidth + "px");
+    let sidebar = document.getElementById("sidebar");
+    let sidebarMenu = document.getElementById("sidebar-menu");
+    
+    if (viewportWidth < 768) {
+      sidebar.classList.add("minimized");
+      sidebarMenu.classList.add("minimized");
+    } else {
+      sidebar.classList.remove("minimized");
+      sidebarMenu.classList.remove("minimized");
+    }
+  };
 
   
 
@@ -51,7 +76,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="sidebar-container">
-      <div style={{ width: isOpen ? "28vh" : "9vh" }} className="sidebar">
+      <div style={{ width: isOpen ? "28vh" : "9vh" }} className="sidebar" id="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
             <Box>
@@ -69,7 +94,7 @@ const Sidebar = ({ children }) => {
           </div>
 
         </div>
-        <div className="sidebar-menu">
+        <div id="sidebar-menu" className="sidebar-menu">
           {
             menuItem.map((item, index) => (
               <NavLink to={item.path} style={{textDecoration: 'none'}}>
