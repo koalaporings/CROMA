@@ -38,7 +38,7 @@ app.post("/api/image", upload.single('pdf'),(req,res,err)=> {
 
 app.get('/api/image/get', (req,res) =>{
   const id = 1
-  const q = 'SELECT * FROM images where id = ?'
+  const q = 'SELECT * FROM files where id = ?'
 
   db.query(q, id, (err,result) => {
     if(err) console.error('ERROR', err)
