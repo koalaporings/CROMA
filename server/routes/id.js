@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get("/student_id/:email", (req,res) => {
+router.get("/student_id/:email", (req,res) => {             //API endpoint to get student id from email
     const email = req.params.email
     const q = "SELECT * from students where email = ?"
     db.query(q, email, (err,data) => {
@@ -12,7 +12,7 @@ router.get("/student_id/:email", (req,res) => {
     })
 })
 
-router.get("/signatory_id/:email", (req,res) => {
+router.get("/signatory_id/:email", (req,res) => {           //API endpoint to get signatory id from email
     const email = req.params.email
     const q = "SELECT * from signatories where email = ?"
     db.query(q, email, (err,data) => {
@@ -21,7 +21,7 @@ router.get("/signatory_id/:email", (req,res) => {
     })
 })
 
-router.get("/admin_id/:email", (req,res) => {
+router.get("/admin_id/:email", (req,res) => {               //API endpoint to admin id from email
     const email = req.params.email
     const q = "SELECT * from admin where email = ?"
     db.query(q, email, (err,data) => {
@@ -30,7 +30,7 @@ router.get("/admin_id/:email", (req,res) => {
     })
 })
 
-router.get("/clerk_id/:email", (req,res) => {
+router.get("/clerk_id/:email", (req,res) => {               //API endpoint to get clerk id from email
     const email = req.params.email
     const q = "SELECT * from clerk where email = ?"
     db.query(q, email, (err,data) => {
