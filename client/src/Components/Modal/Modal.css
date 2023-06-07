@@ -47,7 +47,7 @@
 
   .tracking-view-modal {
     width: 80vw;
-    height: 40vh;
+    height: 90vh;
     background: #ececec;
     color: white;
     border-radius: 24px;
@@ -451,10 +451,9 @@
 }
 
 .add-modalContent {
-  padding: 30px;
+  padding: 5px;
   font-size: 25px;
   color: #7A1113;
-  padding: 30px;
   padding-left: 30px;
   padding-right: 30px;
   text-align: left;
@@ -464,8 +463,7 @@
 }
 
 .input-container {
-  margin-bottom: 10px;
-  padding: 10px;
+  padding: 5px;
 }
 
 input[type="text"],
@@ -478,7 +476,7 @@ textarea {
 }
 
 textarea {
-  height: 300px;
+  height: 17vh;
   resize: vertical;
   font-size: 18px;
 }
@@ -543,7 +541,7 @@ textarea:focus {
   height: 7px;
   width: 32.5%;
   position: absolute;
-  margin-top: 8%;
+  margin-top: 12vh;
   margin-left: 17.5%;
   background-color: #21523C;
   z-index: inherit;
@@ -553,7 +551,7 @@ textarea:focus {
   height: 7px;
   width: 32.5%;
   position: absolute;
-  margin-top: 8%;
+  margin-top: 12vh;
   margin-left: 47.5%;
   background-color: #21523C;
   z-index: inherit;
@@ -564,12 +562,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 15%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 15%; */
   z-index: 1001;
 }
 
@@ -578,12 +578,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 45%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 45%; */
   z-index: 1001;
 }
 
@@ -592,12 +594,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 75%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 75%; */
   z-index: 1001;
 }
 
@@ -607,7 +611,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 11vh;
   margin-left: 17.5%;
 }
 
@@ -617,7 +621,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 11vh;
   margin-left: 48.75%;
 }
 
@@ -627,7 +631,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 7%;
+  margin-top: 11vh;
   margin-left: 80%;
 }
 
@@ -637,7 +641,7 @@ textarea:focus {
   margin-left: 2%;
   background-color: white;
   overflow-y: scroll;
-  height: 50%;
+  height: 45%;
   width: 96%;
   border-radius: 7px;
 }
@@ -655,46 +659,55 @@ textarea:focus {
   align-content: start;
   background-color: white;
   width: 100%;
-  height: 80px;
+  /* height: 80px; */
+}
+
+.tracking-status-container-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 5px;
 }
 
 .tracking-status-container {
-  display: flex;
-  flex-direction: row;
+  
+
 }
 
 .tracking-datetime-container{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 5%;
+  /* margin-left: 5%; */
 }
 
 .tracking-date {
   font-family: 'Fredoka';
   font-weight: 800;
   font-size: 20px;
-  width: 300px;
+  /* width: 300px; */
   height: auto;
   color:#7A1113;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 .tracking-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Fredoka';
   font-size: 20px;
-  width: 720px;
-  height: 50px;
+  /* width: 720px;
+  height: 50px; */
   color:#21523C;
-  margin-top: 25px;
-  margin-left: 1%;
+  /* margin-top: 25px;
+  margin-left: 1%; */
   text-align: start;
 }
 
 .tracking-time {
   font-family: 'Fredoka';
   font-size: 20px;
-  width: 300px;
+  /* width: 300px; */
   height: auto;
   color:#7A1113;
   margin-top: 0px;
@@ -702,10 +715,10 @@ textarea:focus {
 
 .tracking-line {
   background-color: #21523C;
-  width: 90%;
+  width: 1000%;
   height: 3px;
-  margin-left: -90%;
-  margin-top: 78px;
+  /* margin-left: -90%;
+  margin-top: 78px; */
   border-radius: 3px;
 }
 
@@ -745,6 +758,114 @@ textarea:focus {
   box-sizing: border-box;
 }
 
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-container label {
+  flex-basis: 120px;
+  font-family: 'Fredoka';
+  font-weight: 900;
+  font-size: 18px;
+  color: #7A1113;
+  margin-right: 10px;
+}
+
+.input-container span {
+  font-family: 'Fredoka';
+  font-size: 18px;
+  color: #7A1113;
+}
+
+.input-container select {
+  flex-grow: 1;
+  height: 36px;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  color: #7A1113;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.edit-user-modal {
+  min-width: 450px;
+  height: 150px;
+  background: white;
+  color: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.edit-user-modalHeader {
+  height: 50px;
+  background: white;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.edit-user-heading {
+  font-family: 'Fredoka';
+  font-style: normal;
+  margin: 0;
+  padding: 20px;
+  color: #7A1113;    
+  font-weight: 600;
+  font-size: 24px;
+  text-align: left;
+}
+
+.edit-user-modalContent {
+  /* padding: 5px; */
+  font-size: 25px;
+  color: #7A1113;
+  /* padding-top: 5px; */
+  font-size: 25px;
+  color: #7A1113;
+  text-align: center;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+}
+
+.edit-user-modalActions {
+  position: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 5%;
+}
+
+.edit-user-button-container {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-top: 20px; */
+  padding: 5px;
+}
+
+.edit-user-modal-button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+  margin-left: 10px;
+}
+
+.edit-user-modal-button:hover {
+  cursor: pointer;
+  background-color: #08321F;
+}
+
 
 @media screen and (max-width: 768px) {
   .submit-modalContent {
@@ -758,5 +879,22 @@ textarea:focus {
   }
   .confirm-button {
     font-size: 12px;
+  }
+  .add-modalContent, .tracking-date, .tracking-status {
+    font-size: 16px;
+  }
+  .tracking-title {
+    font-size: 18px;
+  }
+  .tracking-sub-text, .tracking-sub-text-bold, .tracking-time {
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .edit-user-modal {
+    min-width: 90vw;
+    width: 90vw;
   }
 }

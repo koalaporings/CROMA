@@ -73,6 +73,25 @@ router.get('/get_user/:id', async (req, res) => {                   // API endpo
   })
 })
 
+router.put('/changeRole', async (req,res) => {
+  const q = "UPDATE users SET role = ? WHERE email = ?"
+  const email = req.body.email
+  const values = req.body.role
+  console.log("heh")
+
+  db.query(q,[values,email], (err,data) => {
+    if(err) console.log("ERROR", err)
+  })
+})
+
+router.get('/getAllUser', (req,res) => {
+  const q = "SELECT * from users"
+
+  db.query(q, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+})
 
 
 module.exports = router;

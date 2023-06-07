@@ -160,12 +160,13 @@ const StudentLanding = ({children}) => {
         }
     }
 
+
     return(
 
         <div>
             <NavBar/>
             <Header/>
-
+            
             <div className='student-container'>
 
                 <div className="name-header">

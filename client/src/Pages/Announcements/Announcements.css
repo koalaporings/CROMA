@@ -108,7 +108,7 @@
     border: solid 1px black;
     background-color: #FFEBC8;
     border-radius: 10px;
-    height: 450px;
+    min-height: 240px;
     width:  74%;
     left: 13%;
     margin-top: 20px;
