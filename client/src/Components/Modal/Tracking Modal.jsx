@@ -29,19 +29,19 @@ const TrackingModal = ({ setIsOpen, details, trackingData }) => {
             <div className="circle-mini-3"></div>
             {details[0].transaction_status==="Awaiting Approval" 
               ?
-              <div className="circle-1" ><NoteAddOutlinedIcon style={{fontSize: "80px", marginTop: "10px"}}/></div> 
+              <div className="circle-1" ><NoteAddOutlinedIcon style={{fontSize: "7vh", marginTop: "10px"}}/></div> 
               : 
               <div></div>
             }
             {details[0].transaction_status==="Processing" 
               ?
-              <div className="circle-2" ><HourglassEmptyOutlinedIcon style={{fontSize: "80px", marginTop: "10px"}}/></div> 
+              <div className="circle-2" ><HourglassEmptyOutlinedIcon style={{fontSize: "7vh", marginTop: "10px"}}/></div> 
               : 
               <div></div>
             }
             {details[0].transaction_status==="Completed" 
               ?
-              <div className="circle-3" ><TaskOutlinedIcon style={{fontSize: "80px", marginTop: "10px"}}/></div> 
+              <div className="circle-3" ><TaskOutlinedIcon style={{fontSize: "7vh", marginTop: "10px"}}/></div> 
               : 
               <div></div>
             }
@@ -64,11 +64,13 @@ const TrackingModal = ({ setIsOpen, details, trackingData }) => {
             return(
               <div tabIndex={index} className="tracking-detail">
                   <div className="tracking-status-container">
-                    <div className="tracking-datetime-container">
-                      <div className="tracking-date">{data.tracking_date}</div>
-                      <div className="tracking-time">{data.tracking_time}</div>
+                    <div className="tracking-status-container-1">
+                      <div className="tracking-datetime-container">
+                        <div className="tracking-date">{data.tracking_date}</div>
+                        <div className="tracking-time">{data.tracking_time}</div>
+                      </div>
+                      <div className="tracking-status">{data.tracking_status}</div>
                     </div>
-                    <div className="tracking-status">{data.tracking_status}</div>
                     <div className="tracking-line"></div>
                   </div>
               </div>
