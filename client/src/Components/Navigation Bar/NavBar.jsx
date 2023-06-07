@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Menu, HomeOutlined, CampaignOutlined, ReceiptLongOutlined , LogoutOutlined } from "@mui/icons-material"
 import { Box } from "@mui/system"
-import { IconButton } from '@mui/material';
+import { IconButton} from '@mui/material';
+import {People} from '@mui/icons-material';
 import { NavLink } from "react-router-dom";
 
 import './NavBar.css'
@@ -73,6 +74,11 @@ const Sidebar = ({ children }) => {
       path: "/admin/history",
       name: "History",
       icon: <ReceiptLongOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+    },
+    {
+      path: "/admin/users",
+      name: "Users",
+      icon: <People sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
     },
   ]
 

@@ -278,6 +278,39 @@ function TableComponent ({
         )
     }
 
+    // "User Name",
+    // "Role",
+    // "Edit Role",
+    if (type === 'users_table'){
+        return(
+            <tr key={row.index} className="table-row-center">
+                {/* {rowData.map((data,index) => (
+                    <td key={index} data-heading={data.key}>
+                        {data.val}
+                    </td>
+                )
+                
+                )} */}
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.email}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    {row.role}
+                </td>
+                <td key={row.index}
+                    data-heading={row.index}>
+                    <button className="action-button" onClick={() => action(row.email)}>
+                        Edit Role
+                    </button>
+                </td>
+            </tr>
+        )
+    }
+
+
+
     if (type === 'admin_history_table'){
         return(
             <tr key={row.index} className="table-row-center">

@@ -743,6 +743,114 @@ textarea:focus {
   box-sizing: border-box;
 }
 
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.input-container label {
+  flex-basis: 120px;
+  font-family: 'Fredoka';
+  font-weight: 900;
+  font-size: 18px;
+  color: #7A1113;
+  margin-right: 10px;
+}
+
+.input-container span {
+  font-family: 'Fredoka';
+  font-size: 18px;
+  color: #7A1113;
+}
+
+.input-container select {
+  flex-grow: 1;
+  height: 36px;
+  font-family: 'Fredoka';
+  font-size: 16px;
+  color: #7A1113;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.edit-user-modal {
+  width: 1000px;
+  height: 150px;
+  background: white;
+  color: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.edit-user-modalHeader {
+  height: 50px;
+  background: white;
+  overflow: hidden;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.edit-user-heading {
+  font-family: 'Fredoka';
+  font-style: normal;
+  margin: 0;
+  padding: 20px;
+  color: #7A1113;    
+  font-weight: 600;
+  font-size: 24px;
+  text-align: left;
+}
+
+.edit-user-modalContent {
+  /* padding: 5px; */
+  font-size: 25px;
+  color: #7A1113;
+  /* padding-top: 5px; */
+  font-size: 25px;
+  color: #7A1113;
+  text-align: center;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+  font-family: 'Fredoka';
+  font-style: normal;
+  font-weight: 900;
+}
+
+.edit-user-modalActions {
+  position: flex;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 5%;
+}
+
+.edit-user-button-container {
+  display: flex;
+  justify-content: flex-end;
+  /* margin-top: 20px; */
+  padding: 5px;
+}
+
+.edit-user-modal-button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+  margin-left: 10px;
+}
+
+.edit-user-modal-button:hover {
+  cursor: pointer;
+  background-color: #08321F;
+}
+
 
 @media screen and (max-width: 768px) {
   .submit-modalContent {
