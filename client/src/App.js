@@ -28,6 +28,8 @@ import ViewSignatoryAnnouncementPage from './Pages/Announcements/View Announceme
 import ViewClerkAnnouncementPage from './Pages/Announcements/View Announcement Clerk';
 import ViewAdminAnnouncementPage from './Pages/Announcements/View Announcement Admin';
 import Register from './Pages/Register/Register';
+import User from './Pages/Admin Portal/Users.jsx';
+
 
 
 
@@ -97,6 +99,11 @@ function App() {
             <Route 
               path="/admin/announcements" 
               element={<AnnouncementPage/>}  
+            />
+
+            <Route 
+              path="/admin/users" 
+              element={<User/>}  
             />
             
             <Route 
@@ -260,6 +267,9 @@ function App() {
               path="/student/request/11" 
               element={<Form20/>}  
             />
+
+
+
 
 
 
