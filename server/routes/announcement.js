@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.post('/post', async (req, res) => {
+router.post('/post', async (req, res) => {       // API endpoint for posting new announcements
     const q = 'INSERT INTO announcements (`announcement_title`, `announcement_body`, `announcement_status`) VALUES (?)'
     const values = [
       req.body.announcement_title,
@@ -17,7 +17,7 @@ router.post('/post', async (req, res) => {
     res.json(req.body.announcement_body)
   })
 
-router.get('/details', async (req,res) => {
+router.get('/details', async (req,res) => {     // API endpoint for getting announcement details
   const q = 'SELECT * FROM announcements ORDER BY announcement_datetime DESC'
 
   const details = await new Promise((resolve) => {
@@ -46,7 +46,7 @@ router.get('/details', async (req,res) => {
   res.json(values)
 })
 
-router.put('/edit', async (req,res) => {
+router.put('/edit', async (req,res) => {        // API endpoint for editing announcements
   const q = 'UPDATE announcements SET announcement_title = COALESCE(?, announcement_title), announcement_body = COALESCE(?, announcement_body), announcement_status = ? WHERE announcement_id = ?'
   const user_id = req.body.announcement_id
   const values = [
@@ -62,7 +62,8 @@ router.put('/edit', async (req,res) => {
   })
 })
 
-router.get('/view/:announcement_id', async (req,res) => {
+router.get('/view/:announcement_id', async (req,res) => {       // API endpoint for viewing specific announcements
+
   const q = 'SELECT announcement_title, announcement_body, announcement_status, announcement_datetime FROM announcements WHERE announcement_id = ?'
   const id = req.params.announcement_id
 
@@ -90,8 +91,7 @@ router.get('/view/:announcement_id', async (req,res) => {
   res.json(values)
 })
 
-
-router.delete('/delete/:announcement_id', async (req,res) => {
+router.delete('/delete/:announcement_id', async (req,res) => {        // API endpoint for deleting announcements
   const q = 'DELETE FROM announcements WHERE announcement_id = ?'
   const id = req.params.announcement_id
 
