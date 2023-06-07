@@ -15,6 +15,7 @@ const Register = ({children}) => {
     const [price, setPrice] = useState(50);
     const [email, setEmail] = useState("");
     const [id, setID] = useState(0);
+    const [userRole, setUserRole] = useState("students");
     const [userDetails, setUserDetails] = useState({
         last_name: "",
         first_name: "",
@@ -42,19 +43,19 @@ const Register = ({children}) => {
 
     async function postUpdate(data) {
         console.log(data)
-        const response = await axios.put('http://localhost:5000/login_api/updateDetails',{
-            user_id: id,
+        console.log(id)
+        const response = axios.put('http://localhost:5000/login_api/updateDetails',{
+            user_id: parseInt(id),
             first_name: data.first_name,
             last_name: data.last_name,
             middle_initial: data.middle_initial,
             degree_program: data.degree_program,
             student_number: data.student_number,
             registered: 1,
+            role: userRole,
         })
 
-        console.log("heh")
-
-        // navigateLanding()
+        navigateLanding()
     }
 
 
@@ -68,6 +69,25 @@ const Register = ({children}) => {
                 ...prevState,
                 [name]: value
                 }));
+    }
+
+    const handleRoleChange = (e) => {
+        const studentNumberComponent = document.getElementById("studentNumberComp")
+        const degreeProgramComponent = document.getElementById("degreeProgramComp")
+        console.log("hmm")
+        if (e.target.value === "students"){
+            console.log("heh")
+            studentNumberComponent.style.visibility = "visible"
+            degreeProgramComponent.style.visibility = "visible"
+            studentNumberComponent.style.display = "block"
+            degreeProgramComponent.style.display = "block"
+        }
+        else if (e.target.value === "signatory" || e.target.value === "clerk"){
+            // studentNumberComponent.style.visibility = "hidden"
+            // degreeProgramComponent.style.visibility = "hidden"
+            studentNumberComponent.style.display = "none"
+            degreeProgramComponent.style.display = "none"
+        }
     }
 
     async function proceed(){
@@ -107,13 +127,23 @@ const Register = ({children}) => {
                     </div>
                     <h1 className='form-group-title'>&nbsp;</h1>
                     <h1 className='form-group-title'>Academic Information</h1>
-                    <div class="form-row">
+                    {/* <div class="form-row">
+                        <div class="col-md-3 mb-2">
+                            <label for="degreeProgram">Role</label>
+                                <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleRoleChange(e)}>
+                                    <option selected value="students">Student</option>
+                                    <option value="signatory">Signatory</option>
+                                    <option value="clerk">Clerk</option>
+                                </select>
+                        </div>
+                    </div> */}
+                    <div class="form-row" id="studentNumberComp">
                         <div class="col-md-3 mb-2">
                             <label for="studentNumber">Student Number</label>
                             <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" id="degreeProgramComp">
                         <div class="col-md-6 mb-2">
                         <label for="degreeProgram">Degree Program</label>
                             <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>

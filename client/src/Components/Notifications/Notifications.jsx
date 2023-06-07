@@ -16,6 +16,7 @@ function Notifications ({
 
 
     const length = notifsData.length
+    const split = notifsData.slice(0,5)
 
     return (
         <div>
