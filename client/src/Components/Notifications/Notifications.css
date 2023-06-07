@@ -123,4 +123,12 @@
     .notif-date-time-container {
         font-size: 12px;
     }
+
+    .notif-show-more-button {
+        font-size: 13px;
+    }
+
+    .notif-body-text {
+        font-size: 14px;
+    }
 }

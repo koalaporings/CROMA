@@ -134,6 +134,6 @@ h1.history-title-text {
 @media screen and (max-width: 768px) {
     .action-button {
         font-size: 10px;
-        min-width: 80px;
+        min-width: 40px;
     }
 }

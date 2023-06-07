@@ -1,7 +1,7 @@
 .darkBG {
     background-color: rgba(0, 0, 0, 0.4);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     top: 50%;
     left: 50%;
@@ -11,8 +11,8 @@
 
   .darkBG-1 {
     background-color: rgba(0, 0, 0, 0.4);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 1002;
     top: 50%;
     left: 50%;
@@ -37,8 +37,8 @@
   }
   
   .view-modal {
-    width: 1000px;
-    height: 500px;
+    width: 80vw;
+    height: 40vh;
     background: white;
     color: white;
     border-radius: 16px;
@@ -46,8 +46,8 @@
   }
 
   .tracking-view-modal {
-    width: 1200px;
-    height: 700px;
+    width: 80vw;
+    height: 40vh;
     background: #ececec;
     color: white;
     border-radius: 24px;
@@ -55,8 +55,8 @@
   }
 
   .student-view-modal {
-    width: 1000px;
-    height: 800px;
+    width: 80vw;
+    height: 40vh;
     background: white;
     color: white;
     z-index: 101;
@@ -65,8 +65,8 @@
   }
 
   .admin-view-modal {
-    width: 1000px;
-    height: 600px;
+    width: 80vw;
+    height: 40vh;
     background: white;
     color: white;
     z-index: 101;
@@ -75,8 +75,8 @@
   }
 
   .add-modal {
-    width: 1000px;
-    height: 550px;
+    width: 80vw;
+    height: 40vh;
     background: white;
     color: white;
     z-index: 101;
@@ -226,8 +226,8 @@
 }
 
 .approve-modal {
-  width: 1000px;
-  height: 200px;
+  width: 80vw;
+  height: 40vh;
   background: white;
   color: white;
   border-radius: 16px;
@@ -235,8 +235,8 @@
 }
 
 .reject-modal {
-  width: 1000px;
-  height: 250px;
+  width: 80vw;
+  height: 40vh;
   background: white;
   color: white;
   border-radius: 16px;
@@ -245,8 +245,8 @@
 
 
 .submit-modal {
-  width: 1000px;
-  height: 200px;
+  width: 100%;
+  height: 40%;
   background: white;
   color: white;
   z-index: 10;
@@ -287,6 +287,8 @@
   font-family: 'Fredoka';
   font-style: normal;
   font-weight: 900;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .submit-modalActions {
@@ -311,11 +313,13 @@
 
 .approve-modal-actions-container {
   display: flex;
+  position: relative;
   padding: 5px;
   justify-content: flex-end;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   padding-bottom: 20px;
-  padding-right: 40px;
+  /* padding-right: 10%; */
+  right: 0.5vw;
 
 }
 
@@ -342,7 +346,7 @@
   color: white;
   min-width: 100px;
   min-height: 20px;
-  width: 200px;
+  width: 140px;
   z-index: 1000;
   margin: 10px;
 }
@@ -710,7 +714,7 @@ textarea:focus {
 }
 
 .comment-input textarea {
-  width: 90%;
+  width: 95%;
   height: 50px;
   padding: 5px;
   resize: none;
@@ -739,4 +743,20 @@ textarea:focus {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 768px) {
+  .submit-modalContent {
+    font-size: 16px;
+  }
+  .view-heading {
+    font-size: 20px;
+  }
+  .reject-button, .approve-button {
+    font-size: 12px;
+  }
+  .confirm-button {
+    font-size: 12px;
+  }
 }
