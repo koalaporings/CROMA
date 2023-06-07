@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.post("/checkUser", async (req,res) => {
+router.post("/checkUser", async (req,res) => {              //API endpoint to check if user is in database
     const email = req.body.email
     console.log(req.body)
     console.log(email)
@@ -29,7 +29,7 @@ router.post("/checkUser", async (req,res) => {
     }
 })
 
-router.put("/updateDetails", (req,res) => {
+router.put("/updateDetails", async (req,res) => {               //API endpoint to update details for student
     const q = 'UPDATE students SET `student_number` = ?, `first_name` = ?, `last_name` = ?, `middle_initial` = ?, `year_level` = ?, `degree_program` = ?, `registered` = ? WHERE user_id = ?'
     const userId = req.body.user_id
     const values = [
@@ -48,7 +48,7 @@ router.put("/updateDetails", (req,res) => {
     
 })
 
-router.get("/getRole/:email", (req,res) => {
+router.get("/getRole/:email", async (req,res) => {              //API endpoint to get role using email
     const q = "SELECT role FROM users WHERE email = ?"
     const email = req.params.email
 

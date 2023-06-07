@@ -19,5 +19,5 @@ export const addFormInformation = async(data,formData) => {
         num_copies: data.num_copies,
         purpose: data.purpose,
     });
-    return ({data:response});
+    return (response);
 }

@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.post("/new", async(req, res) => {
+router.post("/new", async(req, res) => {        //API endpoint to post new notification to a student
     const q = "INSERT INTO notifications (`user_id`, `notification_body`) VALUES (?)"
     const values = [
         req.body.user_id,
@@ -16,7 +16,7 @@ router.post("/new", async(req, res) => {
     })
 })
 
-router.get("/get/:id", async (req, res) => {
+router.get("/get/:id", async (req, res) => {        //API endpoint to get notifications of a student
     const q = "SELECT notification_datetime, notification_body FROM notifications WHERE user_id = ? ORDER BY notification_datetime DESC"
     const userId = req.params.id
 

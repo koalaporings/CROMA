@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get("/history/:id/:filter_info", async (req,res) => {
+router.get("/history/:id/:filter_info", async (req,res) => {                //API endpoint for tracking history with filter
     let q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
     if (req.params.filter_info == "dsc"){
         q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? ORDER BY transaction_date DESC'
@@ -39,7 +39,7 @@ router.get("/history/:id/:filter_info", async (req,res) => {
     
 })
 
-router.get('/get/:id', async(req,res) => {
+router.get('/get/:id', async(req,res) => {              //API endpoint for getting tracking details for a specific transaction
     const q = 'SELECT * FROM tracking WHERE transaction_id = ? ORDER BY tracking_datetime DESC'
     const track = req.params.id
 
@@ -68,7 +68,7 @@ router.get('/get/:id', async(req,res) => {
     res.json(values)
 })
 
-router.post('/update', async(req, res) => {
+router.post('/update', async(req, res) => {             //API endpoint for adding new status to transaction
     const q = 'INSERT INTO tracking (`transaction_id`, `tracking_status`) VALUES (?)'
     const values = [
         req.body.transaction_id,
