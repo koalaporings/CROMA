@@ -13,7 +13,7 @@
 .header-announcement {
     display: flex;
     margin-bottom: 1vh;
-    height: 10vh;
+    height: 88px;
     width: 100%
 }
 
@@ -31,7 +31,7 @@
 .header-announcements-student {
     display: flex;
     margin-bottom: 1vh;
-    height: 10vh;
+    height: 88px;
     width: 100%
 }
 
@@ -240,25 +240,31 @@
 .header-announcements-clerk {
     display: flex;
     margin-bottom: 1vh;
-    height: 10vh;
+    height: 88px;
     width: 100%
 }
 
 .header-announcements-signatory {
     display: flex;
     margin-bottom: 1vh;
-    height: 10vh;
+    height: 88px;
     width: 100%
 }
 
 .header-admin-announcements {
     display: flex;
     margin-bottom: 1vh;
-    height: 10vh;
+    height: 88px;
     width: 100%
 }
 
 
 .announcements-header {
-    height: 10vh;
+    height: 88px;
+}
+
+@media screen and (max-width: 768px) {
+    .announcement-portal-text {
+        font-size: 20px;
+    }
 }

@@ -129,6 +129,7 @@ const StudentLanding = ({children}) => {
             <Header/>
 
             <div className='student-container'>
+
                 <div className="name-header">
                     Hello, {userFirstName}!
                 </div>
@@ -191,6 +192,7 @@ const StudentLanding = ({children}) => {
                         </div>
                     </div>
                 </div>
+
             </div>
             
             <div className="footer-student">

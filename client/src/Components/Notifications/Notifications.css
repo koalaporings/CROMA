@@ -72,7 +72,7 @@
     border-radius: 10px;
     font-size: 15px;
     font-family: 'Fredoka One';
-    width: 15%;
+    /* width: 15%; */
     height: auto;
 }
 
@@ -117,4 +117,10 @@
 
 .notif-show-more-button:hover {
     background-color: #132e22;
+}
+
+@media screen and (max-width: 768px) {
+    .notif-date-time-container {
+        font-size: 12px;
+    }
 }

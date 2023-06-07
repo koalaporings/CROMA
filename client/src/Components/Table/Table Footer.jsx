@@ -103,7 +103,7 @@ const TableFooter = ({
   return (
     <div className="table-footer">
         <div className="page-count-cont">
-            <span>Rows per page: </span>
+            <span class="row-page-text">Rows per page: </span>
             <select
             className="rows-input"
             onChange={(e) => setRowsPerPage(e.target.value)}
@@ -113,7 +113,7 @@ const TableFooter = ({
                 <option value={20}>20</option>
                 <option value={50}>50</option>
             </select>
-            <span>
+            <span class="row-page-text">
             | &nbsp; {page} of {range.length}
             </span>
         </div>

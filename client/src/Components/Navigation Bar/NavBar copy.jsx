@@ -7,21 +7,33 @@ import { NavLink } from "react-router-dom";
 import './NavBar.css'
 
 
+
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMax, setIsMax] = useState(true);
   const [selectedMenuItem, setSelectedMenuItem] = useState('MENU');
   const [usernameDisplay, setUser] = useState('')
-  const toggle = () => {
-    let sidebar = document.getElementById("sidebar");
-    let sidebarMenu = document.getElementById("sidebar-menu");
-    sidebar.classList.toggle("minimized");
-    sidebarMenu.classList.toggle("minimized");
-    // setIsOpen(!isOpen)
+  const toggle = () => setIsOpen(!isOpen);
+  const toggle1 = () => {
+    if (isMax < 1) {
+      setIsMax(!isMax)
+    }
+    else {
+      toggle()
+    }
+  }
+
+  window.onresize = function() {
+    var viewportWidth = window.innerWidth;
+    if (viewportWidth < 768 ) {
+      setIsMax(!isMax)
+    }
   };
+
   const [roleID, setRoleId] = useState("-1")
 
   const doubleToggle = () => {
-    toggle();
+    toggle1();
     setSelectedMenuItem(' ');
   }
 //   console.log(localStorage.getItem("username"))
@@ -34,27 +46,6 @@ const Sidebar = ({ children }) => {
 //       setUser("Guest")
 //     }
 //   }
-  function toggleSidebar() {
-    let sidebar = document.getElementById("sidebar");
-    let sidebarMenu = document.getElementById("sidebar-menu");
-    sidebar.classList.add("minimized");
-    sidebarMenu.classList.add("minimized");
-  }
-
-  window.onresize = function() {
-    let viewportWidth = window.innerWidth;
-    console.log("Viewport width: " + viewportWidth + "px");
-    let sidebar = document.getElementById("sidebar");
-    let sidebarMenu = document.getElementById("sidebar-menu");
-    
-    if (viewportWidth < 768) {
-      sidebar.classList.add("minimized");
-      sidebarMenu.classList.add("minimized");
-    } else {
-      sidebar.classList.remove("minimized");
-      sidebarMenu.classList.remove("minimized");
-    }
-  };
 
   
 
@@ -78,7 +69,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="sidebar-container">
-      <div style={{ width: isOpen ? "28vh" : "9vh" }} className="sidebar" id="sidebar">
+      <div style={{ width: isOpen ? "28vh" : "9vh" , height: isMax ? "100%" : "88px"}} className="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
             <Box>
@@ -96,11 +87,11 @@ const Sidebar = ({ children }) => {
           </div>
 
         </div>
-        <div id="sidebar-menu" className="sidebar-menu">
+        <div className="sidebar-menu" style={{display: isMax ? "block" : "none"}}>
           {
             menuItem.map((item, index) => (
               <NavLink to={item.path} style={{textDecoration: 'none'}}>
-              <div to={item.path} key={index} className="sidebar-link" activeclassName="sidebar-active" onClick={() => {setSelectedMenuItem(item.name);setIsOpen(false);toggleSidebar()}}>
+              <div to={item.path} key={index} className="sidebar-link" activeclassName="sidebar-active" onClick={() => {setSelectedMenuItem(item.name);setIsOpen(false)}}>
                 
                   <Box>
                     <IconButton >
