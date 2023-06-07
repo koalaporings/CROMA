@@ -16,13 +16,13 @@
     align-items: center;
     padding: 10px;
 }
-.notif-logo {
-    /* display: inline-block;
+/* .notif-logo {
+    display: inline-block;
     position: absolute;
     align-items: center;
     padding-top: 1%;
-    left: 1.5%; */
-}
+    left: 1.5%;
+} */
 
 .notif-list-container {
     display: block;

@@ -29,11 +29,24 @@ const Sidebar = ({ children }) => {
     // ...
   };
 
-  useEffect(() => {
+  window.onresize = function() {
     let viewportWidth = window.innerWidth;
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
     
+    if (viewportWidth < 768) {
+      sidebar.classList.add("minimized");
+      sidebarMenu.classList.add("minimized");
+    } else {
+      sidebar.classList.remove("minimized");
+      sidebarMenu.classList.remove("minimized");
+    }
+  };
+
+  useEffect(() => {
+    let viewportWidth = window.innerWidth;
+    let sidebar = document.getElementById("sidebar");
+    let sidebarMenu = document.getElementById("sidebar-menu");
     if (viewportWidth < 768) {
       sidebar.classList.add("minimized");
       sidebarMenu.classList.add("minimized");
@@ -119,7 +132,7 @@ const Sidebar = ({ children }) => {
             <Box>
               <IconButton>
                 <div className="sidebar-icon">
-                  <Person sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
+                  <Person class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
                 </div>
               </IconButton>
             </Box>

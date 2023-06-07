@@ -866,6 +866,84 @@ textarea:focus {
   background-color: #08321F;
 }
 
+.circle-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #404850;
+}
+
+.circle-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-modal {
+  padding: 20px;
+  width: 530px;
+  /* height: 400px; */
+  background: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.profile-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-name {
+  font-family: "Fredoka One";
+  font-size: 24px;
+  color: #7A1113;
+}
+
+.profile-course {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+}
+.profile-email {
+  text-decoration: underline;
+  font-family: "Poppins";
+  font-size: 14px;
+  /* font-weight: 700; */
+}
+
+.profile-student-number, .profile-contact-number {
+  font-family: "Poppins";
+  font-size: 14px;
+  /* font-weight: 700; */
+}
+
+.edit-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.edit-button button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+}
+
+.edit-button button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+
 
 @media screen and (max-width: 768px) {
   .submit-modalContent {
@@ -888,6 +966,9 @@ textarea:focus {
   }
   .tracking-sub-text, .tracking-sub-text-bold, .tracking-time {
     font-size: 14px;
+  }
+  .profile-modal {
+    width: 80vw;
   }
 
 }

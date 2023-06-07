@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import ErrorIcon from '@mui/icons-material/Error';
-
 const ProfileModal = ({ onClose }) => {
   const navigate = useNavigate();
 
@@ -16,21 +15,21 @@ const ProfileModal = ({ onClose }) => {
     <>
       <div className="darkBG" onClick={onClose} />
       <div className="centered">
-        <div className="submit-modal">
-          <ErrorIcon className="modal-icon" sx={{ fontSize: "80px" }} style={{ marginTop: "10px" }}/>
-
-          <button className="modal-close-button" onClick={onClose}>
-            <RiCloseLine style={{ marginBottom: "-3px" }} />
-          </button>
-          <div className="submit-modalContent">
-            ARE YOU SURE YOU WANT TO CANCEL THIS REQUEST?     
+        <div className="profile-modal">
+          <div className="profile-modal-content">
+            <div className="circle-profile">
+              <img src="" alt="profile-photo" />
+            </div>
+            <div className="profile-name">John Oliver Ochea</div>
+            <div className="profile-course">BS Computer Science 1</div>
+            <div className="profile-email">jeochea@up.edu.ph</div>
+            <div className="profile-student-number">202020201</div>
+            <div className="profile-contact-number">09266550484</div>
           </div>
-          <div className="cancel-modalActions">
-            <div className="cancel-modal-actionsContainer">
-              <button className="cancel-modal-button" onClick={handleEdit}>
+          <div className="edit-button">
+              <button  onClick={handleEdit}>
                 EDIT
               </button>
-            </div>
           </div> 
         </div>
       </div>
