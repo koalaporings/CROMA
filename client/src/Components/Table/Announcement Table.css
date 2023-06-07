@@ -67,10 +67,11 @@ td.title-date{
 
 @media screen and (max-width: 768px) {
     th {
-        font-size: 14px;
+        font-size: 10px;
+        padding: 3px;
     }
     td {
-        font-size: 11px;
+        font-size: 9px;
     }
     .title {
         line-height: 15px;
