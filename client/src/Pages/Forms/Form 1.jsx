@@ -69,7 +69,9 @@ const Form1 = ({children}) => {
         const formData = new FormData();
         formData.append('image', image);
         formData.append('user_id', formDetails.user_id);
-        const response = addFormInformation(formDetails);
+        const response = await addFormInformation(formDetails);
+        formData.append('id', response.data)
+        console.log(response.data)
         uploadImage(formData);
         setIsOpen(false);
         navigateLanding();
