@@ -11,6 +11,7 @@ import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
+import ConfirmReject from '../../Components/Modal/Reject Confirmation';
 
 
 const SignatoryLanding = ({children}) => {
@@ -25,6 +26,7 @@ const SignatoryLanding = ({children}) => {
 
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
+    const [isRejectOpen, setRejectOpen] = useState(false);
 
 
     async function fetchTable (data){
@@ -66,6 +68,10 @@ const SignatoryLanding = ({children}) => {
         setConfirmOpen(true)
     }
 
+    const openRejectionModal = () => {
+        setRejectOpen(true)
+    }
+
     const approveTransaction = (data) => {
         approveUpdate(documentDetails.transaction_id)
         const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: Test Signatory 1."
@@ -73,8 +79,26 @@ const SignatoryLanding = ({children}) => {
         addNotif(documentDetails.user_id, msg)
     }
 
+    //Might need adjustments in order to actually work for multiple signatories or to send it back
+    const rejectTransaction = (data) => {
+        rejectUpdate(documentDetails.transaction_id,data)
+        const msg = "Your request for " + documentDetails.form_name + " has been rejected by signatory: Test Signatory 1."
+        window.location.reload()
+        addNotif(documentDetails.user_id, msg)
+    }
+
     async function approveUpdate(id) {
         const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
+        })
+        addTracking(id)
+        if (response){
+            console.log(response)
+        }
+    }
+
+    async function rejectUpdate(id, comment) {
+        const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
+            remarks: comment
         })
         addTracking(id)
         if (response){
@@ -133,9 +157,9 @@ const SignatoryLanding = ({children}) => {
                         action = {approveClickHandler}
                         // setID = {setSelected}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal}/>}
+                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
-                    
+                    {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} action={rejectTransaction}/>} 
                 </div>
             </Container>
 
