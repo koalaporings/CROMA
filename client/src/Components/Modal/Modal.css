@@ -47,7 +47,7 @@
 
   .tracking-view-modal {
     width: 80vw;
-    height: 40vh;
+    height: 90vh;
     background: #ececec;
     color: white;
     border-radius: 24px;
@@ -451,10 +451,9 @@
 }
 
 .add-modalContent {
-  padding: 30px;
+  padding: 5px;
   font-size: 25px;
   color: #7A1113;
-  padding: 30px;
   padding-left: 30px;
   padding-right: 30px;
   text-align: left;
@@ -464,8 +463,7 @@
 }
 
 .input-container {
-  margin-bottom: 10px;
-  padding: 10px;
+  padding: 5px;
 }
 
 input[type="text"],
@@ -478,7 +476,7 @@ textarea {
 }
 
 textarea {
-  height: 300px;
+  height: 17vh;
   resize: vertical;
   font-size: 18px;
 }
@@ -702,7 +700,7 @@ textarea:focus {
 
 .tracking-line {
   background-color: #21523C;
-  width: 90%;
+  width: 1000%;
   height: 3px;
   margin-left: -90%;
   margin-top: 78px;
@@ -758,5 +756,8 @@ textarea:focus {
   }
   .confirm-button {
     font-size: 12px;
+  }
+  .add-modalContent {
+    font-size: 16px;
   }
 }

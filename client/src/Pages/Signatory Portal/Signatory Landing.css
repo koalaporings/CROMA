@@ -29,3 +29,12 @@
     height: 15vh;
     width: 100%;
 } */
+
+@media screen and (max-width: 768px) {
+    .signatory-transactions-table-container{
+        margin: 2px;
+        width: 100%;
+        padding-left: 0;
+    }
+
+}

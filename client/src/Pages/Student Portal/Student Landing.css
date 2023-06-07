@@ -43,7 +43,7 @@
     font-style: normal;
     display: block;
     position: relative;
-    left: 30vw;
+    /* left: 30vw; */
     width: auto;
     height: auto;
     align-content: end;
@@ -51,7 +51,7 @@
 }
 
 .name-header{
-    width: 435px;
+    /* width: 435px; */
     height: 47px;
     padding-left: 12.5%;
     padding-top: 95px;

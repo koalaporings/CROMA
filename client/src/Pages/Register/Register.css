@@ -42,14 +42,15 @@
     display: block;
     position: relative;
     /* left: 30vw; */
-    width: auto;
+    text-align: right;
+    width: 90%;
     height: auto;
     align-content: end;
     padding-bottom: 6px;
 }
 
 .name-header{
-    width: 435px;
+    /* width: 435px; */
     height: 47px;
     padding-left: 12.5%;
     padding-top: 95px;
@@ -114,7 +115,7 @@
 
 .transaction-list-container {
     z-index: inherit;
-    border-radius: 1.5vh;
+    border-radius: 10px;
     padding-top: 1%;
     padding-bottom: 1%;
     position: relative;
@@ -258,12 +259,7 @@
     .transaction-header {
         font-size: 12px;
     }
-    .transaction-description {
-        font-size: 9px;
-    }
-    .transaction-title-text {
-        font-size: 14px;
-    }
+    
     .transaction-name-container {
         font-size: 11px;
     }
@@ -284,5 +280,14 @@
     }
     .filter-container {
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .transaction-description {
+        font-size: 10px;
+    }
+    .transaction-title-text {
+        font-size: 14px;
     }
 }

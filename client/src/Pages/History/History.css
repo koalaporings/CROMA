@@ -95,7 +95,7 @@ h1.history-title-text {
     display: block;
     flex-direction: row;
     align-items: left;
-    width: 435px;
+    /* width: 435px; */
     height: 50px;
     padding-left: 12%;
     padding-top: 2%;
