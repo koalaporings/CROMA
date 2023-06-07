@@ -44,7 +44,6 @@ const Sidebar = ({ children }) => {
 
   window.onresize = function() {
     let viewportWidth = window.innerWidth;
-    console.log("Viewport width: " + viewportWidth + "px");
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
     
