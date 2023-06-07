@@ -3,7 +3,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get("/transactions/:user_id", async (req,res) => {
+router.get("/transactions/:user_id", async (req,res) => {       //API endpoint to get transaction details for a specific signatory_id
     const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE signatory_id = ? and transaction_status = "ongoing"'
     const userId = req.params.user_id
 
@@ -40,7 +40,7 @@ router.get("/transactions/:user_id", async (req,res) => {
     
 })
 
-router.put("/approve/:transaction_id", async(req,res) => {
+router.put("/approve/:transaction_id", async(req,res) => {      //API endpoint to approve (not used)
   const userId = req.params.transaction_id
   const q = 'UPDATE transactions SET signatory_id = ?, form_recipients = ? WHERE transaction_id = ?'
 
@@ -62,7 +62,7 @@ router.put("/approve/:transaction_id", async(req,res) => {
 
 })
 
-router.put("/approvetemp/:transaction_id", async(req,res) => {
+router.put("/approvetemp/:transaction_id", async(req,res) => {        //API endpoint to approve transactions
     const userId = req.params.transaction_id
     const q = 'UPDATE transactions SET signatory_id = ? WHERE transaction_id = ?'
   
@@ -88,7 +88,7 @@ router.put("/approvetemp/:transaction_id", async(req,res) => {
   
   })
 
-router.get("/getSignatories", async (req,res) => {
+router.get("/getSignatories", async (req,res) => {        //API endpoint to get all signatories
   const q = "SELECT * FROM signatory"
 
   db.query(q,(err,data) => {
