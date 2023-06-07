@@ -172,7 +172,7 @@ const AdminLanding = ({children}) => {
                             " ",
                             "Date",
                             "Student Name",
-                            "Transaction ID",
+                            // "Transaction ID",
                             "Transaction Name",
                             "Action",
                         ]}
