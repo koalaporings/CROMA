@@ -12,7 +12,7 @@ router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
 
 
-router.get('/view', async (req, res) => {
+router.get('/view', async (req, res) => {       //API endpoint for viewing list of forms available
     const q = 'SELECT * FROM forms'
     
     db.query(q, (err, data) => {
@@ -21,7 +21,7 @@ router.get('/view', async (req, res) => {
     })
   })
 
-router.put('/update_form_desc/:form_id', async (req, res) => {
+router.put('/update_form_desc/:form_id', async (req, res) => {        //API endpoint for updating form description (for admin only)
   const formId = req.params.form_id
   const q = 'UPDATE forms SET `form_desc` = ? WHERE form_id = ?'
   const values = req.body.form_desc
@@ -32,7 +32,7 @@ router.put('/update_form_desc/:form_id', async (req, res) => {
   res.json(req.body.form_desc)
 })
 
-router.post('/new', async (req, res) => {
+router.post('/new', async (req, res) => {       //API endpoint for inserting new forms
   const q = 'INSERT INTO forms (`form_name`, `form_desc`, `form_duration`, `form_payment`, `form_recipients`) VALUES (?)'
   const values = [
     req.body.form_name,
@@ -48,33 +48,29 @@ router.post('/new', async (req, res) => {
   })
   res.json(req.body.form_name)
 })
-router.post('/upload_pdf', upload.single('pdf'), (req,res) => {
+
+router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpoint for uploading pdfs
   const image = req.file.filename
+  const id = req.body.id
   const q2 = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
-  let now = new Date()
-  let months = ''
-  let dates = ''
-  let hour = ''
-  let minute = ''
-  let second = ''
-  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
-  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
-  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
-  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
-  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
-  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+  db.query(q2, [image,id], (err,result)=> {
 
-  db.query(q2, [image,transaction_id], (err,result)=> {
-    if(err) console.error('ERROR', err)
-    res.json({
-      data: result,
-      msg: 'Your image has been updated!'
-    })
 })
 })
 
-router.post("/transaction_made_upload",async (req,res,err)=> {
+router.post('/upload_image/', upload.single('image'), (req, res) => {        //API endpoint for uploading images
+  const image = req.file.filename
+  const id = req.body.id
+  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
+  console.log("heh") 
+
+  db.query(upload, [image,id], (err,result)=> { 
+
+  })
+})
+
+router.post("/transaction_made_upload",async (req,res,err)=> {        //API endpoint (not used) 
   //formdata.append("user_id", the user id)
   const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `transaction_ETA`) VALUES (?)'
   const q3 = 'INSERT INTO transaction_info (`transaction_id`) VALUES ?'
@@ -126,7 +122,7 @@ router.post("/transaction_made_upload",async (req,res,err)=> {
     }) 
   })
 
-router.post('/transaction_made', async (req,res) =>{
+router.post('/transaction_made', async (req,res) =>{        //API endpoint for submitting request
   const q = 'INSERT INTO transactions (`transaction_id`, `user_id`, `form_id`, `form_name`, `transaction_status`, `transaction_ETA`) VALUES (?)'
   var q2 = ''
   var info = ''
@@ -143,7 +139,6 @@ router.post('/transaction_made', async (req,res) =>{
   if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
-  console.log
   if(req.body.form_id >= 0 && req.body.form_id <= 3){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
@@ -375,30 +370,7 @@ router.post('/transaction_made', async (req,res) =>{
 
 })
 
-router.post('/upload_image', upload.single('image'), (req, res) => {
-  const image = req.file.filename
-  const id = req.body.user_id
-  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
-  let now = new Date()
-  let months = ''
-  let dates = ''
-  let hour = ''
-  let minute = ''
-  let second = ''
-  if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
-  if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
-  if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
-  if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
-  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
-
-  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
-
-  db.query(upload, [image,transaction_id], (err,result)=> { 
-    if(err) console.error('ERROR', err)
-  })
-})
-
-router.get('/request/get/:user_id', async (req, res) => {
+router.get('/request/get/:user_id', async (req, res) => {       //API endpoint for geting student details using user_id
   const q = 'SELECT * FROM students WHERE user_id = ?'
   const userId = req.params.user_id
 
@@ -411,7 +383,7 @@ router.get('/request/get/:user_id', async (req, res) => {
   
 })
 
-router.get("/formRecipients/:transaction_id", (req,res) => {
+router.get("/formRecipients/:transaction_id", (req,res) => {        //API endpoint for getting formRecipients from transactions based on transaction_id
   const q = "SELECT form_recipients FROM transactions WHERE transaction_id = ?"
   const id = req.params.transaction_id
 
