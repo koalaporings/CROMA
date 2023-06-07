@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 05, 2023 at 03:17 PM
+-- Generation Time: Jun 07, 2023 at 09:43 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -88,24 +88,6 @@ CREATE TABLE `files` (
   `transaction_id` bigint(30) NOT NULL,
   `file` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `files`
---
-
-INSERT INTO `files` (`transaction_id`, `file`) VALUES
-(12306012157494, 0x75706c6f6164732f70696b616d65655f372e6a70672d313638353632373836393633392e6a706567),
-(12306012202294, 0x75706c6f6164732f70696b616d65655f362e6a70672d313638353632383134393532362e6a706567),
-(12306012222284, 0x75706c6f6164732f686f6e6b61692d737461722d7261696c2d7072652d646f776e6c6f61642d696e7374616c6c2d70632d7365656c652d747261696c65722d62726f6e79612d353530783330392e6a70672d313638353632393334383131322e6a706567),
-(12306012226074, 0x75706c6f6164732f34663734666138623937363864633730633739303565363836326532326130315f343839333637313538303931313138383737322e6a7065672d313638353632393536373639362e6a706567),
-(12306012337584, 0x75706c6f6164732f43524f4d415f5345525645525f53544550532e7064662d313638353633333837383933362e706466),
-(12306012343304, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343231303239312e706466),
-(12306012345154, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343331353337302e706466),
-(12306012347334, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343435333637332e706466),
-(12306012349104, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343535303730342e706466),
-(12306012350364, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343633363632392e706466),
-(12306012354084, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343834383039372e706466),
-(12306012356104, 0x75706c6f6164732f4d616368696e652d50726f626c656d2d332d496e7665737469676174696f6e2e7064662d313638353633343937303639322e706466);
 
 -- --------------------------------------------------------
 
@@ -204,13 +186,6 @@ CREATE TABLE `students` (
   `registered` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`user_id`, `student_number`, `first_name`, `last_name`, `middle_initial`, `year_level`, `course`, `email`, `registered`) VALUES
-(100000, '', '', '', '', '', '', 'kcmanayon@up.edu.ph', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -222,25 +197,6 @@ CREATE TABLE `tracking` (
   `tracking_status` varchar(100) NOT NULL,
   `tracking_datetime` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tracking`
---
-
-INSERT INTO `tracking` (`transaction_id`, `tracking_status`, `tracking_datetime`) VALUES
-(12306012143584, 'Awaiting Approval', '2023-06-01 21:43:58'),
-(12306012157494, 'Awaiting Approval', '2023-06-01 21:57:49'),
-(12306012202294, 'Awaiting Approval', '2023-06-01 22:02:29'),
-(12306012222284, 'Awaiting Approval', '2023-06-01 22:22:28'),
-(12306012226074, 'Awaiting Approval', '2023-06-01 22:26:07'),
-(12306012337584, 'Awaiting Approval', '2023-06-01 23:37:58'),
-(12306012343304, 'Awaiting Approval', '2023-06-01 23:43:30'),
-(12306012345154, 'Awaiting Approval', '2023-06-01 23:45:15'),
-(12306012347334, 'Awaiting Approval', '2023-06-01 23:47:33'),
-(12306012349104, 'Awaiting Approval', '2023-06-01 23:49:10'),
-(12306012350364, 'Awaiting Approval', '2023-06-01 23:50:36'),
-(12306012354084, 'Awaiting Approval', '2023-06-01 23:54:08'),
-(12306012356104, 'Awaiting Approval', '2023-06-01 23:56:10');
 
 -- --------------------------------------------------------
 
@@ -260,25 +216,6 @@ CREATE TABLE `transactions` (
   `remarks` text NOT NULL,
   `form_recipients` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`transaction_id`, `user_id`, `form_id`, `signatory_id`, `form_name`, `transaction_status`, `transaction_date`, `transaction_ETA`, `remarks`, `form_recipients`) VALUES
-(12306012143584, 4, 1, 0, 'True Copy of Grades (TCG)', 'ongoing', '2023-06-01 21:43:58', '2023-06-08 21:43:58', '', ''),
-(12306012157494, 4, 2, 0, 'Certification of GWA', 'ongoing', '2023-06-01 21:57:49', '2023-06-08 21:57:49', '', ''),
-(12306012202294, 4, 3, 0, 'Certified True Copy of Form 5', 'ongoing', '2023-06-01 22:02:29', '2023-06-08 22:02:29', '', ''),
-(12306012222284, 4, 10, 0, 'Apply for Transfer from other ', 'await_approval', '2023-06-01 22:22:28', '2023-06-08 22:22:28', '', ''),
-(12306012226074, 4, 11, 0, 'Apply for Advance Credit', 'await_approval', '2023-06-01 22:26:07', '2023-06-08 22:26:07', '', ''),
-(12306012337584, 4, 4, 0, 'Cross-Register (Incoming)', 'await_approval', '2023-06-01 23:37:58', '2023-06-08 23:37:58', '', ''),
-(12306012343304, 4, 5, 0, 'Overload', 'await_approval', '2023-06-01 23:43:30', '2023-06-08 23:43:30', '', ''),
-(12306012345154, 4, 6, 0, 'Dropping of Courses', 'await_approval', '2023-06-01 23:45:15', '2023-06-08 23:45:15', '', ''),
-(12306012347334, 4, 7, 0, 'Change of Matriculation', 'await_approval', '2023-06-01 23:47:33', '2023-06-08 23:47:33', '', ''),
-(12306012349104, 4, 8, 0, 'Substitution of Courses/Subjec', 'await_approval', '2023-06-01 23:49:10', '2023-06-08 23:49:10', '', ''),
-(12306012350364, 4, 9, 0, 'Apply for Shifting to another ', 'await_approval', '2023-06-01 23:50:36', '2023-06-08 23:50:36', '', ''),
-(12306012354084, 4, 16, 0, 'Change in Class Offering', 'await_approval', '2023-06-01 23:54:08', '2023-06-08 23:54:08', '', ''),
-(12306012356104, 4, 17, 0, 'Report of Grades', 'await_approval', '2023-06-01 23:56:10', '2023-06-08 23:56:10', '', '');
 
 -- --------------------------------------------------------
 
@@ -320,25 +257,6 @@ CREATE TABLE `transaction_info` (
   `remarks` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `transaction_info`
---
-
-INSERT INTO `transaction_info` (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`, `date`, `overload_credits_total`, `status_last_semester`, `reason`, `purpose_ext`, `others`, `subject_dropped`, `section`, `instructor_name`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`, `remarks`) VALUES
-(12306012143584, 'Manayon', 'Kyle Alan', 'C.', '2020-00002', '09112233445', '3', 'bscs', 'kcmanayon@up.edu.ph', '2022-2023', '2', '2', 'scholarship', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012157494, 'Manayon', 'Kyle Alan', 'C.', '2020-00002', '09112233445', '3', 'bscs', '', '2022-2023', '2', '2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012202294, 'Manayon', 'Kyle Alan', 'C.', '2020-00002', '09112233445', '3', 'BS Computer Science', 'kcmanayon@up.edu.ph', '2022-2023', '2', '2', 'scholarship', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012222284, 'Manayon', 'Kyle Alan', 'C.', '2020-00001', '09123456789', '3', 'bscs', '', '2022-2023', '2', '2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012226074, 'Manayon', 'Kyle Alan', 'C.', '2020-00001', '09123456789', '3', 'bscs', '', '2022-2023', '2', '2', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012337584, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012343304, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012345154, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012347334, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012349104, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012350364, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012354084, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12306012356104, '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -357,7 +275,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`email`, `role`) VALUES
 ('admin@example.com', 'adminpassword'),
 ('clerk@example.com', 'clerkpassword'),
-('kcmanayon@up.edu.ph', 'student'),
 ('signatory@example.com', 'signatorypassword'),
 ('student@example.com', 'studentpassword');
 
@@ -421,12 +338,6 @@ ALTER TABLE `signatory`
 ALTER TABLE `students`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `email` (`email`);
-
---
--- Indexes for table `tracking`
---
-ALTER TABLE `tracking`
-  ADD PRIMARY KEY (`transaction_id`);
 
 --
 -- Indexes for table `transactions`
@@ -510,12 +421,6 @@ ALTER TABLE `overload_subjects`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`) ON DELETE CASCADE;
-
---
--- Constraints for table `tracking`
---
-ALTER TABLE `tracking`
-  ADD CONSTRAINT `tracking_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`transaction_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `transactions`
