@@ -68,5 +68,16 @@ router.get("/transaction_details/:id", async (req,res) => {
     res.json(values)
 })
 
+router.get("/getDetails/:id", (req,res) => {
+  const q = "SELECT * FROM students WHERE user_id = ?"
+  const id = req.params.id
+
+  db.query(q, id, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+
+})
+
 
 module.exports = router;

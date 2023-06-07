@@ -4,7 +4,7 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get('/approval_table/:filter_info', async (req, res) => {
+router.get('/approval_table/:filter_info', async (req, res) => {    // API endpoint for Admin approval table and filter
   let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
   if (req.params.filter_info == "dsc") {
     q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
@@ -18,7 +18,7 @@ router.get('/approval_table/:filter_info', async (req, res) => {
       })
 })
 
-router.get('/ongoing_table/:filter_info', async (req, res) => {
+router.get('/ongoing_table/:filter_info', async (req, res) => {     // API endpoint for Admin ongoing table and filter
   let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
   if (req.params.filter_info == "dsc") {
     q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
@@ -32,7 +32,7 @@ router.get('/ongoing_table/:filter_info', async (req, res) => {
       })
 })
 
-router.get('/history_table/:filter_info', async (req, res) => {
+router.get('/history_table/:filter_info', async (req, res) => {     // API endpoint for Admin history table and filter
   let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
   if (req.params.filter_info == "dsc") {
     q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
@@ -46,19 +46,8 @@ router.get('/history_table/:filter_info', async (req, res) => {
       })
 })
 
-// router.put("/transaction_status/:id", async (req,res) => {
-//   const q = 'UPDATE transactions SET `transaction_status` = ? WHERE transaction_id = ?'
-//   const status = req.body.transaction_status
-//   const transactionId = req.params.id
-
-//   db.query(q, [status, transactionId], (err, results) => {
-//     if(err) console.error('ERROR', err);
-//     res.json(results)
-//   })
-// })
-
-router.put("/transaction_status/:id", async (req,res) => {
-  const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ? , remarks = ? WHERE transaction_id = ?'
+router.put("/transaction_status/:id", async (req,res) => {          // API endpoint for updating transaction_status and signatory_id
+  const q = 'UPDATE transactions SET transaction_status = ?, signatory_id = ? WHERE transaction_id = ?'
   const status = req.body.transaction_status
   const transactionId = req.params.id
 
@@ -74,7 +63,7 @@ router.put("/transaction_status/:id", async (req,res) => {
   })
 })
 
-router.get('/get_user/:id', async (req, res) => {
+router.get('/get_user/:id', async (req, res) => {                   // API endpoint for fetching the user_id in a specific transactions
   const q = 'SELECT user_id FROM transactions WHERE transaction_id = ?'
   const transaction = req.params.id
 
