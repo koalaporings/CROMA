@@ -1,14 +1,149 @@
-import React from 'react';
+import { useState } from "react";
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import { fontSize } from '@mui/system';
+import CancelModal from '../../Components/Modal/Cancel Modal';
+import SubmitModal from '../../Components/Modal/Submit Modal';
+//import { fontSize } from '@mui/system';
+import { addFormInformation } from './Forms API Call';
+import { uploadImage } from "./Upload Image";
+import { useNavigate } from "react-router-dom";
 
 
 // Overload
-const Form12 = ({children}) => {
+const Form12 = ({ children }) => {
+    const [image, setImage] = useState()
+    const [formDetails, setFormDetails] = useState({
+        user_id: 4,
+        form_id: 12,
+        remarks: null,
+        student_id: 1,
+        last_name: "",
+        first_name: "",
+        middle_initial: "",
+        student_number: "",
+        mobile_number: "",
+        year_level: "",
+        degree_program: "",
+        units: '',
+        academic_year: "",
+        semester: "",
+        last_sem: '',
+        reason: '',
+        subjects: [],
+        units_per_subject: [],
+    });
+
+    const navigate = useNavigate();
+    
+    const navigateLanding = () => navigate('/student');
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(value)
+
+        setFormDetails(prevState => ({
+        ...prevState,
+        [name]: value
+        }));
+
+        console.log(formDetails)
+    }
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [isCancelOpen, setIsCancelOpen] = useState(false);
+
+    async function addInfo() {
+        if (!formValid()) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('user_id', formDetails.user_id);
+        const response = addFormInformation(formDetails);
+        uploadImage(formData);
+        setIsOpen(false);
+        navigateLanding();
+    }
+
+    const pdfHandler = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        setImage(file)
+    }
+    
+    const formValid = () => {
+        const {
+            last_name,
+            first_name,
+            student_number,
+            date,
+            year_level,
+            degree_program,
+            units,
+            academic_year,
+            semester,
+            last_sem,
+            reason,
+            subjects,
+            units_per_subject
+        } = formDetails;
+
+        if (
+            !last_name ||
+            !first_name ||
+            !student_number ||
+            !date ||
+            !year_level ||
+            !degree_program ||
+            ! units||
+            !academic_year ||
+            !semester ||
+            !last_sem||
+            !reason||
+            !subjects||
+            !units_per_subject
+        ) {
+            // Form validation failed
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        if (isNaN(student_number)) {
+            alert("Student number and mobile number must be integers.");
+            return;
+        }
+
+        if (!image) {
+            // No file selected for upload
+            alert("Please select a file to upload");
+            return false;
+        }
+        return true;
+
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsOpen(true);
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsCancelOpen(true);
+    };
+
+    const handleCancelModalClose = () => {
+        setIsCancelOpen(false);
+    };
+
+    const handleSubmitModalClose = () => {
+        setIsOpen(false);
+    };
+
 
     return(
         <div>
@@ -21,39 +156,52 @@ const Form12 = ({children}) => {
                 <div className="form-title">
                     Request for Overload
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={handleSubmit}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
-                        <div class="col-md-8 mb-2">     
-                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
-                            <input type="text" class="form-control" id="studentName"    />
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentLastName">Last Name</label>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentFirstName">First Name</label>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-2 mb-2">     
+                            <label for="studentMiddleInitial">Middle Initial</label>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber"/>
+                            <input type="text" class="form-control" id="studentNumber" name= "student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
-                            <label for="date">Date</label>
-                            <input type="date" class="form-control" id="date"/>
+                            <label for="mobileNumber">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-2">
-                            <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram"/>
+                    <div class="col-md-6 mb-2">
+                        <label for="degreeProgram">Degree Program</label>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="BS Computer Science">BS Computer Science</option>
+                                <option value="BS Biology">BS Biology</option>
+                                <option value="BS Mathematics">BS Mathematics</option>
+                                <option value="BS Statistics">BS Statistics</option>
+                            </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <div class="form-row">
                         <div class="form-text">I am a graduating student and I would like to request for an overload of</div>
                         <div class="col-md-3 mb-1">     
-                            <input type="text" class="form-control" id="units"    />
-                        </div>
-                        
+                            <input type="text" class="form-control" id="units" name="units" onChange={(e) => handleChange(e)}/>
+                        </div>        
                     </div>
 
 
@@ -61,21 +209,21 @@ const Form12 = ({children}) => {
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="sem">Semester</label>
-                                <input type="text" class="form-control" id="sem"/>
+                                <input type="text" class="form-control" id="semester" name="semester" onChange={(e) => handleChange(e)}/>
                             </div>
                             <div class="form-group">
                                 <label for="acadYear">Academic Year</label>
-                                <input type="text" class="form-control" id="acadYear"/>
+                                <input type="text" class="form-control" id="academicYear" name="academic_year" onChange={(e) => handleChange(e)}/>
                             </div>
                             <div class="form-group">
                                 <label for="lastSem">Status of Last Semester Enrolled</label>
-                                <input type="text" class="form-control" id="lastSem"/>
+                                <input type="text" class="form-control" id="lastSem" name="last_sem" onChange={(e) => handleChange(e)}/>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="reason">Reason</label>
-                                <textarea class="form-control" id="reason" rows="8"></textarea>
+                                <textarea class="form-control" id="reason" rows="8" name="reason" onChange={(e) => handleChange(e)}></textarea>
                             </div>
                         </div>
                     </div>
@@ -137,7 +285,6 @@ const Form12 = ({children}) => {
                         </div>
                     </div>
 
-
                     <div className='privacy-notice-container'>
                         <h1 className="form-group-title">Privacy Notice for UP Students</h1>
                         <div className="privacy-notice-text">
@@ -147,15 +294,17 @@ const Form12 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                    <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </div>
                 </form>
+                <div className="form-buttons-container">
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                    </div>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo}/>}
+                    </div>
+                </div>
             </Container>
             <Footer/>
         </div>
