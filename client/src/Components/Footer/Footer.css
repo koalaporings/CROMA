@@ -168,3 +168,12 @@
         left: 0;
     }
 }
+
+.hover-effect {
+    filter: brightness(120%);
+    transition: filter 0.3s ease;
+  }
+  
+  .hover-effect:hover {
+    filter: brightness(100%);
+  }
