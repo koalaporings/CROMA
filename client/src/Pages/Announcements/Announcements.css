@@ -90,6 +90,7 @@
     font-weight: 200;
     font-size: 30px;
     margin-left: 5px;
+    padding-right: 5px;
     position: relative; 
       
 }
@@ -266,5 +267,14 @@
 @media screen and (max-width: 768px) {
     .announcement-portal-text {
         font-size: 20px;
+    }
+    .announcement-details-text {
+        font-size: 12px;
+    }
+    .announcement-date-text {
+        font-size: 14px;
+    }
+    .announcement-details-container {
+        width: 65%;
     }
 }

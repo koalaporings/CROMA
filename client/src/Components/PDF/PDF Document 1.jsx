@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     viewer: {
-        width: 850,
-        height: 650,
+        width: "75vw",
+        height: "25vh",
     },
     title:{
         marginTop: 40,
