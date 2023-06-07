@@ -566,8 +566,10 @@ textarea:focus {
   width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 6vh;
-  margin-left: 15%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 15%; */
   z-index: 1001;
 }
 
@@ -576,12 +578,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 45%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 45%; */
   z-index: 1001;
 }
 
@@ -590,12 +594,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 75%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 75%; */
   z-index: 1001;
 }
 
@@ -605,7 +611,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 12vh;
+  margin-top: 11vh;
   margin-left: 17.5%;
 }
 
@@ -657,10 +663,8 @@ textarea:focus {
 }
 
 .tracking-status-container-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 5px;
 }
 
@@ -687,6 +691,9 @@ textarea:focus {
 }
 
 .tracking-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Fredoka';
   font-size: 20px;
   /* width: 720px;
