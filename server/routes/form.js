@@ -136,9 +136,8 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
   if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
-  if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
-  let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
+  let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
   if(req.body.form_id >= 0 && req.body.form_id <= 3){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [

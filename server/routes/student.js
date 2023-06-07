@@ -16,8 +16,10 @@ router.get("/transactions/:user_id/:filter_info", async (req,res) => {        //
       q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date ASC'
     }
     const userId = req.params.user_id
+    console.log(userId)
     db.query(q, userId, (err, results) => {
       if(err) console.error('ERROR', err);
+      console.log(results)
       res.json(results)
     })
     
@@ -68,7 +70,7 @@ router.get("/transaction_details/:id", async (req,res) => {       //API endpoint
     res.json(values)
 })
 
-router.get("/getDetails/:id", (req,res) => {        //API endpoint to get the details of a student
+router.get("/getDetails/:id", async (req,res) => {        //API endpoint to get the details of a student
   const q = "SELECT * FROM students WHERE user_id = ?"
   const id = req.params.id
 
@@ -77,6 +79,26 @@ router.get("/getDetails/:id", (req,res) => {        //API endpoint to get the de
     res.json(data)
   })
 
+})
+
+router.put("/updateToken", async (req,res) => {
+  const q = "UPDATE users SET(`token`) VALUES (?) WHERE email = ?"
+  const token = req.body.token
+  const email = req.body.email
+
+  db.query(q, [token, email], (err,data) => {
+    if(err) console.log("ERROR", err)
+  })
+})
+
+router.get("/getToken/:email", async (req,res) => {
+  const q = "SELECT token FROM users WHERE email = ?"
+  const email = req.params.email
+
+  db.query(q, email, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.send(data)
+  })
 })
 
 

@@ -1,14 +1,126 @@
-import React from 'react';
+import { useState } from "react";
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import { fontSize } from '@mui/system';
+import CancelModal from '../../Components/Modal/Cancel Modal';
+import SubmitModal from '../../Components/Modal/Submit Modal';
+//import { fontSize } from '@mui/system';
+import { addFormInformation } from './Forms API Call';
+import { useNavigate } from "react-router-dom";
+
+
 
 
 // Change of Matriculation
 const Form13 = ({children}) => {
+    const [formDetails, setFormDetails] = useState({
+        user_id: 4,
+        form_id: 14,
+        remarks: null,
+        student_id: 1,
+        last_name: "",
+        first_name: "",
+        middle_initial: "",
+        student_number: "",
+        mobile_number:"",
+        degree_program: "",
+        year_level: "",
+        email:"",
+
+        purpose: "",
+        purpose_ext: ""
+    });
+
+    const navigate = useNavigate();
+
+    const navigateLanding = () => navigate('/student');
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(value)
+
+        setFormDetails(prevState => ({
+        ...prevState,
+        [name]: value
+        }));
+
+        console.log(formDetails)
+    }
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [isCancelOpen, setIsCancelOpen] = useState(false);
+
+    async function addInfo() {
+        if (!formValid()) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('user_id', formDetails.user_id);
+        const response = addFormInformation(formDetails);
+        setIsOpen(false);
+        navigateLanding();
+    }
+
+    const formValid = () => {
+        const {
+
+            last_name,
+            first_name,
+            student_number,
+            mobile_number,
+            year_level,
+            degree_program,
+            email,
+            purpose,
+            purpose_ext
+
+        } = formDetails;
+
+        if (
+            !last_name ||
+            !first_name ||
+            !student_number ||
+            !year_level ||
+            !degree_program ||
+            !mobile_number||
+            !email||
+            !purpose||
+            !purpose_ext
+        ) {
+            // Form validation failed
+            alert("Please fill in all fields");
+            return false;
+        }
+
+        if (isNaN(student_number)) {
+            alert("Student number and mobile number must be integers.");
+            return;
+        }
+
+        return true;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsOpen(true);
+    };
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        setIsCancelOpen(true);
+    };
+
+    const handleCancelModalClose = () => {
+        setIsCancelOpen(false);
+    };
+
+    const handleSubmitModalClose = () => {
+        setIsOpen(false);
+    };
+
 
     return(
         <div>
@@ -21,41 +133,55 @@ const Form13 = ({children}) => {
                 <div className="form-title">
                     Change of Matriculation
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={handleSubmit}>
                     <h1 className='form-group-title'>A. Student Details</h1>
                     <div class="form-row">
-                        <div class="col-md-8 mb-2">     
-                            <label for="studentName">Name (Last Name, First Name, Middle Initial)</label>
-                            <input type="text" class="form-control" id="studentName"    />
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentLastName">Last Name</label>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name"  onChange={(e) => handleChange(e)}/>
+                        </div>
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentFirstName">First Name</label>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name"  onChange={(e) => handleChange(e)} />
+                        </div>
+                        <div class="col-md-2 mb-2">     
+                            <label for="studentMiddleInitial">Middle Initial</label>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial"  onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber"/>
+                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber"/>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-2">
-                            <label for="degreeProgram">Degree Program</label>
-                            <input type="text" class="form-control" id="degreeProgram"/>
+                    <div class="col-md-6 mb-2">
+                        <label for="degreeProgram">Degree Program</label>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
+                                <option selected value=""> </option>
+                                <option value="BS Computer Science">BS Computer Science</option>
+                                <option value="BS Biology">BS Biology</option>
+                                <option value="BS Mathematics">BS Mathematics</option>
+                                <option value="BS Statistics">BS Statistics</option>
+                            </select>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel"/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level"  onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress"/>
+                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
                     <label for="purpose">Purpose</label>
                     <div class="row">
                         <div class="col-md-6">
-                            <select class="custom-select" id='purpose'>
+                            <select class="custom-select" id='purpose' name="purpose" onChange={(e) => handleChange(e)}>
                                 <option selected value="1">Ill Advised</option>
                                 <option value="2">Conflict of Time</option>
                                 <option value="3">Lacks Prerequisite</option>
@@ -65,7 +191,7 @@ const Form13 = ({children}) => {
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="others"/>
+                            <input type="text" class="form-control" id="others" name="purpose_ext" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <br></br>
@@ -214,15 +340,17 @@ const Form13 = ({children}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                    <div className="form-buttons-container">
-                        <div className="cancel-button">
-                            <button class="btn btn-primary" type="submit">Cancel</button>
-                        </div>
-                        <div className="submit-button">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </div>
                 </form>
+                <div className="form-buttons-container">
+                    <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
+                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                    </div>
+                    <div className="submit-button">
+                        <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo}/>}
+                    </div>
+                </div>
             </Container>
             <Footer/>
         </div>
