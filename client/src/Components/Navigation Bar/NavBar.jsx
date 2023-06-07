@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, HomeOutlined, CampaignOutlined, ReceiptLongOutlined , LogoutOutlined } from "@mui/icons-material"
 import { Box } from "@mui/system"
 import { IconButton} from '@mui/material';
@@ -57,7 +57,19 @@ const Sidebar = ({ children }) => {
     }
   };
 
-  
+  useEffect(() => {
+    let viewportWidth = window.innerWidth;
+    let sidebar = document.getElementById("sidebar");
+    let sidebarMenu = document.getElementById("sidebar-menu");
+    
+    if (viewportWidth < 768) {
+      sidebar.classList.add("minimized");
+      sidebarMenu.classList.add("minimized");
+    } else {
+      sidebar.classList.remove("minimized");
+      sidebarMenu.classList.remove("minimized");
+    }
+  }, []);
 
   const menuItem = [
     {
@@ -124,7 +136,7 @@ const Sidebar = ({ children }) => {
               <IconButton>
                 <div className="sidebar-user-icon">
   
-                    <LogoutOutlined class="navbar-icon" sx={{fontSize: "5vh"}} style={{color: 'white'} }/>
+                    <LogoutOutlined class="navbar-icon"  sx={{fontSize: "5vh"}} style={{color: 'white'} }/>
 
                 </div>
               </IconButton>
