@@ -21,12 +21,35 @@ const Footer = () => {
                     <div className="fcol-2">
                         <p className='footer-component-text-5'>Follow us:</p>
                         <div className="media-logo-container">
-                            <img alt="footer-component-icon-1"
-                                src={facebookIcon}
-                                className="footer-component-icon-1"/>
-                            <img alt="footer-component-icon-2"
-                                src={globeIcon}
-                                className="footer-component-icon-2"/>
+                        <img
+                            alt="footer-component-icon-1"
+                            src={facebookIcon}
+                            className="footer-component-icon-1"
+                            onClick={() => {
+                                window.open("https://www.facebook.com/UPCebuCollegeOfScience");
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.classList.add("hover-effect");
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.classList.remove("hover-effect");
+                            }}
+                            />
+
+                            <img
+                            alt="footer-component-icon-2"
+                            src={globeIcon}
+                            className="footer-component-icon-2"
+                            onClick={() => {
+                                window.open("https://cs.upcebu.edu.ph");
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.classList.add("hover-effect");
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.classList.remove("hover-effect");
+                            }}
+                            />
                         </div>
                     </div>
                     <div className="fcol-3">
@@ -35,18 +58,18 @@ const Footer = () => {
                             <img alt="footer-component-icon-3"
                             src={telephoneIcon}
                             className="footer-component-icon-3"/>
-                            <p className='footer-component-text-7'>09123456789 / 123-456</p>
+                            <p className='footer-component-text-7'> 232 8185 / 232 8187 </p>
                         </div>
                         <div className="contact-container-2">
                             <img alt="footer-component-icon-4"
                             src={envelopeIcon}
                             className="footer-component-icon-4"/>
-                            <p className='footer-component-text-8'>loremipsum@up.edu.ph</p>     
+                            <p className='footer-component-text-8'>ocs_cos.upcebu@up.edu.ph</p>     
                         </div>
                     </div>    
                 </div>
                 <div className="frow-2">
-                    <div className='footer-component-text-4'>© 2022 OCS-ARS. All rights reserved.</div>
+                    <p className='footer-component-text-4'>© 2023 OCS-ARS. All rights reserved.</p>
                 </div>
             </div>
         </div>
