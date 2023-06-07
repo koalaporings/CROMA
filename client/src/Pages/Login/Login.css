@@ -289,9 +289,7 @@ color: white;
     justify-content: center;
 }
 
-.col-1-container {
-    position: relative;
-}
+
 
 .col-1-container p {
     position: relative;
@@ -319,6 +317,13 @@ color: white;
 
     .fcol-2 {
         display: none;
+    }
+
+    .footer-component-text-1, .footer-component-text-2, .footer-component-text-3 {
+        font-size: 13px;
+    }
+    .footer-component-text-6, .footer-component-text-7 {
+        font-size: 14px;
     }
 
   }

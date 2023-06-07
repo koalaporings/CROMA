@@ -92,6 +92,7 @@
 @media screen and (max-width: 1230px) {
     .header-bg-1{
         opacity: 0;
+        display: none;
     }
 }
 
