@@ -123,7 +123,6 @@ const SignatoryLanding = ({children}) => {
     return(
         <div>
             <NavBar/>
-            <NavBar/>
             <div className="header-signatory">
                 <Header/>
             </div>

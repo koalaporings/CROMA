@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import url('https://fonts.googleapis.com/css?family=Fredoka');
 
+.table {
+    max-width: 100%;
+}
+
 .main-table-container{
     position: absolute;
     background-color: #faddaa;
@@ -45,4 +49,13 @@ td {
 
 tr:nth-child(odd) {
     background-color: #FFF6E6;
+}
+
+@media screen and (max-width: 768px) {
+    th {
+        font-size: 14px;
+    }
+    td {
+        font-size: 11px;
+    }
 }

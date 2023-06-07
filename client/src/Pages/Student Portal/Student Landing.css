@@ -13,7 +13,9 @@
 .student-container {
     height: auto;
     background-color: white;
+
 }
+
 
 .footer-student {
     display: block;
@@ -32,7 +34,7 @@
 .student-ongoing-table-container{
     display: block;
     padding-left: 12%;
-    width: 80%;
+    max-width: 80%;
     height: auto;
 }
 
@@ -241,3 +243,29 @@
 .transaction-request-button:hover{
     background-color: #132e22;
 }
+
+@media screen and (max-width: 600px){
+    .name-header {
+        padding-left: 5px;
+    }
+    .transaction-header {
+        left: 5px;
+    }
+    .student-notifs-container{
+        padding-left: 5px;
+    }
+    .title-text {
+        padding-left: 5px;
+    }
+    .student-ongoing-table-container {
+        padding-left: 5px;
+    }
+    .transaction-container {
+        padding-left: 5px;
+    }
+    .filter-container {
+        left: 0;
+        right: 10%;
+    }
+}
+    

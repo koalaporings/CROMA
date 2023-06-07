@@ -85,7 +85,6 @@ const Form2 = ({children}) => {
             const {
                 last_name,
                 first_name,
-                middle_initial,
                 student_number,
                 mobile_number,
                 year_level,

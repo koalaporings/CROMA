@@ -64,3 +64,12 @@ td.title-date{
         text-align: center;
         
         }
+
+@media screen and (max-width: 768px) {
+    th {
+        font-size: 14px;
+    }
+    td {
+        font-size: 11px;
+    }
+}
