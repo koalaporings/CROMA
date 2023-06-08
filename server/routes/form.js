@@ -173,20 +173,46 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
     info = [
       transaction_id,
     ]
-  }else if((req.body.form_id >= 10 && req.body.form_id <= 13) || req.body.form_id == 15){ // Because Form 14 has a different way to handle names
+  }else if(req.body.form_id == 10 || req.body.form_id == 11){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
+    info = [
+      transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+      req.body.mobile_number,
+      req.body.degree_program,
+      req.body.year_level,      
+      req.body.email,
 
-    //NAME HANDLING FOR FORMS
-    // var last_name, first_name, middle_initial
-    // try{      
-    //   const result = req.body.student_name.split(/,\s*|,/);
-    //   [last_name, first_name, middle_initial] = result
-    // }catch{
-    //   console.log('Form Field Error')
-    // }
+      req.body.academic_year,
+      req.body.semester,
+      req.body.num_copies,
+      req.body.purpose,
+    ]
+  }else if(req.body.form_id == 12){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `semester`, `academic_year`, `status_last_semester`, `purpose`) VALUES (?)';
 
-    //FORMS DATA HANDLING
-    if(req.body.form_id == 10 || req.body.form_id == 11){
-      q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
+    info = [
+      transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+
+      req.body.degree_program,
+      req.body.year_level,
+      
+      req.body.semester,
+      req.body.academic_year,
+
+      req.body.last_sem,
+      req.body.reason
+    ];
+  
+  }else if(req.body.form_id == 13){
+      q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`, `email`, `purpose`, `purpose_ext`) VALUES (?)';
       info = [
         transaction_id,
         req.body.last_name,
@@ -194,79 +220,19 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
         req.body.middle_initial,
         req.body.student_number,
         req.body.mobile_number,
+
         req.body.degree_program,
-        req.body.year_level,      
+        req.body.year_level,          
         req.body.email,
-  
-        req.body.academic_year,
-        req.body.semester,
-        req.body.num_copies,
+
         req.body.purpose,
-      ]
-    }else if(req.body.form_id == 12){
-      q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `date`, `degree_program`, `year_level`, `semester`, `academic_year`, `status_last_semester`, `purpose`) VALUES (?)';
-  
-      info = [
-        last_name,
-        first_name,
-        middle_initial,
-        req.body.student_number,
-        req.body.date,
-        req.body.degree_program,
-        req.body.year_level,
-        
-        
-        req.body.semester,
-        req.body.academic_year,
-
-        req.body.status_last_semester,
-        req.body.purpose,
+        req.body.purpose_ext
       ];
-    
-    }else if(req.body.form_id == 13){
-        q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`, `email`, `purpose`, `purpose_ext`) VALUES (?)';
-        info = [
-          last_name,
-          first_name,
-          middle_initial,
-          req.body.student_number,
-          req.body.mobile_number,
-
-          req.body.degree_program,
-          req.body.year_level,          
-          req.body.email,
-
-          req.body.purpose,
-          req.body.purpose_ext,
-        ];
-  
-    }else if(req.body.form_id == 15){
-      q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`, `remarks`) VALUES (?)';
-  
-      info = [
-        last_name,
-        first_name,
-        middle_initial,
-        req.body.student_number,
-        req.body.degree_program,
-        req.body.year_level,
-
-        req.body.course_description_title,
-        req.body.course_num_section,
-        req.body.units,
-        req.body.original_grade,
-        req.body.semester_incurred,
-        req.body.academic_year_incurred,
-        req.body.date_completion,
-        req.body.removal_grade,
-        req.body.remarks,
-      ];
-  
-    }    
 
   }else if(req.body.form_id == 14){
-    q2 = 'INSERT INTO transaction_info (`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `subject_dropped`, `section`, `instructor_name`, `purpose`) VALUES (?)'
+    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `subject_dropped`, `section`, `instructor_name`, `purpose`) VALUES (?)';
     info = [
+      transaction_id,
       req.body.last_name,
       req.body.first_name,
       req.body.middle_initial,
@@ -280,8 +246,30 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.instructor_name,
       req.body.purpose,
     ]
-  }
 
+  }else if(req.body.form_id == 15){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`) VALUES (?)';
+
+    info = [
+      transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+      req.body.degree_program,
+      req.body.year_level,
+
+      req.body.course_description_title,
+      req.body.course_num_section,
+      req.body.units_per_subject,
+      req.body.original_grade,
+      req.body.semester,
+      req.body.academic_year_incurred,
+      req.body.date_completion,
+      req.body.removal_grade
+    ];
+
+  }    
   const formId = req.body.form_id
 
   const form_values = await new Promise((resolve) => {
@@ -319,15 +307,21 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       if(err) {
         console.error('ERROR', err);
       } else {
-        let transaction_id = result.insertId;
-  
-        for(let overloadSubject of req.body.overload_subjects) {
-          const q3 = 'INSERT INTO overload_subjects (`transaction_id`, `OverloadSubjects`, `OverloadCredits`) VALUES (?, ?, ?)';
-          const overloadInfo = [transaction_id, overloadSubject.OverloadSubjects, overloadSubject.OverloadCredits];
-  
-          db.query(q3, overloadInfo, (err, data) => {
-            if(err) console.error('ERROR', err);
-          });
+        
+        let subjects = Object.values(req.body.subjects);
+        let units = Object.values(req.body.units_per_subject);
+        
+        if(subjects.length !== units.length) {
+          console.error('Subjects and Units do not match in length.');
+        } else {
+            for(let i = 0; i < subjects.length; i++) {
+                const q3 = 'INSERT INTO overload_subjects (`transaction_id`, `overload_subjects`, `overload_credits`) VALUES (?, ?, ?)';
+                const overloadInfo = [transaction_id, subjects[i], units[i]];
+                console.log('Transaction ID: ', transaction_id);
+                db.query(q3, overloadInfo, (err, data) => {
+                    if(err) console.error('ERROR', err);
+                });
+            }
         }
       }
     });
@@ -337,24 +331,34 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       if(err) {
         console.error('ERROR', err);
       } else {  
-        const cancelledSubjects = req.body.cancelledSubjects || [];
-        const authorizedSubjects = req.body.authorizedSubjects || [];
+
+        let cancelledSubjects = Object.values(req.body.cSub);
+        let cancelledInstructors = Object.values(req.body.cProf);
+        let cancelledUnits = Object.values(req.body.cUnit);
+        let cancelledTimes = Object.values(req.body.cTime);
+        let cancelledDays = Object.values(req.body.cDay);
+        let cancelledRooms = Object.values(req.body.cRoom);
+
+        let authorizedSubjects = Object.values(req.body.aSub);
+        let authorizedInstructors = Object.values(req.body.aProf);
+        let authorizedUnits = Object.values(req.body.aUnit);
+        let authorizedTimes = Object.values(req.body.aTime);
+        let authorizedDays = Object.values(req.body.aDay);
+        let authorizedRooms = Object.values(req.body.aRoom);
   
-        cancelledSubjects.forEach(subject => {
-          const {subjects_cancelled, cancelled_instructor, cancelled_units, cancelled_time, cancelled_day, cancelled_room} = subject;
-          const q2 = 'INSERT INTO cancelled_subjects (`transaction_id`, `subjects_cancelled`, `cancelled_instructor`, `cancelled_units`, `cancelled_time`, `cancelled_day`, `cancelled_room`) VALUES (?, ?, ?, ?, ?, ?, ?)';
-          db.query(q2, [transaction_id, subjects_cancelled, cancelled_instructor, cancelled_units, cancelled_time, cancelled_day, cancelled_room], err => {
+        for (let i = 0; i < cancelledSubjects.length; i++){
+          const q3 = 'INSERT INTO cancelled_subjects (`transaction_id`, `subjects_cancelled`, `cancelled_instructor`, `cancelled_units`, `cancelled_time`, `cancelled_day`, `cancelled_room`) VALUES (?, ?, ?, ?, ?, ?, ?)';
+          db.query(q3, [transaction_id, cancelledSubjects[i], cancelledInstructors[i], cancelledUnits[i], cancelledTimes[i], cancelledDays[i], cancelledRooms[i]], err => {
             if(err) console.error('ERROR', err);
           });
-        });
-  
-        authorizedSubjects.forEach(subject => {
-          const {subjects_authorized, auth_instructor, auth_units, auth_time, auth_day, auth_room} = subject;
-          const q3 = 'INSERT INTO authorized_subjects (`transaction_id`, `subjects_authorized`, `auth_instructor`, `auth_units`, `auth_time`, `auth_day`, `auth_room`) VALUES (?, ?, ?, ?, ?, ?, ?)';
-          db.query(q3, [transaction_id, subjects_authorized, auth_instructor, auth_units, auth_time, auth_day, auth_room], err => {
+        }
+
+        for (let i = 0; i < cancelledSubjects.length; i++){
+          const q3 = 'INSERT INTO authorized_subjects (`transaction_id`, `subjects_authorized`, `auth_instructor`, `auth_units`, `auth_time`, `auth_day`, `auth_room`) VALUES (?, ?, ?, ?, ?, ?, ?)'
+          db.query(q3, [transaction_id, authorizedSubjects[i], authorizedInstructors[i], authorizedUnits[i], authorizedTimes[i], authorizedDays[i], authorizedRooms[i]], err => {
             if(err) console.error('ERROR', err);
           });
-        });
+        }
       }
     });
   }else{

@@ -11,6 +11,7 @@ import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//True Copy of Grades (TCG)
 const Form1 = ({userId}) => {
     const [image, setImage] = useState();
     const [price, setPrice] = useState(50);
