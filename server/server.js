@@ -36,17 +36,17 @@ app.post("/api/image", upload.single('pdf'),(req,res,err)=> {
   })}
 )
 
-app.get('/api/image/get', (req,res) =>{
-  const id = 1
-  const q = 'SELECT * FROM files where id = ?'
+// app.get('/api/image/get', (req,res) =>{
+//   const id = 1
+//   const q = 'SELECT * FROM files where id = ?'
 
-  db.query(q, id, (err,result) => {
-    if(err) console.error('ERROR', err)
-    res.send({
-      image: result[0].image
-    })
-  })
-})
+//   db.query(q, id, (err,result) => {
+//     if(err) console.error('ERROR', err)
+//     res.send({
+//       image: result[0].image
+//     })
+//   })
+// })
 
 app.get("/logout", async (req, res) => {
   
