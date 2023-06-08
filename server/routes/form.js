@@ -11,6 +11,7 @@ router.use('/', express.static(path.join(__dirname, '/')));
 router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
 
+router.use(express.static('public'))
 
 router.get('/view', async (req, res) => {       //API endpoint for viewing list of forms available
     const q = 'SELECT * FROM forms'
@@ -61,12 +62,24 @@ router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpo
 
 router.post('/upload_image/', upload.single('image'), (req, res) => {        //API endpoint for uploading images
   const image = req.file.filename
-  const id = req.body.id
-  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
+  const id = 123060723591000
+  console.log(req.file)
+  // const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
+  const upload = 'UPDATE files SET file = ? WHERE transaction_id = ?'
   console.log("heh") 
 
   db.query(upload, [image,id], (err,result)=> { 
+    res.json({status:'Success'})
+  })
+})
 
+router.get('/get/:id', async (req,res) => {       //API endpoint for image viewing
+  const q = 'SELECT file from files WHERE transaction_id = ?'
+  const id = req.params.id
+
+  db.query(q, id, (err,data) => {
+    console.log(data)
+    res.json(data)
   })
 })
 

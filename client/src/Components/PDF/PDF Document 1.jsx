@@ -49,7 +49,7 @@ function PDFdocument(docdata){
                 <Page size="A4" style={styles.page}>
                     <Text style={styles.title}>Request for</Text>
                     <View style={styles.section}>
-                        {/* <View style={styles.row}>
+                        <View style={styles.row}>
                             <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Name:  </Text>{docdata.docdata.last_name}, {docdata.docdata.first_name} {docdata.docdata.middle_initial}</Text>
                             
                         </View>
@@ -64,7 +64,7 @@ function PDFdocument(docdata){
                         <View style={styles.row}>
                             <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Purpose:  </Text>{docdata.docdata.purpose}</Text>
                             <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>No. of Copies:  </Text>{docdata.docdata.num_copies}</Text>
-                        </View> */}
+                        </View>
 
                     </View>
                 </Page>

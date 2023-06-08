@@ -33,6 +33,7 @@ const StudentLanding = ({children}) => {
     const [email, setEmail] = useState("");
     const [userName, setUserName] = useState("")
     const [filter, setFilter] = useState("dsc")
+    const [image, setImage] = useState()
 
     // GET USER ID -----------------------------------------------------------------------------
     const [id, setID] = useState(0);
@@ -134,6 +135,22 @@ const StudentLanding = ({children}) => {
         setFormId(data5)
     }
 
+    //GET IMAGE FILE
+    useEffect(() => {
+        async function getvalue() {
+          const response = await getImagevalue()
+          console.log(response)
+          setImage(response)
+        }getvalue()
+      },[])
+
+    async function getImagevalue(){
+        const response = await axios.get('http://localhost:5000/form_api/get/' + 123060723591000)
+        console.log(response)
+        return response.data
+      }
+      
+    console.log(image)
     const navigate = useNavigate();
 
     const reqRedirect = () => {
@@ -206,7 +223,7 @@ const StudentLanding = ({children}) => {
                         action = {clickHandler}
                         // setID = {setSelected}
                     />
-                    {isOpen && <ViewStudentModal data={documentDetails} setIsOpen={setIsOpen}/>}
+                    {isOpen && <ViewStudentModal data={[documentDetails, image]} setIsOpen={setIsOpen}/>}
                 </div>
                 
                 <div className='title-text'>

@@ -8,11 +8,10 @@ function ViewStudentModal({
   data,
   setIsOpen
 }){
-
   // function onClick() {
   //   download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
   // }
-
+  console.log(data[0])
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)}/>
@@ -26,8 +25,10 @@ function ViewStudentModal({
           </button>
           <div className="view-document-content">
             <PDFdocument
-              docData = {data}
+              docdata = {data[0]}
             />
+            <h5 className ='view-heading'>Proof of Payment</h5>
+            <img src={`http://localhost:5000/public/uploads/` + data[1][0].file.toString()}/>
             {/* <button onClick={onClick}>Download</button> */}
           </div>
           <div className="view-modalActions">
