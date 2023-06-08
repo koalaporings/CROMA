@@ -1,40 +1,34 @@
-import React, { useState } from 'react';
-import { Menu, HomeOutlined, CampaignOutlined, Search, ReceiptLongOutlined , LogoutOutlined } from "@mui/icons-material"
+import React, { useState, useEffect } from 'react';
+import { Menu, HomeOutlined, CampaignOutlined, Search, ReceiptLongOutlined, LogoutOutlined, Person } from "@mui/icons-material"
 import { Box } from "@mui/system"
 import { IconButton } from '@mui/material';
-// import { SearchIcon } from '@mui/icons-material/Search';
 import { NavLink } from "react-router-dom";
+import ProfileModal from '../../Components/Modal/Profile Modal';
 
-import './NavBar.css'
-
+import './NavBar.css';
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState('MENU');
-  const [usernameDisplay, setUser] = useState('')
+  const [isProfileModalOpen, setProfileModalOpen] = useState(false);
+
   const toggle = () => {
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
     sidebar.classList.toggle("minimized");
     sidebarMenu.classList.toggle("minimized");
-    // setIsOpen(!isOpen)
   };
-  const [roleID, setRoleId] = useState("-1")
 
   const doubleToggle = () => {
     toggle();
     setSelectedMenuItem(' ');
   }
-//   console.log(localStorage.getItem("username"))
-//   const getUser = () => {
-//     try{
-//       console.log("here")
-//       setUser(localStorage.getItem("username").substring(13,localStorage.getItem("username").length-2))
-//       setRoleId(localStorage.getItem("role_id"))
-//     } catch {
-//       setUser("Guest")
-//     }
-//   }
+
+  const handleLogout = () => {
+    // Perform logout logic here
+    // ...
+  };
+
   window.onresize = function() {
     let viewportWidth = window.innerWidth;
     let sidebar = document.getElementById("sidebar");
@@ -49,88 +43,123 @@ const Sidebar = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    let viewportWidth = window.innerWidth;
+    let sidebar = document.getElementById("sidebar");
+    let sidebarMenu = document.getElementById("sidebar-menu");
+    if (viewportWidth < 768) {
+      sidebar.classList.add("minimized");
+      sidebarMenu.classList.add("minimized");
+    } else {
+      sidebar.classList.remove("minimized");
+      sidebarMenu.classList.remove("minimized");
+    }
+  }, []);
+
+
   
 
   const menuItem = [
     {
       path: "/student",
       name: "Home",
-      icon: <HomeOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <HomeOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
     },
     {
       path: "/student/tracking",
       name: "Tracking",
-      icon: <Search  sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <Search class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
     },
     {
       path: "/student/announcements",
       name: "Announcements",
-      icon: <CampaignOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <CampaignOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
     },
     {
       path: "/student/history",
       name: "History",
-      icon: <ReceiptLongOutlined sx={{ fontSize: "5vh" }} style={{color: 'white'}}/>
+      icon: <ReceiptLongOutlined class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
     },
-  ]
+  ];
 
   return (
     <div className="sidebar-container">
-      <div style={{ width: isOpen ? "28vh" : "80px" }} className="sidebar" id="sidebar">
+      <div style={{ width: isOpen ? "28vh" : "70px" }} className="sidebar" id="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
             <Box>
               <IconButton>
-                {" "}
-                <Menu onClick={() => {
-                  doubleToggle()
-                //   getUser()
-                }} sx={{ fontSize: "6vh" }} style={{color: 'white'}}/>
+                <Menu class="navbar-icon" onClick={doubleToggle} sx={{ fontSize: "6vh" }} style={{ color: 'white' }} />
               </IconButton>
             </Box>
           </div>
           <div className="sidebar-display">
             <div style={{ display: isOpen ? "flex" : "none" }} className="sidebar-display-text">{selectedMenuItem}</div>
           </div>
-
         </div>
         <div className="sidebar-menu" id="sidebar-menu">
-          {
-            menuItem.map((item, index) => (
-              <NavLink to={item.path} style={{textDecoration: 'none'}}>
-              <div to={item.path} key={index} className="sidebar-link" activeclassName="sidebar-active" onClick={() => {setSelectedMenuItem(item.name);setIsOpen(false)}}>
-                
-                  <Box>
-                    <IconButton >
-                      <div className="sidebar-icon">{item.icon}</div>
-                    </IconButton>
-                  </Box>
-                
-                <div to={item.path} style={{ display: isOpen ? "flex" : "none"}} className="sidebar-link_text">{item.name}</div>
+          {menuItem.map((item, index) => (
+            <NavLink to={item.path} style={{ textDecoration: 'none' }} key={index}>
+              <div
+                to={item.path}
+                className="sidebar-link"
+                activeclassName="sidebar-active"
+                onClick={() => {
+                  setSelectedMenuItem(item.name);
+                  setIsOpen(false);
+                }}
+              >
+                <Box>
+                  <IconButton>
+                    <div className="sidebar-icon">{item.icon}</div>
+                  </IconButton>
+                </Box>
+                <div
+                  to={item.path}
+                  style={{ display: isOpen ? "flex" : "none" }}
+                  className="sidebar-link_text"
+                >
+                  {item.name}
+                </div>
               </div>
-              </NavLink>
-            ))
-          }
-          <div className="sidebar-bottom-section">
+            </NavLink>
+          ))}
+          <div
+            className="sidebar-link"
+            activeclassName="sidebar-active"
+            onClick={() => setProfileModalOpen(true)}
+          >
             <Box>
               <IconButton>
-                <div className="sidebar-user-icon">
-  
-                    <LogoutOutlined sx={{fontSize: "5vh"}} style={{color: 'white'}}/>
-
+                <div className="sidebar-icon">
+                  <Person class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
                 </div>
               </IconButton>
             </Box>
-            <div className = "sidebar-bottom-section-link-text"
-                style={{display: isOpen? "flex": "none"}}>
-                Log out
+            <div
+              style={{ display: isOpen ? "flex" : "none" }}
+              className="sidebar-link_text"
+            >
+              Profile
             </div>
           </div>
-
+          <div className="sidebar-bottom-section">
+            <Box>
+              <IconButton onClick={handleLogout}>
+                <div className="sidebar-user-icon">
+                  <LogoutOutlined  class="navbar-icon" sx={{ fontSize: "5vh" }} style={{ color: 'white' }} />
+                </div>
+              </IconButton>
+            </Box>
+            <div className="sidebar-bottom-section-link-text" style={{ display: isOpen ? "flex" : "none" }}>
+              Log out
+            </div>
+          </div>
         </div>
       </div>
+      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} />}
     </div>
-  )
+  );
 }
 
 export default Sidebar;

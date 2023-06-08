@@ -577,8 +577,10 @@ textarea:focus {
   width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 6vh;
-  margin-left: 15%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 15%; */
   z-index: 1001;
 }
 
@@ -587,12 +589,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 45%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 45%; */
   z-index: 1001;
 }
 
@@ -601,12 +605,14 @@ textarea:focus {
   border: solid #21523C;
   color: #21523C;
   border-width: 7px;
-  height: 100px;
-  width: 100px;
+  height: 10vh;
+  width: 10vh;
   border-radius: 100px;
   position: absolute;
-  margin-top: 3%;
-  margin-left: 75%;
+  top: -90%;
+  left: -90%;
+  /* margin-top: 6vh;
+  margin-left: 75%; */
   z-index: 1001;
 }
 
@@ -616,7 +622,7 @@ textarea:focus {
   width: 30px;
   border-radius: 25px;
   position: absolute;
-  margin-top: 12vh;
+  margin-top: 11vh;
   margin-left: 17.5%;
 }
 
@@ -668,10 +674,8 @@ textarea:focus {
 }
 
 .tracking-status-container-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 5px;
 }
 
@@ -698,6 +702,9 @@ textarea:focus {
 }
 
 .tracking-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Fredoka';
   font-size: 20px;
   /* width: 720px;
@@ -797,7 +804,7 @@ textarea:focus {
 }
 
 .edit-user-modal {
-  width: 1000px;
+  min-width: 450px;
   height: 150px;
   background: white;
   color: white;
@@ -843,7 +850,7 @@ textarea:focus {
 
 .edit-user-modalActions {
   position: flex;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 100%;
   height: 5%;
 }
@@ -871,6 +878,84 @@ textarea:focus {
   background-color: #08321F;
 }
 
+.circle-profile {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #404850;
+}
+
+.circle-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.profile-modal {
+  padding: 20px;
+  width: 530px;
+  /* height: 400px; */
+  background: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.profile-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-name {
+  font-family: "Fredoka One";
+  font-size: 24px;
+  color: #7A1113;
+}
+
+.profile-course {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+}
+.profile-email {
+  text-decoration: underline;
+  font-family: "Poppins";
+  font-size: 14px;
+  /* font-weight: 700; */
+}
+
+.profile-student-number, .profile-contact-number {
+  font-family: "Poppins";
+  font-size: 14px;
+  /* font-weight: 700; */
+}
+
+.edit-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.edit-button button {
+  font-size: 13px;
+  font-family: 'Poppins';
+  border-radius: 4px;
+  background-color: #21523C;
+  color: white;
+  min-width: 100px;
+  min-height: 20px;
+}
+
+.edit-button button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+
 
 @media screen and (max-width: 768px) {
   .submit-modalContent {
@@ -894,5 +979,15 @@ textarea:focus {
   .tracking-sub-text, .tracking-sub-text-bold, .tracking-time {
     font-size: 14px;
   }
+  .profile-modal {
+    width: 80vw;
+  }
 
+}
+
+@media screen and (max-width: 600px) {
+  .edit-user-modal {
+    min-width: 90vw;
+    width: 90vw;
+  }
 }

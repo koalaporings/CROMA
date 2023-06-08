@@ -111,7 +111,7 @@ ul li.important-item {
 }
 
 .submit-button button {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-top: 20px;
     margin-bottom: 20px;
     width: 120px;
@@ -128,7 +128,10 @@ ul li.important-item {
 }
 
 .cancel-button button {
-    margin: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 120px;
     font-family: 'Fredoka';
     border: 1px solid #21523C;
