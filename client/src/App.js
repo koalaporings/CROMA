@@ -54,7 +54,7 @@ import Form15 from './Pages/Forms/Form 15';
 import Form16 from './Pages/Forms/Form 16';
 import Form17 from './Pages/Forms/Form 17';
 import Form18 from './Pages/Forms/Form 18';
-import Form19 from './Pages/Forms/Form 19';
+import Form21 from './Pages/Forms/Form 21';
 import Form20 from './Pages/Forms/Form 20';
 
 function App() {
@@ -202,100 +202,88 @@ function App() {
             />
 
             <Route 
-              // path="/student/request/4" 
-              path="/student/request/16" 
+              path="/student/request/4" 
               element={(localStorage.getItem("role")==="student") ? <Form4 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
             />
 
             <Route 
-              // path="/student/request/5" 
-              path="/student/request/14" 
+              path="/student/request/5" 
               element={(localStorage.getItem("role")==="student") ? <Form5 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
             />
             <Route 
-              // path="/student/request/6" 
-              path="/student/request/15" 
+              path="/student/request/6" 
               element={(localStorage.getItem("role")==="student") ? <Form6 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
             />
             <Route 
-              // path="/student/request/7" 
-              path="/student/request/10" 
+              path="/student/request/7" 
               element={(localStorage.getItem("role")==="student") ? <Form7 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/8" 
-              path="/student/request/13" 
+              path="/student/request/8" 
               element={(localStorage.getItem("role")==="student") ? <Form8 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/9" 
-              path="/student/request/4" 
+              path="/student/request/9" 
               element={(localStorage.getItem("role")==="student") ? <Form9 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/10" 
-              path="/student/request/17" 
+              path="/student/request/10" 
               element={(localStorage.getItem("role")==="student") ? <Form10 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
             />
 
             <Route 
-              // path="/student/request/11" 
-              path="/student/request/21" 
+              path="/student/request/11" 
               element={(localStorage.getItem("role")==="student") ? <Form11 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/12" 
-              path="/student/request/5" 
+              path="/student/request/12" 
               element={(localStorage.getItem("role")==="student") ? <Form12 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/13" 
-              path="/student/request/7" 
+              path="/student/request/13" 
               element={(localStorage.getItem("role")==="student") ? <Form13 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/14" 
-              path="/student/request/6" 
+              path="/student/request/14" 
               element={(localStorage.getItem("role")==="student") ? <Form14 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
             />
 
             <Route 
-              // path="/student/request/15" 
-              path="/student/request/12" 
+              path="/student/request/15" 
               element={(localStorage.getItem("role")==="student") ? <Form15 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
             <Route 
-              // path="/student/request/16" 
-              path="/student/request/18" 
+              path="/student/request/16" 
               element={(localStorage.getItem("role")==="student") ? <Form16 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
   
             <Route 
-              // path="/student/request/17" 
-              path="/student/request/20" 
+              path="/student/request/17" 
               element={(localStorage.getItem("role")==="student") ? <Form17 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
-            <Route 
-              path="/student/request/8" 
+
+
+          <Route 
+              path="/student/request/18"
               element={(localStorage.getItem("role")==="student") ? <Form18 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
             />
 
           <Route 
-              path="/student/request/9"
-              element={(localStorage.getItem("role")==="student") ? <Form19 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              path="/student/request/20" 
+              element={(localStorage.getItem("role")==="student") ? <Form20 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
             />
 
             <Route 
-              path="/student/request/11" 
-              element={(localStorage.getItem("role")==="student") ? <Form20 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              path="/student/request/21" 
+              element={(localStorage.getItem("role")==="student") ? <Form21 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
             />
 
 

@@ -12,17 +12,16 @@ import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from "./Forms API Call";
 
 
-// ADVANCE CREDIT
-
+// Form 67a/67b
 const Form20 = ({userId}) => {
 
     const navigate = useNavigate();
-    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-44A-Application-for-Advance-Credit.pdf';
+    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
             user_id: userId,
-            form_id: 18,
+            form_id: 20,
         });
     
     
@@ -60,27 +59,15 @@ const Form20 = ({userId}) => {
             </div>
             <Container>
                 <div className="form-title">
-                    Apply for Advance Credit
+                    Form 67a/67b
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Request Details</h1>
-                    <div className="form-description-text">
-
-                    
-
-                            <p className='form-description-text -1'>Secure and fill out FORM 44A Application Form for Advance Credit and Validation Permit (green form), in three copies. </p>   
-                            <p className='form-description-text -2'>Submit the accomplished form to the Office of the University Registrar for action. </p>   
-                            <p className='form-description-text -3'>Have your courses/subjects validated by the concerned faculty, by taking a validating exam.
-(Instructor affixes his/her signature and indicates Passed or Failed.) </p>   
-                            <p className='form-description-text -4'>Submit the signed Validation Form to the Office of the College Secretary, for the final approval of the Dean of the College which offers the course/s for which advanced credit is being applied for.
-</p>   
-                                     
-                     </div>
-                     <div>
-                        <p className='download-form' onClick={classOfferingForm} >APPLY FOR ADVANCE CREDIT  </p>                     
-                     </div>
-
-
+                    <div className="form-description-text">Kindly download and fill up this form:</div>
+                    <a href=""><u>Form 67a/67b</u></a>
+                    <br></br>
+                    <br></br>
+                    <div className="form-description-text">Upload the filled up request form here: </div>
                     <div className="upload">
                         <div class="form-group">
                             <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
@@ -97,16 +84,16 @@ const Form20 = ({userId}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                </form>
-                <div className="form-buttons-container">
+                    </form>
+                    <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
-                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
-                    </div>
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
+                    </div> 
                 </div>
             </Container>
             <Footer/>
