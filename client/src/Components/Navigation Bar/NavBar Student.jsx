@@ -12,6 +12,8 @@ const Sidebar = ({ children }) => {
   const [selectedMenuItem, setSelectedMenuItem] = useState('MENU');
   const [isProfileModalOpen, setProfileModalOpen] = useState(false);
 
+  // {console.log(localStorage.getItem("id"))}
+
   const toggle = () => {
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
@@ -84,6 +86,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="sidebar-container">
+      
       <div style={{ width: isOpen ? "28vh" : "70px" }} className="sidebar" id="sidebar">
         <div className="sidebar-top-section">
           <div className="sidebar-hamburger">
@@ -124,11 +127,14 @@ const Sidebar = ({ children }) => {
               </div>
             </NavLink>
           ))}
-          <div
-            className="sidebar-link"
-            activeclassName="sidebar-active"
-            onClick={() => setProfileModalOpen(true)}
-          >
+            <div
+              className="sidebar-link"
+              activeclassName="sidebar-active"
+              onClick={() => setProfileModalOpen(true)}
+            >
+              {/* Rest of the code
+            </div> */}
+
             <Box>
               <IconButton>
                 <div className="sidebar-icon">
@@ -157,7 +163,7 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
       </div>
-      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} />}
+      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} userId={localStorage.getItem("id")} />}
     </div>
   );
 }
