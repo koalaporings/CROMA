@@ -12,45 +12,43 @@ import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from "./Forms API Call";
 
 
-// Change in Class Offering
+// Request to Cross-Register (Incoming)
 const Form4 = ({userId}) => {
 
     const navigate = useNavigate();
-    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
+    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/06/UPC-FORM-3.5A-Application-for-Cross-Registrants-or-Special-Students-Fillable4.pdf';
     const [isOpen, setIsOpen] = useState(false);
-  
-    const [pdf, setPdf] = useState(null);
+    const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-      user_id: userId,
-      form_id: 4,
-    });
-  
-    const navigateLanding = () => navigate('/student');
-  
-    async function addInfo (e) {
-      e.preventDefault(); // Prevent form submission
-      if (pdf) {
-        const formData = new FormData();
-        formData.append('pdf', pdf);
-        formData.append('user_id', formDetails.user_id);
-        const response = addFormInformation(formDetails);
-        uploadPdf(formData);
-        console.log(response);
-        setIsOpen(false);
-        navigateLanding();
-      } else {
-        // Show an alert if no file is uploaded
-        alert('Please upload a file.');
-      }
-    }
-  
-    const pdfHandler = (e) => {
-      const file = e.target.files[0];
-      console.log(file);
-      setPdf(file);
-    };
-  
-  
+            user_id: userId,
+            form_id: 4,
+        });
+    
+    
+        const navigateLanding = () => navigate('/student');     
+    
+        async function addInfo (e) {
+            e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = addFormInformation(formDetails);
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
+          }
+    
+        const pdfHandler = (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            setPdf(file)
+        }
 
     return(
         <div>
@@ -61,22 +59,26 @@ const Form4 = ({userId}) => {
             </div>
             <Container>
                 <div className="form-title">
-                    Change in Class Offering
+                    Request to Cross-Register (Incoming)
                 </div>
                 <form class="tcg-form" onSubmit={addInfo}>
-                    <h1 className='form-group-title'>A. Request Details</h1>
+                    <h1 className='form-group-title'>A. Student Details</h1>
                     <div className="form-description-text">
-                            <p className='form-description-text -1'>Once pre-enlistment has started, any changes made to the class offerings for the specified term, would require a written request with approval.</p>
+                            <p className='form-description-text -1'>Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]</p>
                             <p className='form-description-text -2'>Kindly download and fill up this form: </p>                     
                      </div>
                      <div>
-                        <p className='download-form' onClick={classOfferingForm} >REQUEST FOR CHANGE IN CLASS OFFERINGS  </p>                     
+                        <p className='download-form' onClick={classOfferingForm} >APPLICATION FORM FOR CROSS-REGISTRANTS* or SPECIAL STUDENTS</p>                     
+                     </div>
+
+                     <div className="form-description-text">
+                            <p className='form-description-text-3'>Upload the filled up request form here: </p>                     
                      </div>
 
 
                     <div className="upload">
                         <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="pdf" multiple={false} onChange={pdfHandler}/>
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
                         </div>
                     </div>
 
@@ -90,8 +92,8 @@ const Form4 = ({userId}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                </form>
-                <div className="form-buttons-container">
+                    </form>
+                    <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isOpen && <CancelModal setIsOpen={setIsOpen} />}
@@ -100,7 +102,7 @@ const Form4 = ({userId}) => {
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
                         {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
                     </div> 
-                </div>
+                </div> 
             </Container>
             <Footer/>
         </div>

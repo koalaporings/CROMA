@@ -12,11 +12,11 @@ import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from "./Forms API Call";
 
 
-// Request for Substitution of Courses/Subjects
+// Justification for Non-dissolution of Small Class Size
 const Form18 = ({userId}) => {
 
     const navigate = useNavigate();
-    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2017/02/UPC-Substitution-20170526.pdf';
+    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
@@ -42,7 +42,7 @@ const Form18 = ({userId}) => {
               // Show an alert if no file is uploaded
               alert('Please upload a file.');
             }
-          }
+        }
     
         const pdfHandler = (e) => {
             const file = e.target.files[0];
@@ -59,20 +59,15 @@ const Form18 = ({userId}) => {
             </div>
             <Container>
                 <div className="form-title">
-                    Request for Substitution of Courses/Subjects
+                    Justification for Non-dissolution of Small Class Size
                 </div>
-                <form class="tcg-form" >
+                <form class="tcg-form" onSubmit={addInfo}>
                     <h1 className='form-group-title'>A. Request Details</h1>
-                    <div className="form-description-text">
-                            <p className='form-description-text -1'>Kindly download and fill up this form: </p>   
-                            <p className='form-description-text -2'>Secure and fill out the Substitution Form, in three copies.</p>
-                            <p className='form-description-text -3'>Get endorsement from the Instructor of the Subject Required, your Program Adviser, the Department Chair/Program Coordinator of the Subject Required and the Department Chair/Program Coordinator of the Subject Taken.</p> 
-                            <p className='form-description-text -4'>Submit the signed Substitution Form to the Office of the College Secretary.</p>                                         
-                     </div>
-                     <div>
-                        <p className='download-form' onClick={classOfferingForm} >REQUEST FOR SUBSTITUTION OF COURSES/SUBJECT</p>                     
-                     </div>
-
+                    <ol>
+                        <li>The student makes a letter of appeal for late registration/ payment addressed to the University Registrar or the Chancellor. </li>
+                        <li>The student emails his/her letter to the Program Adviser and Division Chair. The Program Adviser and the Division Chair affix their e-signature on the student’s letter.</li>
+                        <li>Upload the approved letter</li>
+                    </ol>
 
                     <div className="upload">
                         <div class="form-group">
@@ -90,16 +85,16 @@ const Form18 = ({userId}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                </form>
-                <div className="form-buttons-container">
+                    </form>
+                    <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
-                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
-                    </div>
+                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
+                    </div> 
                 </div>
             </Container>
             <Footer/>
