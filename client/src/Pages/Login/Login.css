@@ -322,9 +322,18 @@ color: white;
     .footer-component-text-1, .footer-component-text-2, .footer-component-text-3 {
         font-size: 13px;
     }
-    .footer-component-text-6, .footer-component-text-7 {
+    .footer-component-text-6, .footer-component-text-7, .footer-component-text-8 {
         font-size: 14px;
     }
 
   }
+
+@media screen and (max-width: 450px) {
+    .footer-component-text-1, .footer-component-text-2, .footer-component-text-3 {
+        font-size: 9px;
+    } 
+    .footer-component-text-6, .footer-component-text-7, .footer-component-text-8 {
+        font-size: 10px;
+    }
+}
 
