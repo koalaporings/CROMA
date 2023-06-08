@@ -19,14 +19,14 @@ function ViewStudentModal({
       <div className="centered">
         <div className="student-view-modal">
           <div className='view-modalHeader'>
-            <h5 className='view-heading'>True Copy of Grades</h5>
+            <h5 className='view-heading'>{data.form_name}</h5>
           </div>
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="view-document-content">
             <PDFdocument
-              docdata = {data}
+              docData = {data}
             />
             {/* <button onClick={onClick}>Download</button> */}
           </div>

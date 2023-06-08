@@ -13,14 +13,14 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // Transfer from other schools or UP Units to Cebu
-const Form7 = ({children}) => {
+const Form7 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-3.1-Application-for-Transfer-from-Other-Schools-or-UP-Units.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 7,
         });
     

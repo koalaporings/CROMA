@@ -30,7 +30,7 @@ router.post("/checkUser", async (req,res) => {              //API endpoint to ch
 })
 
 router.put("/updateDetails", async (req,res) => {               //API endpoint to update details for student
-    const q = 'UPDATE students SET `student_number` = ?, `first_name` = ?, `last_name` = ?, `middle_initial` = ?, `year_level` = ?, `degree_program` = ?, `registered` = ? WHERE user_id = ?'
+    const q = 'UPDATE students SET `student_number` = ?, `first_name` = ?, `last_name` = ?, `middle_initial` = ?, `year_level` = ?, `degree_program` = ?, `mobile_number` = ?, `registered` = ? WHERE user_id = ?'
     const userId = req.body.user_id
     const values = [
         req.body.student_number,
@@ -39,6 +39,7 @@ router.put("/updateDetails", async (req,res) => {               //API endpoint t
         req.body.middle_initial,
         req.body.year_level,
         req.body.degree_program,
+        req.body.mobile_number,
         req.body.registered
     ]
 

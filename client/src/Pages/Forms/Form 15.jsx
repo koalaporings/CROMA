@@ -11,9 +11,9 @@ import { addFormInformation } from './Forms API Call';
 import { useNavigate } from "react-router-dom";
 
 // Removal of Incomplete or 4.0s
-const Form15 = ({children}) => {
+const Form15 = ({userId}) => {
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 14,
         remarks: null,
         student_id: 1,

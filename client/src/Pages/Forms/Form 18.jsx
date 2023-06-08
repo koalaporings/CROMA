@@ -13,14 +13,14 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // Request for Substitution of Courses/Subjects
-const Form18 = ({children}) => {
+const Form18 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2017/02/UPC-Substitution-20170526.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 18,
         });
     

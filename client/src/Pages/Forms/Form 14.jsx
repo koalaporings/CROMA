@@ -13,9 +13,9 @@ import { useNavigate } from "react-router-dom";
 
 
 // Dropping of Course
-const Form14 = ({children}) => {
+const Form14 = ({userId}) => {
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 14,
         remarks: null,
         student_id: 1,

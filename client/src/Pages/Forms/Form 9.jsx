@@ -13,14 +13,14 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // Request to Cross-Register (Incoming)
-const Form9 = ({children}) => {
+const Form9 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/06/UPC-FORM-3.5A-Application-for-Cross-Registrants-or-Special-Students-Fillable4.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 9,
         });
     

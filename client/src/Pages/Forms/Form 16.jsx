@@ -13,14 +13,14 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // Justification for Non-dissolution of Small Class Size
-const Form16 = ({children}) => {
+const Form16 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 16,
         });
     

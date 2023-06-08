@@ -14,14 +14,14 @@ import { addFormInformation } from "./Forms API Call";
 
 // APPLY FOR SHIFTING TO ANOTHER DEGREE PROGRAM OR PLAN WITHIN UP CEBU
 
-const Form19 = ({children}) => {
+const Form19 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-Application-for-Shifting-of-Course-20171114.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 18,
         });
     

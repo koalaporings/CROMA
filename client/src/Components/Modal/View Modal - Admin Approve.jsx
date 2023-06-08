@@ -2,6 +2,7 @@ import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import PDFdocument from "../PDF/PDF Document 1";
+import { PDFDocument } from "pdf-lib";
 
 function AdminApproveModal({
   data,
@@ -16,7 +17,10 @@ function AdminApproveModal({
       <div className="centered">
         <div className="admin-view-modal">
           <div className="view-modalHeader">
-            <h5 className="view-heading">True Copy of Grades (TCG)</h5>
+            <h4 className="view-heading">{data.form_name}</h4>
+          </div>
+          <div className="view-modalHeader">
+            <h5 className="view-sub-heading"><b>Transaction ID:</b> {data.transaction_id}</h5>
           </div>
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
@@ -26,11 +30,17 @@ function AdminApproveModal({
           </div>
           <div className="textboxes-container">
             <input list="names" name="name1" />
-            <datalist id="names">
-              <option value="John" />
-              <option value="Mary" />
-              <option value="David" />
-              <option value="Sarah" />
+            <datalist id="names" className="">
+              {/* <option value="John Mynar"/>
+              <option value="John Oliver"/>
+              <option value="Kienth John"/>
+              <option value="Kyle Alan"/> */}
+              <option value="John Oliver">199</option>
+              <option value="2">John Mynar</option>
+              <option value="3">Kyle Alan</option>
+              <option value="4">Kienth John</option>
+              <option value="5">John Arvin</option>
+              <option value="6">James Peter</option>
             </datalist>
             <input list="names" name="name2" />
             <input list="names" name="name3" />

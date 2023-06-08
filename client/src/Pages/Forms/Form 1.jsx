@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
@@ -9,28 +9,47 @@ import SubmitModal from '../../Components/Modal/Submit Modal';
 import { addFormInformation } from './Forms API Call';
 import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Form1 = ({children}) => {
+const Form1 = ({userId}) => {
     const [image, setImage] = useState();
     const [price, setPrice] = useState(50);
+
+    const [savedDetails, setSavedDetails] = useState({})
+
+    async function getDetails(data){
+        const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+        console.log(response.data[0])
+        setSavedDetails(response.data[0])
+    }
+
+    
+
+    console.log(savedDetails.last_name)
+
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 1,
         remarks: null,
         student_id: 1,
-        last_name: "",
-        first_name: "",
-        middle_initial: "",
-        student_number: "",
-        mobile_number: "",
-        year_level: "",
-        degree_program: "",
-        email: "",
+        last_name: (savedDetails.last_name) ? savedDetails.last_name : "",
+        first_name: (savedDetails.first_name) ? savedDetails.first_name : "",
+        middle_initial: (savedDetails.middle_initial) ? savedDetails.middle_initial : "",
+        student_number: (savedDetails.student_number) ? savedDetails.student_number : "",
+        mobile_number: (savedDetails.mobile_number) ? savedDetails.mobile_number : "",
+        year_level: (savedDetails.year_level) ? savedDetails.year_level : "",
+        degree_program: (savedDetails.degree_program) ? savedDetails.degree_program : "",
+        email: (savedDetails.email) ? savedDetails.email : "",
         academic_year: "",
         semester: "",
         num_copies: "",
         purpose: "",
     });
+
+    useEffect(() => {
+        getDetails(userId)
+        setFormDetails(savedDetails)
+    },[])
 
     const navigate = useNavigate();
 
@@ -111,7 +130,7 @@ const Form1 = ({children}) => {
         }
 
         if (isNaN(student_number) || isNaN(mobile_number)) {
-            alert("Student number and mobile number must be integers.");
+            alert("Student Number and mobile number must be integers.");
             return;
         }
 
@@ -146,7 +165,7 @@ const Form1 = ({children}) => {
     const handleSubmitModalClose = () => {
         setIsOpen(false);
     };
-
+    {console.log(savedDetails.degree_program)}
     return (
         <div>
 
@@ -165,30 +184,30 @@ const Form1 = ({children}) => {
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
                             <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)} required/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.last_name}/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.first_name}/>
                         </div>
                         <div class="col-md-2 mb-2">     
                             <label for="studentMiddleInitial">Middle Initial</label>
-                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)} defaultValue={savedDetails.middle_initial}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)} defaultValue={savedDetails.student_number}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)} defaultValue={savedDetails.mobile_number}/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-2">
                         <label for="degreeProgram">Degree Program</label>
-                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
-                                <option selected value=""> </option>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" defaultValue={savedDetails.degree_program} onChange={(e) => handleChange(e)}>
+                                <option selected defaultValue={savedDetails.degree_program}> </option>
                                 <option value="BS Computer Science">BS Computer Science</option>
                                 <option value="BS Biology">BS Biology</option>
                                 <option value="BS Mathematics">BS Mathematics</option>
@@ -197,11 +216,11 @@ const Form1 = ({children}) => {
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)} defaultValue={savedDetails.year_level}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)}/>
+                            <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)} defaultValue={savedDetails.email}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>

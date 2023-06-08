@@ -14,9 +14,9 @@ import { useNavigate } from "react-router-dom";
 
 
 // Change of Matriculation
-const Form13 = ({children}) => {
+const Form13 = ({userId}) => {
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 14,
         remarks: null,
         student_id: 1,

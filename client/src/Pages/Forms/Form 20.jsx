@@ -14,14 +14,14 @@ import { addFormInformation } from "./Forms API Call";
 
 // ADVANCE CREDIT
 
-const Form20 = ({children}) => {
+const Form20 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-44A-Application-for-Advance-Credit.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 18,
         });
     

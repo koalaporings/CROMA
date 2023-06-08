@@ -13,7 +13,7 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // Return from Leave of Absence
-const Form5 = ({children}) => {
+const Form5 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2022/02/UPC-FORM-Request-for-Change-in-Class-Offerings-Fillable.pdf';
@@ -21,7 +21,7 @@ const Form5 = ({children}) => {
 
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 5,
         });
     

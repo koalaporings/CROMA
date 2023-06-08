@@ -10,13 +10,15 @@ import SubmitModal from '../../Components/Modal/Submit Modal';
 import { addFormInformation } from './Forms API Call';
 import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 // Certification of GWA
-const Form2 = ({children}) => {
+const Form2 = ({userId}) => {
         const [price, setPrice] = useState(50);
         const [image, setImage] = useState()
         const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 2,
             remarks: null,
             student_id: 1,
@@ -33,7 +35,19 @@ const Form2 = ({children}) => {
             num_copies: "",
             purpose: "",
         });
-    
+        
+        const [savedDetails, setSavedDetails] = useState({})
+
+        async function getDetails(data){
+            const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+            console.log(response.data[0])
+            setSavedDetails(response.data[0])
+        }
+
+        useEffect(() => {
+            getDetails(userId)
+        },[])
+
         const navigate = useNavigate();
     
         const navigateLanding = () => navigate('/student');
@@ -164,23 +178,23 @@ const Form2 = ({children}) => {
                     <div class="form-row">    
                         <div class="col-md-3 mb-2">     
                             <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.last_name}/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.first_name}/>
                         </div>
                         <div class="col-md-2 mb-2">     
                             <label for="studentMiddleInitial">Middle Initial</label>
-                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)} defaultValue={savedDetails.middle_initial}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber" name= "student_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentNumber" name= "student_number" onChange={(e) => handleChange(e)} defaultValue={savedDetails.student_number}/>
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="mobileNumber">Mobile Number</label>
-                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" onChange={(e) => handleChange(e)} defaultValue={savedDetails.mobile_number}/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -196,11 +210,11 @@ const Form2 = ({children}) => {
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level" onChange={(e) => handleChange(e)}  defaultValue={savedDetails.year_level}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)}/>
+                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)} defaultValue={savedDetails.email}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>

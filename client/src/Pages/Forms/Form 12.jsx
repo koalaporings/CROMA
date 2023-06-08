@@ -13,10 +13,10 @@ import { useNavigate } from "react-router-dom";
 
 
 // Overload
-const Form12 = ({ children }) => {
+const Form12 = ({ userId }) => {
     const [image, setImage] = useState()
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 12,
         remarks: null,
         student_id: 1,

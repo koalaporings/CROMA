@@ -15,11 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 
 // Report of Grades
-const Form10 = ({children}) => {
+const Form10 = ({userId}) => {
     const [price, setPrice] = useState(50);
     const [image, setImage] = useState()
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 10,
         remarks: null,
         student_id: 1,

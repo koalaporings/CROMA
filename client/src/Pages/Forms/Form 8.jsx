@@ -13,14 +13,14 @@ import { addFormInformation } from "./Forms API Call";
 
 
 // LOA
-const Form8 = ({children}) => {
+const Form8 = ({userId}) => {
 
     const navigate = useNavigate();
     const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2023/01/UPC-FORM-Application-for-Leave-of-Absence-20230127.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: 4,
+            user_id: userId,
             form_id: 8,
         });
     

@@ -100,14 +100,25 @@
   .view-heading {
     font-family: 'Fredoka';
     font-style: normal;
-    margin: 0;
-    padding: 2%;
-    margin-bottom: 3%;
+    padding: 1.5%;
+    margin-bottom: 1.5%;
     color: #7A1113;    
     font-weight: 600;
-    font-size: 24px;
+    font-size: 28px;
     text-align: left;
+    height: auto;
     }
+  
+    .view-sub-heading {
+      font-family: 'Poppins';
+      font-style: normal;
+      padding-left: 2%;
+      margin-bottom: 2%;
+      color: #2c3e50;    
+      font-weight: 400;
+      font-size: 18px;
+      text-align: left;
+      }
   
   .view-modalContent {
     padding: 10px;
@@ -739,6 +750,7 @@ textarea:focus {
   max-width: 850px;
   margin-left: auto;
   margin-right: auto;
+  height: 30px;
 }
 
 .textboxes-container input {

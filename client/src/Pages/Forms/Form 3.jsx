@@ -10,14 +10,16 @@ import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
 import { uploadImage } from "./Upload Image";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 
 
 // True Copy of Form 5
-const Form3 = ({children}) => {
+const Form3 = ({userId}) => {
     const [price, setPrice] = useState(50);
     const [image, setImage] = useState()
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 3,
         remarks: null,
         student_id: 1,
@@ -34,6 +36,18 @@ const Form3 = ({children}) => {
         num_copies: "",
         purpose: "",
     });
+
+    const [savedDetails, setSavedDetails] = useState({})
+
+        async function getDetails(data){
+            const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+            console.log(response.data[0])
+            setSavedDetails(response.data[0])
+        }
+
+        useEffect(() => {
+            getDetails(userId)
+        },[])
 
     const navigate = useNavigate();
 
@@ -166,11 +180,11 @@ const Form3 = ({children}) => {
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
                             <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.last_name}/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name" onChange={(e) => handleChange(e)} defaultValue={savedDetails.first_name}/>
                         </div>
                         <div class="col-md-2 mb-2">     
                             <label for="studentMiddleInitial">Middle Initial</label>

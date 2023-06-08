@@ -15,11 +15,11 @@ import { useNavigate } from "react-router-dom";
 
 
 // Certification of Underload
-const Form11 = ({children}) => {
+const Form11 = ({userId}) => {
     const [price, setPrice] = useState(50);
     const [image, setImage] = useState()
     const [formDetails, setFormDetails] = useState({
-        user_id: 4,
+        user_id: userId,
         form_id: 11,
         remarks: null,
         student_id: 1,

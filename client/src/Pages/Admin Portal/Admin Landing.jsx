@@ -18,7 +18,7 @@ import ConfirmReject from '../../Components/Modal/Reject Confirmation';
 
 
 
-const AdminLanding = ({children}) => {
+const AdminLanding = ({userName}) => {
 
     const [tableData1, setTableData1] = useState([]);
     const [tableData2, setTableData2] = useState([]);
@@ -29,10 +29,11 @@ const AdminLanding = ({children}) => {
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [isRejectOpen, setRejectOpen] = useState(false);
     const [id, setID] = useState(0);
+    const [courseFilter, setCourseFilter] = useState("all");
 
 
-        async function fetchApproval(data){
-            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data)
+        async function fetchApproval(data, data2){
+            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data + "/" + data2)
             console.log(response.data)
             setTableData1(response.data)
             setNumApprove(response.data.length)
@@ -42,8 +43,8 @@ const AdminLanding = ({children}) => {
             fetchApproval()
             }, [])
 
-        async function fetchOngoing(data){
-            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data)
+        async function fetchOngoing(data, data2){
+            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data + "/" + data2)
             console.log(response.data)
             setTableData2(response.data)
             setNumOngoing(response.data.length)
@@ -54,8 +55,11 @@ const AdminLanding = ({children}) => {
             }, [])
 
     async function viewDocumentDetails(id) {
+        console.log(id)
         const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        console.log(response)
         if (response){
+            console.log(response.data)
             setDocumentDetails(response.data[0])
             console.log(documentDetails)
             setIsOpen(true)
@@ -104,6 +108,7 @@ const AdminLanding = ({children}) => {
     }
     
     const approveClickHandler = (data) => {
+        console.log(data)
         setID(data)
         viewDocumentDetails(data)
     }
@@ -132,10 +137,16 @@ const AdminLanding = ({children}) => {
 
     const handleFilterChange1 = (data) => {
         const filter = data.target.value
-        fetchApproval(filter)
+        console.log(courseFilter)
+        fetchApproval(filter, courseFilter)
     }
 
     const handleFilterChange2 = (data) => {
+        const filter = data.target.value
+        fetchOngoing(filter, courseFilter)
+    }
+
+    const handleFilterChangeCourse1 = (data) => {
         const filter = data.target.value
         fetchOngoing(filter)
     }
@@ -152,7 +163,7 @@ const AdminLanding = ({children}) => {
                     <AnnouncementTable/>
                 </div> */}
                 <div className="name-header-admin">
-                    Hello, Admin!
+                    Hello, {userName} (Admin)!
                 </div>
                 <div className="transaction-header">
                     There are currently&nbsp;<span style={{fontWeight: '700'}}>{numApprove} transactions waiting to be approved</span>&nbsp; and <span style={{fontWeight: '700'}}>{numOngoing} ongoing transactions</span>.       
@@ -160,6 +171,13 @@ const AdminLanding = ({children}) => {
                 <div className='title-text-admin'>Waiting Approval</div>
                 <div className='filter-container'>
                     Filter by: &nbsp;
+                    <select className='filter-button' onChange={(e) => handleFilterChangeCourse1(e)}>
+                        <option value="all">&nbsp;All&nbsp;</option>
+                        <option value="BS Computer Science">&nbsp;BS Computer Science&nbsp;</option>
+                        <option value="BS Biology">&nbsp;BS Biology&nbsp;</option>
+                        <option value="BS Mathematics">&nbsp;BS Mathematics&nbsp;</option>
+                        <option value="BS Statistics">&nbsp;BS Statistics&nbsp;</option>
+                    </select>
                     <select className='filter-button' onChange={(e) => handleFilterChange1(e)}>
                         <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>

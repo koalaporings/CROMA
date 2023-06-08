@@ -18,15 +18,25 @@ router.get('/approval_table/:filter_info', async (req, res) => {    // API endpo
       })
 })
 
-router.get('/ongoing_table/:filter_info', async (req, res) => {     // API endpoint for Admin ongoing table and filter
+router.get('/ongoing_table/:filter_info/:filter_course', async (req, res) => {     // API endpoint for Admin ongoing table and filter
   let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
-  if (req.params.filter_info == "dsc") {
-    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
-  } else if (req.params.filter_info == "asc") {
-    q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'  
+  const course = req.params.filter_course
+  if (req.params.filter_course == "all"){
+    if (req.params.filter_info == "dsc") {
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+    } else if (req.params.filter_info == "asc") {
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'  
+    }
   }
+  else {
+    if (req.params.filter_info == "dsc") {
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transactions.degree_program = ? ORDER BY transactions.transaction_date DESC'
+    } else if (req.params.filter_info == "asc") {
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transactions.degree_program = ? ORDER BY transactions.transaction_date ASC'  
+    }
+}
   const status = "ongoing"
-    db.query(q, status, (err, results) => {
+    db.query(q, [status, course], (err, results) => {
       if(err) console.error('ERROR', err);
         res.json(results)
       })
