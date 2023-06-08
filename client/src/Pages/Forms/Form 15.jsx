@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const Form15 = ({userId}) => {
     const [formDetails, setFormDetails] = useState({
         user_id: userId,
-        form_id: 14,
+        form_id: 15,
         remarks: null,
         student_id: 1,
         last_name: "",
@@ -23,15 +23,16 @@ const Form15 = ({userId}) => {
         student_number: "",
         degree_program: "",
         year_level: "",
-        subject_dropped: "",
-        section: "",
-        instructor_name: "",
-        purpose: "",
+        //
         course_description_title: "",
         course_num_section: "",
-        units: "",
+        instructor_name: "",
+        //
+        course_description_title: "",
+        course_num_section: "",
+        units_per_subject: "",
         original_grade: "",
-        semester_incurred: "",
+        semester: "",
         academic_year_incurred: "",
         date_completion: "",
         removal_grade: ""
@@ -76,15 +77,12 @@ const Form15 = ({userId}) => {
             student_number,
             degree_program,
             year_level,
-            subject_dropped,
-            section,
-            instructor_name,
-            purpose,
             course_description_title,
             course_num_section,
-            units,
+            instructor_name,
+            units_per_subject,
             original_grade,
-            semester_incurred,
+            semester,
             academic_year_incurred,
             date_completion,
             removal_grade
@@ -97,26 +95,26 @@ const Form15 = ({userId}) => {
             !student_number ||
             !degree_program ||
             !year_level ||
-            !subject_dropped ||
-            !section ||
-            !instructor_name ||
-            !purpose ||
             !course_description_title ||
             !course_num_section ||
-            !units ||
+            !instructor_name ||
+            !course_description_title ||
+            !course_num_section ||
+            !units_per_subject ||
             !original_grade ||
-            !semester_incurred ||
+            !semester ||
             !academic_year_incurred ||
             !date_completion ||
             !removal_grade
-        ) {
+        ){
             // Form validation failed
             alert("Please fill in all fields");
             return false;
         }
+        
     
         if (isNaN(student_number)) {
-            alert("Student number and mobile number must be integers.");
+            alert("Student number must be an integer.");
             return false;
         }
     
@@ -209,7 +207,7 @@ const Form15 = ({userId}) => {
                         </div>
                         <div class="col-md-3 mb-2">
                             <label for="copies">Units</label>
-                            <input type="text" class="form-control" id="units" name="units" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="units" name="units_per_subject" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <div class="form-row">
@@ -219,7 +217,7 @@ const Form15 = ({userId}) => {
                         </div>
                         <div class="col-md-3 mb-2">
                             <label for="semester">Semester Incurred</label>
-                            <input type="text" class="form-control" id="semIncurred" name="semester_incurred" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="semIncurred" name="semester" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div class="col-md-3 mb-2">
                             <label for="copies">Academic Year Incurred</label>
@@ -237,7 +235,7 @@ const Form15 = ({userId}) => {
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="semester">Instructor Name</label>
-                            <input type="text" class="form-control" id="profName"/>
+                            <input type="text" class="form-control" id="profName" name="instructor_name" onChange={(e) => handleChange(e)}/>
                         </div>
         
                     </div>

@@ -108,7 +108,6 @@ const StudentLanding = ({children}) => {
             
             setTableData(response.data)
             setNumTransactions(response.data.length)
-            console.log("heh")
         }
     }
 

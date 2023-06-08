@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 const Form13 = ({userId}) => {
     const [formDetails, setFormDetails] = useState({
         user_id: userId,
-        form_id: 14,
+        form_id: 13,
         remarks: null,
         student_id: 1,
         last_name: "",
@@ -30,7 +30,21 @@ const Form13 = ({userId}) => {
         email:"",
 
         purpose: "",
-        purpose_ext: ""
+        purpose_ext: "",
+
+        cSub: {},
+        cProf: {},
+        cUnit: {},
+        cTime: {},
+        cDay: {},
+        cRoom: {},
+
+        aSub: {},
+        aProf: {},
+        aUnit: {},
+        aTime: {},
+        aDay: {},
+        aRoom: {}
     });
 
     const navigate = useNavigate();
@@ -41,10 +55,34 @@ const Form13 = ({userId}) => {
         const { name, value } = e.target;
         console.log(value)
 
-        setFormDetails(prevState => ({
-        ...prevState,
-        [name]: value
-        }));
+        const prefixes = ["cSub", "cProf", "cUnit", "cTime", "cDay", "cRoom", "aSub", "aProf", "aUnit", "aTime", "aDay", "aRoom"];
+
+        // Check if the name starts with any of the prefixes
+        let prefix = ''
+        for (let p of prefixes){
+            if(name.startsWith(p)){
+                prefix = p    
+                console.log(p)            
+                break
+            }
+        }
+        console.log('heh')
+        console.log(prefix)
+
+        if (prefix) {
+            setFormDetails(prevState => ({
+                ...prevState,
+                [prefix]: {
+                    ...prevState[prefix],
+                    [name]: value,
+                }
+            }));
+        } else {
+            setFormDetails(prevState => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }
 
         console.log(formDetails)
     }
@@ -59,14 +97,14 @@ const Form13 = ({userId}) => {
 
         const formData = new FormData();
         formData.append('user_id', formDetails.user_id);
+
         const response = addFormInformation(formDetails);
-        setIsOpen(false);
-        navigateLanding();
+        //setIsOpen(false);
+        //navigateLanding();
     }
 
     const formValid = () => {
         const {
-
             last_name,
             first_name,
             student_number,
@@ -78,6 +116,43 @@ const Form13 = ({userId}) => {
             purpose_ext
 
         } = formDetails;
+
+        if (!last_name) {
+            console.log("Last name is missing");
+        }
+        
+        if (!first_name) {
+            console.log("First name is missing");
+        }
+        
+        if (!student_number) {
+            console.log("Student number is missing");
+        }
+        
+        if (!year_level) {
+            console.log("Year level is missing");
+        }
+        
+        if (!degree_program) {
+            console.log("Degree program is missing");
+        }
+        
+        if (!mobile_number) {
+            console.log("Mobile number is missing");
+        }
+        
+        if (!email) {
+            console.log("Email is missing");
+        }
+        
+        if (!purpose) {
+            console.log("Purpose is missing");
+        }
+        
+        if (!purpose_ext) {
+            console.log("Purpose extension is missing");
+        }
+        
 
         if (
             !last_name ||
@@ -174,7 +249,7 @@ const Form13 = ({userId}) => {
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="emailAddress">Email Address</label>
-                            <input type="email" class="form-control" id="emailAddress" name="email_address" onChange={(e) => handleChange(e)}/>
+                            <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
@@ -182,12 +257,12 @@ const Form13 = ({userId}) => {
                     <div class="row">
                         <div class="col-md-6">
                             <select class="custom-select" id='purpose' name="purpose" onChange={(e) => handleChange(e)}>
-                                <option selected value="1">Ill Advised</option>
-                                <option value="2">Conflict of Time</option>
-                                <option value="3">Lacks Prerequisite</option>
-                                <option value="4">Class Dissolved</option>
-                                <option value="5">Section Closed</option>
-                                <option value="6">Others</option>
+                                <option selected value="Ill Advised">Ill Advised</option>
+                                <option value="Conflict of Time">Conflict of Time</option>
+                                <option value="Lacks Prerequisite">Lacks Prerequisite</option>
+                                <option value="Class Dissolved">Class Dissolved</option>
+                                <option value="Section Closed">Section Closed</option>
+                                <option value="Others">Others</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -198,96 +273,96 @@ const Form13 = ({userId}) => {
                     <div className="row">
                         <div className="col-md-2 pr-1">
                             <label for="">Subjects Cancelled</label>
-                            <input type="text" class="form-control" id="cSub1"/>
-                            <input type="text" class="form-control" id="cSub2"/>
-                            <input type="text" class="form-control" id="cSub3"/>
-                            <input type="text" class="form-control" id="cSub4"/>
+                            <input type="text" class="form-control" id="cSub1"  name="cSub1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cSub2"  name="cSub2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cSub3"  name="cSub3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cSub4"  name="cSub4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Instructor</label>
-                            <input type="text" class="form-control" id="cProf1"/>
-                            <input type="text" class="form-control" id="cProf2"/>
-                            <input type="text" class="form-control" id="cProf3"/>
-                            <input type="text" class="form-control" id="cProf4"/>
+                            <input type="text" class="form-control" id="cProf1" name="cProf1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cProf2" name="cProf2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cProf3" name="cProf3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cProf4" name="cProf4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Units</label>
-                            <input type="text" class="form-control" id="cUnit1"/>
-                            <input type="text" class="form-control" id="cUnit2"/>
-                            <input type="text" class="form-control" id="cUnit3"/>
-                            <input type="text" class="form-control" id="cUnit4"/>
+                            <input type="text" class="form-control" id="cUnit1" name="cUnit1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cUnit2" name="cUnit2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cUnit3" name="cUnit3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cUnit4" name="cUnit4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Time</label>
-                            <input type="text" class="form-control" id="cTime1"/>
-                            <input type="text" class="form-control" id="cTime2"/>
-                            <input type="text" class="form-control" id="cTime3"/>
-                            <input type="text" class="form-control" id="cTime4"/>
+                            <input type="text" class="form-control" id="cTime1" name="cTime1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cTime2" name="cTime2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cTime3" name="cTime3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cTime4" name="cTime4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Day</label>
-                            <input type="text" class="form-control" id="cDay1"/>
-                            <input type="text" class="form-control" id="cDay2"/>
-                            <input type="text" class="form-control" id="cDay3"/>
-                            <input type="text" class="form-control" id="cDay4"/>
+                            <input type="text" class="form-control" id="cDay1"  name="cDay1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cDay2"  name="cDay2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cDay3"  name="cDay3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cDay4"  name="cDay4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1">
                             <label for="">Room</label>
-                            <input type="text" class="form-control" id="cRoom1"/>
-                            <input type="text" class="form-control" id="cRoom2"/>
-                            <input type="text" class="form-control" id="cRoom3"/>
-                            <input type="text" class="form-control" id="cRoom4"/>
+                            <input type="text" class="form-control" id="cRoom1" name="cRoom1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cRoom2" name="cRoom2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cRoom3" name="cRoom3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="cRoom4" name="cRoom4" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <br></br>
                     <div className="row">
                         <div className="col-md-2 pr-1">
                             <label for="">Subjects Authorized</label>
-                            <input type="text" class="form-control" id="aSub1"/>
-                            <input type="text" class="form-control" id="aSub2"/>
-                            <input type="text" class="form-control" id="aSub3"/>
-                            <input type="text" class="form-control" id="aSub4"/>
+                            <input type="text" class="form-control" id="aSub1"  name="aSub1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aSub2"  name="aSub2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aSub3"  name="aSub3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aSub4"  name="aSub4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Instructor</label>
-                            <input type="text" class="form-control" id="aProf1"/>
-                            <input type="text" class="form-control" id="aProf2"/>
-                            <input type="text" class="form-control" id="aProf3"/>
-                            <input type="text" class="form-control" id="aProf4"/>
+                            <input type="text" class="form-control" id="aProf1" name="aProf1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aProf2" name="aProf2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aProf3" name="aProf3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aProf4" name="aProf4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Units</label>
-                            <input type="text" class="form-control" id="aUnit1"/>
-                            <input type="text" class="form-control" id="aUnit2"/>
-                            <input type="text" class="form-control" id="aUnit3"/>
-                            <input type="text" class="form-control" id="aUnit4"/>
+                            <input type="text" class="form-control" id="aUnit1" name="aUnit1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aUnit2" name="aUnit2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aUnit3" name="aUnit3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aUnit4" name="aUnit4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Time</label>
-                            <input type="text" class="form-control" id="aTime1"/>
-                            <input type="text" class="form-control" id="aTime2"/>
-                            <input type="text" class="form-control" id="aTime3"/>
-                            <input type="text" class="form-control" id="aTime4"/>
+                            <input type="text" class="form-control" id="aTime1" name="aTime1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aTime2" name="aTime2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aTime3" name="aTime3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aTime4" name="aTime4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1 pr-1">
                             <label for="">Day</label>
-                            <input type="text" class="form-control" id="aDay1"/>
-                            <input type="text" class="form-control" id="aDay2"/>
-                            <input type="text" class="form-control" id="aDay3"/>
-                            <input type="text" class="form-control" id="aDay4"/>
+                            <input type="text" class="form-control" id="aDay1"  name="aDay1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aDay2"  name="aDay2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aDay3"  name="aDay3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aDay4"  name="aDay4" onChange={(e) => handleChange(e)}/>
                         </div>
                         <div className="col-md-2 pl-1">
                             <label for="">Room</label>
-                            <input type="text" class="form-control" id="aRoom1"/>
-                            <input type="text" class="form-control" id="aRoom2"/>
-                            <input type="text" class="form-control" id="aRoom3"/>
-                            <input type="text" class="form-control" id="aRoom4"/>
+                            <input type="text" class="form-control" id="aRoom1" name="aRoom1" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aRoom2" name="aRoom2" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aRoom3" name="aRoom3" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="aRoom4" name="aRoom4" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
                     <br></br>
                     <div className="col-md-12 p-0">
                         <label htmlFor="remarks">Remarks</label>
-                        <textarea name="remarks" id="remarks" class="form-control" rows="3"></textarea>
+                        <textarea name="remarks" id="remarks" class="form-control" rows="3" onChange={(e) => handleChange(e)}></textarea>
                     </div>
 
 

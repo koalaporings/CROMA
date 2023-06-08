@@ -27,13 +27,13 @@ const Form12 = ({ userId }) => {
         mobile_number: "",
         year_level: "",
         degree_program: "",
-        units: '',
+        units: "",
         academic_year: "",
         semester: "",
-        last_sem: '',
-        reason: '',
-        subjects: [],
-        units_per_subject: [],
+        last_sem: "",
+        reason: "121212",
+        subjects: {},
+        units_per_subject: {},
     });
 
     const navigate = useNavigate();
@@ -44,10 +44,20 @@ const Form12 = ({ userId }) => {
         const { name, value } = e.target;
         console.log(value)
 
-        setFormDetails(prevState => ({
-        ...prevState,
-        [name]: value
-        }));
+        if (name.startsWith("subject_") || name.startsWith("unit_")) {
+            setFormDetails(prevState => ({
+                ...prevState,
+                [name.includes("subject") ? "subjects" : "units_per_subject"]: {
+                    ...prevState[name.includes("subject") ? "subjects" : "units_per_subject"],
+                    [name]: value,
+                }
+            }));
+        } else {
+            setFormDetails(prevState => ({
+                ...prevState,
+                [name]: value,
+            }));
+        }   
 
         console.log(formDetails)
     }
@@ -63,6 +73,8 @@ const Form12 = ({ userId }) => {
         const formData = new FormData();
         formData.append('image', image);
         formData.append('user_id', formDetails.user_id);
+        
+        console.log(formDetails)
         const response = addFormInformation(formDetails);
         uploadImage(formData);
         setIsOpen(false);
@@ -80,7 +92,6 @@ const Form12 = ({ userId }) => {
             last_name,
             first_name,
             student_number,
-            date,
             year_level,
             degree_program,
             units,
@@ -96,10 +107,9 @@ const Form12 = ({ userId }) => {
             !last_name ||
             !first_name ||
             !student_number ||
-            !date ||
             !year_level ||
             !degree_program ||
-            ! units||
+            !units||
             !academic_year ||
             !semester ||
             !last_sem||
@@ -117,11 +127,6 @@ const Form12 = ({ userId }) => {
             return;
         }
 
-        if (!image) {
-            // No file selected for upload
-            alert("Please select a file to upload");
-            return false;
-        }
         return true;
 
     };
@@ -257,30 +262,30 @@ const Form12 = ({ userId }) => {
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject1"/>
-                                <input type="text" class="form-control" id="subject2"/>
-                                <input type="text" class="form-control" id="subject3"/>
-                                <input type="text" class="form-control" id="subject4"/>
-                                <input type="text" class="form-control" id="subject5"/>
-                                <input type="text" class="form-control" id="subject6"/>
-                                <input type="text" class="form-control" id="subject7"/>
-                                <input type="text" class="form-control" id="subject8"/>
-                                <input type="text" class="form-control" id="subject9"/>
-                                <input type="text" class="form-control" id="subject10"/>
+                                <input type="text" class="form-control" id="subject1" name="subject_1" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject2" name="subject_2" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject3" name="subject_3" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject4" name="subject_4" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject5" name="subject_5" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject6" name="subject_6" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject7" name="subject_7" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject8" name="subject_8" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject9" name="subject_9" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="subject10" name="subject_10" onChange={(e) => handleChange(e)}/>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="unit1"/>
-                                <input type="text" class="form-control" id="unit2"/>
-                                <input type="text" class="form-control" id="unit3"/>
-                                <input type="text" class="form-control" id="unit4"/>
-                                <input type="text" class="form-control" id="unit5"/>
-                                <input type="text" class="form-control" id="unit6"/>
-                                <input type="text" class="form-control" id="unit7"/>
-                                <input type="text" class="form-control" id="unit8"/>
-                                <input type="text" class="form-control" id="unit9"/>
-                                <input type="text" class="form-control" id="unit10"/>
+                                <input type="text" class="form-control" id="unit1" name="unit_1" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit2" name="unit_2" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit3" name="unit_3" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit4" name="unit_4" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit5" name="unit_5" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit6" name="unit_6" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit7" name="unit_7" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit8" name="unit_8" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit9" name="unit_9" onChange={(e) => handleChange(e)}/>
+                                <input type="text" class="form-control" id="unit10" name="unit_10" onChange={(e) => handleChange(e)}/>
                             </div>
                         </div>
                     </div>
