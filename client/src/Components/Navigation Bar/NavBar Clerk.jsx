@@ -17,6 +17,11 @@ const Sidebar = ({ children }) => {
     sidebar.classList.toggle("minimized");
     sidebarMenu.classList.toggle("minimized");
     // setIsOpen(!isOpen)
+    if (sidebarMenu.className === "sidebar-menu"){
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
   };
   const [roleID, setRoleId] = useState("-1")
 
@@ -39,6 +44,7 @@ const Sidebar = ({ children }) => {
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
     
+    setIsOpen(false)
     if (viewportWidth < 768) {
       sidebar.classList.add("minimized");
       sidebarMenu.classList.add("minimized");
