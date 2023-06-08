@@ -412,6 +412,37 @@ router.get("/formRecipients/:transaction_id", (req,res) => {        //API endpoi
   })
 })
 
+router.put('/updateRecipients', (req,res) => {
+  const q = 'UPDATE transactions SET form_recipients = ? WHERE transaction_id = ?'
+  const id = req.body.transaction_id
+  const rec = req.body.form_recipients
+
+  db.query(q,[rec,id], (err,data) => {
+    if(err) console.log("ERROR",err)
+  })
+})
+
+router.get("/approvedBy/:transaction_id", (req,res) => {        //API endpoint for getting formRecipients from transactions based on transaction_id
+  const q = "SELECT approved_by FROM transactions WHERE transaction_id = ?"
+  const id = req.params.transaction_id
+
+  db.query(q, id, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+})
+
+router.put('/updateApproved', (req,res) => {
+  const q = 'UPDATE transactions SET approved_by = ? WHERE transaction_id = ?'
+  const id = req.body.transaction_id
+  const rec = req.body.approved_by
+  console.log("lel")
+
+  db.query(q,[rec,id], (err,data) => {
+    if(err) console.log("ERROR",err)
+  })
+})
+
 
 
 module.exports = router;

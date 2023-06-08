@@ -19,12 +19,12 @@ import './History.css';
 
 
 
-const StudentHistoryPage = ({children}) => {
+const StudentHistoryPage = ({userId}) => {
     const [tableData, setTableData] = useState([]);
     const [numTransactions, setNumTransactions] = useState(0);
 
         async function fetchTable(filter_info) {
-            const response = await axios.get('http://localhost:5000/student_api/transaction_history/' + 4 + "/" + filter_info)
+            const response = await axios.get('http://localhost:5000/student_api/transaction_history/' + userId + "/" + filter_info)
             setTableData(response.data)
             setNumTransactions(response.data.length)
         }

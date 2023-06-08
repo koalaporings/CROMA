@@ -13,6 +13,7 @@ import axios from "axios";
 
 //True Copy of Grades (TCG)
 const Form1 = ({userId}) => {
+    console.log(userId)
     const [image, setImage] = useState();
     const [price, setPrice] = useState(50);
 

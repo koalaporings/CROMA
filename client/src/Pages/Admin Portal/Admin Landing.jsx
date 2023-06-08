@@ -29,29 +29,54 @@ const AdminLanding = ({userName}) => {
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [isRejectOpen, setRejectOpen] = useState(false);
     const [id, setID] = useState(0);
-    const [courseFilter, setCourseFilter] = useState("all");
+    const [signatoryList, setSignatoryList] = useState([]);
+    const [recipients, setRecipients] = useState({
+        recipient1: "",
+        recipient2: "",
+        recipient3: "",
+    })
+
+    useEffect(() => {
+        async function getSignatory(){
+            const response = await axios.get("http://localhost:5000/signatory_api/getSignatories")
+            console.log(response.data)
+            setSignatoryList(response.data)
+        }
+
+        getSignatory()
+    },[])
 
 
-        async function fetchApproval(data, data2){
-            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data + "/" + data2)
+    const [filterDetails, setFilterDetails] = useState({
+        course_filter: "all",
+        order_filter: "dsc",
+    });
+    const [filterDetails2, setFilterDetails2] = useState({
+        course_filter: "all",
+        order_filter: "dsc",
+    });
+
+
+        async function fetchApproval(data){
+            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data.order_filter + "/" + data.course_filter)
             console.log(response.data)
             setTableData1(response.data)
             setNumApprove(response.data.length)
         }
 
         useEffect (() =>{
-            fetchApproval()
+            fetchApproval(filterDetails)
             }, [])
 
-        async function fetchOngoing(data, data2){
-            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data + "/" + data2)
+        async function fetchOngoing(data){
+            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data.order_filter + "/" + data.course_filter)
             console.log(response.data)
             setTableData2(response.data)
             setNumOngoing(response.data.length)
         }
 
         useEffect (() =>{
-            fetchOngoing()
+            fetchOngoing(filterDetails)
             }, [])
 
     async function viewDocumentDetails(id) {
@@ -76,11 +101,21 @@ const AdminLanding = ({userName}) => {
         }
     }
 
+    async function setApprovedBy(id) {
+        const response = await axios.post("http://localhost:5000/form_api/updateApproved",{
+            transaction_id: id,
+            approved_by: "COS Secretary",
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
     async function changeStatusToAccepted(id) {
         const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'ongoing'
         })
-        //addTracking(id)
+        addTracking(id)
         if (response){
             console.log(response)
         }
@@ -107,6 +142,29 @@ const AdminLanding = ({userName}) => {
         }
     }
     
+    async function setFirstSignatory(transaction_id, signatory_id) {
+        const response = await axios.put("http://localhost:5000/signatory_api/approve/",{
+            transaction_id: transaction_id,
+            signatory_id: signatory_id,
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
+    async function updateRecipients(transaction_id, recipients) {
+        console.log((recipients.recipient2 != "") ? recipients.recipient2 + ((recipients.recipient3 != "") ? recipients.recipient3 : "") : "")
+        const response = await axios.put("http://localhost:5000/form_api/updateRecipients",{
+            transaction_id: transaction_id,
+            form_recipients: (recipients.recipient2 != "") ? recipients.recipient2 + ((recipients.recipient3 != "") ? recipients.recipient3 : "") : ""
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
+
+
     const approveClickHandler = (data) => {
         console.log(data)
         setID(data)
@@ -122,35 +180,80 @@ const AdminLanding = ({userName}) => {
     }
 
     const approveTransaction = (data) => {
+        console.log(data)
         changeStatusToAccepted(id)
-        const msg = "Your request for " + documentDetails.form_name + " has been approved by the admin."
+        setFirstSignatory(id, recipients.recipient1)
+        updateRecipients(id, recipients)
+        setApprovedBy(id)
+
+        const msg = "Your request " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been approved by the admin."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
     
     const rejectTransaction = (data) => {
         changeStatusToRejected(id,data)
-        const msg = "Your request for " + documentDetails.form_name + " has been rejected by the admin."
+        const msg = "Your request " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been rejected by the admin."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
+    
+    // const handleFilterChange1 = (data) => {
+    //     const filter = data.target.value
+    //     setF(filter)
+    //     console.log(courseFilter)
+    //     fetchApproval(orderFilter, courseFilter)
+    // }
 
-    const handleFilterChange1 = (data) => {
-        const filter = data.target.value
-        console.log(courseFilter)
-        fetchApproval(filter, courseFilter)
+    // const handleFilterChange2 = (data) => {
+    //     const filter = data.target.value
+        
+    //     fetchOngoing(orderFilter, courseFilter)
+    // }
+
+    // const handleFilterChangeCourse1 = (data) => {
+    //     const filter = data.target.value
+    //     setCourseFilter(filter)
+    //     console.log(courseFilter)
+    //     fetchApproval(orderFilter, courseFilter)
+    // }
+
+    useEffect(() => {
+       // console.log(filterDetails.course_filter);
+        fetchApproval(filterDetails)
+    }, [filterDetails])
+
+    const handleFilterChange1 = (e) => {
+        const { name, value } = e.target;
+        setFilterDetails(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
     }
 
-    const handleFilterChange2 = (data) => {
-        const filter = data.target.value
-        fetchOngoing(filter, courseFilter)
-    }
+    useEffect(() => {
+        //console.log(filterDetails2.course_filter);
+        fetchOngoing(filterDetails2)
+    }, [filterDetails2])
 
-    const handleFilterChangeCourse1 = (data) => {
-        const filter = data.target.value
-        fetchOngoing(filter)
+    const handleFilterChange2 = (e) => {
+        const { name, value } = e.target;
+        setFilterDetails2(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
     }
     
+    const changeHandler = (e) => {
+        const { name, value } = e.target;
+        setRecipients(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
+
+    console.log(recipients)
+
     return(
         <div>
             <NavBar/>
@@ -171,14 +274,15 @@ const AdminLanding = ({userName}) => {
                 <div className='title-text-admin'>Waiting Approval</div>
                 <div className='filter-container'>
                     Filter by: &nbsp;
-                    <select className='filter-button' onChange={(e) => handleFilterChangeCourse1(e)}>
+                    <select className='filter-button' name="course_filter" onChange={(e) => handleFilterChange1(e)}>
                         <option value="all">&nbsp;All&nbsp;</option>
                         <option value="BS Computer Science">&nbsp;BS Computer Science&nbsp;</option>
                         <option value="BS Biology">&nbsp;BS Biology&nbsp;</option>
                         <option value="BS Mathematics">&nbsp;BS Mathematics&nbsp;</option>
                         <option value="BS Statistics">&nbsp;BS Statistics&nbsp;</option>
                     </select>
-                    <select className='filter-button' onChange={(e) => handleFilterChange1(e)}>
+                    &nbsp;
+                    <select className='filter-button' name="order_filter" onChange={(e) => handleFilterChange1(e)}>
                         <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
                     </select>
@@ -197,7 +301,7 @@ const AdminLanding = ({userName}) => {
                         tableData = {tableData1}
                         action={approveClickHandler}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
+                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal} signatoryList={signatoryList} changeHandler={changeHandler} />}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                     {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} action={rejectTransaction}/>} 
                     {/* //action={approveTransaction} add this */}
@@ -206,6 +310,14 @@ const AdminLanding = ({userName}) => {
                 <div className='title-text-admin'>Ongoing Transactions</div>
                 <div className='filter-container'>
                     Filter by: &nbsp;
+                    <select className='filter-button' name="course_filter" onChange={(e) => handleFilterChange2(e)}>
+                        <option value="all">&nbsp;All&nbsp;</option>
+                        <option value="BS Computer Science">&nbsp;BS Computer Science&nbsp;</option>
+                        <option value="BS Biology">&nbsp;BS Biology&nbsp;</option>
+                        <option value="BS Mathematics">&nbsp;BS Mathematics&nbsp;</option>
+                        <option value="BS Statistics">&nbsp;BS Statistics&nbsp;</option>
+                    </select>
+                    &nbsp;
                     <select className='filter-button' onChange={(e) => handleFilterChange2(e)}>
                         <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>

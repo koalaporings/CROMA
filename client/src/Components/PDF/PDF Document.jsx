@@ -1,4 +1,6 @@
 import { PDFDocument } from 'pdf-lib'
+import './PDF Document.css'
+import { useState } from 'react'
 
 async function createForm(data) {
   const pdfDoc = await PDFDocument.create()
@@ -71,8 +73,15 @@ async function createForm(data) {
 
   const pdfBytes = await pdfDoc.save()
 
+  const docUrl = URL.createObjectURL(new Blob([pdfBytes], {type: 'application/pdf'}))
+
   return(
-    pdfDoc
+    <div className="pdf-viewer">
+      {console.log("hehehe")}
+      <div>hehehe</div>
+      <>{<iframe src={docUrl} ref="viewer" type="application/pdf" />}</>
+    </div>
+    
   )
 }
 

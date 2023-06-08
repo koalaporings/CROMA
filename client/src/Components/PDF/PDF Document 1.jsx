@@ -43,29 +43,30 @@ const styles = StyleSheet.create({
 })
 
 function PDFdocument(docdata){
+    console.log(docdata)
+
     return (
         <PDFViewer style={styles.viewer}>
             <Document>
                 <Page size="A4" style={styles.page}>
-                    <Text style={styles.title}>Request for</Text>
+                    <Text style={styles.title}>Request for {docdata.docData.form_name}</Text>
                     <View style={styles.section}>
                         <View style={styles.row}>
-                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Name:  </Text>{docdata.docdata.last_name}, {docdata.docdata.first_name} {docdata.docdata.middle_initial}</Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Name:  </Text>{docdata.docData.last_name}, {docdata.docData.first_name} {docdata.docData.middle_initial}</Text>
                             
                         </View>
                         
                         <View style={styles.row}>
-                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Student Number:  </Text>{docdata.docdata.student_number}</Text>
-                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Degree Program:  </Text>{docdata.docdata.degree_program}</Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Student Number:  </Text>{docdata.docData.student_number}</Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Degree Program:  </Text>{docdata.docData.degree_program}</Text>
                         </View>
                         <Text style={styles.break}> </Text>
-                        <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Email Address:  </Text>{docdata.docdata.email}</Text>
+                        <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Email Address:  </Text>{docdata.docData.email}</Text>
                         
                         <View style={styles.row}>
-                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Purpose:  </Text>{docdata.docdata.purpose}</Text>
-                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>No. of Copies:  </Text>{docdata.docdata.num_copies}</Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Purpose:  </Text>{docdata.docData.purpose}</Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>No. of Copies:  </Text>{docdata.docData.num_copies}</Text>
                         </View>
-
                     </View>
                 </Page>
             </Document>

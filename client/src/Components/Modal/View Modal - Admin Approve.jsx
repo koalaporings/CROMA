@@ -8,7 +8,9 @@ function AdminApproveModal({
   data,
   setIsOpen,
   action,
-  rejectAction
+  rejectAction,
+  signatoryList,
+  changeHandler,
 }) {
   console.log(data);
   return (
@@ -28,22 +30,20 @@ function AdminApproveModal({
           <div className="view-document-content">
             <PDFdocument docData={data} />
           </div>
+          <h4 className="view-heading">Recipients</h4>
           <div className="textboxes-container">
-            <input list="names" name="name1" />
+            <input list="names" name="recipient1" placeholder="Select recipient" onChange={changeHandler}/>
             <datalist id="names" className="">
-              {/* <option value="John Mynar"/>
-              <option value="John Oliver"/>
-              <option value="Kienth John"/>
-              <option value="Kyle Alan"/> */}
-              <option value="John Oliver">199</option>
-              <option value="2">John Mynar</option>
-              <option value="3">Kyle Alan</option>
-              <option value="4">Kienth John</option>
-              <option value="5">John Arvin</option>
-              <option value="6">James Peter</option>
+              {signatoryList.map((data) => {
+                  return(
+                      // <option value={data.first_name + " " + data.last_name}>{data.signatory_id}</option>
+                      <option value={data.signatory_id}>{data.first_name + " " + data.last_name}</option>
+                  )
+              })}
             </datalist>
-            <input list="names" name="name2" />
-            <input list="names" name="name3" />
+            
+            <input list="names" name="recipient2" placeholder="Select recipient" onChange={changeHandler}/>
+            <input list="names" name="recipient3" placeholder="Select recipient" onChange={changeHandler}/>
           </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">

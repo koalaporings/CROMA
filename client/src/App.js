@@ -61,13 +61,18 @@ function App() {
   document.title = "Automated Request System";
 
   const [userName, setUserName] = useState(" ");
+  const [lastName, setLastName] = useState(" ");
+
   // const [userId, setUserID] = useState(0);
 
     async function decodeToken() {
         const token = localStorage.getItem("token")
 
         const data = jwt_decode(token.toString())
+        console.log(data)
         setUserName(data.given_name)
+        setLastName(data.family_name)
+
         getUserID(data.email)
         getRole(data.email)
         
@@ -82,6 +87,7 @@ function App() {
     async function getUserID(data){
         const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
         console.log(response.data[0].user_id)
+        localStorage.removeItem("id")
         localStorage.setItem("id", response.data[0].user_id)
         // getRegistered(response.data[0].user_id)
     }
@@ -120,7 +126,7 @@ function App() {
             />
             <Route 
               path="/signatory" 
-              element={(localStorage.getItem("role")==="signatory") ? <SignatoryLanding userId={localStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(localStorage.getItem("role")==="signatory") ? <SignatoryLanding userId={localStorage.getItem("id")} userName={userName} lastName={lastName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
             />
             <Route 
               path="/signatory/2" 

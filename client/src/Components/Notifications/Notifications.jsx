@@ -16,7 +16,7 @@ function Notifications ({
 
 
     const length = notifsData.length
-    const split = notifsData.slice(0,5)
+    // const split = notifsData.slice(0,5)
 
     return (
         <div>
@@ -39,9 +39,9 @@ function Notifications ({
                     })}
                     </div>
                     }
-                <div className="notif-button-container">
+                {/* <div className="notif-button-container">
                     <div className="notif-show-more-button" onClick={showMoreNavigate}>Show more</div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
