@@ -66,3 +66,12 @@
     height: 15vh;
     width: 100% */
 }
+
+@media screen and (max-width: 768px) {
+    .name-header-admin {
+        font-size: 20px;
+    }
+    .title-text-admin {
+        font-size: 20px;
+    }
+}

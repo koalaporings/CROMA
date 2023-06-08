@@ -281,6 +281,9 @@
     .filter-container {
         font-size: 12px;
     }
+    .name-header {
+        font-size: 20px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
