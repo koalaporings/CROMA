@@ -51,6 +51,8 @@ const Register = ({children}) => {
             middle_initial: data.middle_initial,
             degree_program: data.degree_program,
             student_number: data.student_number,
+            mobile_number: data.mobile_number,
+            year_level: data.year_level,
             registered: 1,
             role: userRole,
         })
@@ -104,10 +106,10 @@ const Register = ({children}) => {
             <Container>
                 <div className="form-title">&nbsp;</div>
                 <div className="form-title">
-                    Registration Form
+                    Update Information
                 </div>
                 <form class="registration-form" >
-                    <div className='form-subtitle-1'>Welcome to the <b>Automated Request System</b>! Before you start requesting transactions, kindly fill in your necessary information in the text fields below. These information will be used to automatically fill in some of the required fields during the transaction process.</div>
+                    <div className='form-subtitle-1'>Welcome to the <b>Automated Request System</b>! Kindly fill in your necessary information in the text fields below. These information will be used to automatically fill in some of the required fields during the transaction process.</div>
                     <div className='form-subtitle-1'>&nbsp;</div>
 
                     <h1 className='form-group-title'>Personal Information</h1>
@@ -125,6 +127,13 @@ const Register = ({children}) => {
                             <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial" onChange={(e) => handleChange(e)}/>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-2">     
+                            <label for="studentMiddleInitial">Mobile Number</label>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="mobile_number" onChange={(e) => handleChange(e)}/>
+                        </div>
+                    </div>
+
                     <h1 className='form-group-title'>&nbsp;</h1>
                     <h1 className='form-group-title'>Academic Information</h1>
                     {/* <div class="form-row">
@@ -137,6 +146,7 @@ const Register = ({children}) => {
                                 </select>
                         </div>
                     </div> */}
+                    
                     <div class="form-row" id="studentNumberComp">
                         <div class="col-md-3 mb-2">
                             <label for="studentNumber">Student Number</label>
@@ -163,6 +173,12 @@ const Register = ({children}) => {
                             <input type="email" class="form-control" id="emailAddress" name="email" onChange={(e) => handleChange(e)}/>
                         </div> */}
                     </div>
+                    <div class="form-row" id="studentNumberComp">
+                        <div class="col-md-3 mb-2">
+                            <label for="studentNumber">Year Level</label>
+                            <input type="text" class="form-control" id="studentNumber" name="year_level" onChange={(e) => handleChange(e)}/>
+                        </div>
+                    </div>
                     <h1 className='form-group-title'>&nbsp;</h1>
                     <h1 className='form-group-title'>Note:</h1>
                     <div className='form-subtitle-1'>Make sure that the information provided is correct as it will be used by the College of Science - Office of the College Secretary for future references.</div>
@@ -171,7 +187,7 @@ const Register = ({children}) => {
                 
                 <div className="form-buttons-container">
                     <div className="submit-button">
-                        <button class="btn btn-primary" onClick={() => proceed()}>Proceed</button> 
+                        <button class="btn btn-primary" onClick={() => proceed()}>Save</button> 
                     </div>
                 </div>
                 <div className="form-title">&nbsp;</div>
