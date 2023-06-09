@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
     viewer: {
         width: "75vw",
-        height: "25vh",
+        height: "50vh",
     },
     title:{
         marginTop: 40,
