@@ -116,7 +116,7 @@ const AdminLanding = ({userName}) => {
     }
 
     async function setApprovedBy(id) {
-        const response = await axios.post("http://localhost:5000/form_api/updateApproved",{
+        const response = await axios.put("http://localhost:5000/form_api/updateApproved",{
             transaction_id: id,
             approved_by: "COS Secretary",
         })

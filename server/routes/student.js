@@ -16,10 +16,8 @@ router.get("/transactions/:user_id/:filter_info", async (req,res) => {        //
       q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE user_id = ? and transaction_status = "ongoing" ORDER BY transaction_date ASC'
     }
     const userId = req.params.user_id
-    console.log(userId)
     db.query(q, userId, (err, results) => {
       if(err) console.error('ERROR', err);
-      console.log(results)
       res.json(results)
     })
     

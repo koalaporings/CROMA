@@ -113,5 +113,13 @@ router.get('/getAllUser', (req,res) => {
   })
 })
 
+router.delete('/deleteAll', (req,res) => {
+  const q = "DELETE FROM announcements; DELETE FROM notifications; DELETE FROM overload_subjects; DELETE FROM signatory; DELETE FROM students; DELETE FROM tracking; DELETE FROM transactions; DELETE FROM transaction_info; DELETE FROM users"
+
+  db.query(q, (err,data) => {
+    if(err) console.log("ERROR",err)
+  })
+})
+
 
 module.exports = router;

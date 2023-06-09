@@ -3,10 +3,12 @@ import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 // import { response } from '../../../../server/server'
 
-const View = () => {
+const View = (email) => {
   const [user, setName] = useState([])
   const [uploadStatus, setUploadStatus] = useState('')
   const [image, setImage] = useState();
+
+  const [counter, setCounter] = useState(0);
 
     // useEffect (() =>{
     //   const fetchAllUsers = async ()=>{
@@ -34,6 +36,12 @@ const View = () => {
   //   getImage()
   // })
 
+  console.log(counter)
+if (counter < 2) {
+  setCounter(counter+1)
+
+}
+
 const navigate = useNavigate()
 // const handleClick = async e => {
 //   e.preventDefault()
@@ -43,7 +51,6 @@ const navigate = useNavigate()
 const handleDelete = async id =>{
   try{
     axios.delete('http://localhost:5000/db/delete/' + id)
-    window.location.reload()
   }catch(err){
     console.log(err)
   }
@@ -56,13 +63,33 @@ const getImagevalue = async () => {
   
 }
 
+
 useEffect(() => {
-  async function getvalue() {
-    const response = await getImagevalue()
-    console.log(response)
-    setImage(response)
-  }getvalue()
+  async function stuffget(){
+    console.log(email)
+  // const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + sessionStorage.getItem("email"))
+  //       console.log(response1)
+  //       sessionStorage.setItem("role", response1.data[0].role)
+  //       const responses = await axios.get('http://localhost:5000/id_api/student_id/' + sessionStorage.getItem("email"))
+  //       console.log(responses)
+  //       sessionStorage.setItem("id", responses.data[0].user_id)
+  // const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ sessionStorage.getItem("id"))
+  // sessionStorage.setItem("registered", response.data[0].registered)
+  }
+
+  stuffget()
+  window.location.reload()
+  const url = sessionStorage.getItem("role")
+  navigate("/student")
 },[])
+
+// useEffect(() => {
+//   async function getvalue() {
+//     const response = await getImagevalue()
+//     console.log(response)
+//     setImage(response)
+//   }getvalue()
+// },[])
 
 const pdfHandler = async e => {
   const file = e.target.files[0]
@@ -74,10 +101,14 @@ const pdfHandler = async e => {
     if(res.data.status === 'Success'){
       console.log("yes")
     }
-    window.location.reload()
+    // window.location.reload()
   }catch(err){
     console.log(err)
   }
+}
+
+function deleteALL() {
+  axios.delete('http://localhost:5000/admin_api/deleteAll')
 }
 
 console.log(image)
@@ -87,7 +118,8 @@ console.log(image)
       <h1>DB Users</h1>
       <input type="file" name="image" accept="pd" multiple={false} onChange={pdfHandler} />
       <h2>{uploadStatus}</h2>
-      {image && <img src={`http://localhost:5000/public/uploads/` + image[0].file.toString()}></img>}
+      {/* {image && <img src={`http://localhost:5000/public/uploads/` + image[0].file.toString()}></img>} */}
+      <button onClick={deleteALL}>DELETE ALL</button>
       {/* {user.map(user => (
         <div className="user" key={user.user_id}>
           <p2>{user.user_id}  |  </p2>

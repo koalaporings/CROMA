@@ -78,6 +78,8 @@ const StudentLanding = ({userId, userName}) => {
     //     }, [])
 
     // GET TRANSACTION LIST
+
+
     useEffect (() =>{
     const fetchAllForms = async ()=>{
         const response = await axios.get('http://localhost:5000/form_api/view')
@@ -88,11 +90,14 @@ const StudentLanding = ({userId, userName}) => {
 
     async function getRegistered(data){
         const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
-        localStorage.setItem("registered", response.data[0].registered)
+        sessionStorage.setItem("registered", response.data[0].registered)
     }
 
     useEffect(() => {
         getRegistered(userId)
+        if(sessionStorage.getItem('registered') ===  0){
+            navigate('/student/info')
+        }
     })
 
 

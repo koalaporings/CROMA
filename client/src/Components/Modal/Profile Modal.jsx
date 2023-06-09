@@ -19,7 +19,7 @@ const ProfileModal = ({ onClose, userId }) => {
 
   async function getDetails(data) {
     try {
-      const userObject = jwt_decode(localStorage.getItem("token"))
+      const userObject = jwt_decode(sessionStorage.getItem("token"))
       setUser(userObject)
       const response = await axios.get(`http://localhost:5000/student_api/getDetails/${data}`);
       console.log(userId);
@@ -29,6 +29,7 @@ const ProfileModal = ({ onClose, userId }) => {
       console.log(error);
     }
   }
+  console.log(user)
   console.log(user.picture)
   useEffect(() => {
     const parsedUserId = parseInt(userId, 10); // Convert userId to an integer

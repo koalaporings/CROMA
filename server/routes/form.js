@@ -51,7 +51,7 @@ router.post('/new', async (req, res) => {       //API endpoint for inserting new
 })
 
 router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpoint for uploading pdfs
-  const image = req.file.filename
+  const image = req.file.buffer
   const id = req.body.id
   const q2 = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
 
@@ -61,12 +61,9 @@ router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpo
 })
 
 router.post('/upload_image/', upload.single('image'), (req, res) => {        //API endpoint for uploading images
-  const image = req.file.filename
-  const id = 123060723591000
-  console.log(req.file)
-  // const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
-  const upload = 'UPDATE files SET file = ? WHERE transaction_id = ?'
-  console.log("heh") 
+  const image = req.file.buffer
+  const id = req.body.id
+  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
 
   db.query(upload, [image,id], (err,result)=> { 
     res.json({status:'Success'})
@@ -78,7 +75,6 @@ router.get('/get/:id', async (req,res) => {       //API endpoint for image viewi
   const id = req.params.id
 
   db.query(q, id, (err,data) => {
-    console.log(data)
     res.json(data)
   })
 })
@@ -100,7 +96,6 @@ router.post("/transaction_made_upload",async (req,res,err)=> {        //API endp
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
   if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
-  console.log(req.body)
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
   const formId = req.body.form_id
 
@@ -152,7 +147,6 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
 
-  console.log(req.body)
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
   if(req.body.form_id >= 0 && req.body.form_id <= 3){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
@@ -436,7 +430,6 @@ router.put('/updateApproved', (req,res) => {
   const q = 'UPDATE transactions SET approved_by = ? WHERE transaction_id = ?'
   const id = req.body.transaction_id
   const rec = req.body.approved_by
-  console.log("lel")
 
   db.query(q,[rec,id], (err,data) => {
     if(err) console.log("ERROR",err)
