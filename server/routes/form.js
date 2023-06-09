@@ -52,7 +52,9 @@ router.post('/new', async (req, res) => {       //API endpoint for inserting new
 
 router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpoint for uploading pdfs
   const image = req.file.buffer
+  console.log(image)
   const id = req.body.id
+  console.log(id)
   const q2 = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
 
   db.query(q2, [image,id], (err,result)=> {
@@ -148,7 +150,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
 
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
-  if(req.body.form_id >= 0 && req.body.form_id <= 3){
+  if((req.body.form_id >= 0 && req.body.form_id <= 3) || req.body.form_id == 6 || req.body.form_id == 17 || req.body.form_id == 21){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
       transaction_id,
@@ -165,10 +167,18 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if((req.body.form_id >= 4 && req.body.form_id <= 9) || req.body.form_id >= 16 && req.body.form_id <= 20){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`) VALUES (?)'
+  } else if(req.body.form_id >= 4 || (req.body.form_id >= 8 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`) VALUES (?)'
     info = [
       transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+      req.body.mobile_number,
+      req.body.year_level,
+      req.body.degree_program,
+      req.body.email,
     ]
   }else if(req.body.form_id == 10 || req.body.form_id == 11){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'

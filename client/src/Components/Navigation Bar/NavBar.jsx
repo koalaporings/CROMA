@@ -30,6 +30,9 @@ const Sidebar = ({ children }) => {
     }
   };
   const [roleID, setRoleId] = useState("-1")
+  function LogOut () {
+    sessionStorage.clear()
+  }
 
   const doubleToggle = () => {
     toggle();
@@ -141,6 +144,8 @@ const Sidebar = ({ children }) => {
             ))
           }
           <div className="sidebar-bottom-section">
+          <NavLink to="/" style={{textDecoration: 'none'}}>
+              <div className="sidebar-link" activeclassName="sidebar-active" onClick={() => {LogOut();setIsOpen(false)}}>
             <Box>
               <IconButton>
                 <div className="sidebar-user-icon">
@@ -154,6 +159,8 @@ const Sidebar = ({ children }) => {
                 style={{display: isOpen? "flex": "none"}}>
                 Log out
             </div>
+            </div>
+          </NavLink>
           </div>
 
         </div>

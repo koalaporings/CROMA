@@ -42,6 +42,10 @@ const Sidebar = ({ children }) => {
     // ...
   };
 
+  function LogOut () {
+    sessionStorage.clear()
+  }
+
   window.onresize = function() {
     let viewportWidth = window.innerWidth;
     let sidebar = document.getElementById("sidebar");
@@ -162,6 +166,8 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
           <div className="sidebar-bottom-section">
+          <NavLink to="/" style={{textDecoration: 'none'}}>
+              <div className="sidebar-link" activeclassName="sidebar-active" onClick={() => {LogOut();setIsOpen(false)}}>
             <Box>
               <IconButton onClick={handleLogout}>
                 <div className="sidebar-user-icon">
@@ -172,6 +178,8 @@ const Sidebar = ({ children }) => {
             <div className="sidebar-bottom-section-link-text" style={{ display: isOpen ? "flex" : "none" }}>
               Log out
             </div>
+            </div>
+          </NavLink>
           </div>
         </div>
       </div>

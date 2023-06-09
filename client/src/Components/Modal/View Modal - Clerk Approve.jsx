@@ -5,6 +5,7 @@ import PDFdocument from "../PDF/PDF Document 1"
 import axios from 'axios'
 import { Buffer } from 'buffer'
 import { useEffect, useState } from 'react'
+import { Viewer } from '@react-pdf-viewer/core'
 
 function ClerkApproveModal({
   data,
@@ -40,10 +41,22 @@ function ClerkApproveModal({
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
+          {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7" || data.form_id == "12" || data.form_id == "17" || data.form_id == "21") ? 
           <div className="view-document-content">
-            <PDFdocument docData={data} />
-            {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
+          <PDFdocument docData={data} />
+          {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
+        </div>
+        :
+        <div className="view-document-content">
+            
+            {file && 
+            // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
+            
+            <embed src={`data:application/pdf;base64,${file.toString('base64')}#zoom=FitH`} width="100%" height="500" />
+            }
           </div>
+        }
+          
 
           <div className="upload">
                         <div class="form-group">

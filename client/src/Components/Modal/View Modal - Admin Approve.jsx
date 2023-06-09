@@ -6,6 +6,9 @@ import { PDFDocument } from "pdf-lib";
 import axios from 'axios'
 import { Buffer } from 'buffer'
 
+
+
+
 function AdminApproveModal({
   data,
   setIsOpen,
@@ -15,6 +18,7 @@ function AdminApproveModal({
   changeHandler,
 }) {
   console.log(data);
+
 
   const [file, setFile] = useState();
 
@@ -44,11 +48,21 @@ function AdminApproveModal({
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
+          {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7" || data.form_id == "12" || data.form_id == "17" || data.form_id == "21") ? 
           <div className="view-document-content">
-            <PDFdocument docData={data} />
-            <h5>Payment</h5>
+          <PDFdocument docData={data} />
           {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
+        </div>
+        :
+        <div className="view-document-content">
+            
+            {file && 
+            // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
+            
+            <embed src={`data:application/pdf;base64,${file.toString('base64')}#zoom=FitH`} width="100%" height="500" />
+            }
           </div>
+        }
           
           <h4 className="view-heading">Recipients</h4>
           <div className="textboxes-container">
