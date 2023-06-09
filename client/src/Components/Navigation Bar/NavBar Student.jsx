@@ -175,7 +175,7 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
       </div>
-      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} userId={localStorage.getItem("id")} />}
+      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} userId={sessionStorage.getItem("id")} />}
     </div>
   );
 }

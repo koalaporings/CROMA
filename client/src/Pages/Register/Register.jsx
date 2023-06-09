@@ -25,7 +25,7 @@ const Register = ({children}) => {
     });
 
     async function decodeToken() {
-        var token = localStorage.getItem("token")
+        var token = sessionStorage.getItem("token")
 
         var data = jwt_decode(token.toString())
         getUserID(data.email.toString())
@@ -37,6 +37,7 @@ const Register = ({children}) => {
     
 
     const getUserID = async(email) => {
+        console.log(email)
         const response = await axios.get('http://localhost:5000/id_api/student_id/' + email)
         setID(response.data[0].user_id)
     }

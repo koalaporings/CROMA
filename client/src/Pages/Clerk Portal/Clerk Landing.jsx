@@ -69,15 +69,15 @@ const ClerkLanding = ({userName}) => {
         }
     }
 
-    async function addTracking(id) {
-        const response = await axios.post("http://localhost:5000/tracking_api/update",{
-            transaction_id: id,
-            tracking_status: "Your request has been approved by the admin.",
-        })
-        if (response){
-            console.log(response)
-        }
-    }
+    // async function addTracking(id) {
+    //     const response = await axios.post("http://localhost:5000/tracking_api/update",{
+    //         transaction_id: id,
+    //         tracking_status: "Your request has been approved by the admin.",
+    //     })
+    //     if (response){
+    //         console.log(response)
+    //     }
+    // }
     
     const approveClickHandler = (data) => {
         setID(data)
@@ -100,7 +100,6 @@ const ClerkLanding = ({userName}) => {
     async function approveUpdate(id) {
         const response = axios.put("http://localhost:5000/clerk_api/update/" + id.toString(), {
         })
-        addTracking(id)
         if (response){
             console.log(response)
         }
@@ -110,7 +109,7 @@ const ClerkLanding = ({userName}) => {
     async function addTracking(id) {
         const response = await axios.post("http://localhost:5000/tracking_api/update",{
             transaction_id: id,
-            tracking_status: "Your request has been approved by signatory: Test Signatory 1.",
+            tracking_status: "Your request has been approved by clerk.",
         })
     }
 

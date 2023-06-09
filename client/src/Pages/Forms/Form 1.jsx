@@ -49,7 +49,7 @@ const Form1 = ({userId}) => {
     },[savedDetails])
 
     const [formDetails, setFormDetails] = useState({
-        user_id: userId.toString(),
+        user_id: userId,
         form_id: 1,
         remarks: null,
          last_name: "",

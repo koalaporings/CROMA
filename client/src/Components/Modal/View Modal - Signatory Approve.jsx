@@ -2,6 +2,9 @@ import React from "react";
 import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import PDFdocument from "../PDF/PDF Document 1"
+import axios from 'axios'
+import { Buffer } from 'buffer'
+import { useEffect, useState } from 'react'
 
 function SignatoryApproveModal({
   data,
@@ -10,6 +13,21 @@ function SignatoryApproveModal({
   rejectAction
 }) {
   console.log(data);
+
+  const [file, setFile] = useState();
+
+  const getImagevalue = async () => {
+    const response = await axios.get('http://localhost:5000/form_api/get/' + data.transaction_id)
+    console.log(response)
+    setFile(Buffer.from(response.data[0].file.data))
+  }
+
+  useEffect(()=>{
+    if(!file){
+      getImagevalue()
+    }
+  },[])
+  console.log(file)
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -23,6 +41,7 @@ function SignatoryApproveModal({
           </button>
           <div className="view-document-content">
             <PDFdocument docData={data} />
+            {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
           </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
