@@ -13,6 +13,7 @@ import Container from 'react-bootstrap/Container';
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
 import ConfirmReject from '../../Components/Modal/Reject Confirmation';
+import AdminOngoingModal from '../../Components/Modal/View Modal - Admin Ongoing';
 
 
 
@@ -28,6 +29,7 @@ const AdminLanding = ({userName}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [isRejectOpen, setRejectOpen] = useState(false);
+    const [isOngoingOpen, setIsOngoingOpen] = useState(false);
     const [id, setID] = useState(0);
     const [signatoryList, setSignatoryList] = useState([]);
     const [recipients, setRecipients] = useState({
@@ -88,6 +90,18 @@ const AdminLanding = ({userName}) => {
             setDocumentDetails(response.data[0])
             console.log(documentDetails)
             setIsOpen(true)
+        }
+    }
+
+    async function viewDocumentDetails(id) {
+        console.log(id)
+        const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        console.log(response)
+        if (response){
+            console.log(response.data)
+            setDocumentDetails(response.data[0])
+            console.log(documentDetails)
+            setIsOngoingOpen(true)
         }
     }
 
@@ -166,6 +180,12 @@ const AdminLanding = ({userName}) => {
 
 
     const approveClickHandler = (data) => {
+        console.log(data)
+        setID(data)
+        viewDocumentDetails(data)
+    }
+
+    const clickOngoingHandler = (data) => {
         console.log(data)
         setID(data)
         viewDocumentDetails(data)
@@ -335,8 +355,10 @@ const AdminLanding = ({userName}) => {
                             "Action",
                         ]}
                         tableData = {tableData2}
-                        // action={clickHandler}
+                        action={clickOngoingHandler}
                     />
+                    {isOngoingOpen && <AdminOngoingModal data={documentDetails} setIsOngoingOpen={setIsOngoingOpen} />}
+
                 </div>
                 {/* <OngoingTable/> */}
             </Container>

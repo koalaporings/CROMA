@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import CancelModal from '../../Components/Modal/Cancel Modal';
+// import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
 
@@ -318,8 +318,7 @@ const Form21 = ({userId}) => {
                     </form>
                     <div className="form-buttons-container">
                     <div className="cancel-button">
-                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
-                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                        <button class="btn btn-primary" type="submit" onClick={navigateLanding}>Cancel</button>
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
