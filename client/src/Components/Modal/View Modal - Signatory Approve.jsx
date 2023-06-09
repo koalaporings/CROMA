@@ -40,8 +40,22 @@ function SignatoryApproveModal({
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
           <div className="view-document-content">
-            <PDFdocument docData={data} />
-            {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
+          {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7" || data.form_id == "12" || data.form_id == "17" || data.form_id == "21") ? 
+          <div className="view-document-content">
+          <PDFdocument docData={data} />
+          {/* {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}#zoom=FitH`} width="50%" height="50%"></img>} */}
+        </div>
+        :
+        <div className="view-document-content">
+            
+            {file && 
+            // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
+            
+            <embed src={`data:application/pdf;base64,${file.toString('base64')}#zoom=FitH`} width="100%" height="500" />
+            }
+          </div>
+        }
+
           </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">

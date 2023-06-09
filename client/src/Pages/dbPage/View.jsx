@@ -80,7 +80,7 @@ useEffect(() => {
   stuffget()
   window.location.reload()
   const url = sessionStorage.getItem("role")
-  navigate("/student")
+  navigate("/loadingg")
 },[])
 
 // useEffect(() => {

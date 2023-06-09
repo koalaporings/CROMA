@@ -93,7 +93,7 @@ const AdminLanding = ({userName}) => {
         }
     }
 
-    async function viewDocumentDetails(id) {
+    async function viewDocumentDetails2(id) {
         console.log(id)
         const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
         console.log(response)
@@ -188,7 +188,7 @@ const AdminLanding = ({userName}) => {
     const clickOngoingHandler = (data) => {
         console.log(data)
         setID(data)
-        viewDocumentDetails(data)
+        viewDocumentDetails2(data)
     }
 
     const openConfirmationModal = () => {
@@ -357,7 +357,7 @@ const AdminLanding = ({userName}) => {
                         tableData = {tableData2}
                         action={clickOngoingHandler}
                     />
-                    {isOngoingOpen && <AdminOngoingModal data={documentDetails} setIsOngoingOpen={setIsOngoingOpen} />}
+                    {isOngoingOpen && <AdminOngoingModal data={documentDetails} setIsOpen={setIsOngoingOpen} />}
 
                 </div>
                 {/* <OngoingTable/> */}
