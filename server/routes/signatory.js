@@ -3,17 +3,40 @@ const { Router } = require('express');
 const router = Router();
 const db = require('../database').databaseConnection;
 
-router.get("/transactions/:user_id", async (req,res) => {       //API endpoint to get transaction details for a specific signatory_id
-    const q = 'SELECT DATE_ADD(transaction_date, INTERVAL 8 HOUR) as transaction_date, form_name, transaction_id, transaction_status FROM transactions WHERE signatory_id = ? and transaction_status = "ongoing"'
-    const userId = req.params.user_id
+router.get("/transactions/:user_id/:filter_info/:filter_course", async (req,res) => {       //API endpoint to get transaction details for a specific signatory_id
+  var q = 'SELECT DATE_ADD(transactions.transaction_date, INTERVAL 8 HOUR) as transaction_date, transactions.form_name, transactions.transaction_id, transactions.transaction_status, transactions.approved_by FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? and transactions.transaction_status = "ongoing" ORDER BY transactions.transaction_date DESC'
+  const userId = req.params.user_id
+  console.log(userId)
+  const course = req.params.filter_course
+  console.log(course)
 
-    const transaction_values = await new Promise((resolve) => {
-      db.query(q, userId, (err, data) => {
-        if(err) console.error('ERROR', err);
-      resolve(data)
-      })
+  if (req.params.filter_course == "all"){
+    if (req.params.filter_info == "dsc") {
+      console.log("1")
+      q = 'SELECT DATE_ADD(transactions.transaction_date, INTERVAL 8 HOUR) as transaction_date, transactions.form_name, transactions.transaction_id, transactions.transaction_status, transactions.approved_by FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? and transactions.transaction_status = "ongoing" ORDER BY transactions.transaction_date DESC'
+    } else if (req.params.filter_info == "asc") {
+      console.log("2")
+      q = 'SELECT DATE_ADD(transactions.transaction_date, INTERVAL 8 HOUR) as transaction_date, transactions.form_name, transactions.transaction_id, transactions.transaction_status, transactions.approved_by FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? and transactions.transaction_status = "ongoing" ORDER BY transactions.transaction_date ASC'
+    }
+  }
+  else {
+    if (req.params.filter_info == "dsc") {
+      console.log("3")
+      q = 'SELECT DATE_ADD(transactions.transaction_date, INTERVAL 8 HOUR) as transaction_date, transactions.form_name, transactions.transaction_id, transactions.transaction_status, transactions.approved_by FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? and transactions.transaction_status = "ongoing" and transaction_info.degree_program = ? ORDER BY transactions.transaction_date DESC'
+    } else if (req.params.filter_info == "asc") {
+      console.log("4")
+      q = 'SELECT DATE_ADD(transactions.transaction_date, INTERVAL 8 HOUR) as transaction_date, transactions.form_name, transactions.transaction_id, transactions.transaction_status, transactions.approved_by FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? and transactions.transaction_status = "ongoing" and transaction_info.degree_program = ? ORDER BY transactions.transaction_date ASC'
+    }
+  }
+
+  const transaction_values = await new Promise((resolve) => {
+    db.query(q, [userId, course], (err, data) => {
+      if(err) console.error('ERROR', err);
+    resolve(data)
     })
+  })
 
+  console.log(transaction_values)
     const values = []
 
     for(i=0;i<transaction_values.length;i++){
@@ -28,6 +51,7 @@ router.get("/transactions/:user_id", async (req,res) => {       //API endpoint t
     })
 
       values.push({
+        approved_by: transaction_values[i].approved_by,
         transaction_date: transaction_values[i].transaction_date,
         form_name: transaction_values[i].form_name,
         transaction_id: transaction_values[i].transaction_id,
@@ -36,26 +60,43 @@ router.get("/transactions/:user_id", async (req,res) => {       //API endpoint t
         degree_program: transaction_info[0].degree_program
       })
     }
+    console.log(values)
     res.json(values)
+
     
 })
 
-router.put("/approve/:transaction_id", async(req,res) => {      //API endpoint to approve (not used)
+router.put("/approve", async(req,res) => {
+  const transaction_id = req.body.transaction_id
+  const signatory_id = req.body.signatory_id
+  const q = "UPDATE transactions SET signatory_id = ? WHERE transaction_id = ?"
+  db.query(q,[signatory_id, transaction_id],(err,data) => {
+    if(err) console.error('ERROR', err);
+    res.json(data);
+  })
+
+})
+
+router.put("/approve/:transaction_id", async(req,res) => {        //API endpoint to approve transactions
   const userId = req.params.transaction_id
-  const q = 'UPDATE transactions SET signatory_id = ?, form_recipients = ? WHERE transaction_id = ?'
+  const q = 'UPDATE transactions SET signatory_id = ? WHERE transaction_id = ?'
 
   const signatory = await new Promise((resolve) => {
-    db.query("SELECT form_recipients FROM transactions WHERE transaction_id = ?", userId, (err, data) => {
+    db.query("SELECT signatory_id FROM transactions WHERE transaction_id = ?", userId, (err, data) => {
       if(err) console.error('ERROR', err);
     resolve(data)
     })})
 
-  let array = signatory[0].form_recipients.split(",").map(Number);
-  array.shift()
-  let sig = array[0]
-  let recipients = array.toString()
-  
-  db.query(q, [sig, recipients, userId], (err,data) =>{
+  let sig = 3;
+
+  if (signatory[0].signatory_id === 3){
+    sig = 5; 
+  }
+  else if (signatory[0].signatory_id === 5){
+    sig = 2;
+  }
+
+  db.query(q, [sig, userId], (err,data) =>{
     if(err) console.error('ERROR', err);
     res.json(data)
   })

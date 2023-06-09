@@ -10,11 +10,14 @@ import Container from 'react-bootstrap/Container';
 import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
+import SignatoryApproveModal from '../../Components/Modal/View Modal - Signatory Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
 import ConfirmReject from '../../Components/Modal/Reject Confirmation';
 
 
-const SignatoryLanding = ({children}) => {
+const SignatoryLanding = ({userId, userName, lastName}) => {
+
+    console.log(lastName)
 
 
     const [formData, setFormData] = useState([]);
@@ -27,17 +30,25 @@ const SignatoryLanding = ({children}) => {
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
     const [isRejectOpen, setRejectOpen] = useState(false);
+    const [recipients, setRecipients] = useState("");
+
+    const [filterDetails, setFilterDetails] = useState({
+        course_filter: "all",
+        order_filter: "dsc",
+    });
 
 
     async function fetchTable (data){
-        const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 3, {credentials: 'same-origin'})
+        console.log(data)
+        console.log(userId)
+        const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + userId + "/" + data.order_filter + "/" + data.course_filter)
         console.log(response.data)
         setTableData(response.data)
         SetCount(response.data.length)
     }
 
     useEffect (() =>{
-        fetchTable ()
+        fetchTable(filterDetails)
         }, [])
     
     async function viewDocumentDetails(id) {
@@ -72,9 +83,12 @@ const SignatoryLanding = ({children}) => {
         setRejectOpen(true)
     }
 
-    const approveTransaction = (data) => {
-        approveUpdate(documentDetails.transaction_id)
-        const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: Test Signatory 1."
+    async function approveTransaction (data) {
+        const response = await axios.get("http://localhost:5000/form_api/approvedBy/" + id)
+        console.log(response.data)
+
+        getRecipients(documentDetails.transaction_id)
+        const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: " + lastName + "."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
@@ -82,15 +96,70 @@ const SignatoryLanding = ({children}) => {
     //Might need adjustments in order to actually work for multiple signatories or to send it back
     const rejectTransaction = (data) => {
         rejectUpdate(documentDetails.transaction_id,data)
-        const msg = "Your request for " + documentDetails.form_name + " has been rejected by signatory: Test Signatory 1."
+        const msg = "Your request for " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been rejected by signatory: " + lastName + "."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
 
-    async function approveUpdate(id) {
-        const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
-        })
+    async function getRecipients(id){
         addTracking(id)
+        getApprovedBy(id)
+        const response = await axios.get("http://localhost:5000/form_api/formRecipients/" + id.toString())
+        console.log(response)
+        const recip = response.data[0].form_recipients.substring(0,3)
+
+        const sliced_recip = response.data[0].form_recipients.slice(3)
+        console.log(recip)
+        if (recip.length === 3){
+            approveUpdate(id, recip.substring(0,3))
+        }
+        else{
+            approveUpdate(id, "10")
+        }
+
+        updateRecipients(id,sliced_recip)
+    }
+
+    async function updateRecipients(transaction_id, recipients) {
+        const response = await axios.put("http://localhost:5000/form_api/updateRecipients",{
+            transaction_id: transaction_id,
+            form_recipients: recipients
+        })
+        if (response){
+            console.log(response)
+        }
+    }
+
+
+
+    async function approveUpdate(id, recip) {
+        console.log(id)
+        console.log(recip)
+        const response = axios.put("http://localhost:5000/signatory_api/approve/", {
+            signatory_id: recip,
+            transaction_id: id
+        })
+        
+        if (response){
+            console.log(response)
+        }
+    }
+
+    async function getApprovedBy(id) {
+        console.log(id)
+        const response = await axios.get("http://localhost:5000/form_api/approvedBy/" + id)
+        const approved_by = response.data[0].approved_by
+        console.log(approved_by)
+        setApprovedBy(id, approved_by)
+    }
+
+
+    async function setApprovedBy(id, approved_by) {
+        console.log(id)
+        const response = axios.put("http://localhost:5000/form_api/updateApproved",{
+            transaction_id: id,
+            approved_by: approved_by + ", " + lastName,
+        })
         if (response){
             console.log(response)
         }
@@ -111,15 +180,23 @@ const SignatoryLanding = ({children}) => {
     async function addTracking(id) {
         const response = await axios.post("http://localhost:5000/tracking_api/update",{
             transaction_id: id,
-            tracking_status: "Your request has been approved by signatory: Test Signatory 1.",
+            tracking_status: "Your request has been approved by signatory: " + lastName,
         })
     }
 
     
-    const handleFilterChange = (data) => {
-        const filter = data.target.value
-        fetchTable(filter)
-    }
+    useEffect(() => {
+        // console.log(filterDetails.course_filter);
+         fetchTable(filterDetails)
+     }, [filterDetails])
+ 
+     const handleFilterChange = (e) => {
+         const { name, value } = e.target;
+         setFilterDetails(prevState => ({
+             ...prevState,
+             [name]: value
+         }))
+     }
 
     return(
         <div>
@@ -129,7 +206,7 @@ const SignatoryLanding = ({children}) => {
             </div>
             <Container>
                 <div className="name-header-admin">
-                    Hello, Test Signatory 1!
+                    Hello, {userName}!
                 </div>
                 <div className="transaction-header">
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       
@@ -137,7 +214,15 @@ const SignatoryLanding = ({children}) => {
                 <div className='title-text-admin'>Waiting Approval</div>
                 <div className='filter-container'>
                     Filter by: &nbsp;
-                    <select className='filter-button' onChange={(e) => handleFilterChange(e)}>
+                    <select className='filter-button' name="course_filter" onChange={(e) => handleFilterChange(e)}>
+                        <option value="all">&nbsp;All&nbsp;</option>
+                        <option value="BS Computer Science">&nbsp;BS Computer Science&nbsp;</option>
+                        <option value="BS Biology">&nbsp;BS Biology&nbsp;</option>
+                        <option value="BS Mathematics">&nbsp;BS Mathematics&nbsp;</option>
+                        <option value="BS Statistics">&nbsp;BS Statistics&nbsp;</option>
+                    </select>
+                    &nbsp;
+                    <select className='filter-button' name="order_filter" onChange={(e) => handleFilterChange(e)}>
                         <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
                     </select>
@@ -157,7 +242,7 @@ const SignatoryLanding = ({children}) => {
                         action = {approveClickHandler}
                         // setID = {setSelected}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
+                    {isOpen && <SignatoryApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal} rejectAction={openRejectionModal}/>}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                     {isRejectOpen && <ConfirmReject setIsOpen={setRejectOpen} action={rejectTransaction}/>} 
                 </div>

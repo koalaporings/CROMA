@@ -14,7 +14,10 @@ import './Student Landing.css';
 import ViewStudentModal from '../../Components/Modal/View Modal - Student';
 import jwt_decode from 'jwt-decode';
 
-const StudentLanding = ({children}) => {
+const StudentLanding = ({userId, userName}) => {
+
+    console.log(userId)
+    console.log(userName)
 
     const [formId, setFormId] = useState(0);
     const [formName, setFormName] = useState("Form");
@@ -31,36 +34,35 @@ const StudentLanding = ({children}) => {
     const [notifData, setNotifData] = useState([]);
     const [studentDetails, setStudentDetails] = useState([]);
     const [email, setEmail] = useState("");
-    const [userName, setUserName] = useState("")
+    // const [userName, setUserName] = useState("")
     const [filter, setFilter] = useState("dsc")
     const [image, setImage] = useState()
 
     // GET USER ID -----------------------------------------------------------------------------
-    const [id, setID] = useState(0);
 
-    async function decodeToken() {
-        const token = localStorage.getItem("token")
+    // async function decodeToken() {
+    //     const token = localStorage.getItem("token")
 
-        const data = jwt_decode(token.toString())
-        setUserName(data.given_name)
-        getUserID(data.email)
-        // setUserName(data.first_name.toString())
-        // console.log(userName)
-    }
+    //     const data = jwt_decode(token.toString())
+    //     // setUserName(data.given_name)
+    //     getUserID(data.email)
+    //     // setUserName(data.first_name.toString())
+    //     // console.log(userName)
+    // }
 
-    useEffect (() =>{
-        decodeToken()
-        }, [])
+    // useEffect (() =>{
+    //     decodeToken()
+    //     }, [])
 
-    async function getUserID(data){
-        console.log(data)
-        const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
-        console.log(response)
-        console.log(response.data[0].user_id)
-        const fetchedId = await response.data[0].user_id
-        setID(fetchedId)
-        fetchTable(fetchedId, filter)
-    }
+    // async function getUserID(data){
+    //     console.log(data)
+    //     const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
+    //     console.log(response)
+    //     console.log(response.data[0].user_id)
+    //     const fetchedId = await response.data[0].user_id
+    //     setID(fetchedId)
+    //     fetchTable(fetchedId, filter)
+    // }
 
     // ^^^ GET USER ID -------------------------------------------------------------------------
 
@@ -83,6 +85,15 @@ const StudentLanding = ({children}) => {
     }
     fetchAllForms()
     }, [])
+
+    async function getRegistered(data){
+        const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+        localStorage.setItem("registered", response.data[0].registered)
+    }
+
+    useEffect(() => {
+        getRegistered(userId)
+    })
 
 
     // GET STUDENT TRANSACTIONS
@@ -108,22 +119,21 @@ const StudentLanding = ({children}) => {
             
             setTableData(response.data)
             setNumTransactions(response.data.length)
-            console.log("heh")
         }
     }
 
     // GET NOTIFICATIONS
     useEffect (() =>{
-        const fetchNotifications = async (id)=>{
+        const fetchNotifications = async ()=>{
             try{
-            const response = await axios.get('http://localhost:5000/notification_api/get/' + id.toString(), {credentials: 'same-origin'})
+            const response = await axios.get('http://localhost:5000/notification_api/get/' + userId.toString(), {credentials: 'same-origin'})
             setNotifData(response.data)
         }
         catch(err){
         }
             
         }
-        fetchNotifications(id)
+        fetchNotifications()
         }, [])
 
 
@@ -164,7 +174,7 @@ const StudentLanding = ({children}) => {
     const handleFilterChange = (data) => {
         const filter = data.target.value
         setFilter()
-        fetchTable(id,filter)
+        fetchTable(userId,filter)
     }
 
 
@@ -176,6 +186,10 @@ const StudentLanding = ({children}) => {
             setIsOpen(true)
         }
     }
+
+    useEffect (() => {
+        fetchTable(userId,filter)
+    },[])
 
 
     return(

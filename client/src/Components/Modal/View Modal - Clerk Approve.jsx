@@ -3,13 +3,14 @@ import "./Modal.css";
 import { RiCloseLine } from "react-icons/ri";
 import PDFdocument from "../PDF/PDF Document 1"
 
-function SignatoryApproveModal({
+function ClerkApproveModal({
   data,
   setIsOpen,
   action,
-  rejectAction
 }) {
   console.log(data);
+
+  
   return (
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
@@ -24,13 +25,17 @@ function SignatoryApproveModal({
           <div className="view-document-content">
             <PDFdocument docData={data} />
           </div>
+
+          <div className="upload">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false}/>
+                        </div>
+                    </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
-              <button className="reject-button" onClick={rejectAction}>
-                Reject
-              </button>
-              <button className="approve-button" onClick={action}>
-                Approve
+
+              <button className="approve-button" onClick={action()}>
+                Send to Student
               </button>
             </div>
           </div>
@@ -41,4 +46,4 @@ function SignatoryApproveModal({
 }
 
 
-export default SignatoryApproveModal;
+export default ClerkApproveModal;

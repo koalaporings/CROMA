@@ -12,16 +12,17 @@ import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from "./Forms API Call";
 
 
-// Request to Cross-Register (Incoming)
-const Form9 = ({userId}) => {
+// APPLY FOR SHIFTING TO ANOTHER DEGREE PROGRAM OR PLAN WITHIN UP CEBU
+
+const Form19 = ({userId}) => {
 
     const navigate = useNavigate();
-    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/06/UPC-FORM-3.5A-Application-for-Cross-Registrants-or-Special-Students-Fillable4.pdf';
+    const classOfferingForm = () => window.location.href = 'https://our.upcebu.edu.ph/wp-content/uploads/2020/05/UPC-FORM-Application-for-Shifting-of-Course-20171114.pdf';
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
             user_id: userId,
-            form_id: 9,
+            form_id: 18,
         });
     
     
@@ -59,20 +60,19 @@ const Form9 = ({userId}) => {
             </div>
             <Container>
                 <div className="form-title">
-                    Request to Cross-Register (Incoming)
+                    Apply for Shifting to another Degree Program or Plan within UP Cebu
                 </div>
-                <form class="tcg-form" onSubmit={addInfo}>
-                    <h1 className='form-group-title'>A. Student Details</h1>
+                <form class="tcg-form" >
+                    <h1 className='form-group-title'>A. Request Details</h1>
                     <div className="form-description-text">
-                            <p className='form-description-text -1'>Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]Cross-registrants* are students who enroll in UP Cebu for a specific period of time but are primarily enrolled in another UP Constituent University or in another institution of higher learning. Such enrolment is subject to the approval of the Deans of the home and the accepting units/colleges. [UP Code Art. 333−334]</p>
-                            <p className='form-description-text -2'>Kindly download and fill up this form: </p>                     
+
+                            <p className='form-description-text -1'>Kindly download and fill up this form: </p>   
+                            <p className='form-description-text -2'>Submit your Shifting Form to the OCS Staff of your current college.
+                                        (OCS Staff of current college computes for the student’s GWA and Total Units Earned.)
+                                        Get endorsement from your Program Adviser and the College Secretary of your current college.</p>                                         
                      </div>
                      <div>
-                        <p className='download-form' onClick={classOfferingForm} >APPLICATION FORM FOR CROSS-REGISTRANTS* or SPECIAL STUDENTS</p>                     
-                     </div>
-
-                     <div className="form-description-text">
-                            <p className='form-description-text-3'>Upload the filled up request form here: </p>                     
+                        <p className='download-form' onClick={classOfferingForm} >APPLY FOR SHIFTING TO ANOTHER DEGREE PROGRAM OR PLAN WITHIN UP CEBU</p>                     
                      </div>
 
 
@@ -92,17 +92,17 @@ const Form9 = ({userId}) => {
                             <p className='privacy-notice-text-end'>"I hereby certify that all information given above are true and correct."</p>
                         </div>
                     </div>
-                    </form>
-                    <div className="form-buttons-container">
+                </form>
+                <div className="form-buttons-container">
                     <div className="cancel-button">
                         <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
                         {isOpen && <CancelModal setIsOpen={setIsOpen} />}
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
-                        {isOpen && <SubmitModal setIsOpen={setIsOpen} action={addInfo} />}
-                    </div> 
-                </div> 
+                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
+                    </div>
+                </div>
             </Container>
             <Footer/>
         </div>
@@ -111,7 +111,7 @@ const Form9 = ({userId}) => {
 
 
 
-export default Form9;
+export default Form19;
 
 
 

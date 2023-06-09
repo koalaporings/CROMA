@@ -10,27 +10,29 @@ import TrackingModal from '../../Components/Modal/Tracking Modal';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import TableComponent from '../../Components/Table/Table';
+import jwt_decode from 'jwt-decode'
 
 import './Tracking.css';
 
-const TrackingPage = ({children}) => {
+const TrackingPage = ({userId}) => {
 
     const [transactionData, setTransactionData] = useState([]);
     const [transactionDetails, setTransactionDetails] = useState([]);
     const [trackingData, setTrackingData] = useState([]);    
     const [isOpen, setIsOpen] = useState(false);
     const [status, setStatus] = useState("");
+    const [id, setID] = useState(0);
 
-    
+    console.log(id)
         async function fetchTrackingTransactions(filter_info) {
-            const response = await axios.get('http://localhost:5000/tracking_api/history/' + 4 + "/" + filter_info)
+            const response = await axios.get('http://localhost:5000/tracking_api/history/' + userId + "/" + filter_info)
             console.log(response.data)
             setTransactionData(response.data)
         }
 
         async function getTrackingDetails(id) {
             console.log(id)
-            const response = await axios.get("http://localhost:5000/tracking_api/get/" + id.toString())
+            const response = await axios.get("http://localhost:5000/tracking_api/get/" + id)
             console.log(response)
             if (response){
                 setTrackingData(response.data)
@@ -39,7 +41,7 @@ const TrackingPage = ({children}) => {
 
         async function viewTransactionDetails(id) {
             console.log(id)
-            var response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+            var response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id)
             console.log(response)
             if (response){
                 setTransactionDetails(response.data)

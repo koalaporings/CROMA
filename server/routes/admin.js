@@ -40,9 +40,9 @@ router.get('/ongoing_table/:filter_info/:filter_course', async (req, res) => {  
   }
   else {
     if (req.params.filter_info == "dsc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transaction_info.degree_program = ? ORDER BY transactions.transaction_date DESC'
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? AND transaction_info.degree_program = ? ORDER BY transactions.transaction_date DESC'
     } else if (req.params.filter_info == "asc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transaction_info.degree_program = ? ORDER BY transactions.transaction_date ASC'  
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? AND transaction_info.degree_program = ? ORDER BY transactions.transaction_date ASC'  
     }
 }
   const status = "ongoing"
