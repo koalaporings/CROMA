@@ -7,31 +7,31 @@ import envelopeIcon from '../../Assets/envelope-icon.svg';
 
 
 const Footer = () => {
-    useEffect(() => {
-        const adjustFooterHeight = () => {
-            const containerHeight = document.querySelector('.App').offsetHeight;
-            const windowHeight = window.innerHeight;
-            const footer = document.querySelector('.footer-component-outer-container');
-            const footerHeight = footer.offsetHeight;
-            if (containerHeight  < windowHeight) {
-                const extraSpace = windowHeight - containerHeight;
-                footer.style.height = footerHeight + extraSpace + 'px';
-            } 
-            // else {
-            //     footer.style.height = 'auto';
-            // }
-            console.log(containerHeight, windowHeight, footer)
-        };
+    // useEffect(() => {
+    //     const adjustFooterHeight = () => {
+    //         const containerHeight = document.querySelector('.App').offsetHeight;
+    //         const windowHeight = window.innerHeight;
+    //         const footer = document.querySelector('.footer-component-outer-container');
+    //         const footerHeight = footer.offsetHeight;
+    //         if (containerHeight  < windowHeight) {
+    //             const extraSpace = windowHeight - containerHeight;
+    //             footer.style.height = footerHeight + extraSpace + 'px';
+    //         } 
+    //         // else {
+    //         //     footer.style.height = 'auto';
+    //         // }
+    //         console.log(containerHeight, windowHeight, footer)
+    //     };
     
-        window.addEventListener('resize', adjustFooterHeight);
-        window.addEventListener('load', adjustFooterHeight);
+    //     window.addEventListener('resize', adjustFooterHeight);
+    //     window.addEventListener('load', adjustFooterHeight);
     
-        // Cleanup event listeners
-        // return () => {
-        // window.removeEventListener('resize', adjustFooterHeight);
-        // window.removeEventListener('load', adjustFooterHeight);
-        // };
-    }, []);
+    //     // Cleanup event listeners
+    //     // return () => {
+    //     window.removeEventListener('resize', adjustFooterHeight);
+    //     window.removeEventListener('load', adjustFooterHeight);
+    //     // };
+    // }, []);
 
 
     return (
