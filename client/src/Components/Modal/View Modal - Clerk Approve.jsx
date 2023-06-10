@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Buffer } from 'buffer'
 import { useEffect, useState } from 'react'
 import { Viewer } from '@react-pdf-viewer/core'
+import { updatePDF } from "../../Pages/Forms/Update PDF";
 
 function ClerkApproveModal({
   data,
@@ -29,6 +30,16 @@ function ClerkApproveModal({
   },[])
   console.log(file)
 
+const pdfHandler = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('pdf', file);
+    formData.append('id', data.transaction_id);
+    console.log(data.transaction_id)
+    updatePDF(formData);
+    console.log('yes')
+}
+
   
   return (
     <>
@@ -48,7 +59,7 @@ function ClerkApproveModal({
         </div>
         :
         <div className="view-document-content">
-            
+            <PDFdocument docData={data} />
             {file && 
             // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
             
@@ -56,13 +67,9 @@ function ClerkApproveModal({
             }
           </div>
         }
-          
 
-          <div className="upload">
-                        <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false}/>
-                        </div>
-                    </div>
+          
+          
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
 
@@ -70,9 +77,15 @@ function ClerkApproveModal({
                 Send to Student
               </button>
             </div>
+            <div className="upload">
+            <div class="form-group">
+            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
+              </div>
+          </div>
           </div>
         </div>
-      </div>
+        </div>
+      
     </>
   );
 }

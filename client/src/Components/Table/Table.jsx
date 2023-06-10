@@ -156,7 +156,7 @@ function TableComponent ({
                     <button className='action-button' onClick={() => setIsOpen(true)}>
                         View
                     </button>
-                    {isOpen && <ViewModal setIsOpen={setIsOpen} />}
+                    {isOpen && <ViewModal setIsOpen={setIsOpen} data={row.transaction_id} />}
                 </td>
             </tr>
         )

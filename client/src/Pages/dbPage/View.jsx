@@ -36,11 +36,10 @@ const View = (email) => {
   //   getImage()
   // })
 
-  console.log(counter)
-if (counter < 2) {
-  setCounter(counter+1)
-
+  if(!sessionStorage.getItem("role")){
+    window.location.reload()
 }
+
 
 const navigate = useNavigate()
 // const handleClick = async e => {
@@ -77,10 +76,7 @@ useEffect(() => {
   // sessionStorage.setItem("registered", response.data[0].registered)
   }
 
-  stuffget()
-  window.location.reload()
-  const url = sessionStorage.getItem("role")
-  navigate("/loadingg")
+  navigate("/student")
 },[])
 
 // useEffect(() => {

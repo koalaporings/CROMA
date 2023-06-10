@@ -309,7 +309,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
 
   //This section was made to insert data into the foreign key tables.
   //These tables were made because the data would not fit into one table.
-  if(req.body.form_id == 12){
+  if(req.body.form_id == 5){
     db.query(q2,[info], (err, result) => {
       if(err) {
         console.error('ERROR', err);
@@ -333,7 +333,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       }
     });
 
-  }else if(req.body.form_id == 13){
+  }else if(req.body.form_id == 7){
     db.query(q2, [info], (err, result) => {
       if(err) {
         console.error('ERROR', err);
@@ -444,6 +444,20 @@ router.put('/updateApproved', (req,res) => {
   db.query(q,[rec,id], (err,data) => {
     if(err) console.log("ERROR",err)
   })
+})
+
+router.put('/updateTransactionFile', upload.single('pdf'), (req,res) => {
+  const q = 'UPDATE files SET file = ? WHERE transaction_id = ?' 
+  const file = req.file.buffer
+  const id = req.body.id
+  console.log(file)
+  console.log(id)
+
+
+  db.query(q, [file,id], (err, result) => {
+    res.json({status: 'Success'})
+  })
+
 })
 
 
