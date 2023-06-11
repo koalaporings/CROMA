@@ -20,10 +20,11 @@ function ViewModal({
       setFile(Buffer.from(response.data[0].file.data))
       console.log(file)
   }
-  getImagevalue()
+  
   useEffect(()=>{
+    getImagevalue()
     console.log(file)
-  },[file])
+  },[])
 
 
 

@@ -150,7 +150,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
 
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
-  if((req.body.form_id >= 0 && req.body.form_id <= 3) || req.body.form_id == 6 || req.body.form_id == 17 || req.body.form_id == 21){
+  if((req.body.form_id >= 1 && req.body.form_id <= 3) || req.body.form_id == 6 || req.body.form_id == 17 || req.body.form_id == 21){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
       transaction_id,
@@ -167,7 +167,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if(req.body.form_id >= 4 || (req.body.form_id >= 8 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
+  } else if(req.body.form_id >= 4 || (req.body.form_id >= 7 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`) VALUES (?)'
     info = [
       transaction_id,
@@ -180,25 +180,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.degree_program,
       req.body.email,
     ]
-  }else if(req.body.form_id == 10 || req.body.form_id == 11){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
-    info = [
-      transaction_id,
-      req.body.last_name,
-      req.body.first_name,
-      req.body.middle_initial,
-      req.body.student_number,
-      req.body.mobile_number,
-      req.body.degree_program,
-      req.body.year_level,      
-      req.body.email,
-
-      req.body.academic_year,
-      req.body.semester,
-      req.body.num_copies,
-      req.body.purpose,
-    ]
-  }else if(req.body.form_id == 12){
+  }else if(req.body.form_id == 5){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `semester`, `academic_year`, `status_last_semester`, `purpose`) VALUES (?)';
 
     info = [
@@ -217,44 +199,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.last_sem,
       req.body.reason
     ];
-  
-  }else if(req.body.form_id == 13){
-      q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`, `email`, `purpose`, `purpose_ext`) VALUES (?)';
-      info = [
-        transaction_id,
-        req.body.last_name,
-        req.body.first_name,
-        req.body.middle_initial,
-        req.body.student_number,
-        req.body.mobile_number,
-
-        req.body.degree_program,
-        req.body.year_level,          
-        req.body.email,
-
-        req.body.purpose,
-        req.body.purpose_ext
-      ];
-
-  }else if(req.body.form_id == 14){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `subject_dropped`, `section`, `instructor_name`, `purpose`) VALUES (?)';
-    info = [
-      transaction_id,
-      req.body.last_name,
-      req.body.first_name,
-      req.body.middle_initial,
-      req.body.student_number,
-
-      req.body.degree_program,
-      req.body.year_level,
-
-      req.body.subject_dropped,
-      req.body.section,
-      req.body.instructor_name,
-      req.body.purpose,
-    ]
-
-  }else if(req.body.form_id == 15){
+  }else if(req.body.form_id == 12){
     q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`) VALUES (?)';
 
     info = [
