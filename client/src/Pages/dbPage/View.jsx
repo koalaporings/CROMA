@@ -111,27 +111,7 @@ console.log(image)
 
   return (
     <div>
-      <h1>DB Users</h1>
-      <input type="file" name="image" accept="pd" multiple={false} onChange={pdfHandler} />
-      <h2>{uploadStatus}</h2>
-      {/* {image && <img src={`http://localhost:5000/public/uploads/` + image[0].file.toString()}></img>} */}
-      <button onClick={deleteALL}>DELETE ALL</button>
-      {/* {user.map(user => (
-        <div className="user" key={user.user_id}>
-          <p2>{user.user_id}  |  </p2>
-          <p2>{user.email}  |  </p2>
-          <p2>{user.password}  |  </p2>
-          <button><Link to={`/db/update/${user.user_id}`}> Update </Link></button>
-          <p2>  |  </p2>
-          <button> <Link to={`/db/get/${user.user_id}`}> Get Data Solo</Link> </button>
-          <p2>  |  </p2>
-          <button> <Link to={`/db/logintest/${user.user_id}`}> Log In</Link> </button>
-          <p2>  |  </p2>
-          <button type="submit" onClick = {()=> handleDelete(user.id)}> Delete</button>
-        </div>
-      ))}
-      <button><Link to={'/db/add'}> Add </Link></button> */}
-      
+
     </div>
     
   )
