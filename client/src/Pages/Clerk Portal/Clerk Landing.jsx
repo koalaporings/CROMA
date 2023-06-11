@@ -85,8 +85,14 @@ const ClerkLanding = ({userName}) => {
 
     }
 
-    const openConfirmationModal = () => {
-        setConfirmOpen(true)
+    const openConfirmationModal = (noFile) => {
+        if (noFile) {
+            alert("Please select a file to upload!");
+        }
+        else{
+            setConfirmOpen(true)
+        }
+        
     }
 
     const approveTransaction = (data) => {

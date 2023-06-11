@@ -67,13 +67,17 @@ const pdfHandler = (e) => {
             }
           </div>
         }
-
-          
-          
+          <div className="upload-form">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false}/>
+                        </div>
+                    </div>
           <div className="view-modalActions">
+
+            
             <div className="view-modal-actionsContainer">
 
-              <button className="approve-button" onClick={action}>
+              <button className="approve-button" onClick={action(!file)}>
                 Send to Student
               </button>
             </div>
