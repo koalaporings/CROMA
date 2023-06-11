@@ -8,12 +8,13 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 import { useEffect } from "react";
 import axios from "axios";
 
+import ViewModal from "../../Components/Modal/View Modal";
+import { Buffer } from 'buffer'
+
 // import "./Modal.css";
 // import Modal from './Modal.jsx';
 
 import TableComponent from '../../Components/Table/Table';
-
-import dummyTableData from './dummyTableData';
 import './History.css';
 
 
@@ -22,6 +23,8 @@ import './History.css';
 const StudentHistoryPage = ({userId}) => {
     const [tableData, setTableData] = useState([]);
     const [numTransactions, setNumTransactions] = useState(0);
+    const [isOpen, setIsOpen] = useState(false);
+    const [documentDetails, setDocumentDetails] = useState([]);
 
         async function fetchTable(filter_info) {
             const response = await axios.get('http://localhost:5000/student_api/transaction_history/' + userId + "/" + filter_info)
@@ -37,6 +40,38 @@ const StudentHistoryPage = ({userId}) => {
         useEffect (() =>{
             fetchTable()
             }, [])
+
+            const [file, setFile] = useState();
+
+            async function viewDocumentDetails(id) {
+                console.log(id)
+                const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+                console.log(response)
+                if (response){
+                    setDocumentDetails(response.data[0])
+                    setIsOpen(true)
+                }
+            }
+
+  
+            const getImagevalue = async (data) => {
+                const response = await axios.get('http://localhost:5000/form_api/get/' + data)
+                console.log(response)
+                setFile(Buffer.from(response.data[0].file.data))
+                console.log(file)
+            }
+            
+            // useEffect(()=>{
+            //   getImagevalue()
+            //   console.log(file)
+            // },[])
+        
+        async function actionHandler(data) {
+            viewDocumentDetails(data)
+            getImagevalue(data)
+            
+
+        }
 
     return(
 
@@ -71,7 +106,9 @@ const StudentHistoryPage = ({userId}) => {
                         "Action",
                     ]}
                     tableData = {tableData}
+                    action = {actionHandler}
                 />
+                {isOpen && <ViewModal setIsOpen={setIsOpen} file={file} data={documentDetails}/>}
             </div>
             </Container>
 

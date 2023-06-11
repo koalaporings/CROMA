@@ -6,25 +6,25 @@ import { Buffer } from 'buffer'
 import axios from 'axios'
 
 function ViewModal({
-  data,
+  file,
   setIsOpen,
+  data
 }) {
-  console.log(data);
 
-  const [file, setFile] = useState();
+  // const [file, setFile] = useState();
 
   
-  const getImagevalue = async () => {
-      const response = await axios.get('http://localhost:5000/form_api/get/' + data)
-      console.log(response)
-      setFile(Buffer.from(response.data[0].file.data))
-      console.log(file)
-  }
+  // const getImagevalue = async () => {
+  //     const response = await axios.get('http://localhost:5000/form_api/get/' + data)
+  //     console.log(response)
+  //     setFile(Buffer.from(response.data[0].file.data))
+  //     console.log(file)
+  // }
   
-  useEffect(()=>{
-    getImagevalue()
-    console.log(file)
-  },[])
+  // useEffect(()=>{
+  //   getImagevalue()
+  //   console.log(file)
+  // },[])
 
 
 
@@ -34,7 +34,7 @@ function ViewModal({
       <div className="centered">
         <div className="view-modal">
           <div className='view-modalHeader'>
-            <h5 className='view-heading'>True Copy of Grades</h5>
+            <h5 className='view-heading'>{data.form_name}</h5>
           </div>
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />

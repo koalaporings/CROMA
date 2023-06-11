@@ -153,10 +153,10 @@ function TableComponent ({
                 </td>
                 <td key={row.index}
                     data-heading={row.index}>
-                    <button className='action-button' onClick={() => setIsOpen(true)}>
+                    <button className='action-button' onClick={() => action(row.transaction_id)}>
                         View
                     </button>
-                    {isOpen && <ViewModal setIsOpen={setIsOpen} data={row.transaction_id} />}
+                    {/* {isOpen && <ViewModal setIsOpen={setIsOpen} data={row.transaction_id} />} */}
                 </td>
             </tr>
         )
