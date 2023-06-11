@@ -7,6 +7,7 @@ import NavBar from '../../Components/Navigation Bar/NavBar Student';
 // import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 //import { fontSize } from '@mui/system';
+import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from './Forms API Call';
 import { useNavigate } from "react-router-dom";
 
@@ -37,6 +38,7 @@ const Form12 = ({userId}) => {
         date_completion: "",
         removal_grade: ""
     });
+    const [pdf, setPdf] = useState()
 
     const navigate = useNavigate();
 
@@ -57,16 +59,28 @@ const Form12 = ({userId}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isCancelOpen, setIsCancelOpen] = useState(false);
 
-    async function addInfo() {
-        if (!formValid()) {
-            return;
-        }
+    async function addInfo(e) {
+        e.preventDefault(); // Prevent form submission
+            if (pdf) {
+              const formData = new FormData();
+              formData.append('pdf', pdf);
+              formData.append('user_id', formDetails.user_id);
+              const response = await addFormInformation(formDetails);
+              formData.append('id', response.data)
+              uploadPdf(formData);
+              console.log(response);
+              setIsOpen(false);
+              navigateLanding();
+            } else {
+              // Show an alert if no file is uploaded
+              alert('Please upload a file.');
+            }
+    }
 
-        const formData = new FormData();
-        formData.append('user_id', formDetails.user_id);
-        const response = addFormInformation(formDetails);
-        setIsOpen(false);
-        navigateLanding();
+    const pdfHandler = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        setPdf(file)
     }
 
     const formValid = () => {
@@ -192,7 +206,7 @@ const Form12 = ({userId}) => {
                     <div className="request-price-container">
                         <div className="column-2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="paymentProof"/>
+                                <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/> 
                             </div>
                         </div>
                     </div>

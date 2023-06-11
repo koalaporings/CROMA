@@ -32,22 +32,21 @@ function SignatoryApproveModal({
     <>
       <div className="darkBG" onClick={() => setIsOpen(false)} />
       <div className="centered">
-        <div className="student-view-modal">
+        <div className="admin-view-modal">
           <div className="view-modalHeader">
             <h5 className="view-heading">{data.form_name}</h5>
           </div>
           <button className="modal-close-button" onClick={() => setIsOpen(false)}>
             <RiCloseLine style={{ marginBottom: "-3px" }} />
           </button>
-          <div className="view-document-content">
-          {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7" || data.form_id == "12" || data.form_id == "17" || data.form_id == "21") ? 
+          {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7"|| data.form_id == "17" || data.form_id == "21") ? 
           <div className="view-document-content">
           <PDFdocument docData={data} />
-          {/* {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}#zoom=FitH`} width="50%" height="50%"></img>} */}
+          {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
         </div>
         :
         <div className="view-document-content">
-            
+            <PDFdocument docData={data} />
             {file && 
             // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
             
@@ -56,7 +55,6 @@ function SignatoryApproveModal({
           </div>
         }
 
-          </div>
           <div className="view-modalActions">
             <div className="view-modal-actionsContainer">
               <button className="reject-button" onClick={rejectAction}>
