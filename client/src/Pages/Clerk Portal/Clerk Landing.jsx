@@ -49,7 +49,7 @@ const ClerkLanding = ({userName}) => {
     }
 
     useEffect (() =>{
-        fetchTable ()
+        fetchTable(filterDetails)
         }, [])    
 
     async function viewDocumentDetails(id) {
@@ -87,13 +87,16 @@ const ClerkLanding = ({userName}) => {
 
     }
 
-    const openConfirmationModal = (noFile, formData) => {
+    async function openConfirmationModal (noFile, formData){
+        console.log(formData)
         if (noFile) {
             alert("Please select a file to upload!");
         }
         else{
-            setConfirmOpen(true)
             setNewPDF(formData)
+            console.log(newPDF)
+            setConfirmOpen(true)
+            
         }
         
     }

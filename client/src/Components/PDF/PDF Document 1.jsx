@@ -1,6 +1,9 @@
 import { width } from "@mui/system";
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, PDFViewer, Image } from "@react-pdf/renderer";
 import { Row } from "react-bootstrap";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Buffer } from "buffer";
 
 const styles = StyleSheet.create({
     page: {
@@ -43,7 +46,20 @@ const styles = StyleSheet.create({
 })
 
 function PDFdocument(docdata){
-    console.log(docdata)
+
+    const [file, setFile] = useState();
+
+    const getImagevalue = async () => {
+        const response = await axios.get('http://localhost:5000/form_api/get/' + docdata.docData.transaction_id)
+        console.log(response)
+        setFile(Buffer.from(response.data[0].file.data))
+      }
+    
+      useEffect(()=>{
+        if(!file){
+          getImagevalue()
+        }
+      },[])
 
     return (
         <PDFViewer style={styles.viewer}>
@@ -67,6 +83,12 @@ function PDFdocument(docdata){
                             <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Purpose:  </Text>{docdata.docData.purpose}</Text>
                             <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>No. of Copies:  </Text>{docdata.docData.num_copies}</Text>
                         </View>
+                        {!file ? 
+                        <View></View>
+                        :
+                        <Image src={`data:image/jpeg;base64,${file.toString('base64')}`}/>
+                    }
+
                     </View>
                 </Page>
             </Document>

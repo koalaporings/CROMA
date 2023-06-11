@@ -35,6 +35,7 @@ function ClerkApproveModal({
 const pdfHandler = (e) => {
     const uploaded_file = e.target.files[0];
     setUploadedFile(uploaded_file)
+    console.log(!uploadedFile)
     const formData = new FormData();
     formData.append('pdf', uploaded_file);
     formData.append('id', data.transaction_id);
@@ -46,7 +47,9 @@ const pdfHandler = (e) => {
 
   
   return (
+    
     <>
+    
       <div className="darkBG" onClick={() => setIsOpen(false)} />
       <div className="centered">
         <div className="admin-view-modal">
@@ -59,11 +62,13 @@ const pdfHandler = (e) => {
           {(data.form_id == "1" || data.form_id == "2" || data.form_id == "3"  || data.form_id == "5" || data.form_id == "6" || data.form_id == "7"|| data.form_id == "17" || data.form_id == "21") ? 
           <div className="view-document-content">
           <PDFdocument docData={data} />
+          
           {file && <img src={`data:image/jpeg;base64,${file.toString('base64')}`}></img>}
         </div>
         :
         <div className="view-document-content">
             <PDFdocument docData={data} />
+
             {file && 
             // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
             
@@ -71,25 +76,27 @@ const pdfHandler = (e) => {
             }
           </div>
         }
-          <div className="upload-form">
-                        <div class="form-group">
-                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false}/>
-                        </div>
-                    </div>
-          <div className="view-modalActions">
-
-            
-            <div className="view-modal-actionsContainer">
-
-              <button className="approve-button" onClick={action(!uploadedFile, newFormData)}>
-                Send to Student
-              </button>
-            </div>
-            <div className="upload">
+        
+        <div className="upload">
+        <h5 className="view-sub-heading center">Upload the requested form:</h5>
             <div class="form-group">
             <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false} onChange={pdfHandler}/>
               </div>
           </div>
+
+          {/* <div className="upload-form">
+                        <div class="form-group">
+                            <input type="file" class="form-control-file" id="paymentProof" name="pdf" accept="application/pdf" multiple={false}/>
+                        </div>
+                    </div> */}
+          <div className="view-modalActions">
+            <div className="view-modal-actionsContainer">
+
+              <button className="approve-button" onClick={() => action(!uploadedFile, newFormData)}>
+                Send to Student
+              </button>
+            </div>
+            
           </div>
         </div>
         </div>
