@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 import './Forms.css';
 import { Container } from 'react-bootstrap';
@@ -10,6 +10,7 @@ import SubmitModal from '../../Components/Modal/Submit Modal';
 import { fontSize } from '@mui/system';
 import { uploadPdf } from "./Upload Pdf";
 import { addFormInformation } from "./Forms API Call";
+import axios from "axios";
 
 
 // ADVANCE CREDIT
@@ -21,9 +22,28 @@ const Form11 = ({userId}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [pdf, setPdf] = useState()
     const [formDetails, setFormDetails] = useState({
-            user_id: userId,
-            form_id: 18,
-        });
+    });
+
+    useEffect(() => {
+        async function getDetails(data){
+            const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+            console.log(response.data[0])
+            setFormDetails({
+                user_id: userId,
+                form_id: 11,
+                first_name: response.data[0].first_name,
+                last_name: response.data[0].last_name,
+                middle_initial: response.data[0].middle_initial,
+                student_number: response.data[0].student_number,
+                mobile_number: response.data[0].mobile_number,
+                year_level: response.data[0].year_level,
+                degree_program: response.data[0].degree_program,
+                email: response.data[0].email
+            })
+        }
+
+        getDetails(userId)
+    },[])
     
     
         const navigateLanding = () => navigate('/student');     
@@ -33,8 +53,8 @@ const Form11 = ({userId}) => {
             if (pdf) {
               const formData = new FormData();
               formData.append('pdf', pdf);
-              formData.append('user_id', formDetails.user_id);
-              const response = addFormInformation(formDetails);
+              const response = await addFormInformation(formDetails);
+              formData.append('id', response.data)
               uploadPdf(formData);
               console.log(response);
               setIsOpen(false);
@@ -104,7 +124,7 @@ const Form11 = ({userId}) => {
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
-                        {isOpen && <SubmitModal setIsOpen={isOpen} />}
+                        {isOpen && <SubmitModal setIsOpen={isOpen} action={addInfo} />}
                     </div>
                 </div>
             </Container>

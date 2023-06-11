@@ -103,7 +103,6 @@ const Form2 = ({userId}) => {
     
             const formData = new FormData();
             formData.append('image', image);
-            formData.append('user_id', userId);
             console.log (formDetails);
             const response = await addFormInformation(formDetails);
             formData.append('id', response.data)

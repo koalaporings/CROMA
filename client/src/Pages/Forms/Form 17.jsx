@@ -103,7 +103,6 @@ const Form17 = ({userId}) => {
 
         const formData = new FormData();
         formData.append('image', image);
-        formData.append('user_id', userId);
         console.log (formDetails);
         const response = await addFormInformation(formDetails);
         formData.append('id', response.data)
@@ -128,23 +127,28 @@ const Form17 = ({userId}) => {
             purpose
         } = formDetails;
 
-        if (
-            !last_name ||
-            !first_name ||
-            !student_number ||
-            !mobile_number ||
-            !year_level ||
-            !degree_program ||
-            !email ||
-            !academic_year ||
-            !semester ||
-            !num_copies ||
-            !purpose
-        ) {
-            // Form validation failed
-            alert("Please fill in all fields");
-            return false;
-        }
+        const emptyFields = [];
+          
+            if (!last_name) emptyFields.push("Last Name");
+            if (!first_name) emptyFields.push("First Name");
+            if (!student_number) emptyFields.push("Student Number");
+            if (!mobile_number) emptyFields.push("Mobile Number");
+            if (!year_level) emptyFields.push("Year Level");
+            if (!degree_program) emptyFields.push("Degree Program");
+            if (!email) emptyFields.push("Email");
+            if (!academic_year) emptyFields.push("Academic Year");
+            if (!semester) emptyFields.push("Semester");
+            if (!num_copies) emptyFields.push("Number of Copies");
+            if (!purpose) emptyFields.push("Purpose");
+          
+            if (emptyFields.length > 0) {
+              // Form validation failed
+              const errorMessage = `Please fill in the following fields:\n${emptyFields.join(
+                ", "
+              )}`;
+              alert(errorMessage);
+              return false;
+            }
 
         if (isNaN(student_number) || isNaN(mobile_number)) {
             alert("Student Number and mobile number must be integers.");
@@ -257,7 +261,7 @@ const Form17 = ({userId}) => {
                     <div class="form-row">
                         <div class="col-md-7 mb-2">
                             <label for="purpose">Purpose for Request</label>
-                            <select class="custom-select" id='purpose' onChange={(e) => handleChange(e)}>
+                            <select class="custom-select" id='purpose' name='purpose' onChange={(e) => handleChange(e)}>
                                 <option selected value=""> </option>
                                 <option value="scholarship">Scholarship</option>
                                 <option value="readmission">Readmission</option>

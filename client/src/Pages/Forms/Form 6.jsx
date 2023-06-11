@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Forms.css';
 import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
@@ -9,6 +9,7 @@ import SubmitModal from '../../Components/Modal/Submit Modal';
 //import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 
 
@@ -30,6 +31,35 @@ const Form6 = ({userId}) => {
         instructor_name: "",
         purpose: ""
     });
+
+    const [savedDetails, setSavedDetails] = useState({})
+
+        useEffect(() => {
+            async function getDetails(data){
+                const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+                console.log(response.data[0])
+                setSavedDetails(response.data[0])
+            }
+    
+            getDetails(userId)
+        },[])
+
+        useEffect(() => {
+            console.log(formDetails)
+            setFormDetails({
+                user_id: userId,
+                form_id: 6,
+                last_name: (savedDetails.last_name) ? savedDetails.last_name : "",
+                first_name: (savedDetails.first_name) ? savedDetails.first_name : "",
+                middle_initial: (savedDetails.middle_initial) ? savedDetails.middle_initial : "",
+                student_number: (savedDetails.student_number) ? savedDetails.student_number : "",
+                mobile_number: (savedDetails.mobile_number) ? savedDetails.mobile_number : "",
+                year_level: (savedDetails.year_level) ? savedDetails.year_level : "",
+                degree_program: (savedDetails.degree_program) ? savedDetails.degree_program : "",
+                email: (savedDetails.email) ? savedDetails.email : "",
+            })
+            console.log(formDetails)
+        },[savedDetails])
     
     const navigate = useNavigate();
 
@@ -139,26 +169,26 @@ const Form6 = ({userId}) => {
                     <div class="form-row">
                         <div class="col-md-3 mb-2">     
                             <label for="studentLastName">Last Name</label>
-                            <input type="text" class="form-control" id="studentLastName" name="last_name"  onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentLastName" name="last_name"  onChange={(e) => handleChange(e)} defaultValue={savedDetails.last_name} key={savedDetails.last_name}/>
                         </div>
                         <div class="col-md-3 mb-2">     
                             <label for="studentFirstName">First Name</label>
-                            <input type="text" class="form-control" id="studentFirstName" name="first_name"  onChange={(e) => handleChange(e)} />
+                            <input type="text" class="form-control" id="studentFirstName" name="first_name"  onChange={(e) => handleChange(e)} defaultValue={savedDetails.first_name} key={savedDetails.first_name} />
                         </div>
                         <div class="col-md-2 mb-2">     
                             <label for="studentMiddleInitial">Middle Initial</label>
-                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial"  onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentMiddleInitial" name="middle_initial"  onChange={(e) => handleChange(e)} defaultValue={savedDetails.middle_initial} key={savedDetails.middle_initial}/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="studentNumber">Student Number</label>
-                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)}/>
+                            <input type="text" class="form-control" id="studentNumber" name="student_number" onChange={(e) => handleChange(e)} defaultValue={savedDetails.student_number} key={savedDetails.student_number}/>
                         </div>
                     </div>
                     <div class="form-row">
                     <div class="col-md-6 mb-2">
                         <label for="degreeProgram">Degree Program</label>
-                            <select class="custom-select" id='degreeProgram' name="degree_program" onChange={(e) => handleChange(e)}>
-                                <option selected value=""> </option>
+                            <select class="custom-select" id='degreeProgram' name="degree_program" defaultValue={savedDetails.degree_program}  key={savedDetails.degree_program} onChange={(e) => handleChange(e)} >
+                                <option selected defaultValue={savedDetails.degree_program}> </option>
                                 <option value="BS Computer Science">BS Computer Science</option>
                                 <option value="BS Biology">BS Biology</option>
                                 <option value="BS Mathematics">BS Mathematics</option>
@@ -167,7 +197,7 @@ const Form6 = ({userId}) => {
                         </div>
                         <div class="col-md-2 mb-2">
                             <label for="yearLevel">Year Level</label>
-                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level"  onChange={(e) => handleChange(e)}/>
+                            <input type="number" min='1' max='6' class="form-control" id="yearLevel" name="year_level"  onChange={(e) => handleChange(e)} defaultValue={savedDetails.year_level} key={savedDetails.year_level}/>
                         </div>
                     </div>
                     <h1 className='form-group-title'>B. Request Details</h1>
