@@ -16,6 +16,8 @@ function ClerkApproveModal({
   console.log(data);
 
   const [file, setFile] = useState();
+  const [uploadedFile, setUploadedFile] = useState();
+  const [newFormData, setNewFormData] = useState();
 
   const getImagevalue = async () => {
     const response = await axios.get('http://localhost:5000/form_api/get/' + data.transaction_id)
@@ -31,12 +33,14 @@ function ClerkApproveModal({
   console.log(file)
 
 const pdfHandler = (e) => {
-    const file = e.target.files[0];
+    const uploaded_file = e.target.files[0];
+    setUploadedFile(uploaded_file)
     const formData = new FormData();
-    formData.append('pdf', file);
+    formData.append('pdf', uploaded_file);
     formData.append('id', data.transaction_id);
     console.log(data.transaction_id)
-    updatePDF(formData);
+    setNewFormData(formData);
+    // updatePDF(formData);
     console.log('yes')
 }
 
@@ -77,7 +81,7 @@ const pdfHandler = (e) => {
             
             <div className="view-modal-actionsContainer">
 
-              <button className="approve-button" onClick={action(!file)}>
+              <button className="approve-button" onClick={action(!uploadedFile, newFormData)}>
                 Send to Student
               </button>
             </div>

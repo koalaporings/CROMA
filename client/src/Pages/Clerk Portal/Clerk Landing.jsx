@@ -14,6 +14,7 @@ import TableComponent from '../../Components/Table/Table';
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
 import ClerkApproveModal from '../../Components/Modal/View Modal - Clerk Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
+import { updatePDF } from "../../Pages/Forms/Update PDF";
 import { Container } from 'react-bootstrap';
 
 
@@ -33,6 +34,7 @@ const ClerkLanding = ({userName}) => {
     const [count, SetCount] = useState(0);
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
+    const [newPDF, setNewPDF] = useState();
 
     const [filterDetails, setFilterDetails] = useState({
         course_filter: "all",
@@ -85,20 +87,22 @@ const ClerkLanding = ({userName}) => {
 
     }
 
-    const openConfirmationModal = (noFile) => {
+    const openConfirmationModal = (noFile, formData) => {
         if (noFile) {
             alert("Please select a file to upload!");
         }
         else{
             setConfirmOpen(true)
+            setNewPDF(formData)
         }
         
     }
 
     const approveTransaction = (data) => {
+        updatePDF(newPDF)
         approveUpdate(documentDetails.transaction_id)
         addTracking(documentDetails.transaction_id)
-        const msg = "Your request for " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been approved by the clerk."
+        const msg = "Your request for " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been completed by the clerk."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
@@ -115,7 +119,7 @@ const ClerkLanding = ({userName}) => {
     async function addTracking(id) {
         const response = await axios.post("http://localhost:5000/tracking_api/update",{
             transaction_id: id,
-            tracking_status: "Your request has been approved by clerk.",
+            tracking_status: "Your request has been completed by the clerk. Check the file on the History page.",
         })
     }
 
