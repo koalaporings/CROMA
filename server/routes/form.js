@@ -143,14 +143,14 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   let dates = ''
   let hour = ''
   let minute = ''
-  let second = ''
+  console.log(req.body)
   if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
   if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
   if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
 
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
-  if((req.body.form_id >= 1 && req.body.form_id <= 3) || req.body.form_id == 6 || req.body.form_id == 17 || req.body.form_id == 21){
+  if((req.body.form_id >= 1 && req.body.form_id <= 3) || req.body.form_id == 17 || req.body.form_id == 21){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
       transaction_id,
@@ -167,7 +167,8 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if(req.body.form_id >= 4 || (req.body.form_id >= 7 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
+    console.log("1")
+  } else if(req.body.form_id == 4 || (req.body.form_id >= 7 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`) VALUES (?)'
     info = [
       transaction_id,
@@ -180,6 +181,25 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.degree_program,
       req.body.email,
     ]
+    console.log("2")
+  }else if(req.body.form_id == 6){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `purpose`, `subject_dropped`, `instructor_name`, `section`) VALUES (?)'
+    info = [
+      transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+      req.body.mobile_number,
+      req.body.year_level,
+      req.body.degree_program,
+      req.body.email,
+      req.body.purpose,
+      req.body.subject_dropped,
+      req.body.instructor_name,
+      req.body.section
+    ]
+    console.log("dropepd")
   }else if(req.body.form_id == 5){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `semester`, `academic_year`, `status_last_semester`, `purpose`) VALUES (?)';
 
@@ -200,7 +220,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.reason
     ];
   }else if(req.body.form_id == 12){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`) VALUES (?)';
+    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`, `instructor_name`) VALUES (?)';
 
     info = [
       transaction_id,
@@ -218,7 +238,8 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.semester,
       req.body.academic_year_incurred,
       req.body.date_completion,
-      req.body.removal_grade
+      req.body.removal_grade,
+      req.body.instructor_name
     ];
 
   }    
