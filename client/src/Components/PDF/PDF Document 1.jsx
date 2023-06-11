@@ -86,7 +86,11 @@ function PDFdocument(docdata){
                         {!file ? 
                         <View></View>
                         :
-                        <Image src={`data:image/jpeg;base64,${file.toString('base64')}`}/>
+                        <View style={styles.section}>
+                            <Text style={styles.break}> </Text>
+                            <Text style={styles.info}><Text style={{ fontFamily: 'Helvetica-Bold' }}>Proof of Payment:  </Text></Text>
+                            <Image src={`data:image/jpeg;base64,${file.toString('base64')}`}/>
+                        </View>
                     }
 
                     </View>
