@@ -38,71 +38,132 @@ function AnnouncementTableComponent ({
 
 
         if (type === 'admin_announcement_table') {
+          const MAX_TITLE_LENGTH = 30;
+          const MAX_BODY_LENGTH = 150;
+        
+          const truncatedTitle = row.announcement_title.length > MAX_TITLE_LENGTH
+            ? row.announcement_title.substring(0, MAX_TITLE_LENGTH) + '...'
+            : row.announcement_title;
+        
+          const truncatedBody = row.announcement_body.length > MAX_BODY_LENGTH
+            ? row.announcement_body.substring(0, MAX_BODY_LENGTH) + '...'
+            : row.announcement_body;
+        
+          const hasBodyText = row.announcement_body && row.announcement_body.length > 0;
+          const cellStyle = {
+            width: hasBodyText ? '75%' : '100%',
+          };
+        
+          return (
+            <tr key={row.index} className="table-row-center">
+              <td className="title-date" key={row.index} data-heading={row.index}>
+                <NavLink to={`/announcements/view/${row.announcement_id}`} state={{ row }}>
+                  <p className="title">{truncatedTitle}</p>
+                </NavLink>
+                <p>{row.announcement_date} {row.announcement_time}</p>
+              </td>
+              <td className="announce-body" style={cellStyle} key={row.index} data-heading={row.index}>
+                {truncatedBody}
+              </td>
+            </tr>
+          );
+        }
+
+          if (type === 'student_announcement_table') {
+          
+            const MAX_TITLE_LENGTH = 30;
+            const MAX_BODY_LENGTH = 150;
+          
+            const truncatedTitle = row.announcement_title.length > MAX_TITLE_LENGTH
+              ? row.announcement_title.substring(0, MAX_TITLE_LENGTH) + '...'
+              : row.announcement_title;
+          
+            const truncatedBody = row.announcement_body.length > MAX_BODY_LENGTH
+              ? row.announcement_body.substring(0, MAX_BODY_LENGTH) + '...'
+              : row.announcement_body;
+          
+            const hasBodyText = row.announcement_body && row.announcement_body.length > 0;
+            const cellStyle = {
+              width: hasBodyText ? '75%' : '100%',
+            };
+          
             return (
               <tr key={row.index} className="table-row-center">
                 <td className="title-date" key={row.index} data-heading={row.index}>
                   <NavLink to={`/announcements/view/${row.announcement_id}`} state={{ row }}>
-                    {console.log(row.announcement_id)}
-                    <p className="title">{row.announcement_title}</p> 
+                    <p className="title">{truncatedTitle}</p>
                   </NavLink>
-                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                  <p>{row.announcement_date} {row.announcement_time}</p>
                 </td>
-                <td key={row.index} data-heading={row.index}>
-                  {row.announcement_body}
+                <td className="announce-body" style={cellStyle} key={row.index} data-heading={row.index}>
+                  {truncatedBody}
                 </td>
               </tr>
-            )
-          }
-
-          if (type === 'student_announcement_table') {
-            return (
-              <tr key={row.index} className="table-row-center">
-                <td className="title-date" key={row.index} data-heading={row.index}>
-                  <NavLink to={`/student/announcements/view/${row.announcement_id}`} state={{ row }}>
-                    {console.log(row.announcement_id)}
-                    <p className="title">{row.announcement_title}</p> 
-                  </NavLink>
-                  <p>{row.announcement_date} {row.announcement_time}</p> 
-                </td>
-                <td key={row.index} data-heading={row.index}>
-                  {row.announcement_body}
-                </td>
-              </tr>
-            )
+            );
           }
 
           if (type === 'signatory_announcement_table') {
+            const MAX_TITLE_LENGTH = 30;
+            const MAX_BODY_LENGTH = 150;
+          
+            const truncatedTitle = row.announcement_title.length > MAX_TITLE_LENGTH
+              ? row.announcement_title.substring(0, MAX_TITLE_LENGTH) + '...'
+              : row.announcement_title;
+          
+            const truncatedBody = row.announcement_body.length > MAX_BODY_LENGTH
+              ? row.announcement_body.substring(0, MAX_BODY_LENGTH) + '...'
+              : row.announcement_body;
+          
+            const hasBodyText = row.announcement_body && row.announcement_body.length > 0;
+            const cellStyle = {
+              width: hasBodyText ? '75%' : '100%',
+            };
+          
             return (
               <tr key={row.index} className="table-row-center">
                 <td className="title-date" key={row.index} data-heading={row.index}>
-                  <NavLink to={`/signatory/announcements/view/${row.announcement_id}`} state={{ row }}>
-                    {console.log(row.announcement_id)}
-                    <p className="title">{row.announcement_title}</p> 
+                  <NavLink to={`/announcements/view/${row.announcement_id}`} state={{ row }}>
+                    <p className="title">{truncatedTitle}</p>
                   </NavLink>
-                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                  <p>{row.announcement_date} {row.announcement_time}</p>
                 </td>
-                <td key={row.index} data-heading={row.index}>
-                  {row.announcement_body}
+                <td className="announce-body" style={cellStyle} key={row.index} data-heading={row.index}>
+                  {truncatedBody}
                 </td>
               </tr>
-            )
+            );
           }
 
           if (type === 'clerk_announcement_table') {
+            const MAX_TITLE_LENGTH = 30;
+            const MAX_BODY_LENGTH = 150;
+          
+            const truncatedTitle = row.announcement_title.length > MAX_TITLE_LENGTH
+              ? row.announcement_title.substring(0, MAX_TITLE_LENGTH) + '...'
+              : row.announcement_title;
+          
+            const truncatedBody = row.announcement_body.length > MAX_BODY_LENGTH
+              ? row.announcement_body.substring(0, MAX_BODY_LENGTH) + '...'
+              : row.announcement_body;
+          
+            const hasBodyText = row.announcement_body && row.announcement_body.length > 0;
+            const cellStyle = {
+              width: hasBodyText ? '75%' : '100%',
+            };
+          
             return (
               <tr key={row.index} className="table-row-center">
                 <td className="title-date" key={row.index} data-heading={row.index}>
-                  <NavLink to={`/clerk/announcements/view/${row.announcement_id}`} state={{ row }}>
-                    {console.log(row.announcement_id)}
-                    <p className="title">{row.announcement_title}</p> 
+                  <NavLink to={`/announcements/view/${row.announcement_id}`} state={{ row }}>
+                    <p className="title">{truncatedTitle}</p>
                   </NavLink>
-                  <p>{row.announcement_date} {row.announcement_time}</p> 
+                  <p>{row.announcement_date} {row.announcement_time}</p>
                 </td>
-                <td key={row.index} data-heading={row.index}>
-                  {row.announcement_body}
+                <td className="announce-body" style={cellStyle} key={row.index} data-heading={row.index}>
+                  {truncatedBody}
                 </td>
               </tr>
-            )
+            );
           }
 
     
