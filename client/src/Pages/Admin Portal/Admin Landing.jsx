@@ -286,7 +286,7 @@ const AdminLanding = ({userName}) => {
                     <AnnouncementTable/>
                 </div> */}
                 <div className="name-header-admin">
-                    Hello, {userName} (Admin)!
+                    Hello, {sessionStorage.getItem("name")} (Admin)!
                 </div>
                 <div className="transaction-header">
                     There are currently&nbsp;<span style={{fontWeight: '700'}}>{numApprove} transactions waiting to be approved</span>&nbsp; and <span style={{fontWeight: '700'}}>{numOngoing} ongoing transactions</span>.       

@@ -149,7 +149,7 @@ const ClerkLanding = ({userName}) => {
 
             <Container>
                 <div className="name-header-admin">
-                    Hello, {userName} (Clerk)!
+                    Hello, {sessionStorage.getItem("name")} (Clerk)!
                 </div>
                 <div className="transaction-header">
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       

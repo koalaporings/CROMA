@@ -56,6 +56,7 @@ import Form17 from './Pages/Forms/Form 17';
 import Form18 from './Pages/Forms/Form 18';
 import Form20 from './Pages/Forms/Form 20';
 import Form21 from './Pages/Forms/Form 21';
+import { BsEmojiExpressionless } from 'react-icons/bs';
 
 function App() {
   document.title = "Automated Request System";
@@ -63,54 +64,66 @@ function App() {
   const [userName, setUserName] = useState(" ");
   const [lastName, setLastName] = useState(" ");
   const [email, setEmail] = useState(" ");
+  const [role, setRole] = useState("");
+  const [id, setID] = useState("")
   // const [userId, setUserID] = useState(0);
 
-    async function decodeToken() {
-        const token = sessionStorage.getItem("token")
+    // async function decodeToken() {
+    //     const token = sessionStorage.getItem("token")
 
-        const data = jwt_decode(token.toString())
-        setUserName(data.given_name)
-        setLastName(data.family_name)
-        setEmail(data.email)
-        getUserID(data.email)
-        getRole(data.email)
+    //     const data = jwt_decode(token.toString())
+    //     setUserName(data.given_name)
+    //     setLastName(data.family_name)
+    //     setEmail(data.email)
+    //     // getUserID(data.email)
+    //     // getRole(data.email)
         
-        // setUserName(data.first_name.toString())
-        // console.log(userName)
+    //     // setUserName(data.first_name.toString())
+    //     // console.log(userName)
+    // }
+
+    // useEffect (() =>{
+    //     decodeToken()
+    //     }, [])
+
+    console.log(sessionStorage.getItem("role"))
+
+    // async function getUserID(data){
+    //     const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
+    //     console.log(response.data[0].user_id) 
+    //     sessionStorage.setItem("id", response.data[0].user_id)
+    //     getRegistered(response.data[0].user_id)
+    // }
+
+    // async function getRole(data){
+    //   const response = await axios.get('http://localhost:5000/login_api/getRole/' + data)
+    //   sessionStorage.setItem("role", response.data[0].role)
+    // }
+
+    // async function getRegistered(data){
+    //     const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+    //     sessionStorage.setItem("registered", response.data[0].registered)
+
+    // }
+
+    const getData = (fetched_role, fetched_id) => {
+      setRole(fetched_role)
+      setID(fetched_id)
+
+      console.log(role)
+      console.log(id)
     }
-
-    useEffect (() =>{
-        decodeToken()
-        }, [])
-
-    async function getUserID(data){
-        const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
-        console.log(response.data[0].user_id) 
-        sessionStorage.setItem("id", response.data[0].user_id)
-        getRegistered(response.data[0].user_id)
-    }
-
-    async function getRole(data){
-      const response = await axios.get('http://localhost:5000/login_api/getRole/' + data)
-      sessionStorage.setItem("role", response.data[0].role)
-    }
-
-    async function getRegistered(data){
-        const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
-        sessionStorage.setItem("registered", response.data[0].registered)
-
-    }
-
-
     
-  return (   
+  return (
+
+
     <div className="App">
-      {console.log(sessionStorage.getItem("id"))}
+      {console.log(sessionStorage.getItem("role"))}
         <BrowserRouter>
           <Routes>
             <Route 
               path="/" 
-              element={<Login/> }  
+              element={<Login fetchData={getData}/>}
             />
             <Route 
               path="/student/info" 
@@ -123,7 +136,7 @@ function App() {
             <Route 
               path="/student" 
               element={(sessionStorage.getItem("role")==="student") ? <StudentLanding userId={sessionStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
-              // element={<StudentLanding userId={sessionStorage.getItem("id")} userName={userName}/>}  
+              // element={<StudentLanding userId={sessionStorage.getItem("id")} userName={sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/signatory" 
