@@ -45,7 +45,7 @@ function SignatoryApproveModal({
         </div>
         :
         <div className="view-document-content">
-            <PDFdocument docData={data} />
+            
             {file && 
             // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}
             

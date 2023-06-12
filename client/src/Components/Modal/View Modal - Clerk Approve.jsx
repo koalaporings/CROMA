@@ -41,7 +41,7 @@ const pdfHandler = (e) => {
     formData.append('id', data.transaction_id);
     console.log(data.transaction_id)
     setNewFormData(formData);
-    // updatePDF(formData);
+    updatePDF(formData);
     console.log('yes')
 }
 
@@ -66,7 +66,7 @@ const pdfHandler = (e) => {
         </div>
         :
         <div className="view-document-content">
-            <PDFdocument docData={data} />
+           
 
             {file && 
             // <Viewer fileUrl={`data:/application/pdf;base64,${file.toString('base64')}`} />}

@@ -100,7 +100,7 @@ const Form7 = ({userId}) => {
 
         const response = addFormInformation(formDetails);
         //setIsOpen(false);
-        //navigateLanding();
+        navigateLanding();
     }
 
     const formValid = () => {
