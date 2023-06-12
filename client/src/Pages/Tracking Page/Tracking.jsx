@@ -36,6 +36,7 @@ const TrackingPage = ({userId}) => {
             console.log(response)
             if (response){
                 setTrackingData(response.data)
+                console.log(trackingData)
             }
         }
 

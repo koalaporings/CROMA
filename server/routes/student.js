@@ -59,6 +59,9 @@ router.get("/transaction_details/:id", async (req,res) => {       //API endpoint
     else if (details[i].transaction_status == "ongoing"){
       status = "Processing"
     }
+    else if (details[i].transaction_status == "completed"){
+      status = "Completed"
+    }
 
     details[i].transaction_status = status
   

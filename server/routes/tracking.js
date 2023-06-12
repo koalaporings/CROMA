@@ -23,13 +23,14 @@ router.get("/history/:id/:filter_info", async (req,res) => {                //AP
 
     for(i=0;i<details.length;i++){
     let status = ""
+    console.log(details[i].transaction_status)
     if (details[i].transaction_status == "await_approval"){
         status = "Awaiting Approval"
     }
     else if(details[i].transaction_status == "ongoing"){
         status = "Processing"
     }
-    else if(details[i].transaction_status == "completed"){
+    else {
         status = "Completed"
     }
     details[i].transaction_status = status

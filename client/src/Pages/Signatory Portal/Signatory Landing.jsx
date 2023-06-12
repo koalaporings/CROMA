@@ -108,7 +108,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
         console.log(response)
         const recip = response.data[0].form_recipients.substring(0,3)
 
-        const sliced_recip = response.data[0].form_recipients.slice(3)
+        
         console.log(recip)
         if (recip.length === 3){
             approveUpdate(id, recip.substring(0,3))
@@ -117,6 +117,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
             approveUpdate(id, "10")
         }
 
+        const sliced_recip = response.data[0].form_recipients.slice(3)
         updateRecipients(id,sliced_recip)
     }
 
@@ -206,7 +207,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
             </div>
             <Container>
                 <div className="name-header-admin">
-                    Hello, {userName}!
+                    Hello, {sessionStorage.getItem("name")}!
                 </div>
                 <div className="transaction-header">
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       

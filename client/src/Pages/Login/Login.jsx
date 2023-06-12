@@ -17,9 +17,7 @@ import telephoneIcon from '../../Assets/telephone-icon.svg';
 import envelopeIcon from '../../Assets/envelope-icon.svg';
 
 
-
-
-const Login = ({children}) => {
+const Login = (props) => {
 
   const navigate = useNavigate();
 
@@ -37,6 +35,7 @@ const Login = ({children}) => {
         google.accounts.id.prompt()
       }
       else{
+        sessionStorage.setItem("name", userObject.given_name)
         signIn(userObject)
         // const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + userObject.email)
         // console.log(response1)
@@ -44,8 +43,6 @@ const Login = ({children}) => {
         // const responses = await axios.get('http://localhost:5000/id_api/student_id/' + userObject.email)
         // console.log(responses)
         // sessionStorage.setItem("id", responses.data[0].user_id)
-        setUser(userObject)
-        navigateLogin()
         
       }
     }
@@ -74,17 +71,22 @@ const Login = ({children}) => {
         email: user.email
       }).then((response) => {
       })
-      const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + sessionStorage.getItem("email"))
-        console.log(response1)
+      const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + user.email)
+        console.log(response1.data[0].role)
         sessionStorage.setItem("role", response1.data[0].role)
-        const responses = await axios.get('http://localhost:5000/id_api/student_id/' + sessionStorage.getItem("email"))
+        const responses = await axios.get('http://localhost:5000/id_api/student_id/' + user.email)
         console.log(responses)
         sessionStorage.setItem("id", responses.data[0].user_id)
+        props.fetchData(response1.data[0].role, responses.data[0].user_id)
+        navigateLogin(response1.data[0].role)
+        // window.role = response1.data[0].role
+
+        
     }
 
   // TEMPORARY
 
-  const navigateLogin = () => navigate('/loading');
+  const navigateLogin = (role) => navigate('/'+role);
 
     return(
       <div>

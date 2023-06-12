@@ -16,8 +16,6 @@ import jwt_decode from 'jwt-decode';
 
 const StudentLanding = ({userId, userName}) => {
 
-    
-
     console.log(userId)
     console.log(userName)
 
@@ -90,17 +88,17 @@ const StudentLanding = ({userId, userName}) => {
     fetchAllForms()
     }, [])
 
-    async function getRegistered(data){
-        const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
-        sessionStorage.setItem("registered", response.data[0].registered)
-    }
+    // async function getRegistered(data){
+    //     const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+    //     sessionStorage.setItem("registered", response.data[0].registered)
+    // }
 
-    useEffect(() => {
-        getRegistered(userId)
-        if(sessionStorage.getItem('registered') ===  0){
-            navigate('/student/info')
-        }
-    })
+    // useEffect(() => {
+    //     getRegistered(userId)
+    //     if(sessionStorage.getItem('registered') ===  0){
+    //         navigate('/student/info')
+    //     }
+    // })
 
 
     // GET STUDENT TRANSACTIONS
@@ -198,6 +196,7 @@ const StudentLanding = ({userId, userName}) => {
         fetchTable(userId,filter)
     },[])
 
+    console.log(window.role)
 
     return(
 
@@ -208,7 +207,7 @@ const StudentLanding = ({userId, userName}) => {
             <div className='student-container'>
 
                 <div className="name-header">
-                    Hello, {userName}!
+                    Hello, {sessionStorage.getItem("name")}!
                 </div>
 
                 <div className="transaction-header">
