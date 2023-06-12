@@ -13,27 +13,28 @@ router.get("/transactions", async (req,res) => {        // API endpoint for gett
       })
 })
 
-router.get('/transaction_table/:filter_info/:filter_course', async (req, res) => {       //API endpoint for clerk transaction table with filter
+router.get('/transaction_table/:id/:filter_info/:filter_course', async (req, res) => {       //API endpoint for clerk transaction table with filter
   let q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
   const course = req.params.filter_course
+  const id = req.params.id
   
   if (req.params.filter_course == "all"){
     if (req.params.filter_info == "dsc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? AND transactions.transaction_status = ? ORDER BY transactions.transaction_date DESC'
     } else if (req.params.filter_info == "asc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? AND transactions.transaction_status = ? ORDER BY transactions.transaction_date ASC'
     }
   }
   else {
     if (req.params.filter_info == "dsc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transactions.degree_program = ? ORDER BY transactions.transaction_date DESC'
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? AND transactions.transaction_status = ? AND transaction_info.degree_program = ? ORDER BY transactions.transaction_date DESC'
     } else if (req.params.filter_info == "asc") {
-      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.transaction_status = ?, transactions.degree_program = ? ORDER BY transactions.transaction_date ASC'
+      q = 'SELECT transactions.transaction_id, transactions.form_name, transactions.transaction_date, CONCAT(transaction_info.first_name," ", transaction_info.last_name) as requester_name FROM transactions INNER JOIN transaction_info ON transactions.transaction_id = transaction_info.transaction_id WHERE transactions.signatory_id = ? AND transactions.transaction_status = ? AND transaction_info.degree_program = ? ORDER BY transactions.transaction_date ASC'
     }
   }
   
-  const status = "clerk"
-    db.query(q, [status,course], (err, results) => {
+  const status = "ongoing"
+    db.query(q, [id,status,course], (err, results) => {
       if(err) console.error('ERROR', err);
         res.json(results)
       })

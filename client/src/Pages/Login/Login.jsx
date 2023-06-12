@@ -25,21 +25,28 @@ const Login = ({children}) => {
 
   const [user, setUser] = useState({})
   
-  function handleCallbackResponse(response) {
+  async function handleCallbackResponse(response) {
       console.log("Encoded JWT ID token: " + response.credential)
-      localStorage.setItem("token",response.credential)
+      sessionStorage.setItem("token",response.credential)
       var userObject = jwt_decode(response.credential)
+      
       if (userObject.hd !== 'up.edu.ph'){
         setUser({})
-        localStorage.removeItem("token")
+        sessionStorage.removeItem("token")
         alert('Incorrect email domain. Try again with the correct email with the correct domain')
         google.accounts.id.prompt()
       }
       else{
         signIn(userObject)
-        console.log(userObject.email)
+        // const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + userObject.email)
+        // console.log(response1)
+        // sessionStorage.setItem("role", response1.data[0].role)
+        // const responses = await axios.get('http://localhost:5000/id_api/student_id/' + userObject.email)
+        // console.log(responses)
+        // sessionStorage.setItem("id", responses.data[0].user_id)
         setUser(userObject)
         navigateLogin()
+        
       }
     }
 
@@ -51,8 +58,10 @@ const Login = ({children}) => {
         callback: handleCallbackResponse
       });
       google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        {theme: "outline", size: "large "}
+        document.getElementById('googleLogin'),{
+          type: "standard", theme: "filled_black", size: "large", shape: "pill", logo_alignment: "left", text: "continue_with" 
+        }
+        
       )
   
       google.accounts.id.prompt()
@@ -60,16 +69,22 @@ const Login = ({children}) => {
 
     const signIn = async (user) => {
       console.log(user.email)
+      sessionStorage.setItem("email", user.email)
       axios.post('http://localhost:5000/login_api/checkUser', {
         email: user.email
       }).then((response) => {
-        console.log(response)
       })
+      const response1 = await axios.get('http://localhost:5000/login_api/getRole/' + sessionStorage.getItem("email"))
+        console.log(response1)
+        sessionStorage.setItem("role", response1.data[0].role)
+        const responses = await axios.get('http://localhost:5000/id_api/student_id/' + sessionStorage.getItem("email"))
+        console.log(responses)
+        sessionStorage.setItem("id", responses.data[0].user_id)
     }
 
   // TEMPORARY
 
-  const navigateLogin = () => navigate('/student');
+  const navigateLogin = () => navigate('/loading');
 
     return(
       <div>
@@ -99,13 +114,14 @@ const Login = ({children}) => {
                         Submit formal requests and track them online</div>
                       </div>
                     </div>
-                    <div className="login-bottom">
-                          <button type="button" className='login-button-container' onClick={navigateLogin}>
+                    <div className="login-bottom" >
+                          {/* <button type="button" className='login-button-container' >
                             <img alt="login-button-icon"
                             src={googleIcon}
                             className="login-button-icon"/>
                             Log-in using UP Mail
-                          </button>
+                          </button> */}
+                          <div id='googleLogin' className='googleLogin'></div>
 
                       <div className='login-text-3'> If you encounter any problems with logging in through your UP Mail, send a message to loremipsum.com</div>
                     </div>

@@ -38,7 +38,7 @@
   
   .view-modal {
     width: 80vw;
-    height: 40vh;
+    /* height: 40vh; */
     background: white;
     color: white;
     border-radius: 16px;
@@ -56,7 +56,7 @@
 
   .student-view-modal {
     width: 80vw;
-    height: 40vh;
+    /* height: 40vh; */
     background: white;
     color: white;
     z-index: 101;
@@ -65,13 +65,15 @@
   }
 
   .admin-view-modal {
-    width: 80vw;
-    height: 40vh;
+    /* width: 80vw; */
+    height: 85vh;
     background: white;
     color: white;
     z-index: 101;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .add-modal {
@@ -128,22 +130,31 @@
     z-index: 101;
   }
 
-  .view-document-content {
+  .view-document-content iframe{
     margin-top: 2%;
     padding: 10px;
     padding-bottom: 1px;
     /* margin-bottom: 1%; */
-    height: 400px;
+    height: 50vh;
+    /* width: 50vw; */
     font-size: 14px;
     color: #2c3e50;
     text-align: center;
     overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     z-index: 101;
+    transform: scale(1);
+    transform-origin: top left;
+    border: none;
+  }
+
+  .view-document-content img {
+    padding: 15px;
+    width: 350px;
   }
   
   .view-modalActions {
-    position: absolute;
+    /* position: absolute; */
     bottom: 2px;
     margin-bottom: 10px;
     width: 100%;
@@ -238,7 +249,7 @@
 
 .approve-modal {
   width: 80vw;
-  height: 40vh;
+  /* height: 40vh; */
   background: white;
   color: white;
   border-radius: 16px;
@@ -247,7 +258,7 @@
 
 .reject-modal {
   width: 80vw;
-  height: 40vh;
+  /* height: 40vh; */
   background: white;
   color: white;
   border-radius: 16px;
@@ -754,8 +765,8 @@ textarea:focus {
   display: flex;
   justify-content: space-between;
   margin-top: 5px; 
-  max-width: 850px;
-  margin-left: auto;
+  /* max-width: 850px; */
+  margin-left: 5px;
   margin-right: auto;
   height: 30px;
 }

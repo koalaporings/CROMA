@@ -17,12 +17,18 @@ const Sidebar = ({ children }) => {
   const toggle = () => {
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
-    sidebar.classList.toggle("minimized");
-    sidebarMenu.classList.toggle("minimized");
-    if (sidebarMenu.className === "sidebar-menu"){
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
+    let viewportWidth = window.innerWidth;
+    if (viewportWidth < 768) {
+      sidebar.classList.toggle("minimized");
+      sidebarMenu.classList.toggle("minimized");
+      if (sidebarMenu.className === "sidebar-menu"){
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    }
+    else {
+      setIsOpen(!isOpen)
     }
   };
 
@@ -35,6 +41,10 @@ const Sidebar = ({ children }) => {
     // Perform logout logic here
     // ...
   };
+
+  function LogOut () {
+    sessionStorage.clear()
+  }
 
   window.onresize = function() {
     let viewportWidth = window.innerWidth;
@@ -156,6 +166,8 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
           <div className="sidebar-bottom-section">
+          <NavLink to="/" style={{textDecoration: 'none'}}>
+              <div className="sidebar-link" activeclassName="sidebar-active" onClick={() => {LogOut();setIsOpen(false)}}>
             <Box>
               <IconButton onClick={handleLogout}>
                 <div className="sidebar-user-icon">
@@ -166,10 +178,12 @@ const Sidebar = ({ children }) => {
             <div className="sidebar-bottom-section-link-text" style={{ display: isOpen ? "flex" : "none" }}>
               Log out
             </div>
+            </div>
+          </NavLink>
           </div>
         </div>
       </div>
-      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} userId={localStorage.getItem("id")} />}
+      {isProfileModalOpen && <ProfileModal open={isProfileModalOpen} onClose={() => setProfileModalOpen(false)} userId={sessionStorage.getItem("id")} />}
     </div>
   );
 }

@@ -51,8 +51,10 @@ router.post('/new', async (req, res) => {       //API endpoint for inserting new
 })
 
 router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpoint for uploading pdfs
-  const image = req.file.filename
+  const image = req.file.buffer
+  console.log(image)
   const id = req.body.id
+  console.log(id)
   const q2 = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
 
   db.query(q2, [image,id], (err,result)=> {
@@ -61,12 +63,9 @@ router.post('/upload_pdf/', upload.single('pdf'), (req,res) => {     //API endpo
 })
 
 router.post('/upload_image/', upload.single('image'), (req, res) => {        //API endpoint for uploading images
-  const image = req.file.filename
-  const id = 123060723591000
-  console.log(req.file)
-  // const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
-  const upload = 'UPDATE files SET file = ? WHERE transaction_id = ?'
-  console.log("heh") 
+  const image = req.file.buffer
+  const id = req.body.id
+  const upload = 'INSERT INTO files (`file`, `transaction_id`) VALUES (?,?)'
 
   db.query(upload, [image,id], (err,result)=> { 
     res.json({status:'Success'})
@@ -78,7 +77,6 @@ router.get('/get/:id', async (req,res) => {       //API endpoint for image viewi
   const id = req.params.id
 
   db.query(q, id, (err,data) => {
-    console.log(data)
     res.json(data)
   })
 })
@@ -100,7 +98,6 @@ router.post("/transaction_made_upload",async (req,res,err)=> {        //API endp
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
   if(now.getSeconds() < 10){second = "0" + now.getSeconds().toString()} else{second = now.getSeconds().toString()}
 
-  console.log(req.body)
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + second + req.body.user_id.toString()
   const formId = req.body.form_id
 
@@ -146,15 +143,14 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
   let dates = ''
   let hour = ''
   let minute = ''
-  let second = ''
+  console.log(req.body)
   if((now.getMonth()+1) < 10){months = "0" + (now.getMonth()+1).toString()} else {months = (now.getMonth()+1).toString()}
   if(now.getDate() < 10){dates = "0" + now.getDate().toString()} else{dates = now.getDate().toString()}
   if(now.getHours() < 10){hour = "0" + now.getHours().toString()} else{hour = now.getHours().toString()}
   if(now.getMinutes() < 10){minute = "0" + now.getMinutes().toString()} else{minute = now.getMinutes().toString()}
 
-  console.log(req.body)
   let transaction_id = now.getYear().toString() + months + dates + hour + minute + req.body.user_id.toString()
-  if(req.body.form_id >= 0 && req.body.form_id <= 3){
+  if((req.body.form_id >= 1 && req.body.form_id <= 3) || req.body.form_id == 17 || req.body.form_id == 21){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
     info = [
       transaction_id,
@@ -171,13 +167,9 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.num_copies,
       req.body.purpose,
     ]
-  } else if((req.body.form_id >= 4 && req.body.form_id <= 9) || req.body.form_id >= 16 && req.body.form_id <= 20){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`) VALUES (?)'
-    info = [
-      transaction_id,
-    ]
-  }else if(req.body.form_id == 10 || req.body.form_id == 11){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`,  `email`, `academic_year`, `semester`, `num_copies`, `purpose`) VALUES (?)'
+    console.log("1")
+  } else if(req.body.form_id == 4 || (req.body.form_id >= 7 && req.body.form_id <= 11) || (req.body.form_id >= 13 && req.body.form_id <= 16) || req.body.form_id == 18 || req.body.form_id == 20){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`) VALUES (?)'
     info = [
       transaction_id,
       req.body.last_name,
@@ -185,16 +177,30 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.middle_initial,
       req.body.student_number,
       req.body.mobile_number,
+      req.body.year_level,
       req.body.degree_program,
-      req.body.year_level,      
       req.body.email,
-
-      req.body.academic_year,
-      req.body.semester,
-      req.body.num_copies,
-      req.body.purpose,
     ]
-  }else if(req.body.form_id == 12){
+    console.log("2")
+  }else if(req.body.form_id == 6){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `year_level`, `degree_program`, `email`, `purpose`, `subject_dropped`, `instructor_name`, `section`) VALUES (?)'
+    info = [
+      transaction_id,
+      req.body.last_name,
+      req.body.first_name,
+      req.body.middle_initial,
+      req.body.student_number,
+      req.body.mobile_number,
+      req.body.year_level,
+      req.body.degree_program,
+      req.body.email,
+      req.body.purpose,
+      req.body.subject_dropped,
+      req.body.instructor_name,
+      req.body.section
+    ]
+    console.log("dropepd")
+  }else if(req.body.form_id == 5){
     q2 = 'INSERT INTO transaction_info (`transaction_id`,`last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `semester`, `academic_year`, `status_last_semester`, `purpose`) VALUES (?)';
 
     info = [
@@ -213,45 +219,8 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.last_sem,
       req.body.reason
     ];
-  
-  }else if(req.body.form_id == 13){
-      q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `mobile_number`, `degree_program`, `year_level`, `email`, `purpose`, `purpose_ext`) VALUES (?)';
-      info = [
-        transaction_id,
-        req.body.last_name,
-        req.body.first_name,
-        req.body.middle_initial,
-        req.body.student_number,
-        req.body.mobile_number,
-
-        req.body.degree_program,
-        req.body.year_level,          
-        req.body.email,
-
-        req.body.purpose,
-        req.body.purpose_ext
-      ];
-
-  }else if(req.body.form_id == 14){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `subject_dropped`, `section`, `instructor_name`, `purpose`) VALUES (?)';
-    info = [
-      transaction_id,
-      req.body.last_name,
-      req.body.first_name,
-      req.body.middle_initial,
-      req.body.student_number,
-
-      req.body.degree_program,
-      req.body.year_level,
-
-      req.body.subject_dropped,
-      req.body.section,
-      req.body.instructor_name,
-      req.body.purpose,
-    ]
-
-  }else if(req.body.form_id == 15){
-    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`) VALUES (?)';
+  }else if(req.body.form_id == 12){
+    q2 = 'INSERT INTO transaction_info (`transaction_id`, `last_name`, `first_name`, `middle_initial`, `student_number`, `degree_program`, `year_level`, `course_description_title`, `course_num_section`, `units`, `original_grade`, `semester_incurred`, `academic_year_incurred`, `date_completion`, `removal_grade`, `instructor_name`) VALUES (?)';
 
     info = [
       transaction_id,
@@ -269,7 +238,8 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       req.body.semester,
       req.body.academic_year_incurred,
       req.body.date_completion,
-      req.body.removal_grade
+      req.body.removal_grade,
+      req.body.instructor_name
     ];
 
   }    
@@ -305,7 +275,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
 
   //This section was made to insert data into the foreign key tables.
   //These tables were made because the data would not fit into one table.
-  if(req.body.form_id == 12){
+  if(req.body.form_id == 5){
     db.query(q2,[info], (err, result) => {
       if(err) {
         console.error('ERROR', err);
@@ -329,7 +299,7 @@ router.post('/transaction_made', async (req,res) =>{        //API endpoint for s
       }
     });
 
-  }else if(req.body.form_id == 13){
+  }else if(req.body.form_id == 7){
     db.query(q2, [info], (err, result) => {
       if(err) {
         console.error('ERROR', err);
@@ -410,6 +380,50 @@ router.get("/formRecipients/:transaction_id", (req,res) => {        //API endpoi
     if(err) console.log("ERROR", err)
     res.json(data)
   })
+})
+
+router.put('/updateRecipients', (req,res) => {
+  const q = 'UPDATE transactions SET form_recipients = ? WHERE transaction_id = ?'
+  const id = req.body.transaction_id
+  const rec = req.body.form_recipients
+
+  db.query(q,[rec,id], (err,data) => {
+    if(err) console.log("ERROR",err)
+  })
+})
+
+router.get("/approvedBy/:transaction_id", (req,res) => {        //API endpoint for getting formRecipients from transactions based on transaction_id
+  const q = "SELECT approved_by FROM transactions WHERE transaction_id = ?"
+  const id = req.params.transaction_id
+
+  db.query(q, id, (err,data) => {
+    if(err) console.log("ERROR", err)
+    res.json(data)
+  })
+})
+
+router.put('/updateApproved', (req,res) => {
+  const q = 'UPDATE transactions SET approved_by = ? WHERE transaction_id = ?'
+  const id = req.body.transaction_id
+  const rec = req.body.approved_by
+
+  db.query(q,[rec,id], (err,data) => {
+    if(err) console.log("ERROR",err)
+  })
+})
+
+router.put('/updateTransactionFile', upload.single('pdf'), (req,res) => {
+  const q = 'UPDATE files SET file = ? WHERE transaction_id = ?' 
+  const file = req.file.buffer
+  const id = req.body.id
+  console.log(file)
+  console.log(id)
+
+
+  db.query(q, [file,id], (err, result) => {
+    res.json({status: 'Success'})
+  })
+
 })
 
 

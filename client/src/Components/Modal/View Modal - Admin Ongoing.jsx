@@ -6,19 +6,11 @@ import { PDFDocument } from "pdf-lib";
 import axios from 'axios'
 import { Buffer } from 'buffer'
 
-
-
-
-function AdminApproveModal({
+function AdminOngoingModal({
   data,
   setIsOpen,
-  action,
-  rejectAction,
-  signatoryList,
-  changeHandler,
 }) {
   console.log(data);
-
 
   const [file, setFile] = useState();
 
@@ -62,36 +54,10 @@ function AdminApproveModal({
             }
           </div>
         }
-          
-          <h4 className="view-heading">Recipients</h4>
-          <div className="textboxes-container">
-            <input list="names" name="recipient1" placeholder="Select recipient" onChange={changeHandler}/>
-            <datalist id="names" className="">
-              {signatoryList.map((data) => {
-                  return(
-                      // <option value={data.first_name + " " + data.last_name}>{data.signatory_id}</option>
-                      <option value={data.signatory_id}>{data.first_name + " " + data.last_name}</option>
-                  )
-              })}
-            </datalist>
-            
-            <input list="names" name="recipient2" placeholder="Select recipient" onChange={changeHandler}/>
-            <input list="names" name="recipient3" placeholder="Select recipient" onChange={changeHandler}/>
-          </div>
-          <div className="view-modalActions">
-            <div className="view-modal-actionsContainer">
-              <button className="reject-button" onClick={rejectAction}>
-                Reject
-              </button>
-              <button className="approve-button" onClick={action}>
-                Approve
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default AdminApproveModal;
+export default AdminOngoingModal;

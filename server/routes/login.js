@@ -5,23 +5,21 @@ const db = require('../database').databaseConnection;
 
 router.post("/checkUser", async (req,res) => {              //API endpoint to check if user is in database
     const email = req.body.email
-    console.log(req.body)
-    console.log(email)
     const values = await new Promise((resolve) => {
         db.query("SELECT * FROM users WHERE email = ?", email, (err, data) => {
             if(err) console.log("ERROR", err)
             resolve(data)
         })
     })
-    console.log(values)
-
     if(values.length === 0){
         db.query("INSERT INTO users (`email`, `role`) VALUES (?,?)", [email, 'student'], (err,data) =>{
             if(err) console.log("ERROR", err)
-            res.send("Congrats, you've signed up!")
+            res.send("new")
+            
         })
         db.query("INSERT INTO students (`email`) VALUES (?)", [email], (err,data) =>{
             if(err) console.log("ERROR", err)
+            
         })
     }
     else{

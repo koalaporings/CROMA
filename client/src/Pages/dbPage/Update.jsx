@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -34,13 +34,17 @@ const Update = () => {
     setUser((prev) => ({...prev, [e.target.name]: e.target.value}))
   }
 
+  useEffect(()=>{
+    navigate('/student')
+  })
+
   return (
     <div>
-      <input type='text' placeholder='First Name' onChange={handleChange} name='first_name'/>
+      {/* <input type='text' placeholder='First Name' onChange={handleChange} name='first_name'/>
       <input type='text' placeholder='Last Name' onChange={handleChange} name='last_name'/>
       <input type='text' placeholder='Email' onChange={handleChange} name='email'/>
       <input type='text' placeholder='Password' onChange={handleChange} name='password'/>
-      <button onClick={handleClick}>Update</button>
+      <button onClick={handleClick}>Update</button> */}
     </div>
     
   )

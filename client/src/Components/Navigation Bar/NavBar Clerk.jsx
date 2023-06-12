@@ -14,16 +14,25 @@ const Sidebar = ({ children }) => {
   const toggle = () => {
     let sidebar = document.getElementById("sidebar");
     let sidebarMenu = document.getElementById("sidebar-menu");
-    sidebar.classList.toggle("minimized");
-    sidebarMenu.classList.toggle("minimized");
-    // setIsOpen(!isOpen)
-    if (sidebarMenu.className === "sidebar-menu"){
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
+    let viewportWidth = window.innerWidth;
+    if (viewportWidth < 768) {
+      sidebar.classList.toggle("minimized");
+      sidebarMenu.classList.toggle("minimized");
+      if (sidebarMenu.className === "sidebar-menu"){
+        setIsOpen(true);
+      } else {
+        setIsOpen(false);
+      }
+    }
+    else {
+      setIsOpen(!isOpen)
     }
   };
   const [roleID, setRoleId] = useState("-1")
+
+  function LogOut () {
+    sessionStorage.clear()
+  }
 
   const doubleToggle = () => {
     toggle();
@@ -125,6 +134,8 @@ const Sidebar = ({ children }) => {
             ))
           }
           <div className="sidebar-bottom-section">
+          <NavLink to="/" style={{textDecoration: 'none'}}>
+              <div className="sidebar-link" activeclassName="sidebar-active" onClick={() => {LogOut();setIsOpen(false)}}>
             <Box>
               <IconButton>
                 <div className="sidebar-user-icon">
@@ -138,6 +149,8 @@ const Sidebar = ({ children }) => {
                 style={{display: isOpen? "flex": "none"}}>
                 Log out
             </div>
+            </div>
+          </NavLink>
           </div>
 
         </div>

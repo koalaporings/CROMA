@@ -25,10 +25,10 @@ function ViewStudentModal({
           </button>
           <div className="view-document-content">
             <PDFdocument
-              docdata = {data[0]}
+              docData = {data[0]}
             />
-            <h5 className ='view-heading'>Proof of Payment</h5>
-            <img src={`http://localhost:5000/public/uploads/` + data[1][0].file.toString()}/>
+            {/* <h5 className ='view-heading'>Proof of Payment</h5> */}
+            {/* <img src={`http://localhost:5000/public/uploads/` + data[1][0].file.toString()}/> */}
             {/* <button onClick={onClick}>Download</button> */}
           </div>
           <div className="view-modalActions">

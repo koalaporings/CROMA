@@ -12,14 +12,16 @@ import NavBar from '../../Components/Navigation Bar/NavBar Clerk.jsx';
 import TableComponent from '../../Components/Table/Table';
 
 import AdminApproveModal from '../../Components/Modal/View Modal - Admin Approve';
+import ClerkApproveModal from '../../Components/Modal/View Modal - Clerk Approve';
 import ConfirmApprove from '../../Components/Modal/Approve Confirmation';
+import { updatePDF } from "../../Pages/Forms/Update PDF";
 import { Container } from 'react-bootstrap';
 
 
 
 
 
-const ClerkLanding = ({children}) => {
+const ClerkLanding = ({userName}) => {
 
 
     //http://localhost:5000/clerk_api/transaction_table/:filter_info
@@ -32,16 +34,22 @@ const ClerkLanding = ({children}) => {
     const [count, SetCount] = useState(0);
     const [isConfirmOpen, setConfirmOpen] = useState(false);
     const [id, setID] = useState(0);
+    const [newPDF, setNewPDF] = useState();
 
-    async function fetchTable (data){
-        const response = await axios.get('http://localhost:5000/clerk_api/transaction_table/' + data)
+    const [filterDetails, setFilterDetails] = useState({
+        course_filter: "all",
+        order_filter: "dsc",
+    });
+
+    async function fetchTable(data){
+        const response = await axios.get('http://localhost:5000/clerk_api/transaction_table/10/' + data.order_filter + "/" + data.course_filter)
         console.log(response.data)
         setTableData(response.data)
         SetCount(response.data.length)
     }
 
     useEffect (() =>{
-        fetchTable ()
+        fetchTable(filterDetails)
         }, [])    
 
     async function viewDocumentDetails(id) {
@@ -62,27 +70,49 @@ const ClerkLanding = ({children}) => {
             console.log(response)
         }
     }
+
+    // async function addTracking(id) {
+    //     const response = await axios.post("http://localhost:5000/tracking_api/update",{
+    //         transaction_id: id,
+    //         tracking_status: "Your request has been approved by the admin.",
+    //     })
+    //     if (response){
+    //         console.log(response)
+    //     }
+    // }
     
     const approveClickHandler = (data) => {
         setID(data)
         viewDocumentDetails(data)
+
     }
 
-    const openConfirmationModal = () => {
-        setConfirmOpen(true)
+    async function openConfirmationModal (noFile, formData){
+        console.log(formData)
+        if (noFile) {
+            alert("Please select a file to upload!");
+        }
+        else{
+            setNewPDF(formData)
+            console.log(newPDF)
+            setConfirmOpen(true)
+            
+        }
+        
     }
 
     const approveTransaction = (data) => {
+        updatePDF(newPDF)
         approveUpdate(documentDetails.transaction_id)
-        const msg = "Your request for " + documentDetails.form_name + " has been approved by signatory: Test Signatory 1."
+        addTracking(documentDetails.transaction_id)
+        const msg = "Your request for " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been completed by the clerk."
         window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
 
     async function approveUpdate(id) {
-        const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
+        const response = axios.put("http://localhost:5000/clerk_api/update/" + id.toString(), {
         })
-        addTracking(id)
         if (response){
             console.log(response)
         }
@@ -92,15 +122,23 @@ const ClerkLanding = ({children}) => {
     async function addTracking(id) {
         const response = await axios.post("http://localhost:5000/tracking_api/update",{
             transaction_id: id,
-            tracking_status: "Your request has been approved by signatory: Test Signatory 1.",
+            tracking_status: "Your request has been completed by the clerk. Check the file on the History page.",
         })
     }
 
+    useEffect(() => {
+        // console.log(filterDetails.course_filter);
+         fetchTable(filterDetails)
+     }, [filterDetails])
     
-    const handleFilterChange = (data) => {
-        const filter = data.target.value
-        fetchTable(filter)
-    }
+    const handleFilterChange = (e) => {
+         const { name, value } = e.target;
+         setFilterDetails(prevState => ({
+             ...prevState,
+             [name]: value
+         }))
+     }
+
 
     return(
         <div>
@@ -111,7 +149,7 @@ const ClerkLanding = ({children}) => {
 
             <Container>
                 <div className="name-header-admin">
-                    Hello, Clerk!
+                    Hello, {userName} (Clerk)!
                 </div>
                 <div className="transaction-header">
                     There {(count === 1) ? "is" : "are"} currently&nbsp;<span style={{fontWeight: '700'}}>{count} {(count === 1) ? "transaction" : "transactions"} </span>waiting to be approved.       
@@ -119,7 +157,15 @@ const ClerkLanding = ({children}) => {
                 <div className='title-text-admin'>Waiting Approval</div>
                 <div className='filter-container'>
                     Filter by: &nbsp;
-                    <select className='filter-button' onChange={(e) => handleFilterChange(e)}>
+                    <select className='filter-button' name="course_filter" onChange={(e) => handleFilterChange(e)}>
+                        <option value="all">&nbsp;All&nbsp;</option>
+                        <option value="BS Computer Science">&nbsp;BS Computer Science&nbsp;</option>
+                        <option value="BS Biology">&nbsp;BS Biology&nbsp;</option>
+                        <option value="BS Mathematics">&nbsp;BS Mathematics&nbsp;</option>
+                        <option value="BS Statistics">&nbsp;BS Statistics&nbsp;</option>
+                    </select>
+                    &nbsp;
+                    <select className='filter-button' name="order_filter" onChange={(e) => handleFilterChange(e)}>
                         <option value="dsc">&nbsp;Newest to Oldest&nbsp;</option>
                         <option value="asc">&nbsp;Oldest to Newest&nbsp;</option>
                     </select>
@@ -139,7 +185,7 @@ const ClerkLanding = ({children}) => {
                         action = {approveClickHandler}
                         // setID = {setSelected}
                     />
-                    {isOpen && <AdminApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal}/>}
+                    {isOpen && <ClerkApproveModal data={documentDetails} setIsOpen={setIsOpen} action={openConfirmationModal}/>}
                     {isConfirmOpen && <ConfirmApprove setIsOpen={setConfirmOpen} action={approveTransaction}/>}
                     
                 </div>

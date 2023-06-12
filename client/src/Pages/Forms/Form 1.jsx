@@ -4,7 +4,6 @@ import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 import { addFormInformation } from './Forms API Call';
 import { uploadImage } from "./Upload Image";
@@ -13,6 +12,7 @@ import axios from "axios";
 
 //True Copy of Grades (TCG)
 const Form1 = ({userId}) => {
+    console.log(userId)
     const [image, setImage] = useState();
     const [price, setPrice] = useState(50);
 
@@ -49,7 +49,7 @@ const Form1 = ({userId}) => {
     },[savedDetails])
 
     const [formDetails, setFormDetails] = useState({
-        user_id: userId.toString(),
+        user_id: userId,
         form_id: 1,
         remarks: null,
          last_name: "",
@@ -316,8 +316,7 @@ const Form1 = ({userId}) => {
                 </form>
                 <div className="form-buttons-container">
                     <div className="cancel-button">
-                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
-                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                        <button class="btn btn-primary" type="submit" onClick={navigateLanding}>Cancel</button>
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 

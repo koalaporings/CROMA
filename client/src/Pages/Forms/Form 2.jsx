@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import CancelModal from '../../Components/Modal/Cancel Modal';
+// import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 //import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
@@ -67,9 +67,11 @@ const Form2 = ({userId}) => {
 
 
         const navigate = useNavigate();
+        
 
         const navigateLanding = () => navigate('/student');
     
+        
         const handleChange = (e) => {
             const { name, value } = e.target;
             setFormDetails(prevState => ({
@@ -101,7 +103,6 @@ const Form2 = ({userId}) => {
     
             const formData = new FormData();
             formData.append('image', image);
-            formData.append('user_id', userId);
             console.log (formDetails);
             const response = await addFormInformation(formDetails);
             formData.append('id', response.data)
@@ -325,8 +326,7 @@ const Form2 = ({userId}) => {
                     </form>
                     <div className="form-buttons-container">
                     <div className="cancel-button">
-                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
-                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                        <button class="btn btn-primary" type="submit" onClick={navigateLanding}>Cancel</button>
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 

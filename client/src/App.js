@@ -54,20 +54,24 @@ import Form15 from './Pages/Forms/Form 15';
 import Form16 from './Pages/Forms/Form 16';
 import Form17 from './Pages/Forms/Form 17';
 import Form18 from './Pages/Forms/Form 18';
-import Form21 from './Pages/Forms/Form 21';
 import Form20 from './Pages/Forms/Form 20';
+import Form21 from './Pages/Forms/Form 21';
 
 function App() {
   document.title = "Automated Request System";
 
   const [userName, setUserName] = useState(" ");
+  const [lastName, setLastName] = useState(" ");
+  const [email, setEmail] = useState(" ");
   // const [userId, setUserID] = useState(0);
 
     async function decodeToken() {
-        const token = localStorage.getItem("token")
+        const token = sessionStorage.getItem("token")
 
         const data = jwt_decode(token.toString())
         setUserName(data.given_name)
+        setLastName(data.family_name)
+        setEmail(data.email)
         getUserID(data.email)
         getRole(data.email)
         
@@ -81,25 +85,27 @@ function App() {
 
     async function getUserID(data){
         const response = await axios.get('http://localhost:5000/id_api/student_id/' + data)
-        console.log(response.data[0].user_id)
-        localStorage.setItem("id", response.data[0].user_id)
-        // getRegistered(response.data[0].user_id)
+        console.log(response.data[0].user_id) 
+        sessionStorage.setItem("id", response.data[0].user_id)
+        getRegistered(response.data[0].user_id)
     }
 
     async function getRole(data){
       const response = await axios.get('http://localhost:5000/login_api/getRole/' + data)
-      localStorage.setItem("role", response.data[0].role)
+      sessionStorage.setItem("role", response.data[0].role)
     }
 
-    // async function getRegistered(data){
-    //     const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
-    //     localStorage.setItem("registered", response.data[0].registered)
-    // }
+    async function getRegistered(data){
+        const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+        sessionStorage.setItem("registered", response.data[0].registered)
+
+    }
 
 
+    
   return (   
     <div className="App">
-      {console.log(localStorage.getItem("id"))}
+      {console.log(sessionStorage.getItem("id"))}
         <BrowserRouter>
           <Routes>
             <Route 
@@ -108,19 +114,20 @@ function App() {
             />
             <Route 
               path="/student/info" 
-              element={(localStorage.getItem("role")==="student") ? <Register/> : <Navigate to={"/"+localStorage.getItem("role")}/>}     
+              element={(sessionStorage.getItem("role")==="student") ? <Register/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}     
             />
             <Route 
               path="/admin" 
-              element={(localStorage.getItem("role")==="admin") ? <AdminLanding userName={userName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              element={(sessionStorage.getItem("role")==="admin") ? <AdminLanding userName={userName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
             />
             <Route 
               path="/student" 
-              element={(localStorage.getItem("role")==="student") ? <StudentLanding userId={localStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <StudentLanding userId={sessionStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
+              // element={<StudentLanding userId={sessionStorage.getItem("id")} userName={userName}/>}  
             />
             <Route 
               path="/signatory" 
-              element={(localStorage.getItem("role")==="signatory") ? <SignatoryLanding userId={localStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="signatory") ? <SignatoryLanding userId={sessionStorage.getItem("id")} userName={userName} lastName={lastName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/signatory/2" 
@@ -128,162 +135,179 @@ function App() {
             />
             <Route 
               path="/clerk" 
-              element={(localStorage.getItem("role")==="clerk") ? <ClerkLanding userId={localStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="clerk") ? <ClerkLanding userId={sessionStorage.getItem("id")} userName={userName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/admin/announcements" 
-              element={(localStorage.getItem("role")==="admin") ? <AnnouncementPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements"}/>}  
+              element={(sessionStorage.getItem("role")==="admin") ? <AnnouncementPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements"}/>}  
             />
 
             <Route 
               path="/admin/users" 
-              element={<User/>}  
+              element={(sessionStorage.getItem("role")==="admin") ? <User userName={userName}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
+            />
+
+            <Route
+              path='/register'
+              element={<Register/>}
             />
             
             <Route 
               path="/signatory/announcements" 
-              element={(localStorage.getItem("role")==="signatory") ? <AnnouncementSigPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements"}/>}  
+              element={(sessionStorage.getItem("role")==="signatory") ? <AnnouncementSigPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements"}/>}  
             /> 
             <Route 
               path="/student/announcements" 
-              element={(localStorage.getItem("role")==="student") ? <AnnouncementStudPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements"}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <AnnouncementStudPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements"}/>}  
             />
             <Route 
               path="/clerk/announcements" 
-              element={(localStorage.getItem("role")==="clerk") ? <AnnouncementClerkPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements"}/>}  
+              element={(sessionStorage.getItem("role")==="clerk") ? <AnnouncementClerkPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements"}/>}  
             />
             <Route 
               path="/student/announcements/view/:id" 
-              element={(localStorage.getItem("role")==="student") ? <ViewAnnouncementPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements/view/:id"}/>}   
+              element={(sessionStorage.getItem("role")==="student") ? <ViewAnnouncementPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements/view/:id"}/>}   
             />
             <Route 
               path="/signatory/announcements/view/:id" 
-              element={(localStorage.getItem("role")==="signatory") ? <ViewSignatoryAnnouncementPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements/view/:id"}/>}   
+              element={(sessionStorage.getItem("role")==="signatory") ? <ViewSignatoryAnnouncementPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements/view/:id"}/>}   
             />
             <Route 
               path="/clerk/announcements/view/:id" 
-              element={(localStorage.getItem("role")==="clerk") ? <ViewClerkAnnouncementPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements/view/:id"}/>}   
+              element={(sessionStorage.getItem("role")==="clerk") ? <ViewClerkAnnouncementPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements/view/:id"}/>}   
             />
             <Route 
               path="/announcements/view/:id" 
-              element={(localStorage.getItem("role")==="admin") ? <ViewAdminAnnouncementPage/> : <Navigate to={"/"+localStorage.getItem("role")+"/announcements/view/:id"}/>}   
+              element={(sessionStorage.getItem("role")==="admin") ? <ViewAdminAnnouncementPage/> : <Navigate to={"/"+sessionStorage.getItem("role")+"/announcements/view/:id"}/>}   
             />
 
             <Route 
               path="/admin/history" 
-              element={(localStorage.getItem("role")==="admin") ? <HistoryPage/> : <Navigate to={"/"+localStorage.getItem("role")}/>}   
+              element={(sessionStorage.getItem("role")==="admin") ? <HistoryPage/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}   
             />
             <Route 
               path="/student/tracking" 
-              element={(localStorage.getItem("role")==="student") ? <TrackingPage userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <TrackingPage userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/student/history" 
-              element={(localStorage.getItem("role")==="student") ? <StudentTrackingPage userId={localStorage.getItem("id")} /> : <Navigate to={"/"+localStorage.getItem("role")}/>}   
+              element={(sessionStorage.getItem("role")==="student") ? <StudentTrackingPage userId={sessionStorage.getItem("id")} /> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}   
             />
             <Route 
               path="/clerk/history" 
-              element={(localStorage.getItem("role")==="clerk") ? <ClerkTrackingPage/> : <Navigate to={"/"+localStorage.getItem("role")}/>}    
+              element={(sessionStorage.getItem("role")==="clerk") ? <ClerkTrackingPage/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}    
             />
 
             {/* FORM REQUESTS */}
 
             <Route 
               path="/student/request/1" 
-              element={(localStorage.getItem("role")==="student") ? <Form1 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <Form1 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/student/request/2" 
-              element={(localStorage.getItem("role")==="student") ? <Form2 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <Form2 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/student/request/3" 
-              element={(localStorage.getItem("role")==="student") ? <Form3 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              element={(sessionStorage.getItem("role")==="student") ? <Form3 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
 
             <Route 
               path="/student/request/4" 
-              element={(localStorage.getItem("role")==="student") ? <Form4 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              // path="/student/request/17" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form4 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
             />
 
             <Route 
               path="/student/request/5" 
-              element={(localStorage.getItem("role")==="student") ? <Form5 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              // path="/student/request/14" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form5 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
             />
             <Route 
               path="/student/request/6" 
-              element={(localStorage.getItem("role")==="student") ? <Form6 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              // path="/student/request/16" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form6 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
             <Route 
               path="/student/request/7" 
-              element={(localStorage.getItem("role")==="student") ? <Form7 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/10" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form7 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/8" 
-              element={(localStorage.getItem("role")==="student") ? <Form8 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/13" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form8 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/9" 
-              element={(localStorage.getItem("role")==="student") ? <Form9 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/4" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form9 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/10" 
-              element={(localStorage.getItem("role")==="student") ? <Form10 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              // path="/student/request/18" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form10 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
             />
 
             <Route 
               path="/student/request/11" 
-              element={(localStorage.getItem("role")==="student") ? <Form11 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/20" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form11 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/12" 
-              element={(localStorage.getItem("role")==="student") ? <Form12 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/5" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form12 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/13" 
-              element={(localStorage.getItem("role")==="student") ? <Form13 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/7" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form13 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/14" 
-              element={(localStorage.getItem("role")==="student") ? <Form14 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}  
+              // path="/student/request/6" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form14 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}  
             />
 
             <Route 
               path="/student/request/15" 
-              element={(localStorage.getItem("role")==="student") ? <Form15 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/12" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form15 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/16" 
-              element={(localStorage.getItem("role")==="student") ? <Form16 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/19" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form16 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
   
             <Route 
               path="/student/request/17" 
-              element={(localStorage.getItem("role")==="student") ? <Form17 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+              // path="/student/request/21" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form17 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
-
-
-          <Route 
-              path="/student/request/18"
-              element={(localStorage.getItem("role")==="student") ? <Form18 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>}
+            <Route 
+              path="/student/request/18" 
+              element={(sessionStorage.getItem("role")==="student") ? <Form18 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
           <Route 
-              path="/student/request/20" 
-              element={(localStorage.getItem("role")==="student") ? <Form20 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              path="/student/request/20"
+              element={(sessionStorage.getItem("role")==="student") ? <Form20 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>}
             />
 
             <Route 
               path="/student/request/21" 
-              element={(localStorage.getItem("role")==="student") ? <Form21 userId={localStorage.getItem("id")}/> : <Navigate to={"/"+localStorage.getItem("role")}/>} 
+              element={(sessionStorage.getItem("role")==="student") ? <Form21 userId={sessionStorage.getItem("id")}/> : <Navigate to={"/"+sessionStorage.getItem("role")}/>} 
             />
 
 
@@ -294,15 +318,15 @@ function App() {
 
             {/* BACKEND ROUTE FOR TESTING PLS DON'T DELETE UWU */}
             <Route 
-              path="/db" 
-              element={<View/>}  
+              path="/loading" 
+              element={<View email={email}/>}  
             />
             <Route 
               path="/db/add" 
               element={<Add/>}  
             />
             <Route 
-              path="/db/update/:id" 
+              path="/loadingg" 
               element={<Update/>}  
             />
             <Route

@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import NavBar from '../../Components/Navigation Bar/NavBar Student';
-import CancelModal from '../../Components/Modal/Cancel Modal';
+// import CancelModal from '../../Components/Modal/Cancel Modal';
 import SubmitModal from '../../Components/Modal/Submit Modal';
 //import { fontSize } from '@mui/system';
 import { addFormInformation } from './Forms API Call';
@@ -100,7 +100,7 @@ const Form7 = ({userId}) => {
 
         const response = addFormInformation(formDetails);
         //setIsOpen(false);
-        //navigateLanding();
+        navigateLanding();
     }
 
     const formValid = () => {
@@ -366,7 +366,7 @@ const Form7 = ({userId}) => {
                     </div>
 
 
-                    <h1 className='form-group-title'>C. Proof of Payment</h1>
+                    {/* <h1 className='form-group-title'>C. Proof of Payment</h1>
                     <h2 className='form-subtitle-1'>Pay via Philippine Veterans Bank</h2>
                     <div className="inline-form-details">
                         <div className='form-details'><b>Account Name:</b> UP Cebu</div>
@@ -405,7 +405,7 @@ const Form7 = ({userId}) => {
                         <li className='important-item'>Proof of payment (screenshot/image) must include <b><u>Amount Paid</u></b>, <b><u>Transaction Date</u></b>, <b><u>Time</u></b>, and <b><u>Reference Number</u></b>.</li>
                         <li className='important-item'>For GCash transactions, make sure to enable mobile or email notifications. Attach proof of completed payment from GCash SMS or GCash Email with InstaPay Trace Number. (also found in your GCash Inbox, "Your Bank Transfer Status" message)</li>
                         <li className='important-item'>Otherwise, if payment is not verifiable, your request may not be processed or may be delayed.</li>
-                    </ul>
+                    </ul> */}
                     <div className='privacy-notice-container'>
                         <h1 className="form-group-title">Privacy Notice for UP Students</h1>
                         <div className="privacy-notice-text">
@@ -417,9 +417,8 @@ const Form7 = ({userId}) => {
                     </div>
                 </form>
                 <div className="form-buttons-container">
-                    <div className="cancel-button">
-                        <button class="btn btn-primary" type="submit" onClick={() => setIsOpen(true)}>Cancel</button>
-                        {isCancelOpen && <CancelModal setIsOpen={setIsCancelOpen} />}
+                <div className="cancel-button">
+                        <button class="btn btn-primary" type="submit" onClick={navigateLanding}>Cancel</button>
                     </div>
                     <div className="submit-button">
                         <button class="btn btn-primary" onClick={() => setIsOpen(true)}>Submit</button> 
