@@ -116,7 +116,7 @@
       font-style: normal;
       padding-left: 2%;
       margin-bottom: 2%;
-      color: #2c3e50;    
+      color: #7A1113;    
       font-weight: 400;
       font-size: 18px;
       text-align: left;
@@ -159,6 +159,10 @@
     margin-bottom: 10px;
     width: 100%;
 
+  }
+
+  .form-control-file {
+    color: black;
   }
   
   .view-modal-actionsContainer {

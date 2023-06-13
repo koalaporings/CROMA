@@ -134,7 +134,7 @@ const Login = (props) => {
                           </button> */}
                           <div id='googleLogin' className='googleLogin'></div>
 
-                      <div className='login-text-3'> If you encounter any problems with logging in through your UP Mail, send a message to loremipsum.com</div>
+                      <div className='login-text-3'> If you encounter any problems with logging in through your UP Mail, send a message to ocs_cos.upcebu@up.edu.ph</div>
                     </div>
                   </div>
                 </div>
@@ -167,13 +167,13 @@ const Login = (props) => {
                             <img alt="footer-component-icon-3"
                             src={telephoneIcon}
                             className="footer-component-icon-3"/>
-                            <p className='footer-component-text-7'>09123456789 / 123-456</p>
+                            <p className='footer-component-text-7'>232 8185 / 232 8187</p>
                         </div>
                         <div className="contact-container-2">
                             <img alt="footer-component-icon-4"
                             src={envelopeIcon}
                             className="footer-component-icon-4"/>
-                            <p className='footer-component-text-8'>loremipsum@up.edu.ph</p>     
+                            <p className='footer-component-text-8'>ocs_cos.upcebu@up.edu.ph</p>     
                         </div>
                     </div>    
                 </div>

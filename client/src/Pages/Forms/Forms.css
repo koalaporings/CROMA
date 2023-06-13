@@ -83,9 +83,10 @@ ul li.important-item {
 .upload {
     font-family: 'Poppins';
     background-color: #FFEBC8;
+    margin: 10px;
     padding: 10px;
     border-radius: 20px 20px 20px 20px ;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .privacy-notice-text-end {
