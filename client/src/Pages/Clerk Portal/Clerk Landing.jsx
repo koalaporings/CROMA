@@ -42,7 +42,7 @@ const ClerkLanding = ({userName}) => {
     });
 
     async function fetchTable(data){
-        const response = await axios.get('http://localhost:5000/clerk_api/transaction_table/10/' + data.order_filter + "/" + data.course_filter)
+        const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/clerk_api/transaction_table/10/' + data.order_filter + "/" + data.course_filter)
         console.log(response.data)
         setTableData(response.data)
         SetCount(response.data.length)
@@ -53,7 +53,7 @@ const ClerkLanding = ({userName}) => {
         }, [])    
 
     async function viewDocumentDetails(id) {
-            const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+            const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
             if (response){
                 setDocumentDetails(response.data[0])
                 console.log(documentDetails)
@@ -62,13 +62,15 @@ const ClerkLanding = ({userName}) => {
     }
 
     async function addNotif(id,message) {
-        const response = await axios.post("http://localhost:5000/notification_api/new",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/notification_api/new",{
             user_id: id,
             notification_body: message,
         })
         if (response){
             console.log(response)
+            
         }
+        window.location.reload()
     }
 
     // async function addTracking(id) {
@@ -106,12 +108,11 @@ const ClerkLanding = ({userName}) => {
         approveUpdate(documentDetails.transaction_id)
         addTracking(documentDetails.transaction_id)
         const msg = "Your request for " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been completed by the clerk."
-        window.location.reload()
         addNotif(documentDetails.user_id, msg)
     }
 
     async function approveUpdate(id) {
-        const response = axios.put("http://localhost:5000/clerk_api/update/" + id.toString(), {
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/clerk_api/update/" + id.toString(), {
         })
         if (response){
             console.log(response)
@@ -120,7 +121,7 @@ const ClerkLanding = ({userName}) => {
 
 
     async function addTracking(id) {
-        const response = await axios.post("http://localhost:5000/tracking_api/update",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/update",{
             transaction_id: id,
             tracking_status: "Your request has been completed by the clerk. Check the file on the History page.",
         })

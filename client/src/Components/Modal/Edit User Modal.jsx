@@ -16,7 +16,7 @@ const EditUserModal = ({ data, setIsOpen, updateUser }) => {
       console.log("heh");
       setIsOpen(false); // Close the modal first
       window.location.reload(); // Reload the window
-      const response = await axios.put("http://localhost:5000/admin_api/changeRole", {
+      const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/changeRole", {
         email: email,
         role: selectedRole,
       });

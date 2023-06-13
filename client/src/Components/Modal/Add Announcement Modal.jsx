@@ -11,7 +11,7 @@ const AddAnnouncement = ({ setIsOpen }) => {
   
   const AddAnnouncementData = async (data) => {
     const response = await axios.post(
-      "http://localhost:5000/announcement_api/post",{
+      "http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/post",{
       announcement_title: data.announcement_title,
       announcement_body: data.announcement_body,
       }

@@ -7,7 +7,7 @@ import axios from "axios";
 const DeleteModal = ({ onClose, announcementId, onUpdate }) => {
   const deleteAnnouncement = async () => {
     try {
-      await axios.delete(`http://localhost:5000/announcement_api/delete/${announcementId}`);
+      await axios.delete(`http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/delete/${announcementId}`);
       onClose(); // Call the onClose prop instead of setIsOpen
       onUpdate();
     } catch (error) {

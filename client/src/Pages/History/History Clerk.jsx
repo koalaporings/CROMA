@@ -21,7 +21,7 @@ const ClerkHistoryPage = ({children}) => {
     const [numTransactions, setNumTransactions] = useState(0);
 
     async function fetchTable(filter_info) {
-        const response = await axios.get('http://localhost:5000/admin_api/history_table/' + filter_info)
+        const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/history_table/' + filter_info)
         setTableData(response.data)
         setNumTransactions(response.data.length)
     }

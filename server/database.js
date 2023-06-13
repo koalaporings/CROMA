@@ -1,8 +1,8 @@
 const mysql = require('mysql2');
 const db = mysql.createConnection({
-    user: 'root',
-    host: 'localhost',
-    password: null,
+    user: 'admin',
+    host: 'ocs-ars-db.cs1vvpvzmt1b.ap-southeast-2.rds.amazonaws.com',
+    password: 'croma123',
     database: 'croma'
 });
 
