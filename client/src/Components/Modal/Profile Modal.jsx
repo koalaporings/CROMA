@@ -21,7 +21,7 @@ const ProfileModal = ({ onClose, userId }) => {
     try {
       const userObject = jwt_decode(sessionStorage.getItem("token"))
       setUser(userObject)
-      const response = await axios.get(`http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/getDetails/${data}`);
+      const response = await axios.get(`http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/student_api/getDetails/${data}`);
       console.log(userId);
       console.log(response.data[0]);
       setStudentData(response.data[0]);

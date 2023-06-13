@@ -50,7 +50,7 @@ function PDFdocument(docdata){
     const [file, setFile] = useState();
 
     const getImagevalue = async () => {
-        const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/get/' + docdata.docData.transaction_id)
+        const response = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/get/' + docdata.docData.transaction_id)
         console.log(response)
         setFile(Buffer.from(response.data[0].file.data))
       }

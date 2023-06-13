@@ -16,7 +16,7 @@ const ViewAnnouncementPage = () => {
     useEffect(() => {
         async function getAnnouncementDetails() {
             try {
-                const response = await axios.get(`http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/view/${id}`);
+                const response = await axios.get(`http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/view/${id}`);
                 setAnnouncementDetails(response.data[0]);
                 console.log(response.data);
             } catch (error) {

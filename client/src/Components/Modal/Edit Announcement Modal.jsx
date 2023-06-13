@@ -29,7 +29,7 @@ const EditAnnouncement = ({ announcementId, onClose, announcement, onUpdate }) =
       const { edited_announcement_title, edited_announcement_body } = editedDetails;
   
       const response = await axios.put(
-        "http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/edit",
+        "http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/edit",
         {
           announcement_title: edited_announcement_title,
           announcement_body: edited_announcement_body,

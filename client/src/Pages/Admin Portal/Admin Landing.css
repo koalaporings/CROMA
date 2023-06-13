@@ -60,12 +60,6 @@
     }
 }
 
-.footer-admin {
-    /* display: flex;
-    margin-top: 2.5%;
-    height: 15vh;
-    width: 100% */
-}
 
 @media screen and (max-width: 768px) {
     .name-header-admin {

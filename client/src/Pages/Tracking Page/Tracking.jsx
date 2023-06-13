@@ -25,14 +25,14 @@ const TrackingPage = ({userId}) => {
 
     console.log(id)
         async function fetchTrackingTransactions(filter_info) {
-            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/history/' + userId + "/" + filter_info)
+            const response = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/history/' + userId + "/" + filter_info)
             console.log(response.data)
             setTransactionData(response.data)
         }
 
         async function getTrackingDetails(id) {
             console.log(id)
-            const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/get/" + id)
+            const response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/get/" + id)
             console.log(response)
             if (response){
                 setTrackingData(response.data)
@@ -42,7 +42,7 @@ const TrackingPage = ({userId}) => {
 
         async function viewTransactionDetails(id) {
             console.log(id)
-            var response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id)
+            var response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id)
             console.log(response)
             if (response){
                 setTransactionDetails(response.data)

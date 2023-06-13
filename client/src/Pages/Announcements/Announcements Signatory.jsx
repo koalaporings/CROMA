@@ -20,7 +20,7 @@ const AnnouncementSignatoryPage = ({children}) => {
 
     useEffect (() =>{
         const fetchAllAnnouncement = async ()=>{
-            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/details')
+            const response = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/announcement_api/details')
             setAnnouncementData(response.data)
         }
         fetchAllAnnouncement()
