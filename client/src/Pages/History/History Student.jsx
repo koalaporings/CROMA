@@ -27,7 +27,7 @@ const StudentHistoryPage = ({userId}) => {
     const [documentDetails, setDocumentDetails] = useState([]);
 
         async function fetchTable(filter_info) {
-            const response = await axios.get('http://localhost:5000/student_api/transaction_history/' + userId + "/" + filter_info)
+            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_history/' + userId + "/" + filter_info)
             setTableData(response.data)
             setNumTransactions(response.data.length)
         }
@@ -45,7 +45,7 @@ const StudentHistoryPage = ({userId}) => {
 
             async function viewDocumentDetails(id) {
                 console.log(id)
-                const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+                const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
                 console.log(response)
                 if (response){
                     setDocumentDetails(response.data[0])
@@ -55,7 +55,7 @@ const StudentHistoryPage = ({userId}) => {
 
   
             const getImagevalue = async (data) => {
-                const response = await axios.get('http://localhost:5000/form_api/get/' + data)
+                const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/get/' + data)
                 console.log(response)
                 setFile(Buffer.from(response.data[0].file.data))
                 console.log(file)

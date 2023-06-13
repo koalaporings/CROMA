@@ -108,10 +108,8 @@ function App() {
 
     const getData = (fetched_role, fetched_id) => {
       setRole(fetched_role)
-      setID(fetched_id)
 
       console.log(role)
-      console.log(id)
     }
     
   return (

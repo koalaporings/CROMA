@@ -40,7 +40,7 @@ const AdminLanding = ({userName}) => {
 
     useEffect(() => {
         async function getSignatory(){
-            const response = await axios.get("http://localhost:5000/signatory_api/getSignatories")
+            const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/getSignatories")
             console.log(response.data)
             setSignatoryList(response.data)
         }
@@ -60,7 +60,7 @@ const AdminLanding = ({userName}) => {
 
 
         async function fetchApproval(data){
-            const response = await axios.get('http://localhost:5000/admin_api/approval_table/' + data.order_filter + "/" + data.course_filter)
+            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/approval_table/' + data.order_filter + "/" + data.course_filter)
             console.log(response.data)
             setTableData1(response.data)
             setNumApprove(response.data.length)
@@ -71,7 +71,7 @@ const AdminLanding = ({userName}) => {
             }, [])
 
         async function fetchOngoing(data){
-            const response = await axios.get('http://localhost:5000/admin_api/ongoing_table/' + data.order_filter + "/" + data.course_filter)
+            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/ongoing_table/' + data.order_filter + "/" + data.course_filter)
             console.log(response.data)
             setTableData2(response.data)
             setNumOngoing(response.data.length)
@@ -83,7 +83,7 @@ const AdminLanding = ({userName}) => {
 
     async function viewDocumentDetails(id) {
         console.log(id)
-        const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
         console.log(response)
         if (response){
             console.log(response.data)
@@ -95,7 +95,7 @@ const AdminLanding = ({userName}) => {
 
     async function viewDocumentDetails2(id) {
         console.log(id)
-        const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
         console.log(response)
         if (response){
             console.log(response.data)
@@ -106,7 +106,7 @@ const AdminLanding = ({userName}) => {
     }
 
     async function addTracking(id) {
-        const response = await axios.post("http://localhost:5000/tracking_api/update",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/update",{
             transaction_id: id,
             tracking_status: "Your request has been approved by the admin.",
         })
@@ -116,7 +116,7 @@ const AdminLanding = ({userName}) => {
     }
 
     async function setApprovedBy(id) {
-        const response = await axios.put("http://localhost:5000/form_api/updateApproved",{
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateApproved",{
             transaction_id: id,
             approved_by: "COS Secretary",
         })
@@ -126,7 +126,7 @@ const AdminLanding = ({userName}) => {
     }
 
     async function changeStatusToAccepted(id) {
-        const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'ongoing'
         })
         addTracking(id)
@@ -136,7 +136,7 @@ const AdminLanding = ({userName}) => {
     }
 
     async function changeStatusToRejected(id, comment) {
-        const response = axios.put("http://localhost:5000/admin_api/transaction_status/" + id.toString(), {
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/transaction_status/" + id.toString(), {
             transaction_status: 'rejected',
             remarks: comment
         })
@@ -147,17 +147,18 @@ const AdminLanding = ({userName}) => {
     }
 
     async function addNotif(id,message) {
-        const response = await axios.post("http://localhost:5000/notification_api/new",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/notification_api/new",{
             user_id: id,
             notification_body: message,
         })
         if (response){
             console.log(response)
         }
+        window.location.reload()
     }
     
     async function setFirstSignatory(transaction_id, signatory_id) {
-        const response = await axios.put("http://localhost:5000/signatory_api/approve/",{
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/approve/",{
             transaction_id: transaction_id,
             signatory_id: signatory_id,
         })
@@ -168,7 +169,7 @@ const AdminLanding = ({userName}) => {
 
     async function updateRecipients(transaction_id, recipients) {
         console.log((recipients.recipient2 != "") ? recipients.recipient2 + ((recipients.recipient3 != "") ? recipients.recipient3 : "") : "")
-        const response = await axios.put("http://localhost:5000/form_api/updateRecipients",{
+        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateRecipients",{
             transaction_id: transaction_id,
             form_recipients: (recipients.recipient2 != "") ? recipients.recipient2 + ((recipients.recipient3 != "") ? recipients.recipient3 : "") : ""
         })
@@ -199,22 +200,24 @@ const AdminLanding = ({userName}) => {
         setRejectOpen(true)
     }
 
+
     const approveTransaction = (data) => {
         console.log(data)
         changeStatusToAccepted(id)
+        console.log(id)
         setFirstSignatory(id, recipients.recipient1)
         updateRecipients(id, recipients)
         setApprovedBy(id)
 
         const msg = "Your request " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been approved by the admin."
-        window.location.reload()
+        
         addNotif(documentDetails.user_id, msg)
     }
     
     const rejectTransaction = (data) => {
         changeStatusToRejected(id,data)
         const msg = "Your request " + documentDetails.transaction_id + " (" + documentDetails.form_name + ") has been rejected by the admin."
-        window.location.reload()
+        
         addNotif(documentDetails.user_id, msg)
     }
     

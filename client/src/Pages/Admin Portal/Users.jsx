@@ -20,7 +20,7 @@ const Users = ({ children }) => {
 
   const fetchAllUser = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/admin_api/getAllUser');
+      const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/admin_api/getAllUser');
       setUserData(response.data);
     } catch (error) {
       console.error(error);

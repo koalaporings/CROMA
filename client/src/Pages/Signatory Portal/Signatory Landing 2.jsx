@@ -29,7 +29,7 @@ const SignatoryLanding = ({children}) => {
     useEffect (() =>{
         const fetchTable = async ()=>{
             try{
-                const response = await axios.get('http://localhost:5000/signatory_api/transactions/' + 5, {credentials: 'same-origin'})
+                const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/transactions/' + 5, {credentials: 'same-origin'})
                 console.log(response.data)
                 setTableData(response.data)
                 SetCount(response.data.length)
@@ -43,7 +43,7 @@ const SignatoryLanding = ({children}) => {
         }, [])
     
     async function viewDocumentDetails(id) {
-        const response = await axios.get("http://localhost:5000/student_api/transaction_details/" + id.toString())
+        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
         if (response){
             setDocumentDetails(response.data[0])
             console.log(documentDetails)
@@ -52,7 +52,7 @@ const SignatoryLanding = ({children}) => {
     }
 
     async function addNotif(id,message) {
-        const response = await axios.post("http://localhost:5000/notification_api/new",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:50000/notification_api/new",{
             user_id: id,
             notification_body: message,
         })
@@ -78,7 +78,7 @@ const SignatoryLanding = ({children}) => {
     }
 
     async function approveUpdate(id) {
-        const response = axios.put("http://localhost:5000/signatory_api/approvetemp/" + id.toString(), {
+        const response = axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/approvetemp/" + id.toString(), {
         })
         addTracking(id)
         if (response){
@@ -88,7 +88,7 @@ const SignatoryLanding = ({children}) => {
 
 
     async function addTracking(id) {
-        const response = await axios.post("http://localhost:5000/tracking_api/update",{
+        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/update",{
             transaction_id: id,
             tracking_status: "Your request has been approved by signatory: Test Signatory 2.",
         })

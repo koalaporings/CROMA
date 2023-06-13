@@ -19,7 +19,7 @@ const Form12 = ({userId}) => {
 
     useEffect(() => {
         async function getDetails(data){
-            const response = await axios.get('http://localhost:5000/student_api/getDetails/'+ data)
+            const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/getDetails/'+ data)
             console.log(response.data[0])
             setSavedDetails(response.data[0])
         }

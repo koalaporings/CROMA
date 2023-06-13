@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 11, 2023 at 02:16 PM
+-- Generation Time: Jun 12, 2023 at 03:52 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -40,7 +40,7 @@ CREATE TABLE `announcements` (
 --
 
 INSERT INTO `announcements` (`announcement_id`, `announcement_title`, `announcement_datetime`, `announcement_body`, `announcement_status`) VALUES
-(1, 'Announcement Test', '2023-06-09 02:40:02', 'This is an announcement!', 'original');
+(1, 'Announcement Test', '2023-06-12 13:45:57', 'Good day users!\n\nThis announcement is made to inform you about the upcoming CMSC 129 Project Showcase of the BS Computer Science Third Years. Your attendance is highly encouraged and appreciated! We hope to see you there!', 'original');
 
 -- --------------------------------------------------------
 
@@ -164,6 +164,14 @@ CREATE TABLE `signatory` (
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `signatory`
+--
+
+INSERT INTO `signatory` (`user_id`, `signatory_id`, `first_name`, `last_name`, `email`) VALUES
+(10, 10, 'Gabriel Howard', 'Awatin', 'gjawatin@up.edu.ph'),
+(100, 100, 'Kyle Alan', 'Manayon', 'kcmanayon@up.edu.ph');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +190,13 @@ CREATE TABLE `students` (
   `email` varchar(30) NOT NULL,
   `registered` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`user_id`, `student_number`, `first_name`, `last_name`, `middle_initial`, `year_level`, `degree_program`, `mobile_number`, `email`, `registered`) VALUES
+(1000, '202000001', 'John Oliver', 'Ochea', 'E.', '3', 'BS Computer Science', '09987654321', 'jeochea@up.edu.ph', 1);
 
 -- --------------------------------------------------------
 
@@ -265,6 +280,16 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL,
   `role` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`email`, `role`) VALUES
+('gjawatin@up.edu.ph', 'clerk'),
+('jeochea@up.edu.ph', 'student'),
+('kcmanayon@up.edu.ph', 'signatory'),
+('mprosales1@up.edu.ph', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -375,7 +400,7 @@ ALTER TABLE `forms`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `signatory`
@@ -394,18 +419,6 @@ ALTER TABLE `students`
 --
 
 --
--- Constraints for table `authorized_subjects`
---
-ALTER TABLE `authorized_subjects`
-  ADD CONSTRAINT `authorized_subjects_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`transaction_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `cancelled_subjects`
---
-ALTER TABLE `cancelled_subjects`
-  ADD CONSTRAINT `cancelled_subjects_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`transaction_id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `files`
 --
 ALTER TABLE `files`
@@ -416,12 +429,6 @@ ALTER TABLE `files`
 --
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `students` (`user_id`) ON DELETE CASCADE;
-
---
--- Constraints for table `overload_subjects`
---
-ALTER TABLE `overload_subjects`
-  ADD CONSTRAINT `overload_subjects_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `transactions` (`transaction_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `signatory`
