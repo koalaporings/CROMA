@@ -38,14 +38,14 @@ const Register = ({children}) => {
 
     const getUserID = async(email) => {
         console.log(email)
-        const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/id_api/student_id/' + email)
+        const response = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/id_api/student_id/' + email)
         setID(response.data[0].user_id)
     }
 
     async function postUpdate(data) {
         console.log(data)
         console.log(id)
-        const response = axios.put('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/login_api/updateDetails',{
+        const response = axios.put('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/login_api/updateDetails',{
             user_id: parseInt(id),
             first_name: data.first_name,
             last_name: data.last_name,

@@ -68,18 +68,18 @@ const Login = (props) => {
     const signIn = async (user) => {
       console.log(user.email)
       sessionStorage.setItem("email", user.email)
-      axios.post('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/login_api/checkUser', {
+      axios.post('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/login_api/checkUser', {
         email: user.email
       }).then((response) => {
         console.log(response)
       })
-      const response1 = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/login_api/getRole/' + user.email)
+      const response1 = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/login_api/getRole/' + user.email)
         console.log(response1)
         console.log("yes")
         sessionStorage.setItem("role", response1.data[0].role)
         console.log(response1.data[0].role)
       if(response1.data[0].role !== 'admin'){
-        const responses = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/id_api/student_id/' + user.email)
+        const responses = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/id_api/student_id/' + user.email)
         console.log(responses)
         sessionStorage.setItem("id", responses.data[0].user_id)
         props.fetchData(response1.data[0].role)

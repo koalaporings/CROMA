@@ -41,7 +41,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     async function fetchTable (data){
         console.log(data)
         console.log(userId)
-        const response = await axios.get('http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/transactions/' + userId + "/" + data.order_filter + "/" + data.course_filter)
+        const response = await axios.get('http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/transactions/' + userId + "/" + data.order_filter + "/" + data.course_filter)
         console.log(response.data)
         setTableData(response.data)
         SetCount(response.data.length)
@@ -52,7 +52,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
         }, [])
     
     async function viewDocumentDetails(id) {
-        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
+        const response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/student_api/transaction_details/" + id.toString())
         if (response){
             setDocumentDetails(response.data[0])
             console.log(documentDetails)
@@ -61,7 +61,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     }
 
     async function addNotif(id,message) {
-        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/notification_api/new",{
+        const response = await axios.post("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/notification_api/new",{
             user_id: id,
             notification_body: message,
         })
@@ -85,7 +85,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     }
 
     async function approveTransaction (data) {
-        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/approvedBy/" + id)
+        const response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/approvedBy/" + id)
         console.log(response.data)
 
         getRecipients(documentDetails.transaction_id)
@@ -104,7 +104,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     async function getRecipients(id){
         addTracking(id)
         getApprovedBy(id)
-        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/formRecipients/" + id.toString())
+        const response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/formRecipients/" + id.toString())
         console.log(response)
         const recip = response.data[0].form_recipients.substring(0,3)
 
@@ -122,7 +122,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     }
 
     async function updateRecipients(transaction_id, recipients) {
-        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateRecipients",{
+        const response = await axios.put("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateRecipients",{
             transaction_id: transaction_id,
             form_recipients: recipients
         })
@@ -136,7 +136,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     async function approveUpdate(id, recip) {
         console.log(id)
         console.log(recip)
-        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/approve/", {
+        const response = await axios.put("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/approve/", {
             signatory_id: recip,
             transaction_id: id
         })
@@ -148,7 +148,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
 
     async function getApprovedBy(id) {
         console.log(id)
-        const response = await axios.get("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/approvedBy/" + id)
+        const response = await axios.get("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/approvedBy/" + id)
         const approved_by = response.data[0].approved_by
         console.log(approved_by)
         setApprovedBy(id, approved_by)
@@ -157,7 +157,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
 
     async function setApprovedBy(id, approved_by) {
         console.log(id)
-        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateApproved",{
+        const response = await axios.put("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/form_api/updateApproved",{
             transaction_id: id,
             approved_by: approved_by + ", " + lastName,
         })
@@ -167,7 +167,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
     }
 
     async function rejectUpdate(id, comment) {
-        const response = await axios.put("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/rejecttemp/" + id.toString(), {
+        const response = await axios.put("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/signatory_api/rejecttemp/" + id.toString(), {
             transaction_status: 'rejected',
             remarks: comment
         })
@@ -179,7 +179,7 @@ const SignatoryLanding = ({userId, userName, lastName}) => {
 
 
     async function addTracking(id) {
-        const response = await axios.post("http://ec2-3-26-217-82.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/update",{
+        const response = await axios.post("http://ec2-3-26-146-89.ap-southeast-2.compute.amazonaws.com:5000/tracking_api/update",{
             transaction_id: id,
             tracking_status: "Your request has been approved by signatory: " + sessionStorage.getItem("name"),
         })
